@@ -21,3 +21,51 @@ module.exports = defineConfig({
 
 
 
+# 报错二
+
+![](images/002.png)
+
+**原因**
+
+组件模板应该只包含一个根元素
+
+**处理**
+
+写一个根div
+
+
+
+# 警告一
+
+运行成功，控制台提示当前Vue为开发版本
+
+![](images/003.png)
+
+**处理**
+
+Vue.config.productionTip = false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
