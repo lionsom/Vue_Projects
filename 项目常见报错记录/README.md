@@ -35,7 +35,7 @@ module.exports = defineConfig({
 
 
 
-# 警告一
+# 警告三
 
 运行成功，控制台提示当前Vue为开发版本
 
@@ -47,13 +47,34 @@ Vue.config.productionTip = false
 
 
 
+# 报错四
 
+Avoided redundant navigation to current location: "/search". NavigationDuplicated: Avoided redundant navigation to current location: "/search".
 
+![](images/004.png)
 
+**原因**
 
+- 解决 Vue 路由传递参数时，出现 Uncaught (in promise) NavigationDuplicated: Avoided redundant navigation 问题 .
+- 报错内容：Uncaught (in promise) NavigationDuplicated: Avoided redundant navigation to current location: "/search/111".
+- 问题描述：重复点击导航时，控制台报错
 
+**解决方案**
 
+`src/router/index.js` 配置文件中添加以下代码:
 
+```js
+// src/router/index.js
+import Vue from 'vue'
+import VueRouter  from 'vue-router'
+Vue.use(VueRouter)
+ 
+//添加以下代码
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+```
 
 
 
