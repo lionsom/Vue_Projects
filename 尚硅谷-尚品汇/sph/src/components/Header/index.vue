@@ -28,7 +28,7 @@ export default {
   methods: {
     // 搜索按钮的回调函数，需要向search路由进行跳转
     goSearch() {
-      this.$router.push('/search/222')
+      this.$router.push('/search')
     }
   },
 };
