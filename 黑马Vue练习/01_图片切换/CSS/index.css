@@ -1,0 +1,66 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* 通用class */
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+/*  */
+#myBg {
+  /* 父类写flex，子类变换 */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: antiquewhite;
+
+  /* 宽高 */
+  width: 60vw;
+  height: 80vh;
+
+  /* 居中 */
+  margin: 10vh auto;
+}
+
+#myCenterBg {
+  width: 90%;
+  height: 90%;
+
+  background-color: aqua;
+}
+
+#imgBg {
+  width: 100%;
+  height: 90%;
+}
+
+.btnDiv {
+  width: 100%;
+  height: 10%;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: palegoldenrod;
+}
+
+#preBtn {
+  width: 20%;
+  height: 100%;
+
+  margin-left: 10px;
+}
+
+#nextBtn {
+  width: 20%;
+  height: 100%;
+
+  margin-right: 10px;
+}
