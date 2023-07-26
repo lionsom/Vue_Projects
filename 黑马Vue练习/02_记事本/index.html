@@ -11,7 +11,7 @@
   <body>
     <div id="myBg">
       <div id="topBg">
-        <input type="text" v-model="newData"/>
+        <input type="text" v-model="newData" @keyup.enter="add(newData)"/>
         <button @click="add(newData)">新增</button>
       </div>
 
