@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成绩单</title>
+
+    <!-- 引入CSS -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="left">
+        <table>
+          <tr>
+            <th>编号</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+          </tr>
+
+          <tr v-for="(item, index) in ">
+            <td>刘德华</td>
+            <td>男</td>
+            <td>56</td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="right"></div>
+    </div>
+
+    <!-- 引入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          lists: [{ iid: 0, subject: "数学", grade: 11 }],
+        },
+        computed: {
+          totalGrade() {
+            var all = lists.return;
+          },
+          // 完整写法 set + get
+          avarageGrade: {
+            get() {
+              return this.totalGrade / 10;
+            },
+            set(value) {
+              this.avarageGrade = value;
+            },
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
