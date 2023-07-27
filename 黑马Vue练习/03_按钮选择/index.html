@@ -13,7 +13,7 @@
     <div id="app">
       <div id="myBg">
         <ul>
-          <li v-for="item in lists" ::key="item.myId">
+          <li v-for="item in lists" :key="item.myId">
             <a
               @click.prevent="btnClick(item.myId)"
               href=""
