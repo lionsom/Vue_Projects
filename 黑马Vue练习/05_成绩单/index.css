@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+.red {
+    color: red;
+}
+
 #left {
     background-color: antiquewhite;
     width: 100%;
