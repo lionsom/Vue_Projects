@@ -12,22 +12,38 @@
     <div id="app">
       <div id="left">
         <table>
-          <tr>
-            <th>编号</th>
-            <th>科目</th>
-            <th>成绩</th>
-            <th>操作</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>科目</th>
+              <th>成绩</th>
+              <th>操作</th>
+            </tr>
+          </thead>
 
-          <tr v-for="(item, index) in ">
-            <td>刘德华</td>
-            <td>男</td>
-            <td>56</td>
-          </tr>
+          <tbody>
+            <tr v-for="(item, index) in lists">
+              <td>{{item.iid}}</td>
+              <td>{{item.subject}}</td>
+              <td>{{item.grade}}</td>
+              <td>
+                <a href="#">删除</a>
+              </td>
+            </tr>
+
+            <tr>
+              <!-- 4列合并 -->
+              <td colspan="4">总分：{{totalGrade}}， 平均分：{{avarageGrade}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
-      <div id="right"></div>
+      <div id="right">
+        <input type="text"> 输入科目
+        <input type="text"> 输入成绩
+        <button @click="add(1,2)">添加</button>
+      </div>
     </div>
 
     <!-- 引入vue.js -->
@@ -37,23 +53,42 @@
       const vm = new Vue({
         el: "#app",
         data: {
-          lists: [{ iid: 0, subject: "数学", grade: 11 }],
+          lists: [
+            { iid: 1, subject: "语文", grade: 11 },
+            { iid: 2, subject: "数学", grade: 22 },
+            { iid: 3, subject: "英文", grade: 33 },
+            { iid: 4, subject: "地理", grade: 44 },
+          ],
         },
         computed: {
+          // 总分
           totalGrade() {
-            var all = lists.return;
+            var tempGrade = 0;
+            this.lists.forEach((element) => {
+              console.log(element.iid);
+
+              tempGrade += element.grade;
+            });
+            return tempGrade;
           },
-          // 完整写法 set + get
+          // 平均分，计算属性完整写法 set + get
           avarageGrade: {
             get() {
-              return this.totalGrade / 10;
+              return this.totalGrade / this.lists.length;
             },
             set(value) {
               this.avarageGrade = value;
             },
           },
         },
-        methods: {},
+        methods: {
+          add(_subject, _grade) {
+
+            var newData = {iid: this.lists.length + 1, subject: _subject, grade:_grade};
+            this.lists.push(newData);
+
+          }
+        },
       });
     </script>
   </body>
