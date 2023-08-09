@@ -3,15 +3,28 @@
 
     <input type="text" v-model="messssage">
 
+    <sson :dataFromFa="messssage" @dataFromSon="handleSonData">
+    </sson>
+
   </div>
 </template>
 
 <script>
+import propsSonVue from './propsSon.vue'
+
 export default {
   name: 'rename-father',
+  components: {
+    sson: propsSonVue
+  },
   data () {
     return {
-      messssage: ''
+      messssage: '默认值'
+    }
+  },
+  methods: {
+    handleSonData (sonData) {
+      this.messssage = sonData
     }
   }
 }
