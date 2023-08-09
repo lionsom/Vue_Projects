@@ -2,10 +2,12 @@
   <div id="app">
 
     <lx-header-vue></lx-header-vue>
-
     <lx-main-vue></lx-main-vue>
-
     <lx-footer-vue></lx-footer-vue>
+
+<props-father>
+
+</props-father>
 
   </div>
 </template>
@@ -15,6 +17,7 @@
 import LxFooterVue from './components/Part/LxFooter.vue'
 import LxHeaderVue from './components/Part/LxHeader.vue'
 import LxMainVue from './components/Part/LxMain.vue'
+import propsFather from './components/Father_Son/propsFather.vue'
 
 export default {
 
@@ -22,7 +25,8 @@ export default {
     // 组件名: 组件对象
     LxHeaderVue: LxHeaderVue,
     LxMainVue, // 缩写
-    LxFooterVue
+    LxFooterVue,
+    propsFather
   }
 
 }
