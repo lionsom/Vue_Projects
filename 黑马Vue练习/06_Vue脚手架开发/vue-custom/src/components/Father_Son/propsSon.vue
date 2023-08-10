@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="sss">我是son，父亲传递过来的值是：{{ dataFromFa }}</div>
+    <div id="sss">我是son，父亲传递过来的值是2：{{ dataFromFa2.name }} , {{ dataFromFa2.age }} 岁</div>
 
     <input type="text" v-model="mssg">
   </div>
@@ -8,7 +9,8 @@
 
 <script>
 export default {
-  props: ['dataFromFa'],
+  name: 'rename-son',
+  props: ['dataFromFa', 'dataFromFa2'],
   data () {
     return {
       mssg: ''

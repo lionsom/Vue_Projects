@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 Vue.component('LxButton', LxButton)
 
 new Vue({
-  router,
+  router, // 5. 注入，将路由对象注入到new Vue实例中，建立关联
   store,
   render: (h) => h(App)
 }).$mount('#app')

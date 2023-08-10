@@ -3,7 +3,7 @@
 
     <input type="text" v-model="messssage">
 
-    <sson :dataFromFa="messssage" @dataFromSon="handleSonData">
+    <sson :dataFromFa="messssage" :dataFromFa2="messssage2" @dataFromSon="handleSonData">
     </sson>
 
   </div>
@@ -19,7 +19,11 @@ export default {
   },
   data () {
     return {
-      messssage: '默认值'
+      messssage: '默认值',
+      messssage2: {
+        name: '小狗',
+        age: 22
+      }
     }
   },
   methods: {
