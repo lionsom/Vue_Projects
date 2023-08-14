@@ -1,31 +1,28 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@babel/core': ^7.22.10
-  '@babel/eslint-parser': ^7.22.10
-  '@vue/cli-plugin-babel': ~5.0.8
-  '@vue/cli-plugin-eslint': ~5.0.8
-  '@vue/cli-plugin-router': ~5.0.8
-  '@vue/cli-plugin-vuex': ~5.0.8
-  '@vue/cli-service': ~5.0.8
+  '@babel/core': ^7.12.16
+  '@babel/eslint-parser': ^7.12.16
+  '@vue/cli-plugin-babel': ~5.0.0
+  '@vue/cli-plugin-eslint': ~5.0.0
+  '@vue/cli-plugin-vuex': ~5.0.0
+  '@vue/cli-service': ~5.0.0
   '@vue/eslint-config-standard': ^6.1.0
-  core-js: ^3.32.0
+  core-js: ^3.8.3
   eslint: ^7.32.0
-  eslint-plugin-import: ^2.28.0
+  eslint-plugin-import: ^2.25.3
   eslint-plugin-node: ^11.1.0
-  eslint-plugin-promise: ^5.2.0
-  eslint-plugin-vue: ^8.7.1
-  sass: ^1.65.1
-  sass-loader: ^12.6.0
-  vue: ^2.7.14
-  vue-router: ^3.6.5
-  vue-template-compiler: ^2.7.14
+  eslint-plugin-promise: ^5.1.0
+  eslint-plugin-vue: ^8.0.3
+  sass: ^1.32.7
+  sass-loader: ^12.0.0
+  vue: ^2.6.14
+  vue-template-compiler: ^2.6.14
   vuex: ^3.6.2
 
 dependencies:
   core-js: 3.32.0
   vue: 2.7.14
-  vue-router: 3.6.5
   vuex: 3.6.2_vue@2.7.14
 
 devDependencies:
@@ -33,7 +30,6 @@ devDependencies:
   '@babel/eslint-parser': 7.22.10_c5a27e48328eef220462bd5e9d136343
   '@vue/cli-plugin-babel': 5.0.8_49a681e9539933bd2d87d2be82aac225
   '@vue/cli-plugin-eslint': 5.0.8_c55aa92e1e5ff62fc892a7c9d3e68cd0
-  '@vue/cli-plugin-router': 5.0.8_@vue+cli-service@5.0.8
   '@vue/cli-plugin-vuex': 5.0.8_@vue+cli-service@5.0.8
   '@vue/cli-service': 5.0.8_1303c54825d9461d6cc4ddcdcb8c2ab4
   '@vue/eslint-config-standard': 6.1.0_a6f7cd5cc56d35254785335cf0f136ec
@@ -7238,10 +7234,6 @@ packages:
       watchpack: 2.4.0
       webpack: 5.88.2
     dev: true
-
-  /vue-router/3.6.5:
-    resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
-    dev: false
 
   /vue-style-loader/4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}

@@ -6,6 +6,9 @@
       <button @click="add">值 + 1</button>
       <button @click="addFive">值 + 5</button>
       <button @click="addObj">值 + 11</button>
+
+      <button @click="asyncCount">2秒后，变更数字</button>
+
     </div>
   </template>
 
@@ -27,6 +30,9 @@ export default {
         msg: '哈哈',
         arr: ['11', '22', '33']
       })
+    },
+    asyncCount () {
+      this.$store.dispatch('setAsyncCount', 888)
     }
   }
 }

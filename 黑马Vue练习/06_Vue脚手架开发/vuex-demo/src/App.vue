@@ -8,7 +8,14 @@
     <input :value="count" @input="handleInput11" type="text">
     <br/>
 
-    <button @click="changeCount11(11)">+11</button>
+    <button @click="changeCount11(11)">= 11</button>
+
+    <button @click="setAsyncCount(666)">异步 2秒后 666</button>
+
+    <div>{{ $store.getters.filterLList }}</div>
+
+    <div>{{ filterLList }}</div>
+
     <Son1></Son1>
     <hr>
     <Son2></Son2>
@@ -24,12 +31,14 @@
 <script>
 import Son1 from './components/demo01/Son1.vue'
 import Son2 from './components/demo01/Son2.vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
     // 映射给计算属性
-    ...mapState(['title', 'count'])
+    ...mapState(['title', 'count']),
+    //
+    ...mapGetters(['filterLList'])
   },
   components: {
     Son1,
@@ -42,6 +51,7 @@ export default {
   methods: {
     // 映射方法到methods
     ...mapMutations(['changeCount11']),
+    ...mapActions(['setAsyncCount']),
     // 输入框事件，形参e
     handleInput (e) {
       console.log(e)
