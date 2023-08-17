@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    我是like
   </div>
 </template>
 
