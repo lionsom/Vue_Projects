@@ -23,11 +23,15 @@ export default {}
 
 <style scoped lang="scss">
 
+.content {
+  margin-bottom: 61px;
+}
+
 .tabbar {
   display: flex;
   justify-content: space-around;
 
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   right: 0px;

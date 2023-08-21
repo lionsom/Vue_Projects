@@ -13,10 +13,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    // 重定向
+    path: '/',
+    redirect: '/article'
+  },
+  {
     path: '/',
     component: MainLayouttt,
-    // 重定向
-    retdirect: '/collect',
     // 通过 children 配置项，可以配置嵌套子路由
     // 1. 在children配置项中，配规则
     // 2. 准备二级路由出口
@@ -40,7 +43,7 @@ const routes = [
     ]
   },
   {
-    path: '/detail',
+    path: '/detail/:iddddd',
     component: ArticleDetailll
   }
 ]
