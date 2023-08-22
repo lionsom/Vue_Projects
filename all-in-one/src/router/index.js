@@ -38,6 +38,7 @@ const routes = [
   {
     path: '/',
     component: MJMainViewAAAAA,
+    // redirect: '/collect',   // 重定向也可以写在这
     // 通过 children 配置项，可以配置嵌套子路由
     // 1. 在children配置项中，配规则
     // 2. 准备二级路由出口
