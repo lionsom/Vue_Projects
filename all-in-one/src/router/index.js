@@ -11,10 +11,19 @@ import MJArticleBBB from '@/views/MianJing/MJ_Article'
 import MJCollectBBB from '@/views/MianJing/MJ_Collect'
 import MJLikeBBB from '@/views/MianJing/MJ_Like'
 import MJUserBBB from '@/views/MianJing/MJ_User'
+// 404
+import NotFound from '@/views/404/NotFound'
+// VuexDemo
+import VuexDemoView from '@/views/VuexDemo/VuexDemoView'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // 重定向
+  {
+    path: '/',
+    redirect: '/vuexdemo'
+  },
   /* ===== hello ===== */
   {
     path: '/hello_home',
@@ -30,11 +39,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/HelloWorld/AboutView.vue')
   },
   /* ===== 面经 ===== */
-  {
-    // 重定向
-    path: '/',
-    redirect: '/article'
-  },
   {
     path: '/',
     component: MJMainViewAAAAA,
@@ -64,10 +68,18 @@ const routes = [
   {
     path: '/detail/:iddddd',
     component: MJDetailAAA
-  }
+  },
+  // VuexDemo
+  {
+    path: '/vuexdemo',
+    component: VuexDemoView
+  },
+  // 404
+  { path: '*', component: NotFound }
 ]
 
 const router = new VueRouter({
+  mode: 'hash', // 默认是hash, history
   routes
 })
 

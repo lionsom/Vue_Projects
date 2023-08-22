@@ -1,4 +1,3 @@
-
 const state = {
   UserInfo: {
     name: 'linx',
@@ -7,11 +6,17 @@ const state = {
   }
 }
 
-const mutations = {}
+const mutations = {
 
-const actions = {}
+}
 
-const getters = {}
+const actions = {
+
+}
+
+const getters = {
+
+}
 
 export default {
   state,

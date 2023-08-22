@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="main-page">
 
     <h1>根组件 - Vuex仓库数据 - {{ $store.state.title }}</h1>
     <h1>根组件 - Vuex仓库数据 - {{ count }}</h1>
@@ -16,33 +16,30 @@
 
     <div>{{ filterLList }}</div>
 
-    <Son1></Son1>
+    <Son1 id="id_son1"></Son1>
     <hr>
-    <Son2></Son2>
+    <Son2 id="id_son2">></Son2>
 
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
   </div>
 </template>
 
 <script>
-import Son1 from './components/demo01/Son1.vue'
-import Son2 from './components/demo01/Son2.vue'
+
+import Son1 from '@/components/Vuex_Demo/Vuex_Son1.vue'
+import Son2 from '@/components/Vuex_Demo/Vuex_Son2.vue'
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
+  name: 'VuexDemoPage',
+  components: {
+    Son1,
+    Son2
+  },
   computed: {
     // 映射给计算属性
     ...mapState(['title', 'count']),
     //
     ...mapGetters(['filterLList'])
-  },
-  components: {
-    Son1,
-    Son2
   },
   created () {
     console.log(this.$store)
@@ -65,12 +62,12 @@ export default {
     }
   }
 }
-
 </script>
 
-<style lang="scss">
-#app {
-  width: 600px;
+<style scoped lang="scss">
+
+.main-page {
+  width: 90%;
   margin: 20px auto;
   border: 3px solid #ccc;
   border-radius: 3px;
@@ -83,16 +80,14 @@ export default {
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#id_son1 {
+  background: lightcyan;
+  margin: 30px auto;
 }
+
+#id_son2 {
+  background: lightblue;
+  margin: 20px auto;
+}
+
 </style>

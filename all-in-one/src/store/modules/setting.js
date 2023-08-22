@@ -1,16 +1,21 @@
-
 const state = {
   Setting: {
     theme: 'dark',
-    desc: '还不错哦'
+    desc: '暗黑主题，还不错哦！'
   }
 }
 
-const mutations = {}
+const mutations = {
 
-const actions = {}
+}
 
-const getters = {}
+const actions = {
+
+}
+
+const getters = {
+
+}
 
 export default {
   state,
