@@ -1,20 +1,16 @@
 import Vue from 'vue'
-// Hello
 import VueRouter from 'vue-router'
-import HomeView from '../views/HelloWorld/HomeView.vue'
-// 面经
-// View
-import MJMainViewAAAAA from '@/views/MianJing/MJ_MainView'
-import MJDetailAAA from '@/views/MianJing/MJ_Detail'
-// Compnent
-import MJArticleBBB from '@/views/MianJing/MJ_Article'
-import MJCollectBBB from '@/views/MianJing/MJ_Collect'
-import MJLikeBBB from '@/views/MianJing/MJ_Like'
-import MJUserBBB from '@/views/MianJing/MJ_User'
-// 404
-import NotFound from '@/views/404/NotFound'
+// 各个路由模块
+import RouterTest from './router-test'
+import RouterMianJing from './router-mianjing'
+import RouterHello from './router-hello'
+
+// 路由主页
+import RouterView from '@/views/RouterView/RouterView'
 // VuexDemo
 import VuexDemoView from '@/views/VuexDemo/VuexDemoView'
+// 404
+import NotFound from '@/views/404/NotFound'
 
 Vue.use(VueRouter)
 
@@ -22,52 +18,13 @@ const routes = [
   // 重定向
   {
     path: '/',
-    redirect: '/vuexdemo'
+    redirect: '/routerview'
   },
-  /* ===== hello ===== */
+  // 路由主页
   {
-    path: '/hello_home',
-    name: 'hello_home',
-    component: HomeView
-  },
-  {
-    path: '/hello_about',
-    name: 'hello_about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/HelloWorld/AboutView.vue')
-  },
-  /* ===== 面经 ===== */
-  {
-    path: '/',
-    component: MJMainViewAAAAA,
-    // redirect: '/collect',   // 重定向也可以写在这
-    // 通过 children 配置项，可以配置嵌套子路由
-    // 1. 在children配置项中，配规则
-    // 2. 准备二级路由出口
-    children: [
-      {
-        path: '/article',
-        component: MJArticleBBB
-      },
-      {
-        path: '/collect',
-        component: MJCollectBBB
-      },
-      {
-        path: '/like',
-        component: MJLikeBBB
-      },
-      {
-        path: '/user',
-        component: MJUserBBB
-      }
-    ]
-  },
-  {
-    path: '/detail/:iddddd',
-    component: MJDetailAAA
+    path: '/routerview',
+    name: RouterView,
+    component: RouterView
   },
   // VuexDemo
   {
@@ -80,7 +37,12 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'hash', // 默认是hash, history
-  routes
+  routes: [
+    ...routes,
+    ...RouterTest,
+    ...RouterMianJing,
+    ...RouterHello
+  ]
 })
 
 export default router
