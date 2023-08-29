@@ -6,11 +6,11 @@ import RouterLinkDynamic from '@/views/RouterTestView/RouterTestView02'
 
 export default [
   {
-    path: '/routerTest/link_query',
+    path: '/router_test_link_query',
     component: RouterLinkQuery
   },
   {
-    path: '/routerTest/link_dynamic',
+    path: '/router_test_link_dynamic/:keyWords?', // ?可有可无
     component: RouterLinkDynamic
   }
 ]

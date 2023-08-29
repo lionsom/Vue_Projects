@@ -2,16 +2,16 @@
   <div class="page">
 
     <div class="cell" v-for="(item, index) in routersInfo" :key="item.id" @click="jump(item)">
-      {{ index }}. {{item.id}} {{ item.name }}
+      {{ index }}. {{item.id}} {{ item.desc }}
     </div>
 
     <nav class='tabbar'>
       <!-- 路由跳转方式一：router-link -->
-      <router-link to="/hello_home" >面经</router-link>
-      <router-link to="/hello_home" >面经</router-link>
-
-       <router-link to="/path?参数名=值"></router-link>
-
+      <router-link to="/hello_home" >Vue首页</router-link>
+      <router-link to="/router_test_link_query" >link-query无参数</router-link>
+      <router-link to="/router_test_link_query?canshu1=你好&canshu2=12333" >link-query参数</router-link>
+      <router-link to="/router_test_link_dynamic" >link-dynamic无参数</router-link>
+      <router-link to="/router_test_link_dynamic/我是参数" >link-dynamic参数</router-link>
     </nav>
 
   </div>
@@ -24,12 +24,12 @@ export default {
     return {
       title: '标题',
       routersInfo: [
-        { id: 1001, name: 'router001', desc: '描述111', path: '/hello_home' },
-        { id: 1002, name: 'router002', desc: '描述222', path: '/' },
-        { id: 1003, name: 'router003', desc: '描述333', path: '/' },
-        { id: 1004, name: 'router004', desc: '描述444', path: '/' },
-        { id: 1005, name: 'router005', desc: '描述555', path: '/' },
-        { id: 1006, name: 'router006', desc: '描述666', path: '/' }
+        { id: 1001, name: 'router001', desc: '编程式路由 - path - 无参数', path: '/hello_home' },
+        { id: 1002, name: 'router002', desc: '编程式路由 - path - query参数', path: '/' },
+        { id: 1003, name: 'router003', desc: '编程式路由 - path - dynamic参数', path: '/' },
+        { id: 1004, name: 'router004', desc: '编程式路由 - name - 无参数', path: '/' },
+        { id: 1005, name: 'router005', desc: '编程式路由 - name - query参数', path: '/' },
+        { id: 1006, name: 'router006', desc: '编程式路由 - name - dynamic参数', path: '/' }
       ]
     }
   },

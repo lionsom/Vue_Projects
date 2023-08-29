@@ -11,7 +11,6 @@ import MJLikeBBB from '@/views/MianJing/MJ_Like'
 import MJUserBBB from '@/views/MianJing/MJ_User'
 
 export default [
-  /* ===== 面经 ===== */
   {
     path: '/',
     component: MJMainViewAAAAA,
