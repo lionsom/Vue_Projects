@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import RouterTest from './router-test'
 import RouterMianJing from './router-mianjing'
 import RouterHello from './router-hello'
+import RouterCart from './router-cart'
 
 // 路由主页
 import RouterView from '@/views/RouterView/RouterView'
@@ -41,7 +42,8 @@ const router = new VueRouter({
     ...routes,
     ...RouterTest,
     ...RouterMianJing,
-    ...RouterHello
+    ...RouterHello,
+    ...RouterCart
   ]
 })
 

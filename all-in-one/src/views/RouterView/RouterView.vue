@@ -30,7 +30,11 @@ export default {
         { id: 1004, name: 'router004', type: 'path', desc: '编程式路由 - path - dynamic参数', path: '' },
         { id: 1005, name: 'router005', type: 'name', desc: '编程式路由 - name - 无参数', path: '' },
         { id: 1006, name: 'router006', type: 'name', desc: '编程式路由 - name - query参数', path: '' },
-        { id: 1007, name: 'router007', type: 'name', desc: '编程式路由 - name - dynamic参数', path: '' }
+        { id: 1007, name: 'router007', type: 'name', desc: '编程式路由 - name - dynamic参数', path: '' },
+
+        // cart
+        { id: 1008, name: 'router008', type: '', desc: '购物车', path: '' }
+
       ]
     }
   },
@@ -100,7 +104,11 @@ export default {
           alert('不支持name')
         }
       } else {
-        alert('不支持类型')
+        if (myRouter.id === 1008) {
+          this.$router.push({ path: '/cart' })
+        } else {
+          alert('不支持类型')
+        }
       }
     }
   }

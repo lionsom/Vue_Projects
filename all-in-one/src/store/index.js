@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // modules
 import user from './modules/user'
 import setting from './modules/setting'
+import cart from './modules/cart'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,8 @@ const store = new Vuex.Store({
   // 注册模块
   modules: {
     user,
-    setting
+    setting,
+    cart
   },
 
   // 严格模式。禁止在组件中修改数据，并提示报错。
