@@ -20,10 +20,61 @@
     <hr>
     <Son2 id="id_son2">></Son2>
 
+    <br/>
+    <br/>
+    <br/>
+
+    <!-- 子模块 -->
+    <div class="module">
+      <div>
+        方式一：直接访问子模块state = {{ $store.state.user.UserInfo.name }} <br/>
+
+         <!-- 映射后 -->
+        方式二：{{ UserInfo.name }} <br/>
+
+        方式三：{{ user_state_info.name }} <br/>
+      </div>
+
+      <div>
+        <!-- 测试访问模块中的getters - 原生 -->
+        方式一：直接访问子模块getters = {{ $store.getters['user/UpperCaseName'] }} <br/>
+
+        <!-- 映射后 -->
+
+        方式二： {{ UpperCaseName }} <br/>
+
+        方式三： {{ user_func_upper }} <br/>
+      </div>
+
+      <button @click="updateUser111">更新个人信息</button>
+      <button @click="updateTheme111">更新主题色</button>
+
+    </div>
+
   </div>
 </template>
 
 <script>
+
+/* 子模块小结
+1.直接使用
+  1. state --> $store.state.**模块名.数据项名
+  2. getters --> $store.getters['模块名/属性名']
+  3. mutations --> $store.commit('模块名/方法名', 其他参数)
+  4. actions --> $store.dispatch('模块名/方法名', 其他参数)
+
+2.借助辅助方法使用
+  1.import { mapXxxx, mapXxx } from 'vuex'
+
+  computed、methods: {
+    ...mapState、...mapGetters放computed中；
+    ...mapMutations、...mapActions放methods中；
+    ...mapXxxx('模块名', ['数据项|方法']),
+    ...mapXxxx('模块名', { 新的名字: 原来的名字 })
+  }
+
+  2.组件中直接使用 属性 `{{ age }}` 或 方法 `@click="updateAge(2)"`
+ */
 
 import Son1 from '@/components/Vuex_Demo/Vuex_Son1.vue'
 import Son2 from '@/components/Vuex_Demo/Vuex_Son2.vue'
@@ -38,8 +89,14 @@ export default {
   computed: {
     // 映射给计算属性
     ...mapState(['title', 'count']),
+    // 子模块映射
+    ...mapState('user', ['UserInfo']),
+    ...mapState('user', { user_state_info: 'UserInfo' }),
     //
-    ...mapGetters(['filterLList'])
+    ...mapGetters(['filterLList']),
+    // 子模块映射Getter
+    ...mapGetters('user', ['UpperCaseName']), // 方法一
+    ...mapGetters('user', { user_func_upper: 'UpperCaseName' }) // 方法二
   },
   created () {
     console.log(this.$store)
@@ -59,6 +116,17 @@ export default {
     },
     handleInput11 (e) {
       this.changeCount11(+e.target.value)
+    },
+    // 子模块方法
+    updateUser111 () {
+      // $store.commit('模块名/mutation名', 额外传参)
+      this.$store.commit('user/setUser', {
+        name: 'xiaowang222',
+        age: 25
+      })
+    },
+    updateTheme111 () {
+      this.$store.commit('setting/setTheme', 'pink')
     }
   }
 }
@@ -88,6 +156,10 @@ export default {
 #id_son2 {
   background: lightblue;
   margin: 20px auto;
+}
+
+.module {
+  background: lightcoral;
 }
 
 </style>

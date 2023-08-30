@@ -6,7 +6,9 @@ const state = {
 }
 
 const mutations = {
-
+  setTheme (state, newTheme) {
+    state.Setting.theme = newTheme
+  }
 }
 
 const actions = {
