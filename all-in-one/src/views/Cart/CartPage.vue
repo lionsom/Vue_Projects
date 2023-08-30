@@ -14,7 +14,7 @@ export default {
   },
   created () {
     console.log('onCreate')
-    this.$store.dispatch('cart/getList', '21')
+    this.$store.dispatch('cart/getList')
   }
 }
 </script>

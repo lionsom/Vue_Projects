@@ -23,7 +23,7 @@ const getters = {
 }
 
 export default {
-  // namespaced: true, // 子模块的映射，需要开启命名空间
+  namespaced: true, // 子模块的映射，需要开启命名空间
   state,
   mutations,
   actions,
