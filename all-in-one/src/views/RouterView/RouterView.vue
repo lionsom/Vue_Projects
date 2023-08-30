@@ -24,18 +24,84 @@ export default {
     return {
       title: '标题',
       routersInfo: [
-        { id: 1001, name: 'router001', desc: '编程式路由 - path - 无参数', path: '/hello_home' },
-        { id: 1002, name: 'router002', desc: '编程式路由 - path - query参数', path: '/' },
-        { id: 1003, name: 'router003', desc: '编程式路由 - path - dynamic参数', path: '/' },
-        { id: 1004, name: 'router004', desc: '编程式路由 - name - 无参数', path: '/' },
-        { id: 1005, name: 'router005', desc: '编程式路由 - name - query参数', path: '/' },
-        { id: 1006, name: 'router006', desc: '编程式路由 - name - dynamic参数', path: '/' }
+        { id: 1001, name: 'router001', type: 'path', desc: '编程式路由 - path - 无参数', path: '' },
+        { id: 1002, name: 'router002', type: 'path', desc: '编程式路由 - path - query参数 (简易版)', path: '' },
+        { id: 1003, name: 'router003', type: 'path', desc: '编程式路由 - path - query参数 (完整版)', path: '' },
+        { id: 1004, name: 'router004', type: 'path', desc: '编程式路由 - path - dynamic参数', path: '' },
+        { id: 1005, name: 'router005', type: 'name', desc: '编程式路由 - name - 无参数', path: '' },
+        { id: 1006, name: 'router006', type: 'name', desc: '编程式路由 - name - query参数', path: '' },
+        { id: 1007, name: 'router007', type: 'name', desc: '编程式路由 - name - dynamic参数', path: '' }
       ]
     }
   },
   methods: {
     jump (myRouter) {
       console.log(myRouter)
+      if (myRouter && myRouter.type === 'path') {
+        /* 1. 通过路径的方式跳转
+          (1) this.$router.push('路由路径')     [简写]
+              this.$router.push('路由路径?参数名=参数值')
+
+          (2) this.$router.push({              [完整写法] 更适合传参
+                path: '路由路径'
+                query: {
+                  参数名: 参数值,
+                  参数名: 参数值
+                }
+              })
+        */
+        if (myRouter.id === 1001) {
+          // path - 无参数
+          this.$router.push({ path: '/router_test_path_query' })
+        } else if (myRouter.id === 1002) {
+          // path - query - 简易
+          this.$router.push({ path: '/router_test_path_query?canshu1=999&canshu2=我是谁' })
+        } else if (myRouter.id === 1003) {
+          // path - query - 完整
+          this.$router.push({
+            path: 'router_test_path_query',
+            query: {
+              canshu3: 123,
+              canshu4: '哈哈哈'
+            }
+          })
+        } else if (myRouter.id === 1004) {
+          // path - dynamic
+          this.$router.push({ path: 'router_test_path_dynamic/皮卡丘' })
+        } else {
+          alert('不支持path')
+        }
+      } else if (myRouter && myRouter.type === 'name') {
+        /* 2. 通过命名路由的方式跳转 (需要给路由起名字) 适合长路径
+          this.$router.push({
+              name: '路由名'
+              query: { 参数名: 参数值 },
+              params: { 参数名: 参数值 }
+          })
+        */
+        if (myRouter.id === 1005) {
+          this.$router.push({ name: 'RouterTest_Name_NO_Param' })
+        } else if (myRouter.id === 1006) {
+          this.$router.push({
+            name: 'RouterTest_Name_Query',
+            query: {
+              canshu1: 123,
+              canshu2: '我是呐呐呐呐呐'
+            }
+          })
+        } else if (myRouter.id === 1007) {
+          this.$router.push({
+            name: 'RouterTest_Name_Dynamic',
+            params: {
+              kkeyWWord: { nane: 'jack', age: 15 }
+            }
+          })
+        } else {
+          alert('不支持name')
+        }
+      } else {
+        alert('不支持类型')
+      }
     }
   }
 }
