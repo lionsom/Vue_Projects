@@ -7,6 +7,8 @@ import RouterHello from './router-hello'
 import RouterCart from './router-cart'
 import RouterGlobalPart from './router-global-part'
 import RouterVuex from './router-vuex'
+import RouterVant from './router-vant'
+import RouterShopping from './router-shopping'
 
 // 路由主页
 import RouterView from '@/views/RouterView/RouterView'
@@ -25,7 +27,7 @@ const routes = [
   {
     path: '/routerview',
     name: RouterView,
-    component: RouterView
+    components: { ddd: RouterView }
   },
   // 404
   { path: '*', component: NotFound }
@@ -40,7 +42,9 @@ const router = new VueRouter({
     ...RouterHello,
     ...RouterCart,
     ...RouterGlobalPart,
-    ...RouterVuex
+    ...RouterVuex,
+    ...RouterVant,
+    ...RouterShopping
   ]
 })
 
