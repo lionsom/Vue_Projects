@@ -14,7 +14,8 @@ const actions = {
   // 异步请求数据
   async getList (context) {
     const res = await axios.get('http://localhost:3000/cart')
-    console.log(res)
+    console.log(res.data)
+    context.commit('updateList', res.data)
   }
 }
 
