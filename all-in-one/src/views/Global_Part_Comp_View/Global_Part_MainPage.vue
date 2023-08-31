@@ -1,6 +1,7 @@
 <template>
   <div class="mainPage">
-    我是测试『局部组件』 + 『全局组件』 的测试页面 <br>
+
+    <h1>我是测试『局部组件』 + 『全局组件』 的测试页面</h1>
 
     <!-- 局部组件 - 头部组件 -->
     <new-name-header></new-name-header>
@@ -30,6 +31,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+h1 {
+  text-align: center;
+}
 
 </style>
