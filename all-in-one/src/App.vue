@@ -16,7 +16,8 @@
 </template>
 
 <script>
-
+// 导出的是当前组件的配置项
+// 里面可以提供 data(特殊) methods computed watch 生命周期八大钩子
 export default {
   data () {
     return {

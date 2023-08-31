@@ -1,4 +1,4 @@
-// Hello
+// 购物车页面
 import CartPage from '@/views/Cart/CartPage'
 
 export default [

@@ -5,11 +5,11 @@ import RouterTest from './router-test'
 import RouterMianJing from './router-mianjing'
 import RouterHello from './router-hello'
 import RouterCart from './router-cart'
+import RouterGlobalPart from './router-global-part'
+import RouterVuex from './router-vuex'
 
 // 路由主页
 import RouterView from '@/views/RouterView/RouterView'
-// VuexDemo
-import VuexDemoView from '@/views/VuexDemo/VuexDemoView'
 // 404
 import NotFound from '@/views/404/NotFound'
 
@@ -27,11 +27,6 @@ const routes = [
     name: RouterView,
     component: RouterView
   },
-  // VuexDemo
-  {
-    path: '/vuexdemo',
-    component: VuexDemoView
-  },
   // 404
   { path: '*', component: NotFound }
 ]
@@ -43,7 +38,9 @@ const router = new VueRouter({
     ...RouterTest,
     ...RouterMianJing,
     ...RouterHello,
-    ...RouterCart
+    ...RouterCart,
+    ...RouterGlobalPart,
+    ...RouterVuex
   ]
 })
 

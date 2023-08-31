@@ -33,7 +33,13 @@ export default {
         { id: 1007, name: 'router007', type: 'name', desc: '编程式路由 - name - dynamic参数', path: '' },
 
         // cart
-        { id: 1008, name: 'router008', type: '', desc: '购物车', path: '' }
+        { id: 1008, name: 'router008', type: '', desc: '购物车', path: '' },
+
+        // 全局组件 + 局部组件
+        { id: 1009, name: 'router009', type: '', desc: '全局组件 + 局部组件', path: '' },
+
+        // Vuex测试页面
+        { id: 1010, name: 'router010', type: '', desc: 'Vuex测试页面', path: '' }
 
       ]
     }
@@ -106,6 +112,10 @@ export default {
       } else {
         if (myRouter.id === 1008) {
           this.$router.push({ path: '/cart' })
+        } else if (myRouter.id === 1009) {
+          this.$router.push({ path: '/global-part' })
+        } else if (myRouter.id === 1010) {
+          this.$router.push({ path: '/vuexdemo' })
         } else {
           alert('不支持类型')
         }
