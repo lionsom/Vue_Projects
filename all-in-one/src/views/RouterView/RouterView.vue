@@ -1,8 +1,8 @@
 <template>
   <div class="page">
 
-    <div class="cell" v-for="(item, index) in routersInfo" :key="item.id" @click="jump(item)">
-      {{ index }}. {{item.id}} {{ item.desc }}
+    <div class="cell" v-for="item in routersInfo" :key="item.id" @click="jump(item)">
+      {{item.id}}. {{ item.desc }}
     </div>
 
     <nav class='tabbar'>
@@ -39,8 +39,13 @@ export default {
         { id: 1009, name: 'router009', type: '', desc: '全局组件 + 局部组件', path: '' },
 
         // Vuex测试页面
-        { id: 1010, name: 'router010', type: '', desc: 'Vuex测试页面', path: '' }
+        { id: 1010, name: 'router010', type: '', desc: 'Vuex测试页面', path: '' },
 
+        // Vant UI
+        { id: 1011, name: 'router011', type: '', desc: 'Vant测试页面', path: '' },
+
+        // Shopping
+        { id: 1012, name: 'router012', type: '', desc: '购物商城', path: '' }
       ]
     }
   },
@@ -116,6 +121,10 @@ export default {
           this.$router.push({ path: '/global-part' })
         } else if (myRouter.id === 1010) {
           this.$router.push({ path: '/vuexdemo' })
+        } else if (myRouter.id === 1011) {
+          this.$router.push({ path: '/vant-ui' })
+        } else if (myRouter.id === 1012) {
+          this.$router.push({ path: '/shopping/home' })
         } else {
           alert('不支持类型')
         }

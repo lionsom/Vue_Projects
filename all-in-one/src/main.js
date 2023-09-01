@@ -5,6 +5,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// Vant组件按需引入
+import '@/utils/vant-ui'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
 
