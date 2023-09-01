@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       // 缓存组件名的数组
-      keepArr: ['MJ-MainPage']
+      keepArr: ['MJ-MainPage', 'LayoutIndex']
     }
   }
 }

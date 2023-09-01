@@ -27,7 +27,7 @@ const routes = [
   {
     path: '/routerview',
     name: RouterView,
-    components: { ddd: RouterView }
+    component: RouterView
   },
   // 404
   { path: '*', component: NotFound }

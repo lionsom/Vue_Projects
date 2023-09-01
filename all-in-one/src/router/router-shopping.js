@@ -17,14 +17,14 @@ export default [
     path: '/shopping',
     component: Layout,
     children: [
-      { path: 'home', components: { naaa: Home } },
+      { path: 'home', component: Home },
       { path: 'category', component: Category },
       { path: 'cart', component: Cart },
       { path: 'user', component: User }
     ]
   },
   {
-    path: '/shopping-login',
+    path: '/shopping/login',
     component: Login
   },
   {

@@ -1,8 +1,9 @@
 <template>
-  <div>我是layout
-
-    <!-- 二级路由出口 -->
-    <router-view name="naaa">11</router-view>
+  <div>
+    <div class="topContent">
+      <!-- 二级路由出口 -->
+      <router-view></router-view>
+    </div>
 
     <van-tabbar route active-color="#ee0a24" inactive-color="#000">
       <van-tabbar-item to="/shopping/home" icon="star-o">首页</van-tabbar-item>
@@ -15,13 +16,34 @@
 </template>
 
 <script>
-import RouterView from '@/views/RouterView/RouterView.vue'
 export default {
-  components: { RouterView },
-  name: 'LayoutIndex'
+  name: 'LayoutIndex',
+  // 组件缓存了，就不会执行组件的created，mounted，destroyed等钩子
+  // 所以提供了 actived 和 deactived
+  created () {
+    console.log('created 组件被加载了')
+  },
+  mounted () {
+    console.log('mounted dom渲染完了')
+  },
+  destroyed () {
+    console.log('destroyed 组件被销毁了')
+  },
+  //
+  activated () {
+    // alert('你好，欢迎回到首页')
+    console.log('activated 组件被激活了，看到页面了')
+  },
+  deactivated () {
+    console.log('deactivated 组件失活，离开页面了')
+  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.topContent {
+  background: orange;
+}
 
 </style>

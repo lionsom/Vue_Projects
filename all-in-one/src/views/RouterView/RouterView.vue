@@ -124,7 +124,7 @@ export default {
         } else if (myRouter.id === 1011) {
           this.$router.push({ path: '/vant-ui' })
         } else if (myRouter.id === 1012) {
-          this.$router.push({ path: '/shopping/home' })
+          this.$router.push({ path: '/shopping' })
         } else {
           alert('不支持类型')
         }
