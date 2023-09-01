@@ -15,6 +15,7 @@ import User from '@/views/shopping/layout/user'
 export default [
   {
     path: '/shopping',
+    redirect: '/shopping/home',
     component: Layout,
     children: [
       { path: 'home', component: Home },

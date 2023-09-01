@@ -40,8 +40,8 @@ export default {
   },
   props: {
     item: {
-      type: Object,
-      required: true
+      type: Object, // 类型
+      required: true // 必须要传值
     }
   }
 }

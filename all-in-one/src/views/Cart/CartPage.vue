@@ -3,7 +3,9 @@
 
     <cart-header>我是购物车</cart-header>
 
-    <cart-item v-for="item in list" :key="item.id" :item="item"></cart-item>
+    <div class="content">
+      <cart-item v-for="item in list" :key="item.id" :item="item"></cart-item>
+    </div>
 
     <cart-footer>123</cart-footer>
 
@@ -45,6 +47,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.content {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 </style>
