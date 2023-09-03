@@ -10,6 +10,11 @@ const mutations = {
   },
   updateCount (state, newData) {
     console.log(newData)
+    // 方法一：find
+    const goods = state.list.find(item => item.id === newData.id)
+    goods.count = newData.newCount
+
+    // 方法二：遍历
     state.list.forEach(element => {
       if (element.id === newData.id) {
         element.count = newData.newCount
@@ -34,7 +39,7 @@ const actions = {
     if (res.status === 200) {
       context.commit('updateCount', {
         id: obj.id,
-        count: obj.newCount
+        newCount: obj.newCount
       })
     } else {
       alert('更新服务器失败')
@@ -43,7 +48,14 @@ const actions = {
 }
 
 const getters = {
-
+  // 获取所有已选商品的数量
+  total (state) {
+    return state.list.reduce((sum, item) => sum + item.count, 0)
+  },
+  // 计算购物车总价
+  totalPrice (state) {
+    return state.list.reduce((sum, item) => sum + item.count * item.price, 0)
+  }
 }
 
 export default {

@@ -1,13 +1,16 @@
 <template>
   <div class="cartPage">
 
+    <!-- title -->
     <cart-header>我是购物车</cart-header>
 
+    <!-- 列表 -->
     <div class="content">
       <cart-item v-for="item in list" :key="item.id" :item="item"></cart-item>
     </div>
 
-    <cart-footer>123</cart-footer>
+    <!-- 底部 -->
+    <cart-footer></cart-footer>
 
   </div>
 </template>
