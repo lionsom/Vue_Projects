@@ -10,7 +10,8 @@ import { getPicCode } from '@/api/login'
 export default {
   name: 'LoginIndex',
   created () {
-    this.getCapthcaImage()
+    // this.getCapthcaImage()
+    this.$toast('哈哈哈')
   },
   methods: {
     async getCapthcaImage () {
