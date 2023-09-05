@@ -27,17 +27,19 @@
         <div class="form">
 
           <div class="form-item1">
-            <input v-model="mobile" type="text" placeholder="请输入手机号码">
+            <input v-model="mobile" type="text" maxlength="11" placeholder="请输入手机号码">
           </div>
 
           <div class="form-item2">
-            <input v-model="picCode" type="text" placeholder="请输入图形验证码">
+            <input v-model="picCode" type="text" maxlength="4" placeholder="请输入图形验证码">
             <img :src="picUrl" alt="" @click="getCapthcaImage">
           </div>
 
           <div class="form-item3">
             <input v-model="msgCode" type="text" placeholder="请输入短信">
-            <button class="get-code-button" @click.prevent="getMsgCode"> {{ getCodeMsg }} </button>
+            <button class="get-code-button" @click.prevent="getMsgCode">
+              {{ second === totalCount ? getCodeMsg : second + '秒后重新发送' }}
+            </button>
           </div>
 
         </div>
@@ -62,15 +64,23 @@ export default {
       picKey: '', // 将来请求传递的图形验证码唯一标识
       picUrl: '', // 存储请求渲染的图片地址
       picCode: '', // 用户输入的图形验证码
-      totalCount: 60,
+      totalCount: 60, // 总秒数
+      second: 60, // 当前秒数，开定时器对 second--
       mobile: '13099999999', // 手机号
       msgCode: '', // 短信验证码
-      getCodeMsg: '获取短信'
+      getCodeMsg: '获取短信',
+      timer: null // 定时器 id
     }
   },
+  // 进入页面
   created () {
     this.getCapthcaImage()
   },
+  // 离开页面清除定时器
+  destroyed () {
+    clearInterval(this.timer)
+  },
+  // 方法
   methods: {
     onClickLeft () {
       this.$router.go(-1)
@@ -78,6 +88,7 @@ export default {
     onClickRight () {
       Toast('提示')
     },
+    // 获取图片
     async getCapthcaImage () {
       // Before
       // const res = await request.get('/captcha/image')
@@ -88,14 +99,32 @@ export default {
       this.picKey = key
       this.picUrl = base64
     },
+    // 获取短信
     async getMsgCode () {
-      const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
-      if (res.status === 200) {
-        this.$toast(res.message)
-      } else {
-        this.$toast(res.message)
+      debugger
+      // 当前目前没有定时器开着，且 totalSecond 和 second 一致 (秒数归位) 才可以倒计时
+      if (!this.timer) {
+        // 发送请求
+        const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
+        if (res.status === 200) {
+          this.$toast(res.message)
+        } else {
+          this.$toast(res.message)
+        }
+
+        // 开启倒计时
+        this.timer = setInterval(() => {
+          this.second--
+
+          if (this.second <= 0) {
+            clearInterval(this.timer)
+            this.timer = null // 重置定时器 id
+            this.second = this.totalSecond // 归位
+          }
+        }, 1000)
       }
     },
+    // 登录点击
     loginClick () {
       this.$router.push('/shopping/home')
     }
