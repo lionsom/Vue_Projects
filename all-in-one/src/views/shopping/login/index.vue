@@ -3,7 +3,7 @@
 
       <!-- 导航啦 -->
       <van-nav-bar
-        title="登录页"
+        title="会员登录"
         left-text="返回"
         left-arrow
         @click-left="onClickLeft"
@@ -16,7 +16,24 @@
 
       <!-- 主页内容 -->
       <div class="content">
-        <h2>登录</h2>
+        <!-- title -->
+        <div class="title">
+          <h2>手机号登录</h2>
+          <p>未注册的手机号登录后将自动注册</p>
+        </div>
+
+        <!-- form -->
+        <div class="form">
+          <input type="text">
+          <br />
+          <input type="text">
+
+          <br />
+          <input type="text">
+        </div>
+
+        <!-- 登录按钮 -->
+        <button class="loginBtn">登 录</button>
       </div>
 
     </div>
@@ -54,6 +71,38 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.title {
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+
+  h2 {
+    font-size: 25px;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 10px;
+    color: gray;
+  }
+}
+
+.loginBtn {
+  margin-left: 10%;
+  margin-top: 30px;
+  width: 80%;
+  height: 50px;
+
+  border-radius: 25px;
+  border-width: 0px;
+
+  color: green;  // 字体颜色
+  font-size: 25px;
+  font-family: Georgia, serif;
+
+  background-color: orange;
+  background: linear-gradient(to bottom right, rgb(245, 230, 201), orange);
+}
 
 </style>
