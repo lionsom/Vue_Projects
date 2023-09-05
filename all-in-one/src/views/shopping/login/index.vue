@@ -3,6 +3,7 @@
 
       <!-- 导航啦 -->
       <van-nav-bar
+        safe-area-inset-top
         title="会员登录"
         left-text="返回"
         left-arrow
@@ -24,16 +25,25 @@
 
         <!-- form -->
         <div class="form">
-          <input type="text">
-          <br />
-          <input type="text">
 
-          <br />
-          <input type="text">
+          <div class="form-item1">
+            <input v-model="mobile" type="text" placeholder="请输入手机号码">
+          </div>
+
+          <div class="form-item2">
+            <input v-model="picCode" type="text" placeholder="请输入图形验证码">
+            <img :src="picUrl" alt="" @click="getCapthcaImage">
+          </div>
+
+          <div class="form-item3">
+            <input v-model="msgCode" type="text" placeholder="请输入短信">
+            <button class="get-code-button" @click.prevent="getMsgCode"> {{ getCodeMsg }} </button>
+          </div>
+
         </div>
 
         <!-- 登录按钮 -->
-        <button class="loginBtn">登 录</button>
+        <button class="loginBtn" @click.stop="loginClick">登 录</button>
       </div>
 
     </div>
@@ -42,15 +52,24 @@
 
 <script>
 // import request from '@/utils/request'
-import { getPicCode } from '@/api/login'
-
+import { getPicCode, getMsgCode } from '@/api/login'
 import { Toast } from 'vant'
 
 export default {
   name: 'LoginIndex',
+  data () {
+    return {
+      picKey: '', // 将来请求传递的图形验证码唯一标识
+      picUrl: '', // 存储请求渲染的图片地址
+      picCode: '', // 用户输入的图形验证码
+      totalCount: 60,
+      mobile: '13099999999', // 手机号
+      msgCode: '', // 短信验证码
+      getCodeMsg: '获取短信'
+    }
+  },
   created () {
     this.getCapthcaImage()
-    this.$toast('哈哈哈')
   },
   methods: {
     onClickLeft () {
@@ -66,6 +85,19 @@ export default {
       const { data: { base64, key } } = await getPicCode()
       console.log(key)
       console.log(base64)
+      this.picKey = key
+      this.picUrl = base64
+    },
+    async getMsgCode () {
+      const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
+      if (res.status === 200) {
+        this.$toast(res.message)
+      } else {
+        this.$toast(res.message)
+      }
+    },
+    loginClick () {
+      this.$router.push('/shopping/home')
     }
   }
 }
@@ -88,9 +120,86 @@ export default {
   }
 }
 
+.form {
+  background-color: transparent;
+  margin-top: 20px;
+
+  .form-item1 {
+    margin-top: 20px;
+    margin-left: 6%;
+    width: 88%;
+    height: 40px;
+    background-color: transparent;
+
+    input {
+      height: 100%;
+      width: 100%;
+
+      border: 0px;
+      border-bottom: 1px solid;
+      border-bottom-color: red;
+    }
+  }
+
+  .form-item2 {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+    margin-left: 6%;
+    width: 88%;
+    height: 40px;
+    background-color: transparent;
+
+    input {
+      height: 100%;
+      width: 100%;
+
+      border: 0px;
+      border-bottom: 1px solid;
+      border-bottom-color: red;
+    }
+
+    img {
+      width: 120px;
+      height: 40px;
+    }
+  }
+
+  .form-item3 {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+    margin-left: 6%;
+    width: 88%;
+    height: 40px;
+    background-color: transparent;
+
+    input {
+      height: 100%;
+      width: 100%;
+
+      border: 0px;
+      border-bottom: 1px solid;
+      border-bottom-color: red;
+    }
+
+    button {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      max-width: 50%;
+      min-width: 80px;
+      height: 100%;
+    }
+  }
+}
+
 .loginBtn {
   margin-left: 10%;
-  margin-top: 30px;
+  margin-top: 50px;
   width: 80%;
   height: 50px;
 
