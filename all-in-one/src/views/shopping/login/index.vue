@@ -14,6 +14,11 @@
         </template>
       </van-nav-bar>
 
+      <!-- 主页内容 -->
+      <div class="content">
+        <h2>登录</h2>
+      </div>
+
     </div>
 
 </template>
