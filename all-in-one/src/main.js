@@ -7,6 +7,8 @@ import router from './router'
 import store from './store'
 // Vant组件按需引入
 import '@/utils/vant-ui'
+// 通用样式
+import '@/styles/common.scss'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
 
