@@ -19,16 +19,31 @@
 </template>
 
 <script>
+// import request from '@/utils/request'
+import { getPicCode } from '@/api/login'
+
 import { Toast } from 'vant'
 
 export default {
   name: 'LoginIndex',
+  created () {
+    this.getCapthcaImage()
+    this.$toast('哈哈哈')
+  },
   methods: {
     onClickLeft () {
       this.$router.go(-1)
     },
     onClickRight () {
       Toast('提示')
+    },
+    async getCapthcaImage () {
+      // Before
+      // const res = await request.get('/captcha/image')
+      // After
+      const { data: { base64, key } } = await getPicCode()
+      console.log(key)
+      console.log(base64)
     }
   }
 }
