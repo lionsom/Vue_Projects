@@ -38,7 +38,7 @@
           <div class="form-item3">
             <input v-model="msgCode" type="text" placeholder="请输入短信">
             <button class="get-code-button" @click.prevent="getMsgCode">
-              {{ second === totalCount ? getCodeMsg : second + '秒后重新发送' }}
+              {{ second === totalSecond ? getCodeMsg : second + '秒后重新发送' }}
             </button>
           </div>
 
@@ -64,7 +64,7 @@ export default {
       picKey: '', // 将来请求传递的图形验证码唯一标识
       picUrl: '', // 存储请求渲染的图片地址
       picCode: '', // 用户输入的图形验证码
-      totalCount: 60, // 总秒数
+      totalSecond: 60, // 总秒数
       second: 60, // 当前秒数，开定时器对 second--
       mobile: '13099999999', // 手机号
       msgCode: '', // 短信验证码
@@ -101,32 +101,39 @@ export default {
     },
     // 获取短信
     async getMsgCode () {
-      debugger
       // 当前目前没有定时器开着，且 totalSecond 和 second 一致 (秒数归位) 才可以倒计时
       if (!this.timer) {
-        // 发送请求
-        const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
-        if (res.status === 200) {
-          this.$toast(res.message)
-        } else {
-          this.$toast(res.message)
-        }
-
         // 开启倒计时
         this.timer = setInterval(() => {
           this.second--
 
           if (this.second <= 0) {
-            clearInterval(this.timer)
-            this.timer = null // 重置定时器 id
-            this.second = this.totalSecond // 归位
+            this.resetTimer()
           }
         }, 1000)
+
+        // 发送请求
+        const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
+        // 等到结果，关闭定时器
+        this.resetTimer()
+        if (res.status === 200) {
+          this.$toast(res.message)
+        } else {
+          this.$toast(res.message)
+        }
       }
     },
     // 登录点击
     loginClick () {
       this.$router.push('/shopping/home')
+    },
+    resetTimer () {
+      if (self.timer) {
+        clearInterval(this.timer)
+        this.timer = null // 重置定时器 id
+      }
+      this.second = this.totalSecond // 归位
+      console.log(this.second)
     }
   }
 }
