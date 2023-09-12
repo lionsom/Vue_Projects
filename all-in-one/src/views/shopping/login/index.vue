@@ -118,6 +118,7 @@ export default {
         this.resetTimer()
         if (res.status === 200) {
           this.$toast(res.message)
+          console.log('Success')
         } else {
           this.$toast(res.message)
         }
