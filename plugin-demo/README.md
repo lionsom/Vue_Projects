@@ -1,4 +1,4 @@
-# sonar_lint
+# plugin-demo
 
 ## Project setup
 ```
