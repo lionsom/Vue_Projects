@@ -1,5 +1,5 @@
 // 此处存放 登录 相关接口
-import request from '@/utils/request'
+import request from '@/utils/shopping-request'
 
 // 1. 获取图形验证码
 export const getPicCode = () => {
@@ -21,8 +21,8 @@ export const getMsgCode = (captchaCode, captchaKey, mobile) => {
 export const codeLogin = (mobile, smsCode) => {
   return request.post('/passport/login', {
     form: {
-      isParty: false,
-      partyData: {},
+      isParty: false, // 是否三方登录
+      partyData: {}, // 三方登录参数
       mobile,
       smsCode
     }

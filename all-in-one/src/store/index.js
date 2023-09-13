@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import user from './modules/user'
 import setting from './modules/setting'
 import cart from './modules/cart'
+// Shopping Modules
+import shoppingUser from './shopping/shopping-user'
 
 Vue.use(Vuex)
 
@@ -12,7 +14,8 @@ const store = new Vuex.Store({
   modules: {
     user,
     setting,
-    cart
+    cart,
+    shoppingUser
   },
 
   // 严格模式。禁止在组件中修改数据，并提示报错。

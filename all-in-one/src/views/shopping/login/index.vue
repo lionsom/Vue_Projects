@@ -54,7 +54,7 @@
 
 <script>
 // import request from '@/utils/request'
-import { getPicCode, getMsgCode } from '@/api/login'
+import { getPicCode, getMsgCode, codeLogin } from '@/api/login'
 import { Toast } from 'vant'
 
 export default {
@@ -64,8 +64,8 @@ export default {
       picKey: '', // 将来请求传递的图形验证码唯一标识
       picUrl: '', // 存储请求渲染的图片地址
       picCode: '', // 用户输入的图形验证码
-      totalSecond: 60, // 总秒数
-      second: 60, // 当前秒数，开定时器对 second--
+      totalSecond: 10, // 总秒数
+      second: 10, // 当前秒数，开定时器对 second--
       mobile: '13099999999', // 手机号
       msgCode: '', // 短信验证码
       getCodeMsg: '获取短信',
@@ -99,42 +99,66 @@ export default {
       this.picKey = key
       this.picUrl = base64
     },
+    // 校验 手机号 和 图形验证码 是否合法
+    // 通过校验，返回true
+    // 不通过校验，返回false
+    validFn () {
+      if (!/^1[3-9]\d{9}$/.test(this.mobile)) {
+        this.$toast('请输入正确的手机号')
+        return false
+      }
+      if (!/^\w{4}$/.test(this.picCode)) {
+        this.$toast('请输入正确的图形验证码')
+        return false
+      }
+      return true
+    },
     // 获取短信
     async getMsgCode () {
-      // 当前目前没有定时器开着，且 totalSecond 和 second 一致 (秒数归位) 才可以倒计时
-      if (!this.timer) {
+      // 格式校验
+      if (!this.validFn()) {
+        this.$toast('短信或验证码格式不正确')
+        return
+      }
+      // 若当前已经开始倒计时了，则无法进行下一步
+      if (this.timer) {
+        return
+      }
+
+      // 发送获取验证码请求
+      const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
+      if (res.status === 200) {
+        this.$toast(res.message)
         // 开启倒计时
         this.timer = setInterval(() => {
           this.second--
-
+          // 关闭定时器
           if (this.second <= 0) {
-            this.resetTimer()
+            clearInterval(this.timer)
+            this.timer = null // 重置定时器 id
+            this.second = this.totalSecond // 归位
           }
         }, 1000)
-
-        // 发送请求
-        const res = await getMsgCode(this.picCode, this.picKey, this.mobile)
-        // 等到结果，关闭定时器
-        this.resetTimer()
-        if (res.status === 200) {
-          this.$toast(res.message)
-          console.log('Success')
-        } else {
-          this.$toast(res.message)
-        }
       }
     },
     // 登录点击
-    loginClick () {
-      this.$router.push('/shopping/home')
-    },
-    resetTimer () {
-      if (self.timer) {
-        clearInterval(this.timer)
-        this.timer = null // 重置定时器 id
+    async loginClick () {
+      // 登录校验
+      if (this.msgCode.length === 0) {
+        this.$toast('请输入验证码')
+        return
       }
-      this.second = this.totalSecond // 归位
-      console.log(this.second)
+      // 接口
+      const res = await codeLogin(this.mobile, this.msgCode)
+      console.log(res)
+      if (res.status === 200) {
+        // 登录成功，Vuex缓存用户信息
+        this.$store.commit('shoppingUser/setUserInfo', res.data)
+        // 提示
+        this.$toast(res.message)
+        // 跳转页面
+        this.$router.push('/shopping/home')
+      }
     }
   }
 }
@@ -227,8 +251,9 @@ export default {
       white-space: nowrap;
       overflow: hidden;
 
-      max-width: 50%;
-      min-width: 80px;
+      max-width: 60%;
+      min-width: 100px;
+      width: fit-content;
       height: 100%;
     }
   }
