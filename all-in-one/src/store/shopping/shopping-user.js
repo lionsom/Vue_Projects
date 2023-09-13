@@ -20,6 +20,8 @@ export default {
 
   },
   getters: {
-
+    token (state) {
+      return state.userInfo.token
+    }
   }
 }

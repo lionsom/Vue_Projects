@@ -14,6 +14,8 @@ import RouterShopping from './router-shopping'
 import RouterView from '@/views/RouterView/RouterView'
 // 404
 import NotFound from '@/views/404/NotFound'
+// Store
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -62,14 +64,22 @@ const router = new VueRouter({
 const authUrls = ['/shopping-pay', '/shopping-myorder']
 
 router.beforeEach((to, from, next) => {
-  console.log(to, from, next)
-
-  if (authUrls.includes(to.path)) {
-    // 权限页面】
-    //
+  // console.log(to, from, next)
+  if (!authUrls.includes(to.path)) {
+    // 非权限页面，直接放行
+    next()
+    return
   }
-  // 直接放行
-  next()
+
+  // 权限页面，需要判断是否有token，即是否已经登录
+
+  // 直接取 store中-》shoppingUser模块-》userInfo.token
+  const token = store.state.shoppingUser.userInfo.token
+  if (token && token.length > 0) {
+    next()
+  } else {
+    next('/shopping/login')
+  }
 })
 
 export default router
