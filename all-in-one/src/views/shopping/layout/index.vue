@@ -43,7 +43,9 @@ export default {
 <style lang="scss" scoped>
 
 .topContent {
-  background: orange;
+  background: transparent;
+
+  margin-bottom: 50px;
 }
 
 </style>

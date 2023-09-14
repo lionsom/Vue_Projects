@@ -1,6 +1,6 @@
 import Vue from 'vue'
 // 按需导入Vant组件
-import { Button, Switch, Tabbar, TabbarItem, Icon, NavBar, Toast, Dialog, Loading, Notify, ActionSheet } from 'vant'
+import { Button, Switch, Tabbar, TabbarItem, Icon, NavBar, Toast, Dialog, Loading, Notify, ActionSheet, Search, Swipe, SwipeItem, Lazyload, Grid, GridItem } from 'vant'
 // 注册
 Vue.use(Button)
 Vue.use(Switch)
@@ -13,3 +13,9 @@ Vue.use(Dialog)
 Vue.use(Loading)
 Vue.use(Notify)
 Vue.use(ActionSheet)
+Vue.use(Search)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Lazyload)
+Vue.use(Grid)
+Vue.use(GridItem)
