@@ -48,7 +48,7 @@
       <div class="mainContent">
         <p class="guess-title">—— 猜你喜欢 ——</p>
         <div class="goods-list">
-          <goods-item v-for="(item, index) in 10" :key="index" :goodsIdnex="index" :itemData="item"/>
+          <goods-item v-for="(item, index) in proList" :key="index" :goodsIdnex="index" :itemData="item"/>
         </div>
       </div>
 
@@ -92,6 +92,12 @@ export default {
     this.navList = pageData.items[3].data
     this.proList = pageData.items[6].data
     console.log(pageData)
+  },
+  activated () {
+    console.log('activated Home组件被激活了，看到页面了')
+  },
+  deactivated () {
+    console.log('deactivated Home组件失活，离开页面了')
   },
   methods: {
     // Search

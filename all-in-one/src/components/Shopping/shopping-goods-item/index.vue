@@ -2,7 +2,11 @@
   <div class="content">
     <div class="index"> {{ goodsIdnex }}. </div>
 
-    <div class="a"> {{ itemData.name }} </div>
+    <div> {{ itemData.goods_id }} </div>
+
+    <img :src="itemData.goods_image" alt="">
+
+    <div class="a"> {{ itemData.goods_name }} </div>
   </div>
 </template>
 
@@ -26,6 +30,7 @@ export default {
     },
     itemData: {
       type: Object,
+      require: true,
       default: () => {
         return {}
       }
@@ -35,6 +40,9 @@ export default {
     return {
 
     }
+  },
+  created () {
+    console.log(this.itemData)
   },
   methods: {
 

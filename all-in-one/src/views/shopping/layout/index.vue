@@ -31,21 +31,13 @@ export default {
   // 组件缓存了，就不会执行组件的created，mounted，destroyed等钩子
   // 所以提供了 actived 和 deactived
   created () {
-    console.log('created 组件被加载了')
+    console.log('index created 组件被加载了')
   },
   mounted () {
-    console.log('mounted dom渲染完了')
+    console.log('index mounted dom渲染完了')
   },
   destroyed () {
-    console.log('destroyed 组件被销毁了')
-  },
-  //
-  activated () {
-    // alert('你好，欢迎回到首页')
-    console.log('activated 组件被激活了，看到页面了')
-  },
-  deactivated () {
-    console.log('deactivated 组件失活，离开页面了')
+    console.log('index destroyed 组件被销毁了')
   }
 }
 </script>
