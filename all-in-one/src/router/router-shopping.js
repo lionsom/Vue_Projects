@@ -29,23 +29,23 @@ export default [
     component: Login
   },
   {
-    path: '/shopping-search',
+    path: '/shopping/search',
     component: Search
   },
   {
-    path: '/shopping-searchlist',
+    path: '/shopping/searchlist',
     component: SearchList
   },
   {
-    path: '/shopping-myorder',
+    path: '/shopping/myorder',
     component: MyOrder
   },
   {
-    path: '/shopping-productdetail/:id',
+    path: '/shopping/productdetail/:id',
     component: ProductDetail
   },
   {
-    path: '/shopping-pay',
+    path: '/shopping/pay',
     component: Pay
   }
 ]

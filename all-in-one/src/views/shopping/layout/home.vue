@@ -3,11 +3,12 @@
 
       <!-- 导航栏 -->
       <van-nav-bar
-        title="商城首页"
+        :title="pageInfo.params.title"
       />
 
       <!-- 搜索框 -->
       <van-search
+        v-if="isShowSearch"
         v-model="searchKey"
         shape="round"
         background="#4fc08d"
@@ -23,16 +24,19 @@
           </van-swipe-item>
       </van-swipe>
 
-      <!-- Grid导航 -->
-      <!-- <van-grid>
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-      </van-grid> -->
+      <van-swipe class="my-swipe" :autoplay="2000" style="height: 200px;" indicator-color="orange">
+        <van-swipe-item v-for="item in bannerList" :key="item.imgUrl">
+          <img v-lazy="item.imgUrl" alt="image error"/>
+          </van-swipe-item>
+      </van-swipe>
 
+      <!-- Grid导航 -->
       <van-grid :column-num="5">
-        <van-grid-item v-for="value in 10" :key="value" icon="photo-o" text="文字" />
+        <van-grid-item v-for="(item, index) in navList" :key="item.imgUrl"
+        :icon="item.imgUrl"
+        :text="item.text"
+        @click="gridClick(item, index)"
+        />
       </van-grid>
 
       <!-- 主会场 -->
@@ -44,7 +48,7 @@
       <div class="mainContent">
         <p class="guess-title">—— 猜你喜欢 ——</p>
         <div class="goods-list">
-          <goods-item />
+          <goods-item v-for="(item, index) in 10" :key="index" :goodsIdnex="index" :itemData="item"/>
         </div>
       </div>
 
@@ -52,7 +56,8 @@
   </template>
 
 <script>
-
+// 请求
+import { getHomeData } from '@/api/shopping/home'
 // 导入组件
 import GoodsItem from '@/components/Shopping/shopping-goods-item'
 
@@ -68,14 +73,25 @@ export default {
         'https://img01.yzcdn.cn/vant/apple-1.jpg',
         'https://img01.yzcdn.cn/vant/apple-2.jpg'
       ],
+      pageInfo: {}, // 页面配置
       bannerList: [], // 轮播
       navList: [], // 导航
       proList: [] // 商品
     }
   },
-  created () {
+  computed: {
+    isShowSearch () {
+      return false
+    }
+  },
+  async created () {
     // 缓存组件，无序每次进来都加载
-    console.log('created 请求获取数据')
+    const { data: { pageData } } = await getHomeData()
+    this.pageInfo = pageData.page
+    this.bannerList = pageData.items[1].data
+    this.navList = pageData.items[3].data
+    this.proList = pageData.items[6].data
+    console.log(pageData)
   },
   methods: {
     // Search
@@ -89,6 +105,12 @@ export default {
     onSwipeChange (index) {
       // this.$toast('当前 Swipe 索引：' + index)
       console.log('当前 Swipe 索引：' + index)
+    },
+    gridClick (item, index) {
+      console.log(item)
+      console.log(index)
+      // query传参
+      this.$router.push('/shopping/category?index=' + item.text)
     }
   }
 }

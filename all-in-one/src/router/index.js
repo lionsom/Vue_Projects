@@ -61,7 +61,7 @@ const router = new VueRouter({
 // (2) next(路径)  进行拦截，拦截到next里面配置的路径
 
 // 定义一个数组，专门用户存放所有需要权限访问的页面
-const authUrls = ['/shopping-pay', '/shopping-myorder']
+const authUrls = ['/shopping/pay', '/shopping/myorder']
 
 router.beforeEach((to, from, next) => {
   // console.log(to, from, next)

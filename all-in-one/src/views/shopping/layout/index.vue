@@ -1,8 +1,12 @@
 <template>
   <div>
     <div class="topContent">
-      <!-- 二级路由出口 -->
-      <router-view></router-view>
+
+      <keep-alive :include="keepArr">
+        <!-- 二级路由出口 -->
+        <router-view></router-view>
+      </keep-alive>
+
     </div>
 
     <van-tabbar route active-color="#ee0a24" inactive-color="#000">
@@ -18,6 +22,12 @@
 <script>
 export default {
   name: 'LayoutIndex',
+  data () {
+    return {
+      // 缓存组件名的数组
+      keepArr: ['LayoutHomePage']
+    }
+  },
   // 组件缓存了，就不会执行组件的created，mounted，destroyed等钩子
   // 所以提供了 actived 和 deactived
   created () {

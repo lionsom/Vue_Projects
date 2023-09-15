@@ -45,7 +45,7 @@ export default {
     )
   },
   methods: {
-    ...mapActions()
+    ...mapActions([])
   }
 }
 </script>

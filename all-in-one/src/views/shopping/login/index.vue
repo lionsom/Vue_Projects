@@ -54,7 +54,7 @@
 
 <script>
 // import request from '@/utils/request'
-import { getPicCode, getMsgCode, codeLogin } from '@/api/login'
+import { getPicCode, getMsgCode, codeLogin } from '@/api/shopping/login'
 import { Toast } from 'vant'
 
 export default {
