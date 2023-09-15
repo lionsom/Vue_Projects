@@ -1,13 +1,17 @@
 <template>
-    <div>我是ProductDetail</div>
+    <div>我是ProductDetail = {{ id }}</div>
   </template>
 
 <script>
 export default {
-  name: 'ProductDetailIndex'
+  name: 'ProductDetailIndex',
+  data () {
+    return {
+      id: Number
+    }
+  },
+  created () {
+    this.id = this.$route.params.id
+  }
 }
 </script>
-
-  <style>
-
-  </style>

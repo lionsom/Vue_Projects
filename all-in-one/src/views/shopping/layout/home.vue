@@ -48,7 +48,12 @@
       <div class="mainContent">
         <p class="guess-title">—— 猜你喜欢 ——</p>
         <div class="goods-list">
-          <goods-item v-for="(item, index) in proList" :key="index" :goodsIdnex="index" :itemData="item"/>
+          <goods-item v-for="(item, index) in proList"
+          :key="index"
+          :goodsIdnex="index"
+          :itemData="item"
+          @click.native="openProductDetail(item)"
+          />
         </div>
       </div>
 
@@ -117,6 +122,10 @@ export default {
       console.log(index)
       // query传参
       this.$router.push('/shopping/category?index=' + item.text)
+    },
+    openProductDetail (item) {
+      console.log(item.goods_id)
+      this.$router.push('/shopping/productdetail/' + item.goods_id)
     }
   }
 }
