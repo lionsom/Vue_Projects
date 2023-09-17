@@ -20,9 +20,9 @@ export default {
       default: -1, // 默认值
       validator (val) { // 自定义校验逻辑
         // console.log('props传递过来的值: ' + val)
-        if (val <= 0) {
-          console.error('传入的范围必须是0-100之间')
-          return false
+        if (val < 0) {
+          console.log('传入的范围必须是0-100之间', val)
+          return true
         } else {
           return true
         }

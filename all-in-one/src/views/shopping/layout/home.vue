@@ -2,9 +2,14 @@
     <div>
 
       <!-- 导航栏 -->
-      <van-nav-bar
-        :title="pageInfo.params.title"
-      />
+      <van-nav-bar>
+        <!-- 插槽，自定义标题 -->
+        <template #title>
+          <!-- 能正常显示title，但会有警告 -->
+          <!-- <div> {{ pageInfo.params.title }} </div> -->
+          <div>智慧商城</div>
+        </template>
+      </van-nav-bar>
 
       <!-- 搜索框 -->
       <van-search
@@ -13,6 +18,7 @@
         shape="round"
         background="#4fc08d"
         placeholder="请输入搜索关键词"
+        @click="goSearch"
         @search="onSearch"
         @cancel="onCancel"
       />
@@ -86,7 +92,7 @@ export default {
   },
   computed: {
     isShowSearch () {
-      return false
+      return true
     }
   },
   async created () {
@@ -106,6 +112,9 @@ export default {
   },
   methods: {
     // Search
+    goSearch () {
+      this.$router.push('/shopping/search')
+    },
     onSearch (val) {
       this.$toast(val)
       console.log('onSearch。。。。')

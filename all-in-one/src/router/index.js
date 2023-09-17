@@ -61,7 +61,7 @@ const router = new VueRouter({
 // (2) next(路径)  进行拦截，拦截到next里面配置的路径
 
 // 定义一个数组，专门用户存放所有需要权限访问的页面
-const authUrls = ['/shopping/pay', '/shopping/myorder']
+const authUrls = ['/shopping-pay', '/shopping-myorder']
 
 router.beforeEach((to, from, next) => {
   // console.log(to, from, next)
@@ -70,9 +70,7 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-
   // 权限页面，需要判断是否有token，即是否已经登录
-
   // 直接取 store中-》shoppingUser模块-》userInfo.token
   const token = store.state.shoppingUser.userInfo.token
   if (token && token.length > 0) {
