@@ -53,6 +53,7 @@ export default {
     },
     goSearch (key) {
       console.log(key)
+      this.$router.push('/shopping/searchlist')
       // 搜索历史去重，再添加到首个
       this.history = this.history.filter((element) => element !== key)
       this.history.unshift(key)

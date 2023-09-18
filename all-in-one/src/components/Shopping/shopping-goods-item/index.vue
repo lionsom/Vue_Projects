@@ -1,12 +1,17 @@
 <template>
   <div class="content">
-    <div class="index"> {{ goodsIdnex }}. </div>
-
-    <div> {{ itemData.goods_id }} </div>
 
     <img :src="itemData.goods_image" alt="">
 
-    <div class="a"> {{ itemData.goods_name }} </div>
+    <div class="rightContent">
+      <div class="detail_top">
+        <div class="index"> {{ goodsIdnex }}. </div>
+        <div> {{ itemData.goods_id }} </div>
+      </div>
+
+      <div class="detail_bottom"> {{ itemData.goods_name }} </div>
+    </div>
+
   </div>
 </template>
 
@@ -58,6 +63,18 @@ export default {
   height: 100px;
   margin-bottom: 3px;
   background-color: aquamarine;
+
+  .detail_top {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  img {
+    border: 1px solid green;
+    width: 100px;
+    height: 100px;
+  }
 }
 
 </style>
