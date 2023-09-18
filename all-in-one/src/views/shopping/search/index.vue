@@ -15,7 +15,7 @@
         shape="round"
         background="#4fc08d"
         placeholder="请输入搜索关键词"
-        @search="onSearch"
+        @search="goSearch"
       />
 
       <!-- 最近搜索标题栏 -->
@@ -28,7 +28,7 @@
 
       <!-- 历史列表 -->
       <div class="list">
-        <div class="listItem" v-for="item in history" :key="item" @click="onClick(item)">
+        <div class="listItem" v-for="item in history" :key="item" @click="goSearch(item)">
           {{ item }}
         </div>
       </div>
@@ -36,26 +36,33 @@
   </template>
 
 <script>
+
+import { getSearchHistory, setSearchHistory } from '@/utils/storage'
+
 export default {
   name: 'SearchIndex',
   data () {
     return {
       searchKey: '',
-      history: ['你', '哈哈', '2342342344', 'jksadjaskljdfasdfjksadajskdfjkl', '阿斯蒂芬看', '啊啊啊啊']
+      history: getSearchHistory() // 从缓存中获取
     }
   },
   methods: {
     onClickLeft () {
       this.$router.go(-1)
     },
-    onSearch () {
-      console.log('2222')
+    goSearch (key) {
+      console.log(key)
+      // 搜索历史去重，再添加到首个
+      this.history = this.history.filter((element) => element !== key)
+      this.history.unshift(key)
+      // 缓存
+      setSearchHistory(this.history)
     },
     clearAll () {
       this.history = []
-    },
-    onClick (key) {
-      console.log(key)
+      // 缓存
+      setSearchHistory(this.history)
     }
   }
 }
