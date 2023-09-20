@@ -9,6 +9,7 @@ import RouterGlobalPart from './router-global-part'
 import RouterVuex from './router-vuex'
 import RouterVant from './router-vant'
 import RouterShopping from './router-shopping'
+import RouterSomeDemo from './router-some-demo'
 
 // 路由主页
 import RouterView from '@/views/RouterView/RouterView'
@@ -46,7 +47,8 @@ const router = new VueRouter({
     ...RouterGlobalPart,
     ...RouterVuex,
     ...RouterVant,
-    ...RouterShopping
+    ...RouterShopping,
+    ...RouterSomeDemo
   ]
 })
 

@@ -45,7 +45,13 @@ export default {
         { id: 1011, name: 'router011', type: '', desc: 'Vant测试页面', path: '' },
 
         // Shopping
-        { id: 1012, name: 'router012', type: '', desc: '购物商城', path: '' }
+        { id: 1012, name: 'router012', type: '', desc: '购物商城', path: '' },
+
+        // 自定义指令
+        { id: 1013, name: 'router013', type: '', desc: '自定义指令', path: '' },
+
+        // 插槽
+        { id: 1014, name: 'router014', type: '', desc: '插槽', path: '' }
       ]
     }
   },
@@ -125,6 +131,10 @@ export default {
           this.$router.push({ path: '/vant-ui' })
         } else if (myRouter.id === 1012) {
           this.$router.push({ path: '/shopping' })
+        } else if (myRouter.id === 1013) {
+          this.$router.push({ path: '/custom-directive' })
+        } else if (myRouter.id === 1014) {
+          this.$router.push({ path: '/slot-demo' })
         } else {
           alert('不支持类型')
         }

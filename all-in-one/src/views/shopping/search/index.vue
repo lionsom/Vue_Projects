@@ -16,6 +16,7 @@
         background="#4fc08d"
         placeholder="请输入搜索关键词"
         @search="goSearch"
+        ref="mySearch"
       />
 
       <!-- 最近搜索标题栏 -->
@@ -46,6 +47,14 @@ export default {
       searchKey: '',
       history: getSearchHistory() // 从缓存中获取
     }
+  },
+  created () {
+    // 等待DOM完成后，搜索框自动聚焦
+    this.$nextTick(() => {
+      console.log('ssss')
+      // 通过ref获取组件
+      this.$refs.mySearch.querySelector('input').focus()
+    })
   },
   methods: {
     onClickLeft () {
