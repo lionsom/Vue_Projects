@@ -32,16 +32,16 @@ export default {
   padding: 0;
 }
 .dialog {
-  width: 470px;
-  height: 230px;
-  padding: 0 25px;
-  background-color: #ffffff;
-  margin: 40px auto;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  background-color: greenyellow;
+  margin: 10px auto;
   border-radius: 5px;
 }
 .dialog-header {
-  height: 70px;
-  line-height: 70px;
+  height: 50px;
+  line-height: 50px;
   font-size: 20px;
   border-bottom: 1px solid #ccc;
   position: relative;
@@ -53,7 +53,7 @@ export default {
   cursor: pointer;
 }
 .dialog-content {
-  height: 80px;
+  height: auto;
   font-size: 18px;
   padding: 15px 0;
 }
@@ -64,7 +64,7 @@ export default {
 .dialog-footer button {
   width: 65px;
   height: 35px;
-  background-color: #ffffff;
+  background-color: rebeccapurple;
   border: 1px solid #e1e3e9;
   cursor: pointer;
   outline: none;

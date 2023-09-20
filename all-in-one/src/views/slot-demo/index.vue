@@ -10,8 +10,14 @@
 
     <van-button type="primary" @click="click4">作用域插槽</van-button>
 
-    <van-popup v-model="show1">
-      <MyDialogA></MyDialogA>
+    <van-popup class="myVanPop" v-model="show1">
+      <MyDialogA>
+         提示框上岛咖啡瞌睡的快解封卡萨帝发
+         提示框上岛咖啡瞌睡的快解封卡萨帝发
+         提示框上岛咖啡瞌睡的快解封卡萨帝发
+         提示框上岛咖啡瞌睡的快解封卡萨帝发
+         提示框上岛咖啡瞌睡的快解封卡萨帝发
+      </MyDialogA>
     </van-popup>
 
   </div>
@@ -61,6 +67,12 @@ export default {
 
   text-align: center;
   font-weight: 800;
+
+  .myVanPop {
+    width: 90%;
+    // min-height: 200px;
+    height: auto;
+  }
 }
 
 </style>
