@@ -1,26 +1,43 @@
 <template>
   <div class="dialog">
+
     <div class="dialog-header">
       <h3>友情提示</h3>
-      <span class="close">✖️</span>
+      <span class="close" @click="closeClick">✖️</span>
     </div>
 
     <div class="dialog-content">
       <!-- 1. 在需要定制的位置，使用slot占位 -->
       <slot></slot>
     </div>
+
     <div class="dialog-footer">
-      <button>取消</button>
-      <button>确认</button>
+      <button @click="cancelClick">取消</button>
+      <button @click="confirmClick">确认</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'my-dialog-a',
   data () {
     return {
 
+    }
+  },
+  methods: {
+    closeClick () {
+      console.log('子组件closeClick')
+      this.$emit('close_click')
+    },
+    cancelClick () {
+      console.log('子组件cancelClick')
+      this.$emit('cancel_click')
+    },
+    confirmClick () {
+      console.log('子组件confirmClick')
+      this.$emit('confirm_click')
     }
   }
 }
