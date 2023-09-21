@@ -19,6 +19,14 @@ Vue.config.productionTip = false
 // Vue.component(组件名，组件对象)
 Vue.component('MyGlobalButton', GlobalButton)
 
+/* mixin全局注册
+Vue.mixin({
+  created () {
+    console.log('全局mixin created')
+  }
+})
+*/
+
 // 3. Vue实例化，提供render方法 → 基于App.vue创建结构渲染index.html
 new Vue({
   router,

@@ -4,6 +4,8 @@ import CustomDirective from '@/views/CustomDirectivePage/custom-directive-page'
 import SlotDemo from '@/views/slot-demo'
 // v-model原理
 import VModelDemo from '@/views/v-model-theory/v-model-demo'
+// mixin
+import MixinDemo from '@/views/mixin-demo'
 
 export default [
   {
@@ -17,5 +19,9 @@ export default [
   {
     path: '/vmodel-demo',
     component: VModelDemo
+  },
+  {
+    path: '/mixin-demo',
+    component: MixinDemo
   }
 ]

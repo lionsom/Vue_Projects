@@ -1,8 +1,10 @@
 <template>
   <div class="page">
 
-    <div class="cell" v-for="item in routersInfo" :key="item.id" @click="jump(item)">
-      {{item.id}}. {{ item.desc }}
+    <div class="mainContent">
+      <div class="cell" v-for="item in routersInfo" :key="item.id" @click="jumpRouter(item)">
+        {{item.id}}. {{ item.desc }}
+      </div>
     </div>
 
     <nav class='tabbar'>
@@ -54,12 +56,15 @@ export default {
         { id: 1014, name: 'router014', type: '', desc: '插槽', path: '' },
 
         // v-model原理
-        { id: 1015, name: 'router015', type: '', desc: 'v-model原理', path: '' }
+        { id: 1015, name: 'router015', type: '', desc: 'v-model原理', path: '' },
+
+        // mixin
+        { id: 1016, name: 'router016', type: '', desc: 'mixin', path: '' }
       ]
     }
   },
   methods: {
-    jump (myRouter) {
+    jumpRouter (myRouter) {
       console.log(myRouter)
       if (myRouter && myRouter.type === 'path') {
         /* 1. 通过路径的方式跳转
@@ -140,6 +145,8 @@ export default {
           this.$router.push({ path: '/slot-demo' })
         } else if (myRouter.id === 1015) {
           this.$router.push({ path: '/vmodel-demo' })
+        } else if (myRouter.id === 1016) {
+          this.$router.push({ path: '/mixin-demo' })
         } else {
           alert('不支持类型')
         }
@@ -174,18 +181,21 @@ export default {
   }
 }
 
-.cell {
-  background: goldenrod;
+.mainContent {
+  margin-bottom: 60px + 5px;
+  .cell {
+    background: goldenrod;
 
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 
-  height: 30px;
-  line-height: 30px;
+    height: 30px;
+    line-height: 30px;
 
-  border: 1px solid greenyellow;
+    border: 1px solid greenyellow;
+  }
 }
 
 </style>
