@@ -2,6 +2,8 @@
 import CustomDirective from '@/views/CustomDirectivePage/custom-directive-page'
 // 插槽
 import SlotDemo from '@/views/slot-demo'
+// v-model原理
+import VModelDemo from '@/views/v-model-theory/v-model-demo'
 
 export default [
   {
@@ -11,5 +13,9 @@ export default [
   {
     path: '/slot-demo',
     component: SlotDemo
+  },
+  {
+    path: '/vmodel-demo',
+    component: VModelDemo
   }
 ]

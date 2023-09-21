@@ -51,7 +51,10 @@ export default {
         { id: 1013, name: 'router013', type: '', desc: '自定义指令', path: '' },
 
         // 插槽
-        { id: 1014, name: 'router014', type: '', desc: '插槽', path: '' }
+        { id: 1014, name: 'router014', type: '', desc: '插槽', path: '' },
+
+        // v-model原理
+        { id: 1015, name: 'router015', type: '', desc: 'v-model原理', path: '' }
       ]
     }
   },
@@ -135,6 +138,8 @@ export default {
           this.$router.push({ path: '/custom-directive' })
         } else if (myRouter.id === 1014) {
           this.$router.push({ path: '/slot-demo' })
+        } else if (myRouter.id === 1015) {
+          this.$router.push({ path: '/vmodel-demo' })
         } else {
           alert('不支持类型')
         }
