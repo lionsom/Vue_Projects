@@ -2,42 +2,26 @@
   <div class="dialog">
 
     <div class="dialog-header">
-      <h3>友情提示</h3>
-      <span class="close" @click="closeClick">✖️</span>
+      <!-- 一旦插槽起了名字，就是具名插槽，只支持定向分发 -->
+      <slot name="head"></slot>
     </div>
 
     <div class="dialog-content">
-      <!-- 1. 在需要定制的位置，使用slot占位 -->
-      <slot></slot>
+      <slot name="content">我是后备内容！</slot>
     </div>
 
     <div class="dialog-footer">
-      <button @click="cancelClick">取消</button>
-      <button @click="confirmClick">确认</button>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'my-dialog-a',
+  name: 'my-dialog-b',
   data () {
     return {
 
-    }
-  },
-  methods: {
-    closeClick () {
-      console.log('子组件closeClick')
-      this.$emit('close_click')
-    },
-    cancelClick () {
-      console.log('子组件cancelClick')
-      this.$emit('cancel_click')
-    },
-    confirmClick () {
-      console.log('子组件confirmClick')
-      this.$emit('confirm_click')
     }
   }
 }
