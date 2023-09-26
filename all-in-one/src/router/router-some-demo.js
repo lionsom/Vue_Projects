@@ -6,6 +6,8 @@ import SlotDemo from '@/views/slot-demo'
 import VModelDemo from '@/views/v-model-theory/v-model-demo'
 // mixin
 import MixinDemo from '@/views/mixin-demo'
+// i18n
+import I18nDemo from '@/views/i18n-view'
 
 export default [
   {
@@ -23,5 +25,9 @@ export default [
   {
     path: '/mixin-demo',
     component: MixinDemo
+  },
+  {
+    path: '/i18n-demo',
+    component: I18nDemo
   }
 ]

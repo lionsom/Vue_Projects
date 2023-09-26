@@ -1,4 +1,4 @@
-# plugin-demo
+# pc-mobile-adaptation
 
 ## Project setup
 ```

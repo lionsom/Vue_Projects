@@ -59,7 +59,10 @@ export default {
         { id: 1015, name: 'router015', type: '', desc: 'v-model原理', path: '' },
 
         // mixin
-        { id: 1016, name: 'router016', type: '', desc: 'mixin', path: '' }
+        { id: 1016, name: 'router016', type: '', desc: 'mixin', path: '' },
+
+        // i8n
+        { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' }
       ]
     }
   },
@@ -147,6 +150,8 @@ export default {
           this.$router.push({ path: '/vmodel-demo' })
         } else if (myRouter.id === 1016) {
           this.$router.push({ path: '/mixin-demo' })
+        } else if (myRouter.id === 1017) {
+          this.$router.push({ path: '/i18n-demo' })
         } else {
           alert('不支持类型')
         }
