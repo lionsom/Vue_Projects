@@ -1,6 +1,10 @@
 <template>
   <div class="main">
-    <h2>我是国际化</h2>
+    <h1>国际化</h1>
+
+    <div class="top">
+      <h3>安装： pnpm install vue-i18n@9</h3>
+    </div>
   </div>
 </template>
 
