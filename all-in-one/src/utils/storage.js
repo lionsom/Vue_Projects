@@ -4,6 +4,11 @@
 const Shopping_Info_Key = 'lx_shopping_info'
 // eslint-disable-next-line camelcase
 const Shopping_Search_History_Key = 'lx_shopping_search_history'
+// 当前语言
+// eslint-disable-next-line camelcase
+const Current_I18n_Locale_Key = 'lx_current_i18n_locale'
+
+// ---------------------------------------
 
 // 获取个人信息
 export const getInfo = () => {
@@ -22,6 +27,8 @@ export const remvoeInfo = () => {
   localStorage.remvoeInfo(Shopping_Info_Key)
 }
 
+// ---------------------------------------
+
 // 获取搜索历史
 export const getSearchHistory = () => {
   const defaultObj = []
@@ -33,4 +40,15 @@ export const getSearchHistory = () => {
 // 设置搜索历史
 export const setSearchHistory = (obj) => {
   localStorage.setItem(Shopping_Search_History_Key, JSON.stringify(obj))
+}
+
+// ---------------------------------------
+
+export const getCurrentLocaleKey = () => {
+  const res = localStorage.getItem(Current_I18n_Locale_Key)
+  return res === null ? 'zh' : res
+}
+
+export const setCurrentLocaleKey = (obj) => {
+  localStorage.setItem(Current_I18n_Locale_Key, obj)
 }

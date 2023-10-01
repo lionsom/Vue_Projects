@@ -8,8 +8,7 @@ import store from './store'
 // Vant组件按需引入
 import '@/utils/vant-ui'
 // i18n
-// import VueI18n from 'vue-i18n'
-import { VueI18n } from 'vue-i18n'
+import myI18n from '@/utils/i18n-usage'
 // 通用样式
 import '@/styles/common.scss'
 // 全局组件
@@ -22,9 +21,6 @@ Vue.config.productionTip = false
 // Vue.component(组件名，组件对象)
 Vue.component('MyGlobalButton', GlobalButton)
 
-// i18n注册
-Vue.use(VueI18n)
-
 /* mixin全局注册
 Vue.mixin({
   created () {
@@ -35,9 +31,9 @@ Vue.mixin({
 
 // 3. Vue实例化，提供render方法 → 基于App.vue创建结构渲染index.html
 new Vue({
-  i18n,
   router,
   store,
+  i18n: myI18n,
   render: h => h(App)
 }).$mount('#app')
 

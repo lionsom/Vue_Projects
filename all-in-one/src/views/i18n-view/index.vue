@@ -3,14 +3,72 @@
     <h1>国际化</h1>
 
     <div class="top">
-      <h3>安装： pnpm install vue-i18n@9</h3>
+      <h3>安装： pnpm install vue-i18n@8</h3>
+      <p> </p>
+      <p>测试： {{ $t("message.hello") }}</p>
     </div>
+
+    <button @click="showAlert">{{ $t('message.changeLang') }}</button>
+
+    <van-action-sheet
+      v-model="show"
+      :actions="actions"
+      cancel-text="取消"
+      description='切换'
+      close-on-click-action
+      @select="onSelect"
+    />
   </div>
 </template>
 
 <script>
+
+import { getCurrentLocaleKey, setCurrentLocaleKey } from '@/utils/storage'
+
 export default {
-  name: 'i18n-demo-view'
+  name: 'i18n-demo-view',
+  data () {
+    return {
+      show: false,
+      actions: [
+        { name: 'zh' },
+        { name: 'en' },
+        { name: 'ja' }
+      ]
+    }
+  },
+  created () {
+    this.changeActions()
+  },
+  methods: {
+    showAlert () {
+      this.show = true
+    },
+    onSelect (val) {
+      console.log(val.name)
+      this.$i18n.locale = val.name
+      setCurrentLocaleKey(val.name)
+      this.changeActions()
+    },
+    // 更改数据源
+    changeActions () {
+      // 获取当前语言环境
+      const curlocale = getCurrentLocaleKey()
+      console.log('curlocale = ' + curlocale)
+      if (curlocale == null) {
+        return
+      }
+      this.actions.forEach((item) => {
+        if (item.name === curlocale) {
+          item.color = '#ee0a24'
+          item.disabled = true
+        } else {
+          item.color = '#a86432'
+          item.disabled = false
+        }
+      })
+    }
+  }
 }
 </script>
 
