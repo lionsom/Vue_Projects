@@ -13,6 +13,8 @@ import myI18n from '@/utils/i18n-usage'
 import '@/styles/common.scss'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
+// 自定义插件
+import MyPlugin01 from './my-plugins/js-plugins-usage'
 
 // 提示：当前处于什么环境 (生产环境 / 开发环境)
 Vue.config.productionTip = false
@@ -20,6 +22,12 @@ Vue.config.productionTip = false
 // 进行全局注册 → 在所有的组件范围内都能直接使用
 // Vue.component(组件名，组件对象)
 Vue.component('MyGlobalButton', GlobalButton)
+
+// 注册自定义插件
+Vue.use(MyPlugin01)
+
+// 自定义插件 - 全局方法
+Vue.MyGlobalMethod()
 
 /* mixin全局注册
 Vue.mixin({

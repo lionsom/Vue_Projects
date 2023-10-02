@@ -1,5 +1,14 @@
 <template>
   <div class="main">
+    <!-- 导航啦 -->
+    <van-nav-bar
+      safe-area-inset-top
+      title="切换语音"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft">
+    </van-nav-bar>
+
     <h1>国际化</h1>
 
     <div class="top">
@@ -41,6 +50,9 @@ export default {
     this.changeActions()
   },
   methods: {
+    onClickLeft () {
+      this.$router.go(-1)
+    },
     showAlert () {
       this.show = true
     },

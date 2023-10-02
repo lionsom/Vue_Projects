@@ -1,6 +1,9 @@
 <template>
   <div class="page">
 
+    <!-- 自定义插件 - 全局指令 -->
+    <div v-my-plugin01-directive></div>
+
     <div class="mainContent">
       <div class="cell" v-for="item in routersInfo" :key="item.id" @click="jumpRouter(item)">
         {{item.id}}. {{ item.desc }}
@@ -65,6 +68,9 @@ export default {
         { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' }
       ]
     }
+  },
+  created () {
+    this.$myPluginMethod('我是外部调用的参数')
   },
   methods: {
     jumpRouter (myRouter) {
