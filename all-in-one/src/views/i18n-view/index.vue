@@ -11,9 +11,16 @@
 
     <h1>国际化</h1>
 
+    <!-- Usage
+      1. template 需要使用 {{}} 将 name包装起来
+        {{$t('save')}}
+
+      2. js
+        this.$t('save')
+      -->
+
     <div class="top">
       <h3>安装： pnpm install vue-i18n@8</h3>
-      <p> </p>
       <p>测试： {{ $t("message.hello") }}</p>
     </div>
 
@@ -23,7 +30,7 @@
       v-model="show"
       :actions="actions"
       cancel-text="取消"
-      description='切换'
+      description="`${mesg}`"
       close-on-click-action
       @select="onSelect"
     />
@@ -38,6 +45,7 @@ export default {
   name: 'i18n-demo-view',
   data () {
     return {
+      mesg: '123哈哈',
       show: false,
       actions: [
         { name: 'zh' },
