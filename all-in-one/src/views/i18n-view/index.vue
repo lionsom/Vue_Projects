@@ -30,7 +30,7 @@
       v-model="show"
       :actions="actions"
       cancel-text="取消"
-      description="`${mesg}`"
+      :description="$t('message.changeLang')"
       close-on-click-action
       @select="onSelect"
     />
@@ -52,6 +52,11 @@ export default {
         { name: 'en' },
         { name: 'ja' }
       ]
+    }
+  },
+  computed: {
+    test () {
+      return this.$t('message.changeLang')
     }
   },
   created () {
