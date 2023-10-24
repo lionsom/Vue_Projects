@@ -8,6 +8,8 @@ import VModelDemo from '@/views/v-model-theory/v-model-demo'
 import MixinDemo from '@/views/mixin-demo'
 // i18n
 import I18nDemo from '@/views/i18n-view'
+// iconfont
+import IconfontUsage from '@/views/iconfont-usage/iconfont-usage'
 
 export default [
   {
@@ -29,5 +31,9 @@ export default [
   {
     path: '/i18n-demo',
     component: I18nDemo
+  },
+  {
+    path: '/iconfont-usage',
+    component: IconfontUsage
   }
 ]

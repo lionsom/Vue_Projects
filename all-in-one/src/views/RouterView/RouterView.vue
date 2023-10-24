@@ -65,7 +65,10 @@ export default {
         { id: 1016, name: 'router016', type: '', desc: 'mixin', path: '' },
 
         // i8n
-        { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' }
+        { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' },
+
+        // iconfont-usage
+        { id: 1018, name: 'router018', type: '', desc: 'icont-usage', path: '' }
       ]
     }
   },
@@ -158,6 +161,8 @@ export default {
           this.$router.push({ path: '/mixin-demo' })
         } else if (myRouter.id === 1017) {
           this.$router.push({ path: '/i18n-demo' })
+        } else if (myRouter.id === 1018) {
+          this.$router.push({ path: '/iconfont-usage' })
         } else {
           alert('不支持类型')
         }
