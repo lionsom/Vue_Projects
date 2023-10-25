@@ -11,6 +11,7 @@ import '@/utils/vant-ui'
 import myI18n from '@/utils/i18n-usage'
 // 通用样式
 import '@/styles/common.scss'
+import '@/assets/iconfont/iconfont.css'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
 // 自定义插件
