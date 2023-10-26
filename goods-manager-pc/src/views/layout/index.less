@@ -1,0 +1,25 @@
+@import '@/assets/css/color.less';
+
+.layout {
+  display: flex;
+
+  &-menu {
+    // 固定在左侧
+    position: fixed;
+
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+
+    width: 200px;
+
+    background-color: @lx-color-menu-bg;
+  }
+
+  &-content {
+    // 撑满，不留白
+    flex: 1;
+    // 给menu留出200空隙
+    padding-left: 200px;
+  }
+}

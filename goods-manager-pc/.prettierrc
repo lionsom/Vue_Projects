@@ -1,0 +1,7 @@
+// {
+//   "trailingComma": "es5",
+//   "tabWidth": 2,
+//   "semi": false,
+//   "singleQuote": true,
+//   "trailingComma": true //对象后面默认添加逗号
+// }

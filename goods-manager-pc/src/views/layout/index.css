@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+}
+.layout-menu {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: #888;
+  width: 200px;
+}
+.layout-content {
+  padding-left: 200px;
+}
