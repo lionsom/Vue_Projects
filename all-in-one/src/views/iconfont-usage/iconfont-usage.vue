@@ -1,13 +1,7 @@
 <template>
   <div class="main">
     <!-- 导航啦 -->
-    <van-nav-bar
-      safe-area-inset-top
-      title="iconfont的使用"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    >
+    <van-nav-bar safe-area-inset-top title="iconfont的使用" left-text="返回" left-arrow @click-left="onClickLeft">
     </van-nav-bar>
 
     <a
@@ -20,9 +14,8 @@
       <button @click="openLocalHtml">Click Me! 打开本地html</button>
 
       <div>
-        本地资源放在public文件夹下。 放置在 public
-        目录下或通过绝对路径被引用。这类资源将会直接被拷贝，而不会经过 webpack
-        的处理。
+        本地资源放在public文件夹下。 放置在 public 目录下或通过绝对路径被引用。这类资源将会直接被拷贝，而不会经过
+        webpack 的处理。
       </div>
     </div>
 
@@ -45,28 +38,27 @@
 </template>
 
 <script>
-
 // Iconfont Symbol 第一步：导入js
-import $ from "@/assets/iconfont/iconfont.js";
+import $ from '@/assets/iconfont/iconfont.js'
 
 export default {
-  name: "iconfont-usage-view",
+  name: 'iconfont-usage-view',
   data() {
-    return {};
+    return {}
   },
   methods: {
     onClickLeft() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
     openLocalHtml() {
-      const localURL = "/font_001/demo_index.html";
-      window.open(localURL);
-    },
-  },
-};
+      const localURL = '/font_001/demo_index.html'
+      window.open(localURL)
+    }
+  }
+}
 </script>
 
-<style>
+<style scoped>
 /* Iconfont Symbol 第二步：style */
 .icon {
   width: 3em;

@@ -10,6 +10,8 @@ import MixinDemo from '@/views/mixin-demo'
 import I18nDemo from '@/views/i18n-view'
 // iconfont
 import IconfontUsage from '@/views/iconfont-usage/iconfont-usage'
+// 常量
+import ConstantUsage from '@/views/constant-uasge/index'
 
 export default [
   {
@@ -35,5 +37,9 @@ export default [
   {
     path: '/iconfont-usage',
     component: IconfontUsage
+  },
+  {
+    path: '/constant-usage',
+    component: ConstantUsage
   }
 ]

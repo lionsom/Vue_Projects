@@ -1,31 +1,29 @@
 <template>
   <div class="page">
-
     <!-- 自定义插件 - 全局指令 -->
     <div v-my-plugin01-directive></div>
 
     <div class="mainContent">
       <div class="cell" v-for="item in routersInfo" :key="item.id" @click="jumpRouter(item)">
-        {{item.id}}. {{ item.desc }}
+        {{ item.id }}. {{ item.desc }}
       </div>
     </div>
 
-    <nav class='tabbar'>
+    <nav class="tabbar">
       <!-- 路由跳转方式一：router-link -->
-      <router-link to="/hello_home" >Vue首页</router-link>
-      <router-link to="/router_test_link_query" >link-query无参数</router-link>
-      <router-link to="/router_test_link_query?canshu1=你好&canshu2=12333" >link-query参数</router-link>
-      <router-link to="/router_test_link_dynamic" >link-dynamic无参数</router-link>
-      <router-link to="/router_test_link_dynamic/我是参数" >link-dynamic参数</router-link>
+      <router-link to="/hello_home">Vue首页</router-link>
+      <router-link to="/router_test_link_query">link-query无参数</router-link>
+      <router-link to="/router_test_link_query?canshu1=你好&canshu2=12333">link-query参数</router-link>
+      <router-link to="/router_test_link_dynamic">link-dynamic无参数</router-link>
+      <router-link to="/router_test_link_dynamic/我是参数">link-dynamic参数</router-link>
     </nav>
-
   </div>
 </template>
 
 <script>
 export default {
   name: 'RouterViewPage',
-  data () {
+  data() {
     return {
       title: '标题',
       routersInfo: [
@@ -68,15 +66,18 @@ export default {
         { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' },
 
         // iconfont-usage
-        { id: 1018, name: 'router018', type: '', desc: 'icont-usage', path: '' }
+        { id: 1018, name: 'router018', type: '', desc: 'icont-usage', path: '' },
+
+        // constant-usage
+        { id: 1019, name: 'router019', type: '', desc: 'constant-usage', path: '' }
       ]
     }
   },
-  created () {
+  created() {
     this.$myPluginMethod('我是外部调用的参数')
   },
   methods: {
-    jumpRouter (myRouter) {
+    jumpRouter(myRouter) {
       console.log(myRouter)
       if (myRouter && myRouter.type === 'path') {
         /* 1. 通过路径的方式跳转
@@ -163,6 +164,8 @@ export default {
           this.$router.push({ path: '/i18n-demo' })
         } else if (myRouter.id === 1018) {
           this.$router.push({ path: '/iconfont-usage' })
+        } else if (myRouter.id === 1019) {
+          this.$router.push({ path: '/constant-usage' })
         } else {
           alert('不支持类型')
         }
@@ -173,7 +176,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .tabbar {
   display: flex;
   justify-content: space-around;
@@ -185,12 +187,12 @@ export default {
   height: 60px;
 
   a {
-  flex: 1;
-  text-align: center;
-  line-height: 60px;
+    flex: 1;
+    text-align: center;
+    line-height: 60px;
 
-  background: green;
-  border: 1px solid rebeccapurple;
+    background: green;
+    border: 1px solid rebeccapurple;
   }
   a.router-link-active {
     background: orange;
@@ -213,5 +215,4 @@ export default {
     border: 1px solid greenyellow;
   }
 }
-
 </style>
