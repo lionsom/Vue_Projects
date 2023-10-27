@@ -1,4 +1,6 @@
 
-export const SYSTEM_NAME = 'RAYF管理系统'
+const SYSTEM_NAME = 'RA系统'
 
-export const SYSTEM_VERSION = '1.0'
+const SYSTEM_VERSION = '1.0'
+
+export default { SYSTEM_NAME, SYSTEM_VERSION }

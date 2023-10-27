@@ -3,11 +3,12 @@
 </template>
 
 <script>
-import { USERINFO } from '@/constant/index'
+import { ROLE_GENDER, appDesc } from '@/constant/index'
 
 export default {
   mounted() {
-    console.log(USERINFO)
+    console.log(ROLE_GENDER.MAN.desc)
+    console.log(appDesc)
   }
 }
 </script>
