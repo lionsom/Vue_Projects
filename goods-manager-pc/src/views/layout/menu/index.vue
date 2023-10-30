@@ -10,7 +10,7 @@
         text-color="#fff"
         active-text-color="#ebe234"
         router
-        collapse="true"
+        :collapse="isCollapse"
       >
         <!-- 标题 -->
         <el-menu-item index="">
@@ -92,6 +92,7 @@
 <script>
 export default {
   name: 'layout-menu-view',
+  props: ['isCollapse'],
   methods: {
     handleOpen(row) {
       console.log('open', row, this.$route.path)
@@ -104,6 +105,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.menu-list {
+  overflow: hidden;
+}
+
 // 从控制台中找到css类
 .el-menu {
   border-right-width: 0px;
@@ -112,5 +117,10 @@ export default {
 // 再找到
 .is-active {
   background-color: #1e78bf !important;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

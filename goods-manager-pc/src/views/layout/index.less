@@ -14,6 +14,14 @@
     width: 200px;
 
     background-color: @lx-color-menu-bg;
+
+    // 动画
+    transition: width 0.3s ease-in-out 0s;
+    -webkit-transition: width 0.3s ease-in-out 0s;
+  }
+
+  &-menu-small {
+    width: 64px;
   }
 
   &-content {
@@ -21,5 +29,14 @@
     flex: 1;
     // 给menu留出200空隙
     padding-left: 200px;
+
+    // 动画
+    transition: padding-left 0.3s ease-in-out 0s;
+    -webkit-transition: padding-left 0.3s ease-in-out 0s;
+  }
+
+  &-content-small-padding {
+    // 给menu留出200空隙
+    padding-left: 64px;
   }
 }
