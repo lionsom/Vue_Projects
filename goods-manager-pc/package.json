@@ -12,6 +12,7 @@
     "core-js": "^3.33.1",
     "echarts": "^5.4.3",
     "element-ui": "^2.15.14",
+    "moment": "^2.29.4",
     "normalize.css": "^8.0.1",
     "querystring": "^0.2.1",
     "vue": "^2.7.15",

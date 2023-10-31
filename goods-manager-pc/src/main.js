@@ -6,6 +6,7 @@ import store from './store'
 import '@/assets/font/iconfont.css'
 // plugins
 import '@/plugins/element-ui'
+import '@/plugins/moment'
 
 Vue.config.productionTip = false
 
