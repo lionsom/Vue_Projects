@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1>产品管理</h1>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,4 +8,8 @@
 export default {}
 </script>
 
-<style></style>
+<style>
+.main {
+  background-color: red;
+}
+</style>
