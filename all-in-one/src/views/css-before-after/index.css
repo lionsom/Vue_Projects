@@ -1,0 +1,23 @@
+.main {
+  background-color: blanchedalmond;
+}
+
+p.one::before {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+  background: blue;
+}
+p.two::before {
+  content: '要插入的内容';
+  color: red;
+  font-size: 16px;
+}
+p.three::before {
+  content: url('@/assets/code.png');
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 8px;
+}

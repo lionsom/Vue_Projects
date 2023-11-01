@@ -69,7 +69,10 @@ export default {
         { id: 1018, name: 'router018', type: '', desc: 'icont-usage', path: '' },
 
         // constant-usage
-        { id: 1019, name: 'router019', type: '', desc: 'constant-usage', path: '' }
+        { id: 1019, name: 'router019', type: '', desc: 'constant-usage', path: '' },
+
+        // css-before-after
+        { id: 1020, name: 'router020', type: '', desc: 'css 伪元素', path: '' }
       ]
     }
   },
@@ -166,6 +169,8 @@ export default {
           this.$router.push({ path: '/iconfont-usage' })
         } else if (myRouter.id === 1019) {
           this.$router.push({ path: '/constant-usage' })
+        } else if (myRouter.id === 1020) {
+          this.$router.push({ path: '/css-before-after' })
         } else {
           alert('不支持类型')
         }

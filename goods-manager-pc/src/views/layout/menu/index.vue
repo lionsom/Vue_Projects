@@ -42,7 +42,9 @@
           <el-menu-item index="/product/list">
             <span slot="title">产品列表</span>
           </el-menu-item>
-          <el-menu-item index="/product/category">产品分类</el-menu-item>
+          <el-menu-item index="/product/category">
+            <span slot="title">产品分类</span>
+          </el-menu-item>
         </el-submenu>
 
         <!-- 订单管理 -->
@@ -51,8 +53,12 @@
             <i class="el-icon-menu"></i>
             <span>订单管理</span>
           </template>
-          <el-menu-item index="/order/list">订单列表</el-menu-item>
-          <el-menu-item index="/order/collect">订单汇总</el-menu-item>
+          <el-menu-item index="/order/list">
+            <span slot="title">订单列表</span>
+          </el-menu-item>
+          <el-menu-item index="/order/collect">
+            <span slot="title">订单汇总</span>
+          </el-menu-item>
         </el-submenu>
 
         <!-- 广告分类 -->
@@ -61,7 +67,9 @@
             <i class="el-icon-s-opportunity"></i>
             <span>广告管理</span>
           </template>
-          <el-menu-item index="/advert/list">广告列表</el-menu-item>
+          <el-menu-item index="/advert/list">
+            <span slot="title">广告列表</span>
+          </el-menu-item>
         </el-submenu>
       </el-menu>
     </div>

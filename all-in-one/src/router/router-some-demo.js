@@ -12,6 +12,8 @@ import I18nDemo from '@/views/i18n-view'
 import IconfontUsage from '@/views/iconfont-usage/iconfont-usage'
 // 常量
 import ConstantUsage from '@/views/constant-uasge/index'
+// CSS伪元素
+import CSSBeforeAfter from '@/views/css-before-after'
 
 export default [
   {
@@ -41,5 +43,9 @@ export default [
   {
     path: '/constant-usage',
     component: ConstantUsage
+  },
+  {
+    path: '/css-before-after',
+    component: CSSBeforeAfter
   }
 ]
