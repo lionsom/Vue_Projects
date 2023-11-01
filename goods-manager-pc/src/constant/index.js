@@ -2,6 +2,7 @@
 import ROLE_GENDER from './model/userinfo'
 import APPINFO from './model/appinfo'
 
+// 逻辑判断
 let appDesc = '百度app'
 if (APPINFO.SYSTEM_NAME === 'RA系统') {
   appDesc = APPINFO.SYSTEM_NAME

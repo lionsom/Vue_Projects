@@ -29,52 +29,39 @@
 
         <!-- 首页 -->
         <el-menu-item index="/">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-s-home"></i>
           <span slot="title">首页</span>
         </el-menu-item>
 
         <!-- 产品管理 -->
         <el-submenu index="/product">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i class="el-icon-s-management"></i>
             <span>产品管理</span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="/product/list">产品列表</el-menu-item>
-            <el-menu-item index="/product/category">产品分类</el-menu-item>
-          </el-menu-item-group>
+          <el-menu-item index="/product/list">
+            <span slot="title">产品列表</span>
+          </el-menu-item>
+          <el-menu-item index="/product/category">产品分类</el-menu-item>
         </el-submenu>
 
         <!-- 订单管理 -->
         <el-submenu index="/order">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i class="el-icon-menu"></i>
             <span>订单管理</span>
           </template>
-          <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
+          <el-menu-item index="/order/list">订单列表</el-menu-item>
+          <el-menu-item index="/order/collect">订单汇总</el-menu-item>
         </el-submenu>
 
-        <!-- 产品分类 -->
-        <el-submenu index="/goods">
+        <!-- 广告分类 -->
+        <el-submenu index="/advert">
           <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>产品分类</span>
+            <i class="el-icon-s-opportunity"></i>
+            <span>广告管理</span>
           </template>
-          <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
+          <el-menu-item index="/advert/list">广告列表</el-menu-item>
         </el-submenu>
       </el-menu>
     </div>

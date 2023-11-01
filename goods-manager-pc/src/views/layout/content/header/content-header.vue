@@ -20,7 +20,7 @@
 
       <!-- 头像 -->
       <div class="right-avatar-button" style="width: 30px; height: 30px; background-color: #fff">
-        <i class="el-icon-right" @click="avatarBtnClick" style="color: green; font-size: 30px"></i>
+        <i class="el-icon-user-solid" @click="avatarBtnClick" style="color: green; font-size: 20px"></i>
       </div>
 
       <!-- 信息 -->
@@ -124,8 +124,12 @@ export default {
       cursor: pointer;
     }
     .right-avatar-button {
-      margin-right: 5px;
+      // 子元素居中
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
+      margin-right: 5px;
       border-radius: 50%;
       border: 3px solid #eee;
       overflow: hidden;

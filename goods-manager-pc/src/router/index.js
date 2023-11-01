@@ -10,6 +10,13 @@ const Product = () => import('@/views/layout/content/product/index.vue')
 const ProductList = () => import('@/views/layout/content/product/list/index.vue')
 const ProductCategory = () => import('@/views/layout/content/product/category/index.vue')
 
+const Order = () => import('@/views/layout/content/order/index.vue')
+const OrderList = () => import('@/views/layout/content/order/list/index.vue')
+const OrderCollect = () => import('@/views/layout/content/order/collect/index.vue')
+
+const Advert = () => import('@/views/layout/content/advert/index.vue')
+const AdvertList = () => import('@/views/layout/content/advert/list/index.vue')
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,23 +26,53 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'home-name',
+        name: 'home',
         component: ContentHome
       },
       {
         path: '/product',
-        name: 'product-name',
+        name: 'product',
         component: Product,
-        children: [{
-          path: 'list', // 访问路径 /product/list
-          name: 'list',
-          component: ProductList
-        },
-        {
-          path: 'category', // 访问路径 /product/category
-          name: 'category',
-          component: ProductCategory
-        }
+        children: [
+          {
+            path: 'list', // 访问路径 /product/list
+            name: 'list',
+            component: ProductList
+          },
+          {
+            path: 'category', // 访问路径 /product/category
+            name: 'category',
+            component: ProductCategory
+          }
+        ]
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: Order,
+        children: [
+          {
+            path: 'list', // 访问路径 /order/list
+            name: 'list',
+            component: OrderList
+          },
+          {
+            path: 'collect', // 访问路径 /order/category
+            name: 'collect',
+            component: OrderCollect
+          }
+        ]
+      },
+      {
+        path: '/advert',
+        name: 'advert',
+        component: Advert,
+        children: [
+          {
+            path: 'list', // 访问路径 /order/list
+            name: 'list',
+            component: AdvertList
+          }
         ]
       }
     ]

@@ -15,3 +15,5 @@ export default {
   name: 'app-home'
 }
 </script>
+
+<style lang="less" scoped></style>
