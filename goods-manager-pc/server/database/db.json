@@ -1,0 +1,18 @@
+{
+  "login": {
+    "message": "login success!!!",
+    "status": 200
+  },
+  "logout": {
+    "message": "Bye bye",
+    "status": 200
+  },
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+      "status": 200
+    }
+  ]
+}

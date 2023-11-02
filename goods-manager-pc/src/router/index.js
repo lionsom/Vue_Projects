@@ -36,7 +36,7 @@ const routes = [
         children: [
           {
             path: 'list', // 访问路径 /product/list
-            name: 'list',
+            name: 'product-list',
             component: ProductList
           },
           {
@@ -53,7 +53,7 @@ const routes = [
         children: [
           {
             path: 'list', // 访问路径 /order/list
-            name: 'list',
+            name: 'order-list',
             component: OrderList
           },
           {

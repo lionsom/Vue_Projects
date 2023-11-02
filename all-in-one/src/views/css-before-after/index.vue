@@ -12,6 +12,8 @@
     <p class="one">伪元素 ::before</p>
     <p class="two">伪元素 ::before</p>
     <p class="three">伪元素 ::before</p>
+
+    <span class="click-container" @click="close">点击区域扩大</span>
   </div>
 </template>
 
@@ -20,6 +22,9 @@ export default {
   methods: {
     onClickLeft() {
       this.$router.go(-1)
+    },
+    close() {
+      console.log('点击了...')
     }
   }
 }
