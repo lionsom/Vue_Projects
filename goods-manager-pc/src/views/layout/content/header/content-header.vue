@@ -20,16 +20,37 @@
 
       <!-- 头像 -->
       <div class="right-avatar-button" style="width: 30px; height: 30px; background-color: #fff">
-        <i class="el-icon-user-solid" @click="avatarBtnClick" style="color: green; font-size: 20px"></i>
+        <i
+          v-if="isCollapse"
+          class="el-icon-user-solid"
+          @click="avatarBtnClick"
+          style="color: green; font-size: 20px"
+        ></i>
+        <img
+          v-else
+          src="@/assets/images/avatar.png"
+          alt="avatar"
+          @click="avatarBtnClick"
+          style="color: green; width: 100%; height: 100%"
+        />
       </div>
 
       <!-- 信息 -->
       <div class="info">linxxxx</div>
 
       <!-- 右侧设置按钮 -->
-      <div class="right-setting-button" style="width: 30px; height: 30px">
-        <i class="el-icon-s-tools" @click="settingBtnClick" style="color: #fff; font-size: 30px"></i>
-      </div>
+      <el-dropdown @command="handleCommand">
+        <div class="right-setting-button" style="width: 30px; height: 30px">
+          <i class="el-icon-s-tools" @click="settingBtnClick" style="color: #fff; font-size: 30px"></i>
+        </div>
+
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="userInfo">个人信息</el-dropdown-item>
+          <el-dropdown-item command="baidu" divided>百度</el-dropdown-item>
+          <el-dropdown-item command="ifeng">凤凰网</el-dropdown-item>
+          <el-dropdown-item command="logout" divided>退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -79,6 +100,30 @@ export default {
     },
     settingBtnClick() {
       console.log('sdfsf')
+    },
+    handleCommand(command) {
+      // this.$message('click on item ' + command)
+      switch (command) {
+        case 'userInfo':
+          console.log('个人信息')
+          break
+        case 'baidu':
+          window.open('https://www.baidu.com')
+          break
+        case 'ifeng':
+          window.open('https://www.ifeng.com')
+          break
+        case 'logout':
+          this.$message({
+            message: '退出成功',
+            type: 'success',
+            duration: 2000
+          })
+          this.$router.push('/login')
+          break
+        default:
+          break
+      }
     }
   }
 }
