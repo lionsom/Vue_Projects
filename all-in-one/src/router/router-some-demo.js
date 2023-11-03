@@ -14,6 +14,8 @@ import IconfontUsage from '@/views/iconfont-usage/iconfont-usage'
 import ConstantUsage from '@/views/constant-uasge/index'
 // CSS伪元素
 import CSSBeforeAfter from '@/views/css-before-after'
+// 本地缓存
+import LocalStorageDemo from '@/views/local-storage-demo'
 
 export default [
   {
@@ -47,5 +49,9 @@ export default [
   {
     path: '/css-before-after',
     component: CSSBeforeAfter
+  },
+  {
+    path: '/local-storage-usage',
+    component: LocalStorageDemo
   }
 ]

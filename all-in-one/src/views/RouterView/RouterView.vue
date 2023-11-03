@@ -72,7 +72,10 @@ export default {
         { id: 1019, name: 'router019', type: '', desc: 'constant-usage', path: '' },
 
         // css-before-after
-        { id: 1020, name: 'router020', type: '', desc: 'css 伪元素', path: '' }
+        { id: 1020, name: 'router020', type: '', desc: 'css 伪元素', path: '' },
+
+        // 本地缓存
+        { id: 1021, name: 'router021', type: '', desc: '本地缓存 usage', path: '' }
       ]
     }
   },
@@ -171,6 +174,8 @@ export default {
           this.$router.push({ path: '/constant-usage' })
         } else if (myRouter.id === 1020) {
           this.$router.push({ path: '/css-before-after' })
+        } else if (myRouter.id === 1021) {
+          this.$router.push({ path: '/local-storage-usage' })
         } else {
           alert('不支持类型')
         }
