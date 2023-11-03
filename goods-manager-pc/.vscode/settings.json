@@ -1,0 +1,21 @@
+{
+  "editor.fontSize": 13,
+  "workbench.settings.editor": "ui",
+
+  // ==================== ESLint ======================
+  // 当保存的时候，eslint自动帮我们修复错误
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+
+  // ==================== prettier ======================
+  // 保存代码时，prettier格式化代码
+  "editor.formatOnSave": true,
+
+  // 默认格式化，使用prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 允许prettier
+  "prettier.enable": true,
+  // 是否打开prettier调试日志
+  "prettier.enableDebugLogs": false
+}
