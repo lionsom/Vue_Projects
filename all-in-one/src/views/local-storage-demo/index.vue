@@ -69,6 +69,14 @@
           <van-cell title="删除localStorage" value="" label="" :clickable="true" @click="clickLocalStorage3" />
         </van-cell-group>
       </div>
+
+      <!-- indexedDB -->
+      <div class="content-section-5">
+        <p>indexedDB设置</p>
+        <van-cell-group inset>
+          <van-cell title="indexedDB" value="" label="还未学习" :clickable="false" />
+        </van-cell-group>
+      </div>
     </div>
   </div>
 </template>
@@ -203,6 +211,16 @@ export default {
     }
 
     .content-section-4 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      p {
+        margin-left: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .content-section-5 {
       margin-top: 20px;
       margin-bottom: 20px;
 
