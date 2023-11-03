@@ -224,19 +224,33 @@ var lx_warning_button_component = normalizeComponent(
 )
 
 /* harmony default export */ var lx_warning_button = (lx_warning_button_component.exports);
-;// CONCATENATED MODULE: ./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/lx-fail-button/index.vue?vue&type=template&id=32c706b3&scoped=true
-var lx_fail_buttonvue_type_template_id_32c706b3_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
-var lx_fail_buttonvue_type_template_id_32c706b3_scoped_true_staticRenderFns = []
+;// CONCATENATED MODULE: ./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/lx-fail-button/index.vue?vue&type=template&id=736655e0&scoped=true
+var lx_fail_buttonvue_type_template_id_736655e0_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
+var lx_fail_buttonvue_type_template_id_736655e0_scoped_true_staticRenderFns = []
 
 
-;// CONCATENATED MODULE: ./node_modules/.pnpm/mini-css-extract-plugin@2.7.6_webpack@5.89.0/node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-22.use[0]!./node_modules/.pnpm/css-loader@6.8.1_webpack@5.89.0/node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.4.31_webpack@5.89.0/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/.pnpm/sass-loader@12.0.0_sass@1.32.7_webpack@5.89.0/node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/lx-fail-button/index.vue?vue&type=style&index=1&id=32c706b3&prod&scoped=true&lang=scss
+;// CONCATENATED MODULE: ./node_modules/.pnpm/thread-loader@3.0.4_webpack@5.89.0/node_modules/thread-loader/dist/cjs.js!./node_modules/.pnpm/babel-loader@8.3.0_@babel+core@7.23.2_webpack@5.89.0/node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/lx-fail-button/index.vue?vue&type=script&lang=js
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var lx_fail_buttonvue_type_script_lang_js = ({
+  name: "lx-fail-button-ui"
+});
+;// CONCATENATED MODULE: ./src/components/lx-fail-button/index.vue?vue&type=script&lang=js
+ /* harmony default export */ var components_lx_fail_buttonvue_type_script_lang_js = (lx_fail_buttonvue_type_script_lang_js); 
+;// CONCATENATED MODULE: ./node_modules/.pnpm/mini-css-extract-plugin@2.7.6_webpack@5.89.0/node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-22.use[0]!./node_modules/.pnpm/css-loader@6.8.1_webpack@5.89.0/node_modules/css-loader/dist/cjs.js??clonedRuleSet-22.use[1]!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.4.31_webpack@5.89.0/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-22.use[2]!./node_modules/.pnpm/sass-loader@12.0.0_sass@1.32.7_webpack@5.89.0/node_modules/sass-loader/dist/cjs.js??clonedRuleSet-22.use[3]!./node_modules/.pnpm/vue-loader@15.11.1_css-loader@6.8.1_prettier@2.8.8_vue-template-compiler@2.6.14_webpack@5.89.0/node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/lx-fail-button/index.vue?vue&type=style&index=1&id=736655e0&prod&scoped=true&lang=scss
 // extracted by mini-css-extract-plugin
 
-;// CONCATENATED MODULE: ./src/components/lx-fail-button/index.vue?vue&type=style&index=1&id=32c706b3&prod&scoped=true&lang=scss
+;// CONCATENATED MODULE: ./src/components/lx-fail-button/index.vue?vue&type=style&index=1&id=736655e0&prod&scoped=true&lang=scss
 
 ;// CONCATENATED MODULE: ./src/components/lx-fail-button/index.vue
 
-var lx_fail_button_script = {}
+
+
 ;
 
 
@@ -244,12 +258,12 @@ var lx_fail_button_script = {}
 /* normalize component */
 
 var lx_fail_button_component = normalizeComponent(
-  lx_fail_button_script,
-  lx_fail_buttonvue_type_template_id_32c706b3_scoped_true_render,
-  lx_fail_buttonvue_type_template_id_32c706b3_scoped_true_staticRenderFns,
+  components_lx_fail_buttonvue_type_script_lang_js,
+  lx_fail_buttonvue_type_template_id_736655e0_scoped_true_render,
+  lx_fail_buttonvue_type_template_id_736655e0_scoped_true_staticRenderFns,
   false,
   null,
-  "32c706b3",
+  "736655e0",
   null
   
 )

@@ -4,6 +4,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "lx-fail-button-ui",
+};
+</script>
+
 <style src="./index.scss" scoped lang="scss"></style>
 
 <style scoped lang="scss">

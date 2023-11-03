@@ -12,6 +12,8 @@ import myI18n from '@/utils/i18n-usage'
 // 通用样式
 import '@/styles/common.scss'
 import '@/assets/iconfont/iconfont.css'
+// 自制的npm包
+import lxUI from 'lx-ui-vue2'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
 // 自定义插件
@@ -25,6 +27,7 @@ Vue.config.productionTip = false
 Vue.component('MyGlobalButton', GlobalButton)
 
 // 注册自定义插件
+Vue.use(lxUI)
 Vue.use(MyPlugin01)
 
 // 自定义插件 - 全局方法

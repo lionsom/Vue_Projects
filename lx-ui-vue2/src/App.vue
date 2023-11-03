@@ -5,7 +5,7 @@
     <div class="test-content">
       <lx-success-button class="success-button">成功</lx-success-button>
       <lx-warning-button>警告</lx-warning-button>
-      <lx-fail-button>失败</lx-fail-button>
+      <lx-fail-button-ui>失败</lx-fail-button-ui>
     </div>
   </div>
 </template>
