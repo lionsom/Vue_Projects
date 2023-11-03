@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
 import { ROLE_GENDER, appDesc } from '@/constant/index'
 
 import Bus from '@/event-bus'
@@ -99,7 +99,7 @@ export default {
       console.log('avatar =')
     },
     settingBtnClick() {
-      console.log('sdfsf')
+      console.log('settingBtnClick')
     },
     handleCommand(command) {
       // this.$message('click on item ' + command)
