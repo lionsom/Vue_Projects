@@ -2,3 +2,5 @@
 .DS_Store
 
 !/goods-manager-pc/.vscode
+
+!/*/.vscode
