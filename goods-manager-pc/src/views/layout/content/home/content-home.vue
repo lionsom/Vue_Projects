@@ -1,5 +1,6 @@
 <template>
   <div class="content-home">
+    <!-- 顶部 -->
     <div class="top">
       <top-item
         v-for="item in topList"
@@ -11,11 +12,18 @@
       />
       <!-- <top-item @click.native="showMessage"> </top-item> -->
     </div>
+
+    <!-- 图表 -->
+    <div class="center">
+      <div class="charts" style="width: 100%; height: 400px"></div>
+    </div>
   </div>
 </template>
 
 <script>
 import TopItem from '@/component/show-message-item'
+// 导入ecahrt组件
+import * as echarts from 'echarts'
 
 export default {
   name: 'layout-main-home',
@@ -70,6 +78,36 @@ export default {
       ]
     }
   },
+  mounted() {
+    // 实例化echarts对象
+    this.myChart = echarts.init(document.querySelector('.charts'))
+    // 指定图表的配置项和数据
+    const option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        // x轴数据
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      yAxis: {}, // y轴会自动创建数据
+      series: [
+        // 图表内容
+        {
+          name: '销量',
+          type: 'bar', // 图表类型: line pie bar map
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    }
+
+    // 使用刚指定的配置项和数据显示图表。
+    this.myChart.setOption(option)
+  },
   created() {
     this.getHomeTopData()
   },
@@ -117,6 +155,14 @@ export default {
     justify-content: space-around;
     align-items: center;
     height: 160px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 400px;
+    background-color: aliceblue;
   }
 }
 </style>
