@@ -37,45 +37,34 @@ export default {
 
         // cart
         { id: 1008, name: 'router008', type: '', desc: '购物车', path: '' },
-
         // 全局组件 + 局部组件
         { id: 1009, name: 'router009', type: '', desc: '全局组件 + 局部组件', path: '' },
-
         // Vuex测试页面
         { id: 1010, name: 'router010', type: '', desc: 'Vuex测试页面', path: '' },
-
         // Vant UI
         { id: 1011, name: 'router011', type: '', desc: 'Vant测试页面', path: '' },
-
         // Shopping
         { id: 1012, name: 'router012', type: '', desc: '购物商城', path: '' },
-
         // 自定义指令
         { id: 1013, name: 'router013', type: '', desc: '自定义指令', path: '' },
-
         // 插槽
         { id: 1014, name: 'router014', type: '', desc: '插槽', path: '' },
-
         // v-model原理
         { id: 1015, name: 'router015', type: '', desc: 'v-model原理', path: '' },
-
         // mixin
         { id: 1016, name: 'router016', type: '', desc: 'mixin', path: '' },
-
         // i8n
         { id: 1017, name: 'router017', type: '', desc: 'i18n', path: '' },
-
         // iconfont-usage
         { id: 1018, name: 'router018', type: '', desc: 'icont-usage', path: '' },
-
         // constant-usage
         { id: 1019, name: 'router019', type: '', desc: 'constant-usage', path: '' },
-
         // css-before-after
         { id: 1020, name: 'router020', type: '', desc: 'css 伪元素', path: '' },
-
         // 本地缓存
-        { id: 1021, name: 'router021', type: '', desc: '本地缓存 usage', path: '' }
+        { id: 1021, name: 'router021', type: '', desc: '本地缓存 usage', path: '' },
+        // fiters
+        { id: 1022, name: 'router022', type: '', desc: 'vue过滤器 - filters', path: '' }
       ]
     }
   },
@@ -176,6 +165,8 @@ export default {
           this.$router.push({ path: '/css-before-after' })
         } else if (myRouter.id === 1021) {
           this.$router.push({ path: '/local-storage-usage' })
+        } else if (myRouter.id === 1022) {
+          this.$router.push({ path: '/filters-demo' })
         } else {
           alert('不支持类型')
         }

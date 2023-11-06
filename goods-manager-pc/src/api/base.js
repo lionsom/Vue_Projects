@@ -4,7 +4,7 @@ const baseApi = {
   login: '/login',
   logout: '/api/logout',
   // 首页数据
-  totalInfo: '/api/home/dataCount',
+  totalInfo: '/totalInfo',
   data: '/api/home/data'
 }
 

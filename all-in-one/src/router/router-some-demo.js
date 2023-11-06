@@ -16,6 +16,8 @@ import ConstantUsage from '@/views/constant-uasge/index'
 import CSSBeforeAfter from '@/views/css-before-after'
 // 本地缓存
 import LocalStorageDemo from '@/views/local-storage-demo'
+// 过滤器 filters
+import FiltersDemo from '@/views/filters-usage'
 
 export default [
   {
@@ -53,5 +55,9 @@ export default [
   {
     path: '/local-storage-usage',
     component: LocalStorageDemo
+  },
+  {
+    path: '/filters-demo',
+    component: FiltersDemo
   }
 ]

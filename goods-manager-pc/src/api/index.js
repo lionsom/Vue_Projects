@@ -6,6 +6,10 @@ const api = {
   // 登录
   login() {
     return lxAxios.get(base.login)
+  },
+
+  totalInfo() {
+    return lxAxios.get(base.totalInfo)
   }
 }
 
