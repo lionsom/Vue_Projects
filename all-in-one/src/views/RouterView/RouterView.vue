@@ -64,7 +64,9 @@ export default {
         // 本地缓存
         { id: 1021, name: 'router021', type: '', desc: '本地缓存 usage', path: '' },
         // fiters
-        { id: 1022, name: 'router022', type: '', desc: 'vue过滤器 - filters', path: '' }
+        { id: 1022, name: 'router022', type: '', desc: 'vue过滤器 - filters', path: '' },
+        // env
+        { id: 1023, name: 'router023', type: '', desc: '.env使用', path: '' }
       ]
     }
   },
@@ -167,6 +169,8 @@ export default {
           this.$router.push({ path: '/local-storage-usage' })
         } else if (myRouter.id === 1022) {
           this.$router.push({ path: '/filters-demo' })
+        } else if (myRouter.id === 1023) {
+          this.$router.push({ path: '/env-demo' })
         } else {
           alert('不支持类型')
         }

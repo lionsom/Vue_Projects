@@ -18,6 +18,8 @@ import CSSBeforeAfter from '@/views/css-before-after'
 import LocalStorageDemo from '@/views/local-storage-demo'
 // 过滤器 filters
 import FiltersDemo from '@/views/filters-usage'
+// env 使用
+import EnvDemo from '@/views/env-usage'
 
 export default [
   {
@@ -59,5 +61,9 @@ export default [
   {
     path: '/filters-demo',
     component: FiltersDemo
+  },
+  {
+    path: '/env-demo',
+    component: EnvDemo
   }
 ]
