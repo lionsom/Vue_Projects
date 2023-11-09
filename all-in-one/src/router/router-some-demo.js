@@ -20,6 +20,8 @@ import LocalStorageDemo from '@/views/local-storage-demo'
 import FiltersDemo from '@/views/filters-usage'
 // env 使用
 import EnvDemo from '@/views/env-usage'
+// js-usage
+import JsUsage from '@/views/js-usage'
 
 export default [
   {
@@ -65,5 +67,9 @@ export default [
   {
     path: '/env-demo',
     component: EnvDemo
+  },
+  {
+    path: '/js-usage',
+    component: JsUsage
   }
 ]

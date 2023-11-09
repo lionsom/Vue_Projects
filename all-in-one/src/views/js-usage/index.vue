@@ -1,7 +1,15 @@
 <template>
-  <div class="main"></div>
+  <div class="main">asdfsdf</div>
 </template>
 
 <script>
-export default {}
+import * as ccc from './string/index.js'
+export default {
+  created() {
+    console.log(ccc.PI)
+    console.log(ccc.a)
+
+    ccc.pirntttt()
+  }
+}
 </script>

@@ -6,4 +6,8 @@ function lxNowTime() {
   return moment().format('YYYY-MM-DD HH:mm:ss')
 }
 
-export default lxNowTime
+function lxNowDateShort() {
+  return moment().format('YYYY-MM-DD')
+}
+
+export default { lxNowTime, lxNowDateShort }

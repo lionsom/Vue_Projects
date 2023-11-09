@@ -66,7 +66,9 @@ export default {
         // fiters
         { id: 1022, name: 'router022', type: '', desc: 'vue过滤器 - filters', path: '' },
         // env
-        { id: 1023, name: 'router023', type: '', desc: '.env使用', path: '' }
+        { id: 1023, name: 'router023', type: '', desc: '.env使用', path: '' },
+        // js-usage
+        { id: 1024, name: 'router024', type: '', desc: 'js-usage', path: '' }
       ]
     }
   },
@@ -171,6 +173,8 @@ export default {
           this.$router.push({ path: '/filters-demo' })
         } else if (myRouter.id === 1023) {
           this.$router.push({ path: '/env-demo' })
+        } else if (myRouter.id === 1024) {
+          this.$router.push({ path: '/js-usage' })
         } else {
           alert('不支持类型')
         }

@@ -59,7 +59,7 @@
 import { ROLE_GENDER, appDesc } from '@/constant/index'
 
 import Bus from '@/event-bus'
-import lxNowTime from '@/plugins/moment'
+import Time from '@/plugins/moment'
 
 export default {
   data() {
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     updateTime() {
-      this.currentTime = lxNowTime()
+      this.currentTime = Time.lxNowTime() + ' || ' + Time.lxNowDateShort()
     },
     closeBtnClick() {
       console.log('关闭侧栏')
