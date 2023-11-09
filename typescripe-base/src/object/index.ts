@@ -22,7 +22,7 @@ interface UserItem {
 }
 
 // 在声明变量的时候将其关联到类型上
-const petter: UserItem = {
+const petter22: UserItem = {
   name: 'Petter',
   age: 20,
   friendList: [
