@@ -24,6 +24,9 @@ function goMe() {
 </script>
 
 <template>
+  <!-- 一级路由 展示窗口 -->
+  <router-view></router-view>
+
   <h1>我是app</h1>
 
   <button @click="$router.push('/home')">首页</button>
