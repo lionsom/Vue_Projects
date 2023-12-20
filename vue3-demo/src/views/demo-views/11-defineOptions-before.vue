@@ -13,6 +13,7 @@ export default {
     }
   },
 
+  // 与setup同一级别
   name: 'setup-base-page',
 
   beforeCreate () {
