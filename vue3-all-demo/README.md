@@ -1,4 +1,4 @@
-# vue3-echart
+# vue3-all-demo
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -43,11 +43,4 @@ npm run build
 
 ```sh
 npm run lint
-```
-
-
-# 安装EChart
-
-```
-pnpm add echarts vue-echarts
 ```
