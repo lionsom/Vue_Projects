@@ -1,20 +1,25 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" 
-      @click="$router.push('/a')"
+      @click="$router.push('/line')"
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/line">line 折线图</RouterLink>
+        <RouterLink to="/bar">bar 柱状图</RouterLink>
+        <RouterLink to="/pie">pie 饼图</RouterLink>
+        <RouterLink to="/radar">radar 雷达图</RouterLink>
+        <RouterLink to="/scatter">scatter 雷达图</RouterLink>
+        <RouterLink to="/funnel">funnel 漏斗图</RouterLink>
+        <RouterLink to="/gauge">仪表图</RouterLink>
+        <RouterLink to="/bar-strip-single">横向 单个 柱状图</RouterLink>
+        <RouterLink to="/bar-strip-multi">横向 多个 柱状图</RouterLink>
+        <RouterLink to="/bar-negative">负数 柱状图</RouterLink>
       </nav>
     </div>
   </header>
