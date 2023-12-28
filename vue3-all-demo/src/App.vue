@@ -3,28 +3,31 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
+
+  <RouterView/>
+
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" 
       @click="$router.push('/line')"
     />
 
     <div class="wrapper">
       <nav>
-        <RouterLink to="/line">line 折线图</RouterLink>
-        <RouterLink to="/bar">bar 柱状图</RouterLink>
-        <RouterLink to="/pie">pie 饼图</RouterLink>
-        <RouterLink to="/radar">radar 雷达图</RouterLink>
-        <RouterLink to="/scatter">scatter 雷达图</RouterLink>
-        <RouterLink to="/funnel">funnel 漏斗图</RouterLink>
-        <RouterLink to="/gauge">仪表图</RouterLink>
-        <RouterLink to="/bar-strip-single">横向 单个 柱状图</RouterLink>
-        <RouterLink to="/bar-strip-multi">横向 多个 柱状图</RouterLink>
-        <RouterLink to="/bar-negative">负数 柱状图</RouterLink>
+        <RouterLink to="/echart/line">line 折线图</RouterLink>
+        <RouterLink to="/echart/bar">bar 柱状图</RouterLink>
+        <RouterLink to="/echart/pie">pie 饼图</RouterLink>
+        <RouterLink to="/echart/radar">radar 雷达图</RouterLink>
+        <RouterLink to="/echart/scatter">scatter 雷达图</RouterLink>
+        <RouterLink to="/echart/funnel">funnel 漏斗图</RouterLink>
+        <RouterLink to="/echart/gauge">仪表图</RouterLink>
+        <RouterLink to="/echart/bar-strip-single">横向 单个 柱状图</RouterLink>
+        <RouterLink to="/echart/bar-strip-multi">横向 多个 柱状图</RouterLink>
+        <RouterLink to="/echart/bar-negative">负数 柱状图</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <RouterView /> -->
 </template>
 
 <style scoped>
