@@ -5,20 +5,24 @@ import RouterEchart from './router-echart.ts'
 const allRouters = [
   // 重定向
   {
-    path: '/',
-    redirect: '/home'
+    path: '/index',
+    redirect: '/'
   },
   // 主页
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/router-view/MainRouter.vue')
+    path: '/',
+    component: () => import('@/layout/index.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/layout/login/index.vue')
   },
   // 404
-  { 
-    path: '*', 
-    component: () => import('@/views/router-view/NotFound.vue')
-  }
+  // { 
+  //   path: '*', 
+  //   component: () => import('@/layout/404/404.vue')
+  // },
 ]
 
 const router = createRouter({
@@ -27,6 +31,28 @@ const router = createRouter({
     ...allRouters,
     ...RouterEchart
   ]
+})
+
+/**
+ * 全局路由守卫，路由跳转前的拦截
+ */
+// router.beforeEach((to, from, next) => {
+//   // 登录校验
+//   if (to.name!== 'login' &&!localStorage.getItem('token')) {
+//     next({
+//       name: 'login'
+//     })
+//   } else {
+//     next()
+//   }
+// })
+
+// 路由切换时，清空缓存
+router.afterEach((to, from) => {
+  // 路由切换时，清空缓存
+  // localStorage.clear()
+  console.log('router from: ', from);
+  console.log('router to: ', to);
 })
 
 export default router
