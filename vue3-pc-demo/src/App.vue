@@ -11,7 +11,7 @@ import { RouterView } from 'vue-router'
 
 <style scoped lang="scss">
 .app {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 </style>

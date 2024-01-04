@@ -3,7 +3,7 @@
 
 <template>
   <div class="top-content">
-    toppppp-pp
+    导航头
   </div>
 </template>
 
@@ -11,5 +11,7 @@
 
 .top-content {
   background-color: red;
+  height: 100%;
+  line-height: 60px;
 }
 </style>

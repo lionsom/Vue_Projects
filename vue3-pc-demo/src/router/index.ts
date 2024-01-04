@@ -5,18 +5,18 @@ import RouterEchart from './router-echart.ts'
 const allRouters = [
   // 重定向
   {
-    path: '/index',
-    redirect: '/'
+    path: '/',
+    redirect: '/home'
   },
   // 主页
   {
-    path: '/',
-    component: () => import('@/layout/index.vue')
+    path: '/home',
+    component: () => import('@/views/layout/home/index.vue')
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/layout/login/index.vue')
+    component: () => import('@/views/layout/login/index.vue')
   },
   // 404
   // { 

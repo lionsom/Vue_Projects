@@ -1,8 +1,7 @@
 <script setup lang="ts">
-// import { RouterLink, RouterView } from 'vue-router'
-import LeftContent from './left-content.vue'
-import RightContent from './right-content.vue'
-import TopContent from './top-content.vue'
+import LeftMenu from './left-menu/index.vue'
+// import RightContent from './right-content/index.vue'
+import TopHeader from './top-header/index.vue'
 
 defineOptions({
   name: "layout-home"
@@ -11,29 +10,28 @@ defineOptions({
 </script>
 
 <template>
+  <div class="main">
+    <!-- 左 -->
+    <div class="left-content">
+      <LeftMenu />
+    </div>
 
-  <!-- element-plus Container 布局容器 -->
-  <div class="common-layout">
-    <el-container>
-      <!-- 左侧菜单 -->
-      <el-aside width="200px">
-        <LeftContent />
-      </el-aside>
-      <!-- 右侧内容 -->
-      <el-container>
-        <!-- 头部 -->
-        <el-header>
-          <TopContent />
-        </el-header>
-        <!-- 主体 -->
-        <el-main>
-          <RightContent />
-        </el-main>
-      </el-container>
-    </el-container>
+    <!-- 右 -->
+    <div class="right-content">
+      <!-- header -->
+      <div class="top-header">
+        <TopHeader />
+      </div>
+
+      <!-- content -->
+      <div class="right-content-content">
+        <!-- <RightContent /> -->
+
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 
-  
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" 
       @click="$router.push('/line')"
@@ -60,7 +58,31 @@ defineOptions({
 </template>
 
 <style scoped lang="scss">
-.common-layout {
-  background-color: orange;
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
+
+.left-content {
+  width: 200px;
+  background-color: #4680ff;
+  overflow: hidden;
+}
+
+.right-content {
+  flex: 1;
+  overflow: hidden;
+
+  .top-header {
+    height: 60px;
+    background-color: yellowgreen;
+  }
+
+  .right-content-content {
+    background-color: orange;
+    height: 100%;
+  }
+}
+
 </style>
