@@ -4,7 +4,7 @@ import RightContent from './right-content/index.vue'
 import TopHeader from './top-header/index.vue'
 
 defineOptions({
-  name: "layout-home"
+  name: "0-layout-home"
 })
 
 </script>

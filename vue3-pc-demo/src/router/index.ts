@@ -11,7 +11,7 @@ const allRouters = [
   // 主页
   {
     path: '/',
-    component: () => import('@/views/layout/home/index.vue'),
+    component: () => import('@/views/0-layout/home/index.vue'),
     children: [
       {
         path: '/vue3-demo',
@@ -29,12 +29,12 @@ const allRouters = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/layout/login/index.vue')
+    component: () => import('@/views/0-layout/login/index.vue')
   }  
   // 404
   // { 
   //   path: '*', 
-  //   component: () => import('@/layout/404/404.vue')
+  //   component: () => import('@/0-layout/404/404.vue')
   // },
 ]
 
