@@ -1,59 +1,59 @@
-import LineCom from '@/views/echart-demo/line.vue'
-import BarCom from '@/views/echart-demo/bar.vue'
+import LineCom from '@/views/echart-demo/demos/line.vue'
+import BarCom from '@/views/echart-demo/demos/bar.vue'
 
 // 懒加载，避免内存过大
-const PieCom = () => import('@/views/echart-demo/pie.vue')
+const PieCom = () => import('@/views/echart-demo/demos/pie.vue')
 
 const subRouter = [
   {
-    path: '/echart/line',
+    path: '/echart-demo/line',
     name: 'line',
     component: LineCom
   },
   {
-    path: '/echart/bar',
+    path: '/echart-demo/bar',
     name: 'bar',
     component: BarCom
   },
   {
-    path: '/echart/pie',
+    path: '/echart-demo/pie',
     name: 'pie',
     component: PieCom
   },
   {
-    path: '/echart/radar',
+    path: '/echart-demo/radar',
     name: 'radar',
-    component: () => import('@/views/echart-demo/radar.vue')
+    component: () => import('@/views/echart-demo/demos/radar.vue')
   },
   {
-    path: '/echart/scatter',
+    path: '/echart-demo/scatter',
     name: 'scatter',
-    component: () => import('../views/echart-demo/scatter.vue')
+    component: () => import('../views/echart-demo/demos/scatter.vue')
   },
   {
-    path: '/echart/funnel',
+    path: '/echart-demo/funnel',
     name: 'funnel',
-    component: () => import('../views/echart-demo/funnel.vue')
+    component: () => import('../views/echart-demo/demos/funnel.vue')
   },
   {
-    path: '/echart/gauge',
+    path: '/echart-demo/gauge',
     name: 'gauge',
-    component: () => import('../views/echart-demo/gauge.vue')
+    component: () => import('../views/echart-demo/demos/gauge.vue')
   },
   {
-    path: '/echart/echart/bar-strip-single',
+    path: '/echart-demo/bar-strip-single',
     name: 'bar-strip-single',
-    component: () => import('../views/echart-demo/bar-strip-single.vue')
+    component: () => import('../views/echart-demo/demos/bar-strip-single.vue')
   },
   {
-    path: '/echart/bar-strip-multi',
+    path: '/echart-demo/bar-strip-multi',
     name: 'bar-strip-multi',
-    component: () => import('../views/echart-demo/bar-strip-multi.vue')
+    component: () => import('../views/echart-demo/demos/bar-strip-multi.vue')
   },
   {
-    path: '/echart/bar-negative',
+    path: '/echart-demo/bar-negative',
     name: 'bar-negative',
-    component: () => import('../views/echart-demo/bar-negative.vue')
+    component: () => import('../views/echart-demo/demos/bar-negative.vue')
   }
 ]
 

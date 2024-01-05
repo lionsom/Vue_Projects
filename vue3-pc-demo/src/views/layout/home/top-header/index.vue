@@ -10,7 +10,7 @@
 <style scoped lang="scss">
 
 .top-content {
-  background-color: red;
+  background-color: 'transparent';
   height: 100%;
   line-height: 60px;
 }

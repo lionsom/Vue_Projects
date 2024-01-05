@@ -1,23 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 各个子模块路由
-import RouterEchart from './router-echart.ts'
+import RouterEchart from './router-echart.js'
 
 const allRouters = [
   // 重定向
   {
-    path: '/',
-    redirect: '/home'
+    path: '/index',
+    redirect: '/'
   },
   // 主页
   {
-    path: '/home',
-    component: () => import('@/views/layout/home/index.vue')
+    path: '/',
+    component: () => import('@/views/layout/home/index.vue'),
+    children: [
+      {
+        path: '/vue3-demo',
+        name: '路由测试',
+        component: () => import('@/views/vue3-demo/index.vue')
+      },
+      {
+        path: '/echart-demo',
+        name: 'echart-demo',
+        component: () => import('@/views/echart-demo/index.vue'),
+        children: RouterEchart
+      }
+    ]
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('@/views/layout/login/index.vue')
-  },
+  }  
   // 404
   // { 
   //   path: '*', 
@@ -25,11 +38,13 @@ const allRouters = [
   // },
 ]
 
+/**
+ * 路由主体
+ */
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    ...allRouters,
-    ...RouterEchart
+    ...allRouters
   ]
 })
 

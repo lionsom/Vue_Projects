@@ -2,7 +2,7 @@
   <v-chart class="chart" :option="option" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 //
 import { use } from 'echarts/core'
 import { RadarChart } from 'echarts/charts'

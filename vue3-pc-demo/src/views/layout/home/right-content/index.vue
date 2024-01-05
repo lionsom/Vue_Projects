@@ -3,8 +3,15 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- 路由视图窗口 -->
-  <RouterView/>
+  <div class="main">
+    <!-- 路由视图窗口 -->
+    <RouterView/>
+  </div>
 </template>
 
-<!-- <style scoped></style> -->
+<style scoped lang="scss">
+.main {
+  // width: 50%;
+  // height: 50%;
+}
+</style>
