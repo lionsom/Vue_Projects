@@ -9,7 +9,6 @@ import { ref } from 'vue'
 import {
   Document,
   Menu as IconMenu,
-  Location,
   HomeFilled,
   Setting,
   Bicycle,

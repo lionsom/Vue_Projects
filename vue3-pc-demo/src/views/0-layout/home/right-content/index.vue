@@ -8,10 +8,3 @@ import { RouterView } from 'vue-router'
     <RouterView/>
   </div>
 </template>
-
-<style scoped lang="scss">
-.main {
-  // width: 50%;
-  // height: 50%;
-}
-</style>

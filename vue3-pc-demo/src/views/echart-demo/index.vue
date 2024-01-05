@@ -19,7 +19,11 @@ import { RouterView } from 'vue-router'
       <li><RouterLink to="/echart-demo/gauge">仪表图</RouterLink></li>
       <li><RouterLink to="/echart-demo/bar-strip-single">横向 单个 柱状图</RouterLink></li>
       <li><RouterLink to="/echart-demo/bar-strip-multi">横向 多个 柱状图</RouterLink></li>
+      
+      <h3>to的两种写法</h3>
       <li><RouterLink to="/echart-demo/bar-negative">负数 柱状图</RouterLink></li>
+      <li><RouterLink :to="{path: '/echart-demo/bar-negative'}">负数 柱状图</RouterLink></li>
+
     </ol>
     
     <!-- 三级路由 -->
