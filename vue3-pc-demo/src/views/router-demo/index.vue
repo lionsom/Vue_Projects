@@ -3,6 +3,7 @@
         <h2 class="app-title">Vue路由测试</h2>
         <!-- 导航区 -->
         <div class="navigate">
+            <RouterLink to="/router-demo/knowledge" active-class="xiaozhupeiqi">知识点简介</RouterLink>
             <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">首页</RouterLink>
             <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">新闻</RouterLink>
             <RouterLink to="/router-demo/about" active-class="xiaozhupeiqi">关于</RouterLink>
@@ -44,7 +45,7 @@ import {RouterView,RouterLink} from 'vue-router'
     .navigate a {
         display: block;
         text-align: center;
-        width: 30%;
+        width: 20%;
         height: 40px;
         line-height: 40px;
         border-radius: 10px;
