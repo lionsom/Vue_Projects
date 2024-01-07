@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 各个子模块路由
 import RouterEchart from './router-echart.js'
+import RouterDemo from './router-demo.js'
 
 const allRouters = [
   // 重定向
@@ -23,6 +24,12 @@ const allRouters = [
         name: 'echart-demo',
         component: () => import('@/views/echart-demo/index.vue'),
         children: RouterEchart
+      },
+      {
+        path: '/router-demo',
+        name: 'router-demo',
+        component: () => import('@/views/router-demo/index.vue'),
+        children: RouterDemo
       }
     ]
   },
@@ -44,7 +51,7 @@ const allRouters = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    ...allRouters
+    ...allRouters  
   ]
 })
 

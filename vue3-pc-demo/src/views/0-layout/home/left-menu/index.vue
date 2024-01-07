@@ -58,9 +58,9 @@ const handleClose = (key: string, keyPath: string[]) => {
     </el-menu-item>
     
     <!-- 2 -->
-    <el-menu-item index="2">
+    <el-menu-item index="/router-demo">
       <el-icon><icon-menu /></el-icon>
-      <template #title>Navigator Two</template>
+      <template #title>Router Demo</template>
     </el-menu-item>
 
     <!-- 3 -->
