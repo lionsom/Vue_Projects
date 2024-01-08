@@ -1,8 +1,14 @@
 <template>
     <div class="home">
         <h1>路由知识点介绍</h1>
+
+        <h2>to的两种写法</h2><br/>
+
+        <h2>命名路由</h2><br/>
+
+
         <ol>
-            <ul>123</ul>
+            <ul>to的两种写法</ul>
             <li>123</li>
             <li>23</li>
             <li>43</li>
