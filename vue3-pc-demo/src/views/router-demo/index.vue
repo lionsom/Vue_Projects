@@ -65,10 +65,14 @@ import {RouterView,RouterLink} from 'vue-router'
     .main-content {
         margin: 0 auto;
         margin-top: 30px;
+        margin-bottom: 10px;
         border-radius: 10px;
         width: 90%;
-        height: 400px;
+        // height: 400px;
+        height: calc(100vh - 300px);
         border: 1px solid;
+
+        overflow-y:auto;
     }
 }
 
