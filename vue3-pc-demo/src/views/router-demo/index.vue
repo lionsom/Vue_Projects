@@ -6,18 +6,19 @@
 
             <!-- to的两种方式 -->
 
-            <!-- 第一种：to的字符串写法 -->
+            <!-- 第一种：字符串写法 -->
             <!-- <RouterLink to="/router-demo/knowledge" active-class="xiaozhupeiqi">知识点简介</RouterLink> -->
 
-            <!-- 第二种：to的对象写法 path -->
+            <!-- 第二种：对象写法 path -->
             <!-- <RouterLink :to="{path:'/router-demo/knowledge'}" active-class="xiaozhupeiqi">知识点简介</RouterLink> -->
 
-            <!-- 第二种：to的对象写法 name -->
+            <!-- 第二种：对象写法 name -->
             <router-link :to="{name:'router-demo-knowledge'}" active-class="xiaozhupeiqi">知识点简介</router-link>
 
+            <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">嵌套路由 传参</RouterLink>
             
-            <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">首页</RouterLink>
-            <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">新闻</RouterLink>
+            <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">路由 - props</RouterLink>
+
             <RouterLink to="/router-demo/about" active-class="xiaozhupeiqi">关于</RouterLink>
         </div>
         <!-- 展示区 -->

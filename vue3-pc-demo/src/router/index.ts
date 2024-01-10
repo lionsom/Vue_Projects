@@ -15,18 +15,18 @@ const allRouters = [
     component: () => import('@/views/0-layout/home/index.vue'),
     children: [
       {
-        path: '/vue3-demo',
-        name: '路由测试',
+        path: 'vue3-demo',
+        name: 'vue3-demo',
         component: () => import('@/views/vue3-demo/index.vue')
       },
       {
-        path: '/echart-demo',
+        path: 'echart-demo',
         name: 'echart-demo',
         component: () => import('@/views/echart-demo/index.vue'),
         children: RouterEchart
       },
       {
-        path: '/router-demo',
+        path: 'router-demo',
         name: 'router-demo',
         component: () => import('@/views/router-demo/index.vue'),
         children: RouterDemo
