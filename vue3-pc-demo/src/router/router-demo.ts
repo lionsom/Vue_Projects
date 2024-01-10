@@ -38,6 +38,11 @@ const routers = [ //一个一个的路由规则
                 name: 'router-demo-news-detail-params',
                 path:'detail-params/:id/:title/:content?',
                 component:DetailParams
+            },
+            {
+                name: 'router-demo-news-detail-props',
+                path:'detail-params/:id/:title/:content?',
+                component:DetailParams
             }
         ]
     },

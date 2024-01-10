@@ -17,7 +17,7 @@
 
             <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">嵌套路由 传参</RouterLink>
             
-            <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">路由 - props</RouterLink>
+            <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">路由</RouterLink>
 
             <RouterLink to="/router-demo/about" active-class="xiaozhupeiqi">关于</RouterLink>
         </div>
