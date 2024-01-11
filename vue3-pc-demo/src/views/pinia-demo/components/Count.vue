@@ -12,10 +12,14 @@
 </template>
 
 <script setup lang="ts" name="Count">
+  // import useCountStore from "@/stores/modules/count";
   import { ref } from "vue";
+  // import '@/store/index'
   // 数据
   let sum = ref(1) // 当前求和
   let n = ref(1) // 用户选择的数字
+
+  let sotre = useStore().count
 
   // 方法
   function add(){
@@ -26,7 +30,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .count {
     background-color: skyblue;
     padding: 10px;

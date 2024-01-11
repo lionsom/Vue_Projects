@@ -64,7 +64,7 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>Router Demo</template>
     </el-menu-item>
 
-        <!-- 2 -->
+    <!-- 3 -->
     <el-menu-item index="/pinia-demo">
       <el-icon><Box /></el-icon>
       <template #title>Pinia Demo</template>
