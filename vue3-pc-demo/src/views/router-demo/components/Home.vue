@@ -80,7 +80,7 @@ const newsList = reactive([
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 30%;
   }
 /* 新闻 */
 .news {
