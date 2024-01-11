@@ -30,6 +30,11 @@ const allRouters = [
         name: 'router-demo',
         component: () => import('@/views/router-demo/index.vue'),
         children: RouterDemo
+      },
+      {
+        path: 'pinia-demo',
+        name: 'pinia-demo',
+        component: () => import('@/views/pinia-demo/index.vue')
       }
     ]
   },

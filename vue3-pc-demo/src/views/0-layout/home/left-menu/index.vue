@@ -12,6 +12,7 @@ import {
   HomeFilled,
   Setting,
   Bicycle,
+  Box,
 } from '@element-plus/icons-vue'
 
 const isCollapse = ref(false)
@@ -63,14 +64,20 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>Router Demo</template>
     </el-menu-item>
 
+        <!-- 2 -->
+    <el-menu-item index="/pinia-demo">
+      <el-icon><Box /></el-icon>
+      <template #title>Pinia Demo</template>
+    </el-menu-item>
+
     <!-- 3 -->
-    <el-menu-item index="3" disabled>
+    <el-menu-item index="3" >
       <el-icon><document /></el-icon>
       <template #title>Navigator Three</template>
     </el-menu-item>
     
     <!-- 4 -->
-    <el-menu-item index="4">
+    <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>
       <template #title>Navigator Four</template>
     </el-menu-item>

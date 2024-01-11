@@ -9,7 +9,7 @@ import DetailParams from '@/views/router-demo/components/Detail-Params.vue'
 import DetailProps from '@/views/router-demo/components/Detail-Props.vue'
 
 // 第二步：创建路由器
-const routers = [ //一个一个的路由规则
+const routers = [ // 一个一个的路由规则
     {
         name: 'router-demo-knowledge',
         path: '/router-demo/knowledge',
