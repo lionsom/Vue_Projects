@@ -8,10 +8,10 @@
       <li v-for="news in newsList" :key="news.id">
         <h1> 嵌套路由 - query传参 </h1>
 
-        <!-- 第一种写法 -->
-        <RouterLink :to="`/router-demo/news/detail-query?id=${news.id}&title=${news.title}&content=${news.content}`">方式一：{{news.title}} --------</RouterLink>
+        <!-- query 第一种写法 -->
+        <RouterLink :to="`/router-demo/news/detail-query?id=${news.id}&title=${news.title}&content=${news.content}`">query方式一：{{news.title}} --------</RouterLink>
 
-        <!-- 第二种写法 -->
+        <!-- query 第二种写法 -->
         <RouterLink 
           :to="{
             name:'router-demo-news-detail-query',
@@ -22,17 +22,17 @@
             }
           }"
         >
-          方式二：{{news.title}}
+          query方式二：{{news.title}}
         </RouterLink>
 
 
         <br />
         <h1> 嵌套路由 - params传参 </h1>
         
-        <!-- 第一种写法 -->
-        <RouterLink :to="`/router-demo/news/detail-params/${news.id}/${news.title}/${news.content}`">方式一：{{news.title}} --------</RouterLink>
+        <!-- params 第一种写法 -->
+        <RouterLink :to="`/router-demo/news/detail-params/${news.id}/${news.title}/${news.content}`">params方式一：{{news.title}} --------</RouterLink>
 
-        <!-- 第二种写法 -->
+        <!-- params 第二种写法 -->
         <RouterLink 
           :to="{
             name:'router-demo-news-detail-params',
@@ -43,7 +43,7 @@
             }
           }"
         >
-          方式二：{{news.title}}
+          params方式二：{{news.title}}
         </RouterLink>
       </li>
 

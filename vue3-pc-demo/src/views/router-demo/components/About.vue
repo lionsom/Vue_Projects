@@ -1,20 +1,95 @@
 <template>
-  <div class="about">
-    <h2>大家好，欢迎来到尚硅谷直播间</h2>
+  <div class="news">
+    <!-- 导航区 -->
+    <ul>
+      <li v-for="news in newsList" :key="news.id">
+        <button @click="showNewsDetail(news)">查看新闻</button>
+        &nbsp;
+        <RouterLink 
+          :to="{
+            name:'router-demo-about-detail-query',
+            query:{
+              id:news.id,
+              title:news.title,
+              content:news.content
+            }
+          }"
+        >
+          {{news.title}}
+        </RouterLink>
+      </li>
+    </ul>
+    <!-- 展示区 -->
+    <div class="news-content">
+      <RouterView></RouterView>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts" name="About">
+<script setup lang="ts" name="News">
+  import {reactive} from 'vue'
+  import {RouterView,RouterLink,useRouter} from 'vue-router'
+
+  const newsList = reactive([
+    {id:'asfdtrfay01',title:'很好的抗癌食物',content:'西蓝花'},
+    {id:'asfdtrfay02',title:'如何一夜暴富',content:'学IT'},
+    {id:'asfdtrfay03',title:'震惊，万万没想到',content:'明天是周一'},
+    {id:'asfdtrfay04',title:'好消息！好消息！',content:'快过年了'}
+  ])
+
+  const router = useRouter()
+
+  interface NewsInter {
+    id:string,
+    title:string,
+    content:string
+  }
+
+  function showNewsDetail(news:NewsInter){
+    // 内容可以是字符串，也可以是对象
+    // 总之：和to写法一样。
+    router.replace({
+      name:'router-demo-about-detail-query',
+      query:{
+        id:news.id,
+        title:news.title,
+        content:news.content
+      }
+    })
+
+    // router.push(`/router-demo/home/detail-params-props/${news.id}/${news.title}/${news.content}`)
+  }
 
 </script>
 
 <style scoped>
-.about {
+/* 新闻 */
+.news {
+  padding: 0 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   height: 100%;
-  color: rgb(85, 84, 84);
+}
+.news ul {
+  margin-top: 30px;
+  /* list-style: none; */
+  padding-left: 10px;
+}
+.news li::marker {
+  color: #64967E;
+}
+.news li>a {
   font-size: 18px;
+  line-height: 40px;
+  text-decoration: none;
+  color: #64967E;
+  text-shadow: 0 0 1px rgb(0, 84, 0);
+}
+.news-content {
+  width: 70%;
+  height: 90%;
+  border: 1px solid;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 </style>

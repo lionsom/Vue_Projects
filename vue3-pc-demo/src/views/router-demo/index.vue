@@ -15,11 +15,11 @@
             <!-- 第二种：对象写法 name -->
             <router-link :to="{name:'router-demo-knowledge'}" active-class="xiaozhupeiqi">知识点简介</router-link>
 
-            <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">嵌套路由 传参</RouterLink>
+            <RouterLink to="/router-demo/news" active-class="xiaozhupeiqi">嵌套路由 query params传参</RouterLink>
             
-            <RouterLink to="/router-demo/home" active-class="xiaozhupeiqi">路由</RouterLink>
+            <RouterLink replace to="/router-demo/home" active-class="xiaozhupeiqi">嵌套路由 props传参</RouterLink>
 
-            <RouterLink to="/router-demo/about" active-class="xiaozhupeiqi">关于</RouterLink>
+            <RouterLink to="/router-demo/about" active-class="xiaozhupeiqi">编程式路由</RouterLink>
         </div>
         <!-- 展示区 -->
         <div class="main-content">
