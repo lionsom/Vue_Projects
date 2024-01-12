@@ -70,6 +70,13 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>Pinia Demo</template>
     </el-menu-item>
 
+    <!-- 4 -->
+    <el-menu-item index="/communication-demo">
+      <el-icon><Box /></el-icon>
+      <template #title>组件通信Demo</template>
+    </el-menu-item>
+    
+
     <!-- 3 -->
     <el-menu-item index="3" >
       <el-icon><document /></el-icon>

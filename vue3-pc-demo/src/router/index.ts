@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 各个子模块路由
 import RouterEchart from './router-echart.js'
 import RouterDemo from './router-demo.js'
+import RouterCommunication from './router-communication.js'
 
 const allRouters = [
   // 重定向
@@ -35,6 +36,12 @@ const allRouters = [
         path: 'pinia-demo',
         name: 'pinia-demo',
         component: () => import('@/views/pinia-demo/index.vue')
+      },
+      {
+        path: 'communication-demo',
+        name: 'communication-demo',
+        component: () => import('@/views/communication-demo/index.vue'),
+        children: RouterCommunication
       }
     ]
   },
