@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import RouterEchart from './router-echart.js'
 import RouterDemo from './router-demo.js'
 import RouterCommunication from './router-communication.js'
+import RouterSlot from './router-slot.js'
 
 const allRouters = [
   // 重定向
@@ -42,6 +43,12 @@ const allRouters = [
         name: 'communication-demo',
         component: () => import('@/views/communication-demo/index.vue'),
         children: RouterCommunication
+      },
+      {
+        path: 'slot-demo',
+        name: 'slot-demo',
+        component: () => import('@/views/slot-demo/index.vue'),
+        children: RouterSlot
       }
     ]
   },

@@ -76,14 +76,13 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>组件通信Demo</template>
     </el-menu-item>
     
-
-    <!-- 3 -->
-    <el-menu-item index="3" >
-      <el-icon><document /></el-icon>
-      <template #title>Navigator Three</template>
+    <!-- 5 -->
+    <el-menu-item index="/slot-demo">
+      <el-icon><Box /></el-icon>
+      <template #title>Slot Demo</template>
     </el-menu-item>
-    
-    <!-- 4 -->
+
+    <!-- disabled -->
     <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>
       <template #title>Navigator Four</template>

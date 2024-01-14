@@ -1,5 +1,6 @@
 <template>
   <div class="father">
+		<h1>通过自定义事件 - 实现了『子传父』</h1>
     <h3>父组件</h3>
 		<h4 v-show="toy">子给的玩具：{{ toy }}</h4>
 		<!-- 给子组件Child绑定事件 -->

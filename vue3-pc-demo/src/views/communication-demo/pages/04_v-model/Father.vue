@@ -1,17 +1,18 @@
 <template>
   <div class="father">
+    <h1>日常开发不常写v-model，但是在组件库中大量使用。</h1>
+    <br />
     <h3>父组件</h3>
     <h4>{{ username }}</h4>
     <h4>{{ password }}</h4>
+
     <!-- v-model用在html标签上 -->
     <!-- <input type="text" v-model="username"> -->
     <!-- <input type="text" :value="username" @input="username = (<HTMLInputElement>$event.target).value"> -->
 
     <!-- v-model用在组件标签上 -->
     <!-- <AtguiguInput v-model="username"/> -->
-    <!-- <AtguiguInput 
-      :modelValue="username" 
-      @update:modelValue="username = $event"
+    <!-- <AtguiguInput :modelValue="username" @update:modelValue="username = $event"
     /> -->
 
     <!-- 修改modelValue -->

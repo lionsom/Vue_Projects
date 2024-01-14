@@ -1,5 +1,11 @@
 <template>
   <div class="father">
+    <h1>mitt 等价于 $Bus</h1>
+    <ol>
+      <li>接收数据方：提前绑定好事件（提前订阅消息）</li>
+      <li>发送数据方：在合适的时候触发</li>
+    </ol>
+    <br />
     <h3>父组件</h3>
     <Child1/>
     <Child2/>
