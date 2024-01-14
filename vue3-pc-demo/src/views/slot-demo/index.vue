@@ -6,7 +6,10 @@
 		<hr>
 		<div class="row">
 			<div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
-				<router-link active-class="active" class="list-group-item" to="/slot">9. slot</router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot-none">1. 无插槽  </router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot-default">2. 默认插槽  </router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot-name">3. 具名插槽  </router-link>
+				<router-link active-class="active" class="list-group-item" to="/slot-scope">4. 作用域插槽  </router-link>
 			</div>
 			<div class="col-xs-9 col-md-9 col-lg-9 col-xl-9">
 				<div class="panel-body">

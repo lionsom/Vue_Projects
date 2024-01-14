@@ -1,5 +1,7 @@
 <template>
   <div class="father">
+    <h1>作用域插槽: 子组件的插槽 传值给 父组件，让父组件进行样式区分渲染</h1> <br />
+    <h3>数据在孩子那，但根据数据渲染的结构由父组件决定！！</h3> <br />
     <h3>父组件</h3>
     <div class="content">
       <Game>

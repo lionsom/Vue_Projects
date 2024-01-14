@@ -1,5 +1,7 @@
 <template>
   <div class="father">
+    <h1>祖 《-》 孙，越过中间人</h1>
+    <br />
     <h3>父组件</h3>
     <h4>银子：{{ money }}万元</h4>
     <h4>车子：一辆{{car.brand}}车，价值{{car.price}}万元</h4>

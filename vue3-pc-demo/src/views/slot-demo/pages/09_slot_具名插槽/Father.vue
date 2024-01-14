@@ -1,5 +1,7 @@
 <template>
   <div class="father">
+    <h1>v-slot只能写在组件和template上</h1> <br />
+    <h2>两种写法：v-slot:s1 和 #s1</h2> <br />
     <h3>父组件</h3>
     <div class="content">
       <Category>

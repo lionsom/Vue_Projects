@@ -1,5 +1,8 @@
 <template>
 	<div class="father">
+		<h1>$refs 父控制子组件的值</h1>
+		<h1>$parent 子控制父组件的值</h1>
+		<br />
 		<h3>父组件</h3>
 		<h4>房产：{{ house }}</h4>
 		<button @click="changeToy">修改Child1的玩具</button>
