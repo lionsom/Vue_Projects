@@ -23,6 +23,8 @@
 					<router-view></router-view>
 				</div>
 			</div>
+
+			<img src="@/assets/images/组件通信一览.png" alt="组件通信">
 		</div>
 	</div>
 </template>
