@@ -1,12 +1,16 @@
 <template>
 	<div class="child">
 		<h3>子组件</h3>
+		<h4>只接收了a = {{ a }}</h4>
 		<GrandChild v-bind="$attrs"/>
 	</div>
 </template>
 
 <script setup lang="ts" name="Child">
 	import GrandChild from './GrandChild.vue'
+
+	// 只接收一个a
+	defineProps(['a'])
 </script>
 
 <style scoped>

@@ -1,5 +1,6 @@
 <template>
   <div class="father">
+		<h1>爷爷 《-》 父亲 《-》 孙子 传值</h1>
     <h3>父组件</h3>
 		<h4>a：{{a}}</h4>
 		<h4>b：{{b}}</h4>
