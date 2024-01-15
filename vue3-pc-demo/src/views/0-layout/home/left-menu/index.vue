@@ -82,6 +82,12 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>Slot Demo</template>
     </el-menu-item>
 
+    <!-- 6 -->
+    <el-menu-item index="/vue3-api">
+      <el-icon><Box /></el-icon>
+      <template #title>Vue3 API</template>
+    </el-menu-item>
+    
     <!-- disabled -->
     <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>

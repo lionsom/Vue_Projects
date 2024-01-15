@@ -4,6 +4,7 @@ import RouterEchart from './router-echart.js'
 import RouterDemo from './router-demo.js'
 import RouterCommunication from './router-communication.js'
 import RouterSlot from './router-slot.js'
+import RouterAPI from './router-vue3-api.js'
 
 const allRouters = [
   // 重定向
@@ -49,6 +50,12 @@ const allRouters = [
         name: 'slot-demo',
         component: () => import('@/views/slot-demo/index.vue'),
         children: RouterSlot
+      },
+      {
+        path: 'vue3-api',
+        name: 'vue3-api',
+        component: () => import('@/views/other-vue3-api/index.vue'),
+        children: RouterAPI
       }
     ]
   },
