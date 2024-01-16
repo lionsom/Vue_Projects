@@ -1,6 +1,76 @@
 <template>
   <div class="app">
-    <Person2/>
+    <div class="content">
+      <router-link to="/001">
+        <el-button type="primary" plain>1.Vue2参考</el-button>
+      </router-link>
+      <router-link to="/002">
+        <el-button type="primary" plain>2.Vue3新写法</el-button>
+      </router-link>
+      <router-link to="/003">
+        <el-button type="primary" plain>3.Vue2 与 Vue3 对比</el-button>
+      </router-link>
+      <router-link to="/004">
+        <el-button type="primary" plain>4.</el-button>
+      </router-link>
+      <router-link to="/004">
+        <el-button type="primary" plain>5.</el-button>
+      </router-link>
+      <router-link to="/006">
+        <el-button type="primary" plain>6.</el-button>
+      </router-link>
+      <router-link to="/007">
+        <el-button type="primary" plain>7.</el-button>
+      </router-link>
+      <router-link to="/008">
+        <el-button type="primary" plain>8.</el-button>
+      </router-link>
+      <router-link to="/009">
+        <el-button type="primary" plain>9.</el-button>
+      </router-link>
+      <router-link to="/010">
+        <el-button type="primary" plain>10.</el-button>
+      </router-link>
+      <router-link to="/011">
+        <el-button type="primary" plain>11.</el-button>
+      </router-link>
+      <router-link to="/012">
+        <el-button type="primary" plain>12.</el-button>
+      </router-link>
+      <router-link to="/013">
+        <el-button type="primary" plain>13.</el-button>
+      </router-link>
+      <router-link to="/014">
+        <el-button type="primary" plain>14.</el-button>
+      </router-link>
+      <router-link to="/015">
+        <el-button type="primary" plain>15.</el-button>
+      </router-link>
+      <router-link to="/016">
+        <el-button type="primary" plain>16.</el-button>
+      </router-link>
+      <router-link to="/017">
+        <el-button type="primary" plain>17.</el-button>
+      </router-link>
+      <router-link to="/018">
+        <el-button type="primary" plain>18.</el-button>
+      </router-link>
+      <router-link to="/019">
+        <el-button type="primary" plain>19.</el-button>
+      </router-link>
+      <router-link to="/020">
+        <el-button type="primary" plain>20.</el-button>
+      </router-link>
+      <router-link to="/021">
+        <el-button type="primary" plain>21.</el-button>
+      </router-link>
+        
+    </div>
+
+    <!-- router-view -->
+    <RouterView />
+
+    <!-- <Person2/>
     <Person3/>
     <Person23/>
     <Person4/>
@@ -21,61 +91,38 @@
     <Person18/>
     <Person19/>
     <Person20/>
-    <Person21/>
+    <Person21/> -->
   </div>
 </template>
 
 <script lang="ts">
 
-import Person2 from './demos/01-vue2.vue'
-import Person3 from './demos/02-vue3.vue'
-import Person23 from './demos/03-2-vs-3.vue'
-import Person4 from './demos/04-setup-suger.vue'
-import Person444 from './demos/04-name.vue'
-import Person5 from './demos/05-ref-base.vue'
-import Person6 from './demos/06-ref-object.vue'
-import Person7 from './demos/07-reactive-object.vue'
-import Person8 from './demos/08-ref-vs-reactive.vue'
-import Person9 from './demos/09-toRefs-toRef.vue'
-import Person10 from './demos/10-computed.vue'
-import Person11 from './demos/11-watch-ref-base.vue'
-import Person12 from './demos/12-watch-ref-object.vue'
-import Person13 from './demos/13-watch-reactive-object.vue'
-import Person14 from './demos/14-watch-property.vue'
-import Person15 from './demos/15-watch-mix.vue'
-import Person16 from './demos/16-watchEffect.vue'
-import Person17 from './demos/17-ref-father.vue'
-import Person18 from './demos/18-typescript.vue'
-import Person19 from './demos/19-props-father.vue'
-import Person20 from './demos/20-lifecycle-father.vue'
-import Person21 from './demos/21-hooks.vue'
-
 export default {
   name: 'App',  //组件名
-  components: {
-    Person2, // 注册组件
-    Person3,
-    Person23,
-    Person4,
-    Person444,
-    Person5,
-    Person6,
-    Person7,
-    Person8,
-    Person9,
-    Person10,
-    Person11,
-    Person12,
-    Person13,
-    Person14,
-    Person15,
-    Person16,
-    Person17,
-    Person18,
-    Person19,
-    Person20,
-    Person21,
-  } 
+  // components: {
+  //   Person2, // 注册组件
+  //   Person3,
+  //   Person23,
+  //   Person4,
+  //   Person444,
+  //   Person5,
+  //   Person6,
+  //   Person7,
+  //   Person8,
+  //   Person9,
+  //   Person10,
+  //   Person11,
+  //   Person12,
+  //   Person13,
+  //   Person14,
+  //   Person15,
+  //   Person16,
+  //   Person17,
+  //   Person18,
+  //   Person19,
+  //   Person20,
+  //   Person21,
+  // } 
 }
 
 </script>
@@ -88,5 +135,10 @@ export default {
   box-shadow: 0 0 10px; 
   border-radius: 10px; 
   padding: 20px;
+
+  .el-button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
 }
 </style>

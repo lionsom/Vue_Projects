@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 各个子模块路由
+import RouterVue3Base from './router-vue3-base.js'
 import RouterEchart from './router-echart.js'
 import RouterDemo from './router-demo.js'
 import RouterCommunication from './router-communication.js'
@@ -20,7 +21,8 @@ const allRouters = [
       {
         path: 'vue3-demo',
         name: 'vue3-demo',
-        component: () => import('@/views/vue3-demo/index.vue')
+        component: () => import('@/views/vue3-demo/index.vue'),
+        children: RouterVue3Base
       },
       {
         path: 'echart-demo',
