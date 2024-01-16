@@ -3,7 +3,7 @@
     <div class="top">
       <ul>
         <li><router-link to="/api-shallowRef-shallowReactive">1.shallowRef-shallowReactive</router-link></li>
-        <li><router-link to="/api-readonly-shallowReadonly">1. 无插槽  </router-link></li>
+        <li><router-link to="/api-readonly-shallowReadonly">2.readonly-shallowReadonly  </router-link></li>
         <li></li>
         <li></li>
         <li></li>
