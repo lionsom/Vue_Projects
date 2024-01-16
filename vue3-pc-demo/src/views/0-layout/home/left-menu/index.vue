@@ -11,6 +11,7 @@ import {
   Menu as IconMenu,
   HomeFilled,
   Setting,
+  Message,
   Bicycle,
   Box,
 } from '@element-plus/icons-vue'
@@ -66,19 +67,19 @@ const handleClose = (key: string, keyPath: string[]) => {
 
     <!-- 3 -->
     <el-menu-item index="/pinia-demo">
-      <el-icon><Box /></el-icon>
+      <el-icon><Message /></el-icon>
       <template #title>Pinia Demo</template>
     </el-menu-item>
 
     <!-- 4 -->
     <el-menu-item index="/communication-demo">
-      <el-icon><Box /></el-icon>
+      <el-icon><Document /></el-icon>
       <template #title>组件通信Demo</template>
     </el-menu-item>
     
     <!-- 5 -->
     <el-menu-item index="/slot-demo">
-      <el-icon><Box /></el-icon>
+      <el-icon><Setting /></el-icon>
       <template #title>Slot Demo</template>
     </el-menu-item>
 
@@ -89,10 +90,10 @@ const handleClose = (key: string, keyPath: string[]) => {
     </el-menu-item>
     
     <!-- disabled -->
-    <el-menu-item index="4" disabled>
+    <!-- <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>
       <template #title>Navigator Four</template>
-    </el-menu-item>
+    </el-menu-item> -->
   </el-menu>
 
 </template>
