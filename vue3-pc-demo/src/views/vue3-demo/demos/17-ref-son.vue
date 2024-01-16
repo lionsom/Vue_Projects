@@ -15,7 +15,7 @@
   ref则不会，通过ref获取的dom元素，是当前组件内的唯一元素。
  -->
 <script lang="ts" setup name="Person">
-  import { ref, defineExpose } from 'vue'
+  import { ref } from 'vue'
 
   // 创建一个title2，用于存储ref标记的内容
   let title2 = ref()

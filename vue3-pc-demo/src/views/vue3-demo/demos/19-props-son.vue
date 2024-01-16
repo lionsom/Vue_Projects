@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 
-  import { defineProps, withDefaults } from 'vue';
+  import { withDefaults } from 'vue';
   import { type Persons } from './18-index'
 
   // 只接收list
