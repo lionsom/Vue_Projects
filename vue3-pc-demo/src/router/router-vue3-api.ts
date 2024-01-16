@@ -15,6 +15,14 @@ const routers = [
     path: '/api-customRef',
 		component: () => import('@/views/other-vue3-api/4-customRef/index.vue')
   },
+  {
+    path: '/api-Teleport',
+		component: () => import('@/views/other-vue3-api/5-Teleport/index.vue')
+  },
+  {
+    path: '/api-Suspense',
+		component: () => import('@/views/other-vue3-api/6-Suspense/index.vue')
+  },
 ];
 
 export default routers;
