@@ -4,13 +4,11 @@
     <h1>概念引导</h1>
     <h3>Vue2 写法复现</h3>
 
-    <!-- <highlightjs language="JavaScript" :autodetect="false" :code="code"></highlightjs> -->
+    <highlightjs language="JavaScript" :autodetect="false" :code="code"></highlightjs>
 
-    <!-- <div v-highlight><pre><code>{{ code }}</code></pre></div> -->
+    <div v-highlight><pre><code>{{ code }}</code></pre></div>
 
-    <!-- <pre v-highlight><code>{{ code }}</code></pre> -->
-
-    <pre><code>{{ code }}</code></pre>
+    <pre v-highlight><code>{{ code }}</code></pre>
 
   </div>
   <div v-highlight class="person2">
@@ -18,7 +16,7 @@
     <h2>年龄：{{ age }}</h2>
     <h2>电话：{{ tel }}</h2>
     <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年齡</button>
+    <button @click="changeAge">修改年齡</button> 
     <button @click="showTel">杏看联系方式</button>
   </div>
 </template>
