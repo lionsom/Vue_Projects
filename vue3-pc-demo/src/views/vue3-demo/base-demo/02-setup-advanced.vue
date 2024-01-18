@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const message = 'this is a message'
 const logMessage = () => {
   console.log(message)

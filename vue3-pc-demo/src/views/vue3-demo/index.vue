@@ -1,68 +1,68 @@
 <template>
   <div class="app">
     <div class="content">
-      <router-link to="/001">
+      <router-link to="/vue3-demo/001">
         <el-button type="primary" plain>1.Vue2参考</el-button>
       </router-link>
-      <router-link to="/002">
+      <router-link to="/vue3-demo/002">
         <el-button type="primary" plain>2.Vue3新写法</el-button>
       </router-link>
-      <router-link to="/003">
+      <router-link to="/vue3-demo/003">
         <el-button type="primary" plain>3.Vue2 与 Vue3 对比</el-button>
       </router-link>
-      <router-link to="/004">
-        <el-button type="primary" plain>4.</el-button>
+      <router-link to="/vue3-demo/004">
+        <el-button type="primary" plain>4.setup语法糖</el-button>
       </router-link>
-      <router-link to="/004">
-        <el-button type="primary" plain>5.</el-button>
+      <router-link to="/vue3-demo/004">
+        <el-button type="primary" plain>5.ref基本类型</el-button>
       </router-link>
-      <router-link to="/006">
-        <el-button type="primary" plain>6.</el-button>
+      <router-link to="/vue3-demo/006">
+        <el-button type="primary" plain>6.ref对象</el-button>
       </router-link>
-      <router-link to="/007">
-        <el-button type="primary" plain>7.</el-button>
+      <router-link to="/vue3-demo/007">
+        <el-button type="primary" plain>7.reactive对象</el-button>
       </router-link>
-      <router-link to="/008">
-        <el-button type="primary" plain>8.</el-button>
+      <router-link to="/vue3-demo/008">
+        <el-button type="primary" plain>8.ref vs reactive</el-button>
       </router-link>
-      <router-link to="/009">
-        <el-button type="primary" plain>9.</el-button>
+      <router-link to="/vue3-demo/009">
+        <el-button type="primary" plain>9.toRef & toRefs</el-button>
       </router-link>
-      <router-link to="/010">
-        <el-button type="primary" plain>10.</el-button>
+      <router-link to="/vue3-demo/010">
+        <el-button type="primary" plain>10.computed</el-button>
       </router-link>
-      <router-link to="/011">
-        <el-button type="primary" plain>11.</el-button>
+      <router-link to="/vue3-demo/011">
+        <el-button type="primary" plain>11.情况一：监视【ref】定义的【基础类型】数据</el-button>
       </router-link>
-      <router-link to="/012">
-        <el-button type="primary" plain>12.</el-button>
+      <router-link to="/vue3-demo/012">
+        <el-button type="primary" plain>12.情况二：监视【ref】定义的【对象类型】数据</el-button>
       </router-link>
-      <router-link to="/013">
-        <el-button type="primary" plain>13.</el-button>
+      <router-link to="/vue3-demo/013">
+        <el-button type="primary" plain>13.情况三：监视【reactive】定义的【对象类型】数据</el-button>
       </router-link>
-      <router-link to="/014">
-        <el-button type="primary" plain>14.</el-button>
+      <router-link to="/vue3-demo/014">
+        <el-button type="primary" plain>14.情况四：监视【ref】或【reactive】定义的【对象类型】数据中的【某个属性】</el-button>
       </router-link>
-      <router-link to="/015">
-        <el-button type="primary" plain>15.</el-button>
+      <router-link to="/vue3-demo/015">
+        <el-button type="primary" plain>15.情况五：监视上述的多个数据</el-button>
       </router-link>
-      <router-link to="/016">
-        <el-button type="primary" plain>16.</el-button>
+      <router-link to="/vue3-demo/016">
+        <el-button type="primary" plain>16.需求：当水温达到60度，或水位达到80cm时，给服务器发请求</el-button>
       </router-link>
-      <router-link to="/017">
-        <el-button type="primary" plain>17.</el-button>
+      <router-link to="/vue3-demo/017">
+        <el-button type="primary" plain>17.ref属性</el-button>
       </router-link>
-      <router-link to="/018">
-        <el-button type="primary" plain>18.</el-button>
+      <router-link to="/vue3-demo/018">
+        <el-button type="primary" plain>18.TypeScript</el-button>
       </router-link>
-      <router-link to="/019">
-        <el-button type="primary" plain>19.</el-button>
+      <router-link to="/vue3-demo/019">
+        <el-button type="primary" plain>19.传值 - props</el-button>
       </router-link>
-      <router-link to="/020">
-        <el-button type="primary" plain>20.</el-button>
+      <router-link to="/vue3-demo/020">
+        <el-button type="primary" plain>20.生命周期</el-button>
       </router-link>
-      <router-link to="/021">
-        <el-button type="primary" plain>21.</el-button>
+      <router-link to="/vue3-demo/021">
+        <el-button type="primary" plain>21.hooks实现Vue3组合式编码</el-button>
       </router-link>
         
     </div>

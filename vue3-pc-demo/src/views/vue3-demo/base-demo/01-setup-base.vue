@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // setup
 // 1. 执行时机，比beforeCreate还要早
 // 2. setup函数中，获取不到this (this是undefined)
