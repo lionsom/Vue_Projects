@@ -56,16 +56,22 @@ const allRouters = [
       {
         path: 'vue3-api',
         name: 'vue3-api',
-        component: () => import('@/views/other-vue3-api/index.vue'),
+        component: () => import('@/views/vue3-demo/other-vue3-api/index.vue'),
         children: RouterAPI
-      }
+      },
+      {
+        path: 'lodash-demo',
+        name: 'lodash-demo',
+        component: () => import('@/views/lodash-demo/index.vue'),
+        children: RouterAPI
+      },
     ]
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('@/views/0-layout/login/index.vue')
-  }  
+  }
   // 404
   // { 
   //   path: '*', 
@@ -79,7 +85,7 @@ const allRouters = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    ...allRouters  
+    ...allRouters
   ]
 })
 

@@ -1,7 +1,7 @@
 <script lang='ts'>
-  export default {
-    name: "left-content-menu"
-  }
+export default {
+  name: "left-content-menu"
+}
 </script>
 
 <script lang="ts" setup>
@@ -29,21 +29,14 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 
 <template>
-  <el-menu
-    default-active="$route.path"
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-    background-color="#4680ff"
-    text-color="#fff"
-    active-text-color="#ebe234"
-    router
-  >
+  <el-menu default-active="$route.path" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
+    @close="handleClose" background-color="#4680ff" text-color="#fff" active-text-color="#ebe234" router>
     <!-- 首页 -->
     <el-menu-item index="/">
       <i class="el-icon-s-home"></i>
-        <el-icon><HomeFilled /></el-icon>
+      <el-icon>
+        <HomeFilled />
+      </el-icon>
       <span slot="title">首 页</span>
     </el-menu-item>
 
@@ -55,10 +48,12 @@ const handleClose = (key: string, keyPath: string[]) => {
 
     <!-- 2 -->
     <el-menu-item index="/echart-demo">
-        <el-icon><Bicycle /></el-icon>
-        <template #title>Echart 样例</template>
+      <el-icon>
+        <Bicycle />
+      </el-icon>
+      <template #title>Echart 样例</template>
     </el-menu-item>
-    
+
     <!-- 2 -->
     <el-menu-item index="/router-demo">
       <el-icon><icon-menu /></el-icon>
@@ -67,40 +62,54 @@ const handleClose = (key: string, keyPath: string[]) => {
 
     <!-- 3 -->
     <el-menu-item index="/pinia-demo">
-      <el-icon><Message /></el-icon>
+      <el-icon>
+        <Message />
+      </el-icon>
       <template #title>Pinia Demo</template>
     </el-menu-item>
 
     <!-- 4 -->
     <el-menu-item index="/communication-demo">
-      <el-icon><Document /></el-icon>
+      <el-icon>
+        <Document />
+      </el-icon>
       <template #title>组件通信Demo</template>
     </el-menu-item>
-    
+
     <!-- 5 -->
     <el-menu-item index="/slot-demo">
-      <el-icon><Setting /></el-icon>
+      <el-icon>
+        <Setting />
+      </el-icon>
       <template #title>Slot Demo</template>
     </el-menu-item>
 
     <!-- 6 -->
     <el-menu-item index="/vue3-api">
-      <el-icon><Box /></el-icon>
+      <el-icon>
+        <Box />
+      </el-icon>
       <template #title>Vue3 API</template>
     </el-menu-item>
-    
+
+    <!-- 6 -->
+    <el-menu-item index="/lodash-demo">
+      <el-icon>
+        <Box />
+      </el-icon>
+      <template #title>Lodash Demo</template>
+    </el-menu-item>
+
     <!-- disabled -->
     <!-- <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>
       <template #title>Navigator Four</template>
     </el-menu-item> -->
   </el-menu>
-
 </template>
 
 
 <style scoped lang="scss">
-
 .menu-list {
   overflow: hidden;
 }
@@ -119,5 +128,4 @@ const handleClose = (key: string, keyPath: string[]) => {
   width: 200px;
   min-height: 400px;
 }
-
 </style>
