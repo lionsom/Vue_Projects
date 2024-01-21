@@ -1,8 +1,8 @@
 
 <script setup lang="ts">
 
-import AA from './array/lodash-array'
-import BB from './number/lodash-number'
+import AA from './demos/lodash-array'
+import BB from './demos/lodash-number'
 
 const { lodashChunk, lodashCompact } = AA()
 const { lodashClamp, lodashInRange, lodashRandom } = BB()
@@ -40,4 +40,4 @@ button {
   margin: 10px;
 }
 
-</style>
+</style>./demos/lodash-number
