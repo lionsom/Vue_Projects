@@ -1,5 +1,5 @@
 # 简介
-> JS ESM模块化方案。
+> JS CJS模块化方案。
 
 # cjs设置
 在 `package.json` 中添加 `type: "commonjs"`，就可以不用写 `.cjs` 后缀了。
