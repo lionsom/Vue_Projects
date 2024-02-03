@@ -5,6 +5,7 @@
     <div class="test-content">
       <lx-success-button class="success-button">成功</lx-success-button>
       <lx-warning-button>警告</lx-warning-button>
+      <br />
       <lx-fail-button-ui>失败</lx-fail-button-ui>
     </div>
   </div>
@@ -33,7 +34,7 @@ export default {
 
     .success-button {
       margin: 10px auto;
-      background-color: darkblue;
+      background-color: yellowgreen;
 
       width: 100px;
       height: 80px;

@@ -1,3 +1,4 @@
 .DS_Store
 
+04-my-npm/*/node_modules
 06-Webpack/mydemo/*/node_modules
