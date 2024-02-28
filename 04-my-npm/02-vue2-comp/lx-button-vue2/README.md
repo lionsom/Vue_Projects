@@ -1,4 +1,4 @@
-# test-01
+# lx-button-vue2
 
 ## Project setup
 ```
@@ -13,6 +13,11 @@ pnpm run serve
 ### Compiles and minifies for production
 ```
 pnpm run build
+```
+
+### Run your unit tests
+```
+pnpm run test:unit
 ```
 
 ### Lints and fixes files
