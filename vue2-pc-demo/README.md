@@ -29,7 +29,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # 学习视频
 
-[BiliBili  -  Vue2-第二版-后台管理系统项目实战/vue+element-ui/vue经典全套系统案例讲解]()
+[BiliBili  -  Vue2-第二版-后台管理系统项目实战/vue+element-ui/vue经典全套系统案例讲解](https://www.bilibili.com/video/BV1j5411o7xH/?spm_id_from=333.337.search-card.all.click&vd_source=dc55c355e9f5b6174832aacfb5d8b6aa)
 
 [墨刀UI](https://modao.cc/app/nNLKV9otrlszqxCFL6pGT#screen=slatpczos4pipxz)
 
@@ -129,16 +129,26 @@ $ pnpm add echarts -S
 ```
 
 
+# 三、模拟服务端
 
+## 1. 模拟本地服务器 - express
+```
+  "server-express": "npx nodemon ./server/index.js",
+```
+Express是一个流行的Node.js Web应用程序框架，用于构建Web应用程序和API。它提供了一组强大的功能和工具，使得在Node.js环境中构建Web应用程序变得更加简单和高效。
 
+Nodemon是一个Node.js应用程序的热重载工具，它监视文件系统中的文件更改，并自动重启Node应用程序。
 
+## 2. 模拟本地服务器 - http-server
 
+```
+  "server-http-server": "npx http-server ./server/database",
+```
 
-
-
-
-
-
+## 3. 模拟本地服务器 - json-server
+```
+  "server-json-server": "json-server --watch ./server/database/db.json"
+```
 
 
 
