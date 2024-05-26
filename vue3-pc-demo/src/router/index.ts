@@ -65,6 +65,12 @@ const allRouters = [
         component: () => import('@/views/lodash-demo/index.vue'),
         children: RouterAPI
       },
+      {
+        path: 'request-demo',
+        name: 'request-demo',
+        component: () => import('@/views/request-demo/index.vue'),
+        children: []
+      },
     ]
   },
   {

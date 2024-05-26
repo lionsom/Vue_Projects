@@ -100,6 +100,14 @@ const handleClose = (key: string, keyPath: string[]) => {
       <template #title>Lodash Demo</template>
     </el-menu-item>
 
+    <!-- 7 -->
+    <el-menu-item index="/request-demo">
+      <el-icon>
+        <Box />
+      </el-icon>
+      <template #title>Request Demo</template>
+    </el-menu-item>
+
     <!-- disabled -->
     <!-- <el-menu-item index="4" disabled>
       <el-icon><setting /></el-icon>
