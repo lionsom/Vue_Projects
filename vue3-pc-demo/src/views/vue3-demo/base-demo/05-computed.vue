@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // 导入
 import { ref, computed } from 'vue';
 // 数组
@@ -16,7 +16,7 @@ const addFun = (val) => {
 // 计算属性：Set Get
 const filterList22 = computed({
     set: (val) => {
-        listref.value.push(val)
+        listref.value.push(...val)
     },
     get: () => {
         return listref.value.filter(item => item > 3)

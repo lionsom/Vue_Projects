@@ -1,5 +1,4 @@
-
-<script setup>
+<script setup lang="ts">
   // 1. reactive: 接收一个对象类型的数据，返回一个响应式的对象
   import { reactive } from 'vue';
   // 执行函数 传入参数 变量接收

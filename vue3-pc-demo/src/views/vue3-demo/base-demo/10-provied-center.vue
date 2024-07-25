@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import bottomCom from '@/demo-views/10-provied-bottom.vue'
 

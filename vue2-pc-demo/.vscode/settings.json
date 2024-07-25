@@ -17,5 +17,6 @@
   // 允许prettier
   "prettier.enable": true,
   // 是否打开prettier调试日志
-  "prettier.enableDebugLogs": false
+  "prettier.enableDebugLogs": false,
+  "liveServer.settings.port": 5501
 }

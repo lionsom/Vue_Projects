@@ -30,11 +30,11 @@
 		sum1.value += 1
 	}
 	function changeSum2(){
-		sum2.value += 1 //sum2是不能修改的
+		// sum2.value += 1 //sum2是不能修改的
 	}
 
 	function changeBrand2(){
-		car2.brand = '宝马'
+		// car2.brand = '宝马'
 	}
 	function changeColor2(){
 		car2.options.color = '绿色'

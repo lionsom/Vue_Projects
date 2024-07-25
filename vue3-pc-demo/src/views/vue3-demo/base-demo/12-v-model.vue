@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import myInput from '@/12-my-input.vue'
 import { ref } from 'vue'

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // 父传子
 // 1. 给子组件，添加属性的方式传值
 // 2. 在子组件，通过props接收

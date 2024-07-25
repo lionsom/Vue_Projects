@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import { ref, onMounted } from 'vue';
 import SonCom from '@/demo-views/09-refs-son.vue'

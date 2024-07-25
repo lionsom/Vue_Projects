@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const count = 999
 const sayHi = () => {
   console.log('打招呼')

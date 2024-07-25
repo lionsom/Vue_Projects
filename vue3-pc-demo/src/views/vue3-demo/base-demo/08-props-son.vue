@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // 注意：由于写了 setup，所以无法直接配置 props 选项
 // 所以：此处需要借助于 “编译器宏” 函数接收子组件传递的数据
 

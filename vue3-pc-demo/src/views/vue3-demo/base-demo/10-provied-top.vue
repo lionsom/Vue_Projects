@@ -1,5 +1,5 @@
 
-<script setup>
+<script setup lang="ts">
 
 import { provide, ref } from 'vue'
 import centerCom from '@/demo-views/10-provied-center.vue';
