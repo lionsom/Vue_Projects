@@ -10,14 +10,14 @@ import '@/utils/vant-ui'
 // i18n
 import myI18n from '@/utils/i18n-usage'
 // 通用样式
-import '@/styles/common.scss'
+import '@/assets/css/common.scss'
 import '@/assets/iconfont/iconfont.css'
 // 自制的npm包
 import lxUI from 'lx-ui-vue2'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
 // 自定义插件
-import MyPlugin01 from './my-plugins/js-plugins-usage'
+import MyPlugin01 from './plugins/js-plugins-usage'
 
 // 提示：当前处于什么环境 (生产环境 / 开发环境)
 Vue.config.productionTip = false

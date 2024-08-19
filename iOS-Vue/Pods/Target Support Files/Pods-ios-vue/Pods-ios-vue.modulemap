@@ -1,0 +1,6 @@
+framework module Pods_ios_vue {
+  umbrella header "Pods-ios-vue-umbrella.h"
+
+  export *
+  module * { export * }
+}

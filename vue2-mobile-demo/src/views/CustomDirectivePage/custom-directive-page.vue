@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'custom-directive-page',
-  data () {
+  data() {
     return {
       desc: '注册指令时不用加v-前缀，但使用时一定要加v-前缀',
       color1: 'red',
@@ -25,25 +25,25 @@ export default {
   directives: {
     // 自动聚焦指令
     lxfocus: {
-      inserted (el) {
+      inserted(el) {
         el.focus()
       }
     },
     // 颜色指令 - 有参数
     lxcolor: {
-      inserted (el, binding) {
+      inserted(el, binding) {
         el.style.color = binding.value
       },
-      update (el, binding) {
+      update(el, binding) {
         el.style.color = binding.value
       }
     },
     // loading指令
     loading: {
-      inserted (el, binding) {
+      inserted(el, binding) {
         binding.value ? el.classList.add('loading') : el.classList.remove('loading')
       },
-      update (el, binding) {
+      update(el, binding) {
         binding.value ? el.classList.add('loading') : el.classList.remove('loading')
       }
     }
@@ -52,7 +52,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .main-page {
   margin: 100px auto;
 
@@ -78,8 +77,7 @@ export default {
   top: 0;
   width: 100px;
   height: 100px;
-  background: #dfeb92 url('@/assets/loading.gif') no-repeat center;
+  background: #dfeb92 url('@/assets/img/shopping/loading.gif') no-repeat center;
   background-size: cover;
 }
-
 </style>

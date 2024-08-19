@@ -1,65 +1,60 @@
 <template>
-    <div>
+  <div>
 
-      <!-- 导航啦 -->
-      <van-nav-bar
-        safe-area-inset-top
-        title="会员登录"
-        left-text="返回"
-        left-arrow
-        @click-left="onClickLeft"
-        @click-right="onClickRight">
-        <!-- 插槽，自定义右侧按钮 -->
-        <template #right>
-          <van-icon name="search" size="18" />
-        </template>
-      </van-nav-bar>
+    <!-- 导航啦 -->
+    <van-nav-bar safe-area-inset-top title="会员登录" left-text="返回" left-arrow @click-left="onClickLeft"
+      @click-right="onClickRight">
+      <!-- 插槽，自定义右侧按钮 -->
+      <template #right>
+        <van-icon name="search" size="18" />
+      </template>
+    </van-nav-bar>
 
-      <!-- 主页内容 -->
-      <div class="content">
-        <!-- title -->
-        <div class="title">
-          <h2>手机号登录</h2>
-          <p>未注册的手机号登录后将自动注册</p>
-        </div>
-
-        <!-- form -->
-        <div class="form">
-
-          <div class="form-item1">
-            <input v-model="mobile" type="text" maxlength="11" placeholder="请输入手机号码">
-          </div>
-
-          <div class="form-item2">
-            <input v-model="picCode" type="text" maxlength="4" placeholder="请输入图形验证码">
-            <img :src="picUrl" alt="" @click="getCapthcaImage">
-          </div>
-
-          <div class="form-item3">
-            <input v-model="msgCode" type="text" placeholder="请输入短信">
-            <button class="get-code-button" @click.prevent="getMsgCode">
-              {{ second === totalSecond ? getCodeMsg : second + '秒后重新发送' }}
-            </button>
-          </div>
-
-        </div>
-
-        <!-- 登录按钮 -->
-        <button class="loginBtn" @click.stop="loginClick">登 录</button>
+    <!-- 主页内容 -->
+    <div class="content">
+      <!-- title -->
+      <div class="title">
+        <h2>手机号登录</h2>
+        <p>未注册的手机号登录后将自动注册</p>
       </div>
 
+      <!-- form -->
+      <div class="form">
+
+        <div class="form-item1">
+          <input v-model="mobile" type="text" maxlength="11" placeholder="请输入手机号码">
+        </div>
+
+        <div class="form-item2">
+          <input v-model="picCode" type="text" maxlength="4" placeholder="请输入图形验证码">
+          <img :src="picUrl" alt="" @click="getCapthcaImage">
+        </div>
+
+        <div class="form-item3">
+          <input v-model="msgCode" type="text" placeholder="请输入短信">
+          <button class="get-code-button" @click.prevent="getMsgCode">
+            {{ second === totalSecond ? getCodeMsg : second + '秒后重新发送' }}
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 登录按钮 -->
+      <button class="loginBtn" @click.stop="loginClick">登 录</button>
     </div>
+
+  </div>
 
 </template>
 
 <script>
 // import request from '@/utils/request'
-import { getPicCode, getMsgCode, codeLogin } from '@/api/shopping/login'
+import { getPicCode, getMsgCode, codeLogin } from '@/server/shopping/login'
 import { Toast } from 'vant'
 
 export default {
   name: 'LoginIndex',
-  data () {
+  data() {
     return {
       picKey: '', // 将来请求传递的图形验证码唯一标识
       picUrl: '', // 存储请求渲染的图片地址
@@ -73,23 +68,23 @@ export default {
     }
   },
   // 进入页面
-  created () {
+  created() {
     this.getCapthcaImage()
   },
   // 离开页面清除定时器
-  destroyed () {
+  destroyed() {
     clearInterval(this.timer)
   },
   // 方法
   methods: {
-    onClickLeft () {
+    onClickLeft() {
       this.$router.go(-1)
     },
-    onClickRight () {
+    onClickRight() {
       Toast('提示')
     },
     // 获取图片
-    async getCapthcaImage () {
+    async getCapthcaImage() {
       // Before
       // const res = await request.get('/captcha/image')
       // After
@@ -102,7 +97,7 @@ export default {
     // 校验 手机号 和 图形验证码 是否合法
     // 通过校验，返回true
     // 不通过校验，返回false
-    validFn () {
+    validFn() {
       if (!/^1[3-9]\d{9}$/.test(this.mobile)) {
         this.$toast('请输入正确的手机号')
         return false
@@ -114,7 +109,7 @@ export default {
       return true
     },
     // 获取短信
-    async getMsgCode () {
+    async getMsgCode() {
       // 格式校验
       if (!this.validFn()) {
         this.$toast('短信或验证码格式不正确')
@@ -142,7 +137,7 @@ export default {
       }
     },
     // 登录点击
-    async loginClick () {
+    async loginClick() {
       // 登录校验
       if (this.msgCode.length === 0) {
         this.$toast('请输入验证码')
@@ -165,7 +160,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .title {
   margin-top: 20px;
   margin-left: 30px;
@@ -174,6 +168,7 @@ export default {
   h2 {
     font-size: 25px;
   }
+
   p {
     margin-top: 10px;
     font-size: 10px;
@@ -268,12 +263,11 @@ export default {
   border-radius: 25px;
   border-width: 0px;
 
-  color: green;  // 字体颜色
+  color: green; // 字体颜色
   font-size: 25px;
   font-family: Georgia, serif;
 
   background-color: orange;
   background: linear-gradient(to bottom right, rgb(245, 230, 201), orange);
 }
-
 </style>

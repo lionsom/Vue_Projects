@@ -15,7 +15,7 @@ p.two::before {
   font-size: 16px;
 }
 p.three::before {
-  content: url('@/assets/code.png');
+  content: url('@/assets/img/shopping/code.png');
   width: 30px;
   height: 30px;
   position: relative;
@@ -24,7 +24,7 @@ p.three::before {
 
 p.three::after {
   content: '';
-  background: url('@/assets/code.png') no-repeat bottom right / 32px 16px; /*兼容没测*/
+  background: url('@/assets/img/shopping/code.png') no-repeat bottom right / 32px 16px; /*兼容没测*/
   position: absolute;
   bottom: -15px;
   z-index: 2;

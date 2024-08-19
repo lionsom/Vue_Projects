@@ -11,8 +11,11 @@ import RouterVant from './router-vant'
 import RouterShopping from './router-shopping'
 import RouterSomeDemo from './router-some-demo'
 
+// 主页面
+import MainView from '@/views/tabbar-views/MainView'
+
 // 路由主页
-import RouterView from '@/views/RouterView/RouterView'
+import RouterView from '@/views/tabbar-views/RouterView/RouterView'
 // 404
 import NotFound from '@/views/404/NotFound'
 // Store
@@ -25,6 +28,11 @@ const routes = [
   {
     path: '/',
     redirect: '/routerview'
+  },
+  {
+    path: '/home',
+    name: MainView,
+    component: MainView
   },
   // 路由主页
   {

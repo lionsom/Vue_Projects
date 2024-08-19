@@ -1,13 +1,8 @@
 <template>
   <div class="constant-main">
     <!-- 导航啦 -->
-    <van-nav-bar
-      safe-area-inset-top
-      title="iconfont的使用"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    ></van-nav-bar>
+    <van-nav-bar safe-area-inset-top title="iconfont的使用" left-text="返回" left-arrow
+      @click-left="onClickLeft"></van-nav-bar>
 
     <div class="constant">
       <h3>常量的使用：</h3>
@@ -24,7 +19,7 @@
 </template>
 
 <script>
-import { Partten } from '@/constant/index'
+import { Partten } from '@/utils/constant/index'
 
 export default {
   data() {

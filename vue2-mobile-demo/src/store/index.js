@@ -29,41 +29,41 @@ const store = new Vuex.Store({
   getters: {
     // getters函数的第一个参数是 state
     // 必须要有返回值
-    filterLList (state) {
+    filterLList(state) {
       return state.list.filter(item => item > 5)
     }
   },
   // 方法，mutations必须是同步的
   mutations: {
-    addCount (state) {
+    addCount(state) {
       state.count++
     },
-    addNum (state, n) {
+    addNum(state, n) {
       state.count = state.count + n
     },
-    addMany (state, obj) {
+    addMany(state, obj) {
       console.log(obj)
       console.log(obj.count)
       console.log(obj.msg)
       console.log(obj.arr)
       state.count += obj.count
     },
-    subMany (state, obj) {
+    subMany(state, obj) {
       console.log(obj)
       console.log(obj.numbber)
       state.count -= obj.numbber
     },
-    changeCount (state, newCount) {
+    changeCount(state, newCount) {
       state.count = newCount
     },
-    changeCount11 (state, newCount) {
+    changeCount11(state, newCount) {
       state.count = newCount
     }
   },
   // 处理异步操作
   // 注意：不能直接操作state，还是需要commit mutation操作state
   actions: {
-    setAsyncCount (context, num) {
+    setAsyncCount(context, num) {
       setTimeout(() => {
         // 错误示范，不能直接操作state
         // this.state.count = num
