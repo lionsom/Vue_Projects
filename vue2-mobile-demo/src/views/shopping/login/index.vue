@@ -49,7 +49,7 @@
 
 <script>
 // import request from '@/utils/request'
-import { getPicCode, getMsgCode, codeLogin } from '@/server/shopping/login'
+import { getPicCode, getMsgCode, codeLogin } from '@/server/shopping/loginApi'
 import { Toast } from 'vant'
 
 export default {

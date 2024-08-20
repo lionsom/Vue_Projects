@@ -1,5 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// 主页面
+import HomeView from '@/views/tabbar-views/HomeView'
+import FirstView from '@/views/tabbar-views/FirstView'
+import SecondView from '@/views/tabbar-views/SecondView'
+import ThirdView from '@/views/tabbar-views/ThirdView'
+import FourthView from '@/views/tabbar-views/FourthView'
 // 各个路由模块
 import RouterTest from './router-test'
 import RouterMianJing from './router-mianjing'
@@ -11,13 +17,10 @@ import RouterVant from './router-vant'
 import RouterShopping from './router-shopping'
 import RouterSomeDemo from './router-some-demo'
 
-// 主页面
-import MainView from '@/views/tabbar-views/MainView'
-
-// 路由主页
+// 路由主页 - old
 import RouterView from '@/views/tabbar-views/RouterView/RouterView'
 // 404
-import NotFound from '@/views/404/NotFound'
+import NotFound from '@/views/404'
 // Store
 import store from '@/store'
 
@@ -27,12 +30,19 @@ const routes = [
   // 重定向
   {
     path: '/',
-    redirect: '/routerview'
+    redirect: '/home/first-view'
   },
+  // 主页面
   {
     path: '/home',
-    name: MainView,
-    component: MainView
+    name: HomeView,
+    component: HomeView,
+    children: [
+      { path: 'first-view', component: FirstView },
+      { path: 'second-view', component: SecondView },
+      { path: 'third-view', component: ThirdView },
+      { path: 'fourth-view', component: FourthView }
+    ]
   },
   // 路由主页
   {

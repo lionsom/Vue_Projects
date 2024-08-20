@@ -4,9 +4,9 @@
     <h1>根组件 - Vuex仓库数据 - {{ $store.state.title }}</h1>
     <h1>根组件 - Vuex仓库数据 - {{ count }}</h1>
     <input :value="count" @input="handleInput" type="text">
-    <br/>
+    <br />
     <input :value="count" @input="handleInput11" type="text">
-    <br/>
+    <br />
 
     <button @click="changeCount11(11)">= 11</button>
 
@@ -20,30 +20,30 @@
     <hr>
     <Son2 id="id_son2">></Son2>
 
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
 
     <!-- 子模块 -->
     <div class="module">
       <div>
-        方式一：直接访问子模块state = {{ $store.state.user.UserInfo.name }} <br/>
+        方式一：直接访问子模块state = {{ $store.state.user.UserInfo.name }} <br />
 
-         <!-- 映射后 -->
-        方式二：{{ UserInfo.name }} <br/>
+        <!-- 映射后 -->
+        方式二：{{ UserInfo.name }} <br />
 
-        方式三：{{ user_state_info.name }} <br/>
+        方式三：{{ user_state_info.name }} <br />
       </div>
 
       <div>
         <!-- 测试访问模块中的getters - 原生 -->
-        方式一：直接访问子模块getters = {{ $store.getters['user/UpperCaseName'] }} <br/>
+        方式一：直接访问子模块getters = {{ $store.getters['user/UpperCaseName'] }} <br />
 
         <!-- 映射后 -->
 
-        方式二： {{ UpperCaseName }} <br/>
+        方式二： {{ UpperCaseName }} <br />
 
-        方式三： {{ user_func_upper }} <br/>
+        方式三： {{ user_func_upper }} <br />
       </div>
 
       <button @click="updateUser111">更新个人信息</button>
@@ -76,8 +76,8 @@
   2.组件中直接使用 属性 `{{ age }}` 或 方法 `@click="updateAge(2)"`
  */
 
-import Son1 from '@/components/Vuex_Demo/Vuex_Son1.vue'
-import Son2 from '@/components/Vuex_Demo/Vuex_Son2.vue'
+import Son1 from './components/VuexSon1.vue'
+import Son2 from './components/VuexSon2.vue'
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -98,7 +98,7 @@ export default {
     ...mapGetters('user', ['UpperCaseName']), // 方法一
     ...mapGetters('user', { user_func_upper: 'UpperCaseName' }) // 方法二
   },
-  created () {
+  created() {
     console.log(this.$store)
     console.log(this.$store.state.count)
   },
@@ -107,25 +107,25 @@ export default {
     ...mapMutations(['changeCount11']),
     ...mapActions(['setAsyncCount']),
     // 输入框事件，形参e
-    handleInput (e) {
+    handleInput(e) {
       console.log(e)
       console.log(e.target)
       console.log(+e.target.value)
       const cc = +e.target.value
       this.$store.commit('changeCount', cc)
     },
-    handleInput11 (e) {
+    handleInput11(e) {
       this.changeCount11(+e.target.value)
     },
     // 子模块方法
-    updateUser111 () {
+    updateUser111() {
       // $store.commit('模块名/mutation名', 额外传参)
       this.$store.commit('user/setUser', {
         name: 'xiaowang222',
         age: 25
       })
     },
-    updateTheme111 () {
+    updateTheme111() {
       this.$store.commit('setting/setTheme', 'pink')
     }
   }
@@ -133,7 +133,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .main-page {
   width: 90%;
   margin: 20px auto;
@@ -161,5 +160,4 @@ export default {
 .module {
   background: lightcoral;
 }
-
 </style>

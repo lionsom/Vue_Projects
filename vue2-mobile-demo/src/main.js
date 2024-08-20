@@ -16,6 +16,7 @@ import '@/assets/iconfont/iconfont.css'
 import lxUI from 'lx-ui-vue2'
 // 全局组件
 import GlobalButton from '@/components/Global_Part_Comp/Global_Button'
+import BaseNavBar from '@/components/BaseNavbar'
 // 自定义插件
 import MyPlugin01 from './plugins/js-plugins-usage'
 
@@ -24,7 +25,8 @@ Vue.config.productionTip = false
 
 // 进行全局注册 → 在所有的组件范围内都能直接使用
 // Vue.component(组件名，组件对象)
-Vue.component('MyGlobalButton', GlobalButton)
+Vue.component('MyGlobalButton', GlobalButton);
+Vue.component('MyBaseNavBar', BaseNavBar);
 
 // 注册自定义插件
 Vue.use(lxUI)

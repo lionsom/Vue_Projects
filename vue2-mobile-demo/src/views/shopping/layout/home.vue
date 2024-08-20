@@ -54,9 +54,9 @@
 
 <script>
 // 请求
-import { getHomeData } from '@/server/shopping/home'
+import { getHomeData } from '@/server/shopping/homeApi'
 // 导入组件
-import GoodsItem from '@/components/Shopping/shopping-goods-item'
+import GoodsItem from '../components/ShoppingGoodsItem.vue'
 
 export default {
   name: 'LayoutHomePage',

@@ -13,17 +13,3 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
-
-// 添加导航的通用样式，全局统一
-.van-nav-bar {
-    .van-nav-bar__arrow {
-        color: red;
-    }
-    .van-nav-bar__text {
-        color: green;
-        font-size: large;
-    }
-    .van-nav-bar__content {
-        background-color: aquamarine;
-    }
-}

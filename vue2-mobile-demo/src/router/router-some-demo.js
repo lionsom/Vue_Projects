@@ -1,5 +1,5 @@
 // 自定义指令
-import CustomDirective from '@/views/CustomDirectivePage/custom-directive-page'
+import CustomDirective from '@/views/custom-directive-page'
 // 插槽
 import SlotDemo from '@/views/slot-demo'
 // v-model原理
@@ -7,13 +7,13 @@ import VModelDemo from '@/views/v-model-theory/v-model-demo'
 // mixin
 import MixinDemo from '@/views/mixin-demo'
 // i18n
-import I18nDemo from '@/views/i18n-view'
+import I18nDemo from '@/views/i18n-page'
 // iconfont
 import IconfontUsage from '@/views/iconfont-usage/iconfont-usage'
 // 常量
 import ConstantUsage from '@/views/constant-uasge/index'
 // CSS伪元素
-import CSSBeforeAfter from '@/views/css-before-after'
+import CSSBeforeAfter from '@/views/css-before-after-usage-page'
 // 本地缓存
 import LocalStorageDemo from '@/views/local-storage-demo'
 // 过滤器 filters

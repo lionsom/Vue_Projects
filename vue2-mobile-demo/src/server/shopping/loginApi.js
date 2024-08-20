@@ -1,5 +1,5 @@
 // 此处存放 登录 相关接口
-import request from '@/utils/shopping-request'
+import request from '@/server/shopping-http'
 
 // 1. 获取图形验证码
 export const getPicCode = () => {

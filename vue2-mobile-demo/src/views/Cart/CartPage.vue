@@ -17,9 +17,9 @@
 
 <script>
 
-import CartHeader from '@/components/Cart/cart-header.vue'
-import CartFooter from '@/components/Cart/cart-footer.vue'
-import CartItem from '@/components/Cart/cart-item.vue'
+import CartHeader from './components/cart-header.vue'
+import CartFooter from './components/cart-footer.vue'
+import CartItem from './components/cart-item.vue'
 
 import { mapState, mapActions } from 'vuex'
 
@@ -30,12 +30,12 @@ export default {
     CartItem
   },
   name: 'cart-main-page',
-  data () {
+  data() {
     return {
 
     }
   },
-  created () {
+  created() {
     console.log('onCreate')
     this.$store.dispatch('cart/getList')
   },
@@ -51,10 +51,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .content {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
 </style>

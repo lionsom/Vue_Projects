@@ -21,7 +21,7 @@ SPRequest.interceptors.request.use(function (config) {
   Toast.loading({
     message: '正在请求...',
     forbidClick: true, // 禁止背景点击
-    duration: 0, // 时长
+    duration: 10, // 时长
     loadingType: 'spinner' // 菊花
   })
 

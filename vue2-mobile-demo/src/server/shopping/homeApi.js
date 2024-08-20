@@ -1,4 +1,4 @@
-import request from '@/utils/shopping-request'
+import request from '@/server/shopping-http'
 
 export const getHomeData = () => {
   return request.get('/page/detail', {
