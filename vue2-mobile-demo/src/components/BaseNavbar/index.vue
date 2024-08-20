@@ -26,6 +26,11 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      isBack: true,
+    }
+  },
   methods: {
     onClickLeft() {
       console.log('点击了');
