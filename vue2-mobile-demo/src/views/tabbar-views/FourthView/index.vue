@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { ImagePreview } from 'vant';
+import { ImagePreview } from 'vant'
 
 export default {
   name: 'FourthView',
@@ -30,18 +30,24 @@ export default {
   },
   data() {
     return {
-      headerImg: 'https://img01.yzcdn.cn/vant/cat.jpeg',  // 在线头像
+      headerImg: 'https://img01.yzcdn.cn/vant/cat.jpeg' // 在线头像
     }
   },
   methods: {
     onHeadImgClick() {
       ImagePreview([
         this.headerImg
-      ]);
+      ])
     },
     onHeadImgError() {
       this.headerImg = require('@/assets/img/common/logo.png') // 本地默认头像
     }
+  },
+  activated() {
+    console.log('444 activated')
+  },
+  deactivated() {
+    console.log('444 deactivated')
   }
 }
 </script>

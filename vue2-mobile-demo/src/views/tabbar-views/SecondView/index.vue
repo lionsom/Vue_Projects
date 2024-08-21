@@ -15,6 +15,12 @@ export default {
   },
   methods: {
 
+  },
+  activated() {
+    console.log('222 activated')
+  },
+  deactivated() {
+    console.log('222 deactivated')
   }
 }
 </script>

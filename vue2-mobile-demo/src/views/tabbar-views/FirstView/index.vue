@@ -35,26 +35,26 @@
 export default {
   name: 'FirstView',
   created() {
-
+    console.log('111 created')
   },
   data() {
     return {
       mytitle: '首页',
       images: [
         'https://img01.yzcdn.cn/vant/apple-1.jpg',
-        'https://img01.yzcdn.cn/vant/apple-2.jpg',
-      ],
+        'https://img01.yzcdn.cn/vant/apple-2.jpg'
+      ]
     }
   },
   methods: {
     customLeftClick() {
-      console.log('点击搜索');
+      console.log('点击搜索')
     },
     onClickRight(param) {
-      console.log('点击了扫一扫', param);
+      console.log('点击了扫一扫', param)
     },
     onSwipeItemClick(index) {
-      console.log('点击了轮播图', index);
+      console.log('点击了轮播图', index)
     }
   }
 }
