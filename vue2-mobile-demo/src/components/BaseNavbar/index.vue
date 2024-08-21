@@ -2,7 +2,10 @@
 
 <template>
   <div>
-    <van-nav-bar :title="title" :left-arrow="left" @click-left="onClickLeft" @click-right="onClickRight" />
+    <van-nav-bar :title="title" :left-arrow="showLeftArrow" @click-left="onClickLeft" @click-right="onClickRight">
+      <slot name="my-left" slot="left"></slot>
+      <slot name="my-right" slot="right"></slot>
+    </van-nav-bar>
   </div>
 </template>
 
@@ -17,10 +20,15 @@ export default {
   props: {
     title: {
       type: String, // 类型
-      required: true, // 必须要传值
-      // default: '标题123'
+      required: false, // 必须要传值
+      default: '默认标题'
     },
-    left: {
+    showLeftArrow: {
+      type: Boolean, // 类型
+      required: false, // 必须要传值
+      default: false
+    },
+    isAutoBack: { // 是否自动返回上一页，若否，则需要自定义右侧点击事件
       type: Boolean, // 类型
       required: false, // 必须要传值
       default: false
@@ -28,13 +36,18 @@ export default {
   },
   data() {
     return {
-      isBack: true,
     }
   },
   methods: {
     onClickLeft() {
-      console.log('点击了');
-      this.$router.go(-1);
+      if (this.isAutoBack) {
+        this.$router.go(-1);
+      } else {
+        this.$emit('click-left', '这是基类的点击参数');
+      }
+    },
+    onClickRight() {
+      this.$emit('click-right', '这是基类的点击参数');
     }
   }
 }

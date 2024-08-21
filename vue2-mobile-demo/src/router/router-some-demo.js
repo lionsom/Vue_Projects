@@ -21,7 +21,7 @@ import FiltersDemo from '@/views/filters-usage'
 // env 使用
 import EnvDemo from '@/views/env-usage'
 // js-usage
-import JsUsage from '@/views/js-usage'
+import JsUsage from '@/views/usage-pages/js-usage'
 
 export default [
   {

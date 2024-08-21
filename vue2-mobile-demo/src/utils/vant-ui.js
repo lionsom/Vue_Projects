@@ -1,6 +1,6 @@
 import Vue from 'vue'
 // 按需导入Vant组件
-import { Popup, Cell, CellGroup, Button, Switch, Tabbar, TabbarItem, Icon, NavBar, Toast, Dialog, Loading, Notify, ActionSheet, Search, Swipe, SwipeItem, Lazyload, Grid, GridItem } from 'vant'
+import { Popup, Cell, CellGroup, Button, Switch, Tabbar, TabbarItem, Icon, NavBar, Toast, Dialog, Loading, Notify, ActionSheet, Search, Swipe, SwipeItem, Lazyload, Grid, GridItem, Divider, Image as VanImage, ImagePreview } from 'vant'
 // 注册
 Vue.use(Button)
 Vue.use(Switch)
@@ -22,3 +22,6 @@ Vue.use(GridItem)
 Vue.use(Popup)
 Vue.use(Cell)
 Vue.use(CellGroup)
+Vue.use(Divider)
+Vue.use(VanImage)
+Vue.use(ImagePreview)

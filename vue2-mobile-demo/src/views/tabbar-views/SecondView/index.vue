@@ -1,27 +1,21 @@
 <template>
   <div>
-    asdfsdfsdf
-
-    我我老二
+    <!-- 样式 -->
+    <my-base-nav-bar :title="mytitle" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'SecondView',
-  created() {
-
-  },
   data() {
     return {
-
+      mytitle: '知识库'
     }
   },
   methods: {
 
   }
-
-
 }
 </script>
 
