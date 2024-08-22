@@ -13,6 +13,8 @@
       <van-grid-item icon="fire" text="面经" to="/article" />
       <van-grid-item icon="shield-o" text="HelloWorld" to="/hello_home" />
       <van-grid-item icon="link-o" text="百度" url="https://www.baidu.com" />
+      <van-grid-item icon="cart-circle" text="旧导航" to="/routerview" />
+      <van-grid-item icon="newspaper" text="blog" url="https://linxiang.netlify.app" />
     </van-grid>
 
     <van-divider>分割线</van-divider>

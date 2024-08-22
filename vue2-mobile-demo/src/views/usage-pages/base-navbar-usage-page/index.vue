@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- 样式 -->
+    <my-base-nav-bar title="标题" />
 
     <!-- 样式 -->
     <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="false" @click-left="onClickLeft"

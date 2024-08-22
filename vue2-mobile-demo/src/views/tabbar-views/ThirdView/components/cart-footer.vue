@@ -22,12 +22,13 @@ export default {
 
 <style lang="scss" scoped>
 .footer-container {
-  background-color: white;
+  background-color: lightcyan;
   height: 50px;
   border-top: 1px solid #f8f8f8;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 50px;
   padding: 0 10px;
   position: fixed;
   bottom: 0;

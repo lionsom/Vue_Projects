@@ -9,12 +9,17 @@
          需求：只希望Layout被缓存，include配置
          :include="组件名数组"
     -->
-    <keep-alive :include="keepArr">
-      <router-view></router-view>
-    </keep-alive>
+    <div class="main-container">
+      <!-- navbar遮住内容 -->
+      <div style="height: 46px;"></div>
 
-    <!-- tabbar遮住内容 -->
-    <div style="height: 50px;"></div>
+      <keep-alive :include="keepArr">
+        <router-view></router-view>
+      </keep-alive>
+
+      <!-- tabbar遮住内容 -->
+      <div style="height: 50px;"></div>
+    </div>
 
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000000">
       <van-tabbar-item icon="home-o" to="/home/first-view">首页</van-tabbar-item>
@@ -39,9 +44,8 @@ export default {
     }
   },
   created() {
-    console.log('home created')
     const a = window.location.hash
-    console.log('aaa', a)
+    /* 解决进入二级路由返回默认选中首页tab的问题 */
     if (a === '#/home/first-view') {
       this.active = 0
     } else if (a === '#/home/second-view') {
@@ -61,4 +65,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-container {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: transparent;
+}
+</style>

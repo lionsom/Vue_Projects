@@ -7,15 +7,13 @@ import SecondView from '@/views/tabbar-views/SecondView'
 import ThirdView from '@/views/tabbar-views/ThirdView'
 import FourthView from '@/views/tabbar-views/FourthView'
 // 各个路由模块
-import RouterTest from './router-test'
+import RouterRouterTest from './router-router-test'
 import RouterMianJing from './router-mianjing'
-import RouterHello from './router-hello'
-import RouterCart from './router-cart'
-import RouterGlobalPart from './router-global-part'
-import RouterVuex from './router-vuex'
-import RouterVant from './router-vant'
+import RouterHelloWorld from './router-helloworld'
+// import RouterCart from './router-cart'
 import RouterShopping from './router-shopping'
-import RouterSomeDemo from './router-some-demo'
+import RouterUsage from './router-usage'
+import RouterMain from './router-main'
 
 // 路由主页 - old
 import RouterView from '@/views/tabbar-views/RouterView/RouterView'
@@ -44,7 +42,7 @@ const routes = [
       { path: 'fourth-view', component: FourthView }
     ]
   },
-  // 路由主页
+  // 路由主页 - old
   {
     path: '/routerview',
     name: RouterView,
@@ -58,15 +56,13 @@ const router = new VueRouter({
   mode: 'hash', // 默认是hash, history
   routes: [
     ...routes,
-    ...RouterTest,
+    ...RouterMain,
+    ...RouterUsage,
+    ...RouterHelloWorld,
+    ...RouterRouterTest,
     ...RouterMianJing,
-    ...RouterHello,
-    ...RouterCart,
-    ...RouterGlobalPart,
-    ...RouterVuex,
-    ...RouterVant,
+    // ...RouterCart,
     ...RouterShopping,
-    ...RouterSomeDemo
   ]
 })
 

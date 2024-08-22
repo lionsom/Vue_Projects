@@ -1,5 +1,7 @@
 <template>
   <div>
+    <my-base-nav-bar title="我的" />
+
     <!-- 头像区域 -->
     <div class="header">
       <div class="header-img">
@@ -14,7 +16,8 @@
 
     <!-- 内容区域 -->
     <van-cell-group>
-      <van-cell v-for="(item, index) in 10" :key="item" title="单元格" value="内容" is-link to="/i18n-demo" />
+      <van-cell v-for="(item, index) in dataSource" :icon="randomImg(index)" :key="item.id" :title="item.name"
+        :value="item.value" :is-link="item.path" :to="item.path" />
       <van-cell title="单元格" value="内容" label="描述信息" />
     </van-cell-group>
   </div>
@@ -22,6 +25,7 @@
 
 <script>
 import { ImagePreview } from 'vant'
+import dataSourceAAA from './dataSource';
 
 export default {
   name: 'FourthView',
@@ -30,7 +34,8 @@ export default {
   },
   data() {
     return {
-      headerImg: 'https://img01.yzcdn.cn/vant/cat.jpeg' // 在线头像
+      headerImg: 'https://img01.yzcdn.cn/vant/cat.jpeg', // 在线头像
+      dataSource: dataSourceAAA
     }
   },
   methods: {
@@ -41,13 +46,15 @@ export default {
     },
     onHeadImgError() {
       this.headerImg = require('@/assets/img/common/logo.png') // 本地默认头像
+    },
+    randomImg(index) {
+      const icons = ['shop-o', 'like-o', 'location-o']
+      return icons[index % icons.length]
     }
   },
   activated() {
-    console.log('444 activated')
   },
   deactivated() {
-    console.log('444 deactivated')
   }
 }
 </script>
