@@ -17,7 +17,7 @@
     <!-- 内容区域 -->
     <van-cell-group>
       <van-cell v-for="(item, index) in dataSource" :icon="randomImg(index)" :key="item.id" :title="item.name"
-        :value="item.value" :is-link="item.path" :to="item.path" />
+        :value="item.value" :is-link="isShowLink(item.path)" :to="item.path" />
       <van-cell title="单元格" value="内容" label="描述信息" />
     </van-cell-group>
   </div>
@@ -25,7 +25,7 @@
 
 <script>
 import { ImagePreview } from 'vant'
-import dataSourceAAA from './dataSource';
+import dataSourceAAA from './dataSource'
 
 export default {
   name: 'FourthView',
@@ -50,6 +50,9 @@ export default {
     randomImg(index) {
       const icons = ['shop-o', 'like-o', 'location-o']
       return icons[index % icons.length]
+    },
+    isShowLink(path) {
+      return path && path.length > 0
     }
   },
   activated() {

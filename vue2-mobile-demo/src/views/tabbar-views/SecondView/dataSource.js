@@ -5,22 +5,26 @@ const dataSource =
       {
         category: 'Usage Demo',
         id: 0,
-        name: 'router usage',
-        value: '打开',
-        path: '/router-demo'
+        name: '路由的使用',
+        value: '',
+        label: '测试路由跳转',
+        icon: 'like-o',
+        path: '/routerview'
       },
       {
         category: 'Usage Demo',
         id: 1,
-        name: 'constant-usage',
-        value: '打开',
+        name: '常量的使用',
+        value: '',
+        label: '',
         path: '/constant-usage'
       },
       {
         category: 'Usage Demo',
         id: 2,
-        name: 'iconfont-usage',
-        value: '打开',
+        name: 'iconfont的使用',
+        value: '',
+        label: '',
         path: '/iconfont-usage'
       }
     ],
@@ -29,20 +33,25 @@ const dataSource =
         category: 'group one',
         id: 1,
         name: '张三',
-        age: 18,
-        path: '/slot-demo'
+        value: '',
+        label: '',
+        path: ''
       },
       {
         category: 'group one',
         id: 2,
         name: '李四',
-        age: 19
+        value: '',
+        label: '',
+        path: ''
       },
       {
         category: 'group one',
         id: 3,
         name: '王五',
-        age: 20
+        value: '',
+        label: '',
+        path: ''
       }
     ],
     [
@@ -50,22 +59,27 @@ const dataSource =
         category: 'group two',
         id: 5,
         name: '林冲',
-        age: 18
+        value: '',
+        label: '',
+        path: ''
       },
       {
         category: 'group two',
         id: 6,
         name: '史进',
-        age: 19
+        value: '',
+        label: '',
+        path: ''
       },
       {
         category: 'group two',
         id: 7,
         name: '贾宝玉',
-        age: 20
+        value: '',
+        label: '',
+        path: ''
       }
     ]
   ]
 
-
-export default dataSource;
+export default dataSource

@@ -16,7 +16,7 @@ import RouterUsage from './router-usage'
 import RouterMain from './router-main'
 
 // 路由主页 - old
-import RouterView from '@/views/tabbar-views/RouterView/RouterView'
+import RouterView from '@/views/OldRouterView/RouterView'
 // 404
 import NotFound from '@/views/404'
 // Store
@@ -62,7 +62,7 @@ const router = new VueRouter({
     ...RouterRouterTest,
     ...RouterMianJing,
     // ...RouterCart,
-    ...RouterShopping,
+    ...RouterShopping
   ]
 })
 
