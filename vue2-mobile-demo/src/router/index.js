@@ -10,7 +10,6 @@ import FourthView from '@/views/tabbar-views/FourthView'
 import RouterRouterTest from './router-router-test'
 import RouterMianJing from './router-mianjing'
 import RouterHelloWorld from './router-helloworld'
-// import RouterCart from './router-cart'
 import RouterShopping from './router-shopping'
 import RouterUsage from './router-usage'
 import RouterMain from './router-main'
@@ -28,11 +27,11 @@ const routes = [
   // 重定向
   {
     path: '/',
-    redirect: '/home/first-view'
+    redirect: '/first-view'
   },
   // 主页面
   {
-    path: '/home',
+    path: '/',
     name: HomeView,
     component: HomeView,
     children: [
@@ -61,7 +60,6 @@ const router = new VueRouter({
     ...RouterHelloWorld,
     ...RouterRouterTest,
     ...RouterMianJing,
-    // ...RouterCart,
     ...RouterShopping
   ]
 })

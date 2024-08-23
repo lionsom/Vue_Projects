@@ -12,10 +12,10 @@
     <nav class="tabbar">
       <!-- 路由跳转方式一：router-link -->
       <router-link to="/hello_home">Vue首页</router-link>
-      <router-link to="/router_test_link_query">link-query无参数</router-link>
-      <router-link to="/router_test_link_query?canshu1=你好&canshu2=12333">link-query参数</router-link>
-      <router-link to="/router_test_link_dynamic">link-dynamic无参数</router-link>
-      <router-link to="/router_test_link_dynamic/我是参数">link-dynamic参数</router-link>
+      <router-link to="/link_query">link-query无参数</router-link>
+      <router-link to="/link_query?canshu1=你好&canshu2=12333">link-query参数</router-link>
+      <router-link to="/link_dynamic">link-dynamic无参数</router-link>
+      <router-link to="/link_dynamic/我是参数">link-dynamic参数</router-link>
     </nav>
   </div>
 </template>
@@ -93,14 +93,14 @@ export default {
         */
         if (myRouter.id === 1001) {
           // path - 无参数
-          this.$router.push({ path: '/router_test_path_query' })
+          this.$router.push({ path: '/path_query' })
         } else if (myRouter.id === 1002) {
           // path - query - 简易
-          this.$router.push({ path: '/router_test_path_query?canshu1=999&canshu2=我是谁' })
+          this.$router.push({ path: '/path_query?canshu1=999&canshu2=我是谁' })
         } else if (myRouter.id === 1003) {
           // path - query - 完整
           this.$router.push({
-            path: 'router_test_path_query',
+            path: 'path_query',
             query: {
               canshu3: 123,
               canshu4: '哈哈哈'
@@ -108,7 +108,7 @@ export default {
           })
         } else if (myRouter.id === 1004) {
           // path - dynamic
-          this.$router.push({ path: 'router_test_path_dynamic/皮卡丘' })
+          this.$router.push({ path: 'path_dynamic/皮卡丘' })
         } else {
           alert('不支持path')
         }
@@ -203,6 +203,7 @@ export default {
     background: green;
     border: 1px solid rebeccapurple;
   }
+
   a.router-link-active {
     background: orange;
   }
@@ -210,6 +211,7 @@ export default {
 
 .mainContent {
   margin-bottom: 60px + 5px;
+
   .cell {
     background: goldenrod;
 

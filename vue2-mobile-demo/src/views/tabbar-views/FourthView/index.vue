@@ -52,7 +52,10 @@ export default {
       return icons[index % icons.length]
     },
     isShowLink(path) {
-      return path && path.length > 0
+      if (path && path.length > 0) {
+        return true
+      }
+      return false
     }
   },
   activated() {

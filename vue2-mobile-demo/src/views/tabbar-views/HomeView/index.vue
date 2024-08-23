@@ -22,10 +22,10 @@
     </div>
 
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000000">
-      <van-tabbar-item icon="home-o" to="/home/first-view">首页</van-tabbar-item>
-      <van-tabbar-item icon="shop-o" to="/home/second-view">知识库</van-tabbar-item>
-      <van-tabbar-item icon="chat-o" to="/home/third-view">其他</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" to="/home/fourth-view">我的</van-tabbar-item>
+      <van-tabbar-item icon="home-o" to="/first-view">首页</van-tabbar-item>
+      <van-tabbar-item icon="shop-o" to="/second-view">知识库</van-tabbar-item>
+      <van-tabbar-item icon="chat-o" to="/third-view">其他</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" to="/fourth-view">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -46,19 +46,16 @@ export default {
   created() {
     const a = window.location.hash
     /* 解决进入二级路由返回默认选中首页tab的问题 */
-    if (a === '#/home/first-view') {
+    if (a === '#/first-view') {
       this.active = 0
-    } else if (a === '#/home/second-view') {
+    } else if (a === '#/second-view') {
       this.active = 1
-    } else if (a === '#/home/third-view') {
+    } else if (a === '#/third-view') {
       this.active = 2
-    } else if (a === '#/home/fourth-view') {
+    } else if (a === '#/fourth-view') {
       this.active = 3
     }
   },
-  // watch(path) {
-  //   console.log(this.$route.path)
-  // },
   methods: {
 
   }
