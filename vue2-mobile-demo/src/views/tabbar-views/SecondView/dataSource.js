@@ -9,7 +9,7 @@ const dataSource =
         value: '',
         label: '测试路由跳转',
         icon: 'like-o',
-        path: '/routerview'
+        path: '/how-to-use-router'
       },
       {
         category: 'Usage Demo',

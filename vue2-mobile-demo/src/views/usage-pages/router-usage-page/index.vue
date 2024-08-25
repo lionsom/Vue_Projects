@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <my-base-nav-bar title="路由使用11" :showLeftArrow="true" :isAutoBack="true" />
+    <my-base-nav-bar :title="title" :showLeftArrow="true" :isAutoBack="true" />
+    adfdfsdfs
   </div>
 </template>
 
@@ -8,6 +9,9 @@
 export default {
   name: 'RouterUsageHomePage',
   data() {
+    return {
+      title: '路由使用'
+    }
   },
   created() {
   },
