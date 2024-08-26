@@ -1,14 +1,11 @@
 <template>
   <div class="main">
     <!-- 导航啦 -->
-    <van-nav-bar safe-area-inset-top title="iconfont的使用" left-text="返回" left-arrow @click-left="onClickLeft">
-    </van-nav-bar>
+    <my-base-nav-bar title="iconfont的使用" :showLeftArrow="true" :isAutoBack="true" />
 
-    <a
-      class="top_a"
-      href="https://www.iconfont.cn/help/detail?spm=a313x.manage_type_myprojects.i1.d8cf4382a.6b1f3a81vJx4xD&helptype=code"
-      >iconfont 在 web 使用文档</a
-    >
+    <a class="top_a"
+      href="https://www.iconfont.cn/help/detail?spm=a313x.manage_type_myprojects.i1.d8cf4382a.6b1f3a81vJx4xD&helptype=code">iconfont
+      在 web 使用文档</a>
 
     <div class="demo-content">
       <button @click="openLocalHtml">Click Me! 打开本地html</button>
@@ -72,6 +69,7 @@ h3 {
   margin-top: 20px;
   margin-bottom: 5px;
 }
+
 .top_a {
   background-color: aqua;
 }

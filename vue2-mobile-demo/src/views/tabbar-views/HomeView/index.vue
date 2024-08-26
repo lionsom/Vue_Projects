@@ -10,8 +10,6 @@
          :include="组件名数组"
     -->
     <div class="main-container">
-      <!-- navbar遮住内容 -->
-      <div style="height: 46px;"></div>
 
       <keep-alive :include="keepArr">
         <router-view></router-view>
@@ -21,7 +19,7 @@
       <div style="height: 50px;"></div>
     </div>
 
-    <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000000">
+    <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000000" :fixed="true" :placeholder="true">
       <van-tabbar-item icon="home-o" to="/first-view">首页</van-tabbar-item>
       <van-tabbar-item icon="shop-o" to="/second-view">知识库</van-tabbar-item>
       <van-tabbar-item icon="chat-o" to="/third-view">其他</van-tabbar-item>
@@ -31,8 +29,6 @@
 </template>
 
 <script>
-
-// const path = this.$route;
 
 export default {
   name: 'MainView',

@@ -1,57 +1,62 @@
 <template>
-  <div class="main-page">
 
-    <h1>根组件 - Vuex仓库数据 - {{ $store.state.title }}</h1>
-    <h1>根组件 - Vuex仓库数据 - {{ count }}</h1>
-    <input :value="count" @input="handleInput" type="text">
-    <br />
-    <input :value="count" @input="handleInput11" type="text">
-    <br />
+  <div>
+    <my-base-nav-bar title="Vuex Usage" :showLeftArrow="true" :isAutoBack="true" />
 
-    <button @click="changeCount11(11)">= 11</button>
+    <div class="main-page">
+      <h1>根组件 - Vuex仓库数据 - {{ $store.state.title }}</h1>
+      <h1>根组件 - Vuex仓库数据 - {{ count }}</h1>
+      <input :value="count" @input="handleInput" type="text">
+      <br />
+      <input :value="count" @input="handleInput11" type="text">
+      <br />
 
-    <button @click="setAsyncCount(666)">异步 2秒后 666</button>
+      <button @click="changeCount11(11)">= 11</button>
 
-    <div>{{ $store.getters.filterLList }}</div>
+      <button @click="setAsyncCount(666)">异步 2秒后 666</button>
 
-    <div>{{ filterLList }}</div>
+      <div>{{ $store.getters.filterLList }}</div>
 
-    <Son1 id="id_son1"></Son1>
-    <hr>
-    <Son2 id="id_son2">></Son2>
+      <div>{{ filterLList }}</div>
 
-    <br />
-    <br />
-    <br />
+      <Son1 id="id_son1"></Son1>
+      <hr>
+      <Son2 id="id_son2">></Son2>
 
-    <!-- 子模块 -->
-    <div class="module">
-      <div>
-        方式一：直接访问子模块state = {{ $store.state.user.UserInfo.name }} <br />
+      <br />
+      <br />
+      <br />
 
-        <!-- 映射后 -->
-        方式二：{{ UserInfo.name }} <br />
+      <!-- 子模块 -->
+      <div class="module">
+        <div>
+          方式一：直接访问子模块state = {{ $store.state.user.UserInfo.name }} <br />
 
-        方式三：{{ user_state_info.name }} <br />
+          <!-- 映射后 -->
+          方式二：{{ UserInfo.name }} <br />
+
+          方式三：{{ user_state_info.name }} <br />
+        </div>
+
+        <div>
+          <!-- 测试访问模块中的getters - 原生 -->
+          方式一：直接访问子模块getters = {{ $store.getters['user/UpperCaseName'] }} <br />
+
+          <!-- 映射后 -->
+
+          方式二： {{ UpperCaseName }} <br />
+
+          方式三： {{ user_func_upper }} <br />
+        </div>
+
+        <button @click="updateUser111">更新个人信息</button>
+        <button @click="updateTheme111">更新主题色</button>
+
       </div>
-
-      <div>
-        <!-- 测试访问模块中的getters - 原生 -->
-        方式一：直接访问子模块getters = {{ $store.getters['user/UpperCaseName'] }} <br />
-
-        <!-- 映射后 -->
-
-        方式二： {{ UpperCaseName }} <br />
-
-        方式三： {{ user_func_upper }} <br />
-      </div>
-
-      <button @click="updateUser111">更新个人信息</button>
-      <button @click="updateTheme111">更新主题色</button>
 
     </div>
-
   </div>
+
 </template>
 
 <script>
@@ -136,6 +141,7 @@ export default {
 .main-page {
   width: 90%;
   margin: 20px auto;
+
   border: 3px solid #ccc;
   border-radius: 3px;
   padding: 10px;

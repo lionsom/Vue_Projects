@@ -20,14 +20,8 @@ import FiltersDemo from '@/views/usage-pages/filters-usage'
 import EnvDemo from '@/views/usage-pages/env-usage'
 // js-usage
 import JsUsage from '@/views/usage-pages/js-usage'
-
-import VantTestView11 from '@/views/usage-pages/VantUI/VantUITestView'
-// VuexDemo
-import VuexDemoView from '@/views/usage-pages/VuexDemo/VuexDemoView'
-
+//
 import GlobalPartPage from '@/views/usage-pages/Global_Part_Comp_View/Global_Part_MainPage'
-
-
 
 export default [
   {
@@ -73,14 +67,6 @@ export default [
   {
     path: '/js-usage',
     component: JsUsage
-  },
-  {
-    path: '/vant-ui',
-    component: VantTestView11
-  },
-  {
-    path: '/vuexdemo',
-    component: VuexDemoView
   },
   {
     path: '/global-part',

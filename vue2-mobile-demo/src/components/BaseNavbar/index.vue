@@ -2,8 +2,8 @@
 
 <template>
   <div>
-    <van-nav-bar :title="title" :left-arrow="showLeftArrow" :fixed="true" @click-left="onClickLeft"
-      @click-right="onClickRight">
+    <van-nav-bar :safe-area-inset-top="true" :title="title" :left-arrow="showLeftArrow" :fixed="isFixed"
+      :placeholder="isFixed" @click-left="onClickLeft" @click-right="onClickRight">
       <slot name="my-left" slot="left"></slot>
       <slot name="my-right" slot="right"></slot>
     </van-nav-bar>
@@ -33,6 +33,10 @@ export default {
       type: Boolean, // 类型
       required: false, // 必须要传值
       default: false
+    },
+    isFixed: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

@@ -148,7 +148,7 @@ export default {
         } else if (myRouter.id === 1010) {
           this.$router.push({ path: '/vuexdemo' })
         } else if (myRouter.id === 1011) {
-          this.$router.push({ path: '/vant-ui' })
+          this.$router.push({ path: '/vant-button-usage' })
         } else if (myRouter.id === 1012) {
           this.$router.push({ path: '/shopping' })
         } else if (myRouter.id === 1013) {

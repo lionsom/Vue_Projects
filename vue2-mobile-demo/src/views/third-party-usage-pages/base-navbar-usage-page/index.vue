@@ -1,22 +1,25 @@
 <template>
   <div>
     <!-- 样式 -->
-    <my-base-nav-bar title="标题" />
+    <my-base-nav-bar :title="mytitle" :isFixed="false" :showLeftArrow="true" :isAutoBack="true" />
 
     <!-- 样式 -->
-    <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="false" @click-left="onClickLeft"
-      @click-right="onClickRight" />
+    <my-base-nav-bar title="标题" :isFixed="false" />
 
     <!-- 样式 -->
-    <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="false" @click-left="onClickLeft"
-      @click-right="onClickRight">
+    <my-base-nav-bar :title="mytitle" :isFixed="false" :showLeftArrow="true" :isAutoBack="false"
+      @click-left="onClickLeft" @click-right="onClickRight" />
+
+    <!-- 样式 -->
+    <my-base-nav-bar :title="mytitle" :isFixed="false" :showLeftArrow="true" :isAutoBack="false"
+      @click-left="onClickLeft" @click-right="onClickRight">
       <!-- slot -->
       <van-icon name="search" color="red" size="20px" slot="my-right" />
     </my-base-nav-bar>
 
     <!-- 样式 -->
-    <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="false" @click-left="onClickLeft"
-      @click-right="onClickRight">
+    <my-base-nav-bar :title="mytitle" :isFixed="false" :showLeftArrow="true" :isAutoBack="false"
+      @click-left="onClickLeft" @click-right="onClickRight">
       <!-- slot -->
       <template slot="my-right">
         <div style="width: 20px; background-color: aqua; margin-right: 10px;" @click="customRightClick1">
@@ -40,7 +43,7 @@ export default {
   },
   data() {
     return {
-      mytitle: '我是老大'
+      mytitle: '封装Vant NavBar的使用页面'
     }
   },
   methods: {

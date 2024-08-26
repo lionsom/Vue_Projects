@@ -30,6 +30,16 @@ const dataSource =
     ],
     [
       {
+        category: '三方库',
+        id: 1,
+        name: '三方库使用入口',
+        value: '打开',
+        label: '仅仅是入口',
+        path: '/third-party-usage-home'
+      },
+    ],
+    [
+      {
         category: 'group one',
         id: 1,
         name: '张三',

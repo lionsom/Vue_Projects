@@ -12,6 +12,7 @@ import RouterMianJing from './router-mianjing'
 import RouterHelloWorld from './router-helloworld'
 import RouterShopping from './router-shopping'
 import RouterUsage from './router-usage'
+import RouterThirdPartyUsage from './router-third-party-usage';
 import RouterMain from './router-main'
 
 // 路由主页 - old
@@ -57,6 +58,7 @@ const router = new VueRouter({
     ...routes,
     ...RouterMain,
     ...RouterUsage,
+    ...RouterThirdPartyUsage,
     ...RouterHelloWorld,
     ...RouterRouterTest,
     ...RouterMianJing,

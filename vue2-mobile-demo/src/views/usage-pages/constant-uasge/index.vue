@@ -1,8 +1,7 @@
 <template>
   <div class="constant-main">
     <!-- 导航啦 -->
-    <van-nav-bar safe-area-inset-top title="iconfont的使用" left-text="返回" left-arrow
-      @click-left="onClickLeft"></van-nav-bar>
+    <my-base-nav-bar title="常量的使用" :showLeftArrow="true" :isAutoBack="true" />
 
     <div class="constant">
       <h3>常量的使用：</h3>
@@ -11,15 +10,20 @@
 
       <a href="https://blog.csdn.net/qq_41193701/article/details/104990501" target="__blank"> 参考二 </a>
 
+      <van-divider>分割线</van-divider>
+
       <p>输出的常量 = {{ constantValue.phoneNum }}</p>
 
-      <div class="showSomething" @click="showLog">点击打印log</div>
+      <van-divider>分割线</van-divider></van-divider>
+
+      <van-button hairline round icon="point-gift-o" type="default" @click="showToast">显示常量</van-button>
     </div>
   </div>
 </template>
 
 <script>
 import { Partten } from '@/utils/constant/index'
+import { Toast } from 'vant';
 
 export default {
   data() {
@@ -28,11 +32,8 @@ export default {
     }
   },
   methods: {
-    onClickLeft() {
-      this.$router.go(-1)
-    },
-    showLog() {
-      console.log('常量 = ', Partten.email)
+    showToast() {
+      Toast('常量 = ' + Partten.email)
     }
   }
 }
