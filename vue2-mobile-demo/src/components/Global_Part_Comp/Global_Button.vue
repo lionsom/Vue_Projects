@@ -1,10 +1,16 @@
 <template>
-  <button class="hm-button">通用按钮</button>
+  <button class="hm-button" @click="onClick()">通用按钮</button>
 </template>
 
 <script>
-export default {
+import { Toast } from 'vant';
 
+export default {
+  methods: {
+    onClick() {
+      Toast('点击了按钮')
+    }
+  }
 }
 </script>
 

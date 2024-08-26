@@ -48,6 +48,7 @@ export default {
 .van-cell-group__title {
   padding: 10px;
   font-size: 15px;
+  color: #0f4eef;
 }
 
 .van-cell__left-icon {

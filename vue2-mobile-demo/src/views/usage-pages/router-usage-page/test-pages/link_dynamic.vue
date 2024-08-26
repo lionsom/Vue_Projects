@@ -1,5 +1,7 @@
 <template>
   <div>
+    <my-base-nav-bar title="声明式导航 - 动态路由传参" :showLeftArrow="true" :isAutoBack="true" />
+
     声明式导航 - 动态路由传参
   </div>
 </template>
@@ -10,6 +12,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

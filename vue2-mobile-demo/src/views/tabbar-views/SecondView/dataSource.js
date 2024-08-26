@@ -3,6 +3,16 @@ const dataSource =
   [
     [
       {
+        category: '三方库',
+        id: 1,
+        name: '三方库使用入口',
+        value: '打开',
+        label: '仅仅是入口',
+        path: '/third-party-usage-home'
+      },
+    ],
+    [
+      {
         category: 'Usage Demo',
         id: 0,
         name: '路由的使用',
@@ -26,17 +36,16 @@ const dataSource =
         value: '',
         label: '',
         path: '/iconfont-usage'
-      }
-    ],
-    [
-      {
-        category: '三方库',
-        id: 1,
-        name: '三方库使用入口',
-        value: '打开',
-        label: '仅仅是入口',
-        path: '/third-party-usage-home'
       },
+      {
+        category: 'Usage Demo',
+        id: 3,
+        name: '全局组件+局部组件',
+        value: '',
+        label: '',
+        path: '/global-part-comp'
+      }
+
     ],
     [
       {

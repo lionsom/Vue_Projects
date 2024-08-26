@@ -9,7 +9,6 @@
       <van-grid-item icon="location-o" text="Vant Button" to="/vant-button-usage" />
       <van-grid-item icon="like-o" text="Vuex" to="/vuex-usage" />
       <van-grid-item icon="star-o" text="Vue Icons Plus" to="/vue-icons-plus-usage" />
-
     </van-grid>
 
   </div>

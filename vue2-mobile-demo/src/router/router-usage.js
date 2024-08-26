@@ -20,8 +20,8 @@ import FiltersDemo from '@/views/usage-pages/filters-usage'
 import EnvDemo from '@/views/usage-pages/env-usage'
 // js-usage
 import JsUsage from '@/views/usage-pages/js-usage'
-//
-import GlobalPartPage from '@/views/usage-pages/Global_Part_Comp_View/Global_Part_MainPage'
+// 全局组件 - 局部组件
+import GlobalPartPage from '@/views/usage-pages/global-part-comp-usage-page'
 
 export default [
   {
@@ -69,7 +69,7 @@ export default [
     component: JsUsage
   },
   {
-    path: '/global-part',
+    path: '/global-part-comp',
     component: GlobalPartPage
   }
 ]

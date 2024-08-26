@@ -144,7 +144,7 @@ export default {
         if (myRouter.id === 1008) {
           this.$router.push({ path: '/cart' })
         } else if (myRouter.id === 1009) {
-          this.$router.push({ path: '/global-part' })
+          this.$router.push({ path: '/global-part-comp' })
         } else if (myRouter.id === 1010) {
           this.$router.push({ path: '/vuexdemo' })
         } else if (myRouter.id === 1011) {
