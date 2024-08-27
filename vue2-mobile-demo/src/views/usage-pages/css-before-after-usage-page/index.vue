@@ -1,13 +1,7 @@
 <template>
   <div class="main">
     <!-- 导航啦 -->
-    <van-nav-bar
-      safe-area-inset-top
-      title="iconfont的使用"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    ></van-nav-bar>
+    <my-base-nav-bar title="css ::before ::after" :showLeftArrow="true" :isAutoBack="true" />
 
     <p class="one">伪元素 ::before</p>
     <p class="two">伪元素 ::before</p>
@@ -20,9 +14,6 @@
 <script>
 export default {
   methods: {
-    onClickLeft() {
-      this.$router.go(-1)
-    },
     close() {
       console.log('点击了...')
     }

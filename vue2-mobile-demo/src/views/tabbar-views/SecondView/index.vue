@@ -5,7 +5,7 @@
 
     <van-cell-group v-for="(item, section_index) in dataSource" :key="item[0].category" :title="item[0].category">
       <van-cell v-for="(subItem, row_index) in item" :key="subItem.id" :icon="subItem.icon"
-        :title="`${section_index}-${row_index}.${subItem.name}`" :value="subItem.value" :label="subItem.label"
+        :title="`${section_index}-${row_index}. ${subItem.name}`" :value="subItem.value" :label="subItem.label"
         :is-link="isShowLink(subItem.path)" :to="subItem.path" center />
     </van-cell-group>
 

@@ -44,8 +44,71 @@ const dataSource =
         value: '',
         label: '',
         path: '/global-part-comp'
-      }
-
+      },
+      {
+        category: 'Usage Demo',
+        id: 4,
+        name: '自定义指令',
+        value: '',
+        label: '',
+        path: '/custom-directive'
+      },
+      {
+        category: 'Usage Demo',
+        id: 5,
+        name: '插槽',
+        value: '',
+        label: '',
+        path: '/slot-demo'
+      },
+      {
+        category: 'Usage Demo',
+        id: 6,
+        name: 'v-model原理',
+        value: '',
+        label: '',
+        path: '/vmodel-demo'
+      },
+      {
+        category: 'Usage Demo',
+        id: 7,
+        name: 'mixin原理',
+        value: '',
+        label: '',
+        path: '/mixin-demo'
+      },
+      {
+        category: 'Usage Demo',
+        id: 8,
+        name: 'env',
+        value: '',
+        label: '',
+        path: '/env-demo'
+      },
+      {
+        category: 'Usage Demo',
+        id: 9,
+        name: 'css-before-after',
+        value: '',
+        label: '',
+        path: '/css-before-after'
+      },
+      {
+        category: 'Usage Demo',
+        id: 10,
+        name: 'local-storage-usage',
+        value: '',
+        label: '',
+        path: '/local-storage-usage'
+      },
+      {
+        category: 'Usage Demo',
+        id: 10,
+        name: 'filters-demo',
+        value: '',
+        label: '',
+        path: '/filters-demo'
+      },
     ],
     [
       {

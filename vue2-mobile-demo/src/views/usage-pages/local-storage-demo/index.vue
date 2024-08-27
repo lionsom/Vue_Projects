@@ -1,81 +1,57 @@
 <template>
-  <div class="main">
-    <!-- 导航啦 -->
-    <div class="nav">
-      <van-nav-bar
-        safe-area-inset-top
-        title="本地缓存的使用"
-        left-text="返回"
-        left-arrow
-        @click-left="onClickLeft"
-      ></van-nav-bar>
-    </div>
+  <div>
+    <my-base-nav-bar title="本地缓存的使用" :showLeftArrow="true" :isAutoBack="true" />
 
-    <div class="main-content">
-      <!-- vant组件使用样例 -->
-      <div class="content-section-1">
-        <p>vant组件小试牛刀</p>
-        <van-cell-group inset>
-          <van-cell icon="location-o" title="打开i18n" value="前往" :clickable="true" is-link to="/i18n-demo" />
-          <van-cell
-            icon="location-o"
-            title="打开凤凰网"
-            value="前往"
-            :clickable="true"
-            is-link
-            url="http://www.ifeng.com"
-          />
-        </van-cell-group>
-      </div>
+    <div class="main">
+      <div class="main-content">
+        <!-- vant组件使用样例 -->
+        <div class="content-section-1">
+          <p>vant组件小试牛刀</p>
+          <van-cell-group inset>
+            <van-cell icon="location-o" title="打开i18n" value="前往" :clickable="true" is-link to="/i18n-demo" />
+            <van-cell icon="location-o" title="打开凤凰网" value="前往" :clickable="true" is-link url="http://www.ifeng.com" />
+          </van-cell-group>
+        </div>
 
-      <!-- cookie设置 -->
-      <div class="content-section-2">
-        <p>cookie设置</p>
-        <van-cell-group inset>
-          <van-cell
-            title="设置cookie"
-            value=""
-            label="document.cookie = 'name=linxxxx'"
-            :clickable="true"
-            @click="clickCookie1"
-          />
-          <van-cell title="查看cookie" value="" label="document.cookie" :clickable="true" @click="clickCookie2" />
-          <van-cell
-            title="删除cookie"
-            value=""
-            label="将过期时间往前设置一点，浏览器会自动删除过期的Cookie"
-            :clickable="true"
-            @click="clickCookie3"
-          />
-        </van-cell-group>
-      </div>
+        <!-- cookie设置 -->
+        <div class="content-section-2">
+          <p>cookie设置</p>
+          <van-cell-group inset>
+            <van-cell title="设置cookie" value="" label="document.cookie = 'name=linxxxx'" :clickable="true"
+              @click="clickCookie1" />
+            <van-cell title="查看cookie" value="" label="document.cookie" :clickable="true" @click="clickCookie2" />
+            <van-cell title="删除cookie" value="" label="将过期时间往前设置一点，浏览器会自动删除过期的Cookie" :clickable="true"
+              @click="clickCookie3" />
+          </van-cell-group>
+        </div>
 
-      <!-- sessionStorage -->
-      <div class="content-section-3">
-        <p>sessionStorage设置</p>
-        <van-cell-group inset>
-          <van-cell title="设置sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage1" />
-          <van-cell title="查看sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage2" />
-          <van-cell title="删除sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage3" />
-        </van-cell-group>
-      </div>
+        <!-- sessionStorage -->
+        <div class="content-section-3">
+          <p>sessionStorage设置</p>
+          <van-cell-group inset>
+            <van-cell title="设置sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage1" />
+            <van-cell title="查看sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage2" />
+            <van-cell title="删除sessionStorage" value="" label="" :clickable="true" @click="clickSessionStorage3" />
+          </van-cell-group>
+        </div>
 
-      <!-- localStorage -->
-      <div class="content-section-4">
-        <p>localStorage设置</p>
-        <van-cell-group inset>
-          <van-cell title="设置localStorage" value="" label="" :clickable="true" @click="clickLocalStorage1" />
-          <van-cell title="查看localStorage" value="" label="" :clickable="true" @click="clickLocalStorage2" />
-          <van-cell title="删除localStorage" value="" label="" :clickable="true" @click="clickLocalStorage3" />
-        </van-cell-group>
-      </div>
+        <!-- localStorage -->
+        <div class="content-section-4">
+          <p>localStorage设置</p>
+          <van-cell-group inset>
+            <van-cell title="设置localStorage" value="" label="" :clickable="true" @click="clickLocalStorage1" />
+            <van-cell title="查看localStorage" value="" label="" :clickable="true" @click="clickLocalStorage2" />
+            <van-cell title="删除localStorage" value="" label="" :clickable="true" @click="clickLocalStorage3" />
+          </van-cell-group>
+        </div>
 
-      <!-- indexedDB -->
-      <div class="content-section-5">
-        <p>indexedDB设置</p>
-        <van-cell-group inset>
-          <van-cell title="indexedDB" value="" label="还未学习" :clickable="false" />
-        </van-cell-group>
+        <!-- indexedDB -->
+        <div class="content-section-5">
+          <p>indexedDB设置</p>
+          <van-cell-group inset>
+            <van-cell title="indexedDB" value="" label="还未学习" :clickable="false" />
+          </van-cell-group>
+        </div>
       </div>
     </div>
   </div>
@@ -179,13 +155,14 @@ export default {
   }
 
   .main-content {
-    margin-top: 46px;
+    // margin-top: 46px;
 
     // 处理塌陷
     overflow: hidden;
 
     .content-section-1 {
       margin-top: 20px;
+
       p {
         margin-left: 20px;
         margin-bottom: 10px;

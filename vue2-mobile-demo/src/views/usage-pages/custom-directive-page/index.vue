@@ -1,13 +1,17 @@
 <template>
-  <div class="main-page">
+  <div>
+    <my-base-nav-bar title="自定义指令" :showLeftArrow="true" :isAutoBack="true" />
 
-    <!-- 自定义指令: v-lxfocus -->
-    <input placeholder="请输入" v-lxfocus v-lxcolor="color1">
+    <div class="main-page">
 
-    <div class="showLoading" v-loading="true" v-lxcolor="color2"></div>
+      <!-- 自定义指令: v-lxfocus -->
+      <input placeholder="请输入" v-lxfocus v-lxcolor="color1">
 
-    <div class="descContent">{{ desc }}</div>
+      <div class="showLoading" v-loading="true" v-lxcolor="color2" style="background-color: aliceblue;"></div>
 
+      <div class="descContent">{{ desc }}</div>
+
+    </div>
   </div>
 </template>
 
@@ -56,7 +60,7 @@ export default {
   margin: 100px auto;
 
   text-align: center;
-  font-weight: 800;
+  font-weight: 400;
 
   .showLoading {
     width: 100px;

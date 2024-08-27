@@ -1,5 +1,8 @@
 <template>
   <div class="main">
+
+    <my-base-nav-bar title="自定义指令" :showLeftArrow="true" :isAutoBack="true" />
+
     <p>当前环境: {{ currentEnv }}</p>
 
     <!-- 全局常量 -->

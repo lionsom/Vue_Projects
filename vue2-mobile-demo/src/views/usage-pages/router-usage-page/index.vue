@@ -23,11 +23,15 @@
       <router-link to="/router_link_JJJAAA">/xxx</router-link>
       <router-link to="/router_link_JJJAAA?canshu1=你好&canshu2=12333">/xxx + query参数</router-link>
       <router-link to="/router_link_JJJAAA/动态参数123">/xxx + 动态路由参数</router-link>
+
+      <van-divider />
       <!-- 2.使用命名路由 -->
       <router-link :to="{ name: 'JJJAAA' }">命名路由</router-link>
       <router-link :to="{ name: 'JJJAAA', query: { canshu1: '我是参数111', canshu2: '我是参数222' } }">命名路由 +
         query参数</router-link>
       <router-link :to="{ name: 'JJJAAA', params: { keyWords: '动态参数123' } }">命名路由 + 动态路由传参</router-link>
+
+      <van-divider />
       <!-- 3.使用path路由 -->
       <router-link :to="{ path: '/router_link_JJJAAA' }">路由path</router-link>
       <router-link :to="{ path: '/router_link_JJJAAA', query: { canshu1: '我是参数111', canshu2: '我是参数222' } }">路由path
@@ -72,10 +76,7 @@ export default {
   },
   methods: {
     isShowLink(path) {
-      if (path && path.length > 0) {
-        return true
-      }
-      return false
+      return true
     },
     jumpRouter(item) {
       /* 1. 通过命名路由的方式跳转 (需要给路由起名字) 适合长路径

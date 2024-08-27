@@ -1,18 +1,14 @@
 <template>
-  <div class="main">
-    <!-- 导航啦 -->
-    <van-nav-bar
-      safe-area-inset-top
-      title="iconfont的使用"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    ></van-nav-bar>
+  <div>
+    <my-base-nav-bar title="filters" :showLeftArrow="true" :isAutoBack="true" />
 
-    <input type="text" v-model="inputValue" />
-    <!-- 转大小 + 分隔符 -->
-    <div class="show">{{ inputValue | toBigger | sep }}</div>
+    <div class="main">
+      <input type="text" v-model="inputValue" />
+      <!-- 转大小 + 分隔符 -->
+      <div class="show">{{ inputValue | toBigger | sep }}</div>
+    </div>
   </div>
+
 </template>
 
 <script>
