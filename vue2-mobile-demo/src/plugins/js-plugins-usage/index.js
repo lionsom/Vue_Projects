@@ -10,15 +10,15 @@ MyPlugin01.install = function (Vue, options) {
 
   // 2.全局指令
   Vue.directive('my-plugin01-directive', {
-    bind () {
+    bind() {
       console.log('MyPlugins01 - 指令绑定成功')
     }
   })
 
   // 3.全局混入
   Vue.mixin({
-    created () {
-      console.log('MyPlugins01 - 全局混入 - created')
+    created() {
+      // console.log('MyPlugins01 - 全局混入 - created')
     }
   })
 

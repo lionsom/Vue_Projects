@@ -2,64 +2,94 @@ const dataSource =
   [
     [
       {
-        category: '声明式导航',
-        id: 0,
-        name: '路由方式一',
-        value: '打开',
-        label: '',
-        path: '/link_query'
-      },
-      {
-        category: '声明式导航',
-        id: 1,
-        name: '路由方式一',
-        value: '打开',
-        label: '',
-        path: '/link_dynamic/我是query参数',
-      },
-    ],
-    [
-      {
-        category: '编程式导航',
-        id: 0,
-        name: 'path - query',
-        value: '打开',
-        label: '',
-        path: '/path_query'
-      },
-      {
-        category: '编程式导航',
-        id: 1,
-        name: 'path - dynamic',
-        value: '打开',
-        label: '',
-        path: '/path_dynamic/我是query参数',
-      },
-    ],
-    [
-      {
         category: '编程式导航 - name',
         id: 0,
-        name: 'name - 无参数',
-        value: '打开',
+        name: 'name',
+        value: '',
         label: '',
-        path: '/RouterTest_Name_NO_Param'
+        path: ''
       },
       {
-        category: '编程式导航',
+        category: '编程式导航 - name',
         id: 1,
-        name: 'name - query参数',
-        value: '打开',
+        name: 'name - query参数【简】',
+        value: '',
         label: '',
-        path: '/RouterTest_Name_Query',
+        path: '',
       },
       {
-        category: '编程式导航',
+        category: '编程式导航 - name',
         id: 2,
-        name: 'name - dynamic',
-        value: '打开',
+        name: 'name - query参数【完】',
+        value: '',
         label: '',
-        path: '/router_test/name/dynamic/我是query参数',
+        path: '',
+      },
+      {
+        category: '编程式导航 - name',
+        id: 3,
+        name: 'name - 动态参数【简】',
+        value: '',
+        label: '',
+        path: '',
+      },
+      {
+        category: '编程式导航 - name',
+        id: 4,
+        name: 'name - 动态参数【完】',
+        value: '',
+        label: '',
+        path: '',
+      },
+    ],
+    [
+      {
+        category: '编程式导航 - path',
+        id: 5,
+        name: 'path - 极简',
+        value: '',
+        label: '',
+        path: ''
+      },
+      {
+        category: '编程式导航 - path',
+        id: 6,
+        name: 'path',
+        value: '',
+        label: '',
+        path: ''
+      },
+      {
+        category: '编程式导航 - path',
+        id: 7,
+        name: 'path - query参数【简】',
+        value: '',
+        label: '',
+        path: '',
+      },
+      {
+        category: '编程式导航 - path',
+        id: 8,
+        name: 'path - query参数【完】',
+        value: '',
+        label: '',
+        path: '',
+      },
+      {
+        category: '编程式导航 - path',
+        id: 9,
+        name: 'path - 动态参数【简】',
+        value: '',
+        label: '',
+        path: '',
+      },
+      {
+        category: '编程式导航 - path',
+        id: 10,
+        name: 'path - 动态参数【完】',
+        value: '',
+        label: 'path与params不能配合使用',
+        path: '',
       }
     ],
   ]
