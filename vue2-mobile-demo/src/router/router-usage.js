@@ -22,6 +22,8 @@ import EnvDemo from '@/views/usage-pages/env-usage'
 import JsUsage from '@/views/usage-pages/js-usage'
 // 全局组件 - 局部组件
 import GlobalPartPage from '@/views/usage-pages/global-part-comp-usage-page'
+// Vue2.x官网demo
+import Vue2xDemos from '@/views/usage-pages/vue2.x-official-demos';
 
 export default [
   {
@@ -71,5 +73,9 @@ export default [
   {
     path: '/global-part-comp',
     component: GlobalPartPage
+  },
+  {
+    path: '/vue2.x-official-demo',
+    component: Vue2xDemos
   }
 ]

@@ -33,7 +33,6 @@ const routes = [
   // 主页面
   {
     path: '/',
-    name: HomeView,
     component: HomeView,
     children: [
       { path: 'first-view', component: FirstView },
@@ -45,7 +44,6 @@ const routes = [
   // 路由主页 - old
   {
     path: '/routerview',
-    name: RouterView,
     component: RouterView
   },
   // 404

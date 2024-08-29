@@ -15,6 +15,7 @@
       <van-grid-item icon="link-o" text="百度" url="https://www.baidu.com" />
       <van-grid-item icon="cart-circle" text="旧导航" to="/routerview" />
       <van-grid-item icon="newspaper" text="blog" url="https://linxiang.netlify.app" />
+      <van-grid-item icon="smile" text="vue2.x官网demo" to="/vue2.x-official-demo" />
     </van-grid>
 
     <van-divider>分割线</van-divider>

@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
-    <my-base-nav-bar :title="mytitle" :showLeftArrow="true" @click-right="onClickRight" />
+  <div>
+    <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="true" />
 
-    <!-- <iframe id="iframeContainer" :src="iframeUrl" frameborder="0" /> -->
+    <div class="main">
+      <iframe id="iframe-container" :src="iframeUrl" allowfullscreen frameborder="0" />
 
-    <iframe class="iframe-container" src="https://www.example.com" allowfullscreen />
-
+    </div>
   </div>
 </template>
 
@@ -14,21 +14,14 @@ import { Toast } from 'vant';
 
 export default {
   name: 'IframeContainerPage',
-  props: {
-    mytitle: {
-      type: String,
-      default: '网页'
-    },
-    iframeUrl: {
-      type: String,
-      default: ''
+  data() {
+    return {
+      mytitle: 'iframe容器',
+      iframeUrl: this.$route.query.iframeUrl,
     }
   },
   mounted() {
-    const iframe = document.getElementById('iframeContainer')
-    iframe.onload = () => {
-      iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px'
-    }
+    // console.log('AAA = ', this.$route.query.iframeUrl);
   },
   methods: {
     onClickRight() {
@@ -39,12 +32,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  // padding: 0 10px;
+.main {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  width: 90%;
+  // height: 90%;
+  min-height: 90%;
 
   .iframe-container {
-    width: 100%;
-    height: 50%;
+    background-color: antiquewhite;
+    // width: 100%;
+    // height: 100%;
+    width: 300px;
+    height: 500px;
   }
 }
 </style>
