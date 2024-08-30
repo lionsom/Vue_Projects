@@ -16,7 +16,9 @@
       <van-grid-item icon="cart-circle" text="旧导航" to="/routerview" />
       <van-grid-item icon="newspaper" text="blog" url="https://linxiang.netlify.app" />
       <van-grid-item icon="smile" text="vue2.x官网demo" to="/vue2.x-official-demo" />
-      <van-grid-item icon="smile" text="vue2黑马4小时快速入门" to="/vue2-4hours-demo" />
+      <van-grid-item icon="comment" text="vue2黑马4小时快速入门" to="/vue2-4hours-demo" />
+      <van-grid-item icon="todo-list" text="vue2黑马demo" to="/vue2-heima-demo" />
+
     </van-grid>
 
     <van-divider>分割线</van-divider>

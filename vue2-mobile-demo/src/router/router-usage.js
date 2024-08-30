@@ -83,5 +83,13 @@ export default [
   {
     path: '/vue2-4hours-demo',
     component: Vue24hoursDemos
+  },
+  {
+    path: '/vue2-heima-demo', // 黑马-vue2.x demo
+    component: () => import('@/views/usage-pages/vue2-heima-demos')
+  },
+  {
+    path: '/heima-notepad',  // 黑马-记事本
+    component: () => import('@/views/usage-pages/vue2-heima-demos/heima-notepad')
   }
 ]
