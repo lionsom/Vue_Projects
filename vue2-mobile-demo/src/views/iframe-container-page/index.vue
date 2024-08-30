@@ -2,8 +2,11 @@
   <div>
     <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="true" />
 
-    <div class="main">
-      <iframe id="iframe-container" :src="iframeUrl" allowfullscreen frameborder="0" />
+    <div class="main-content">
+      <iframe class="iframe-container" :src="iframeUrl" allowfullscreen frameborder="0" />
+
+      <!-- 测试百度 -->
+      <!-- <iframe class="iframe-container" src="https://www.baidu.com" allowfullscreen frameborder="0" /> -->
 
     </div>
   </div>
@@ -22,6 +25,7 @@ export default {
   },
   mounted() {
     // console.log('AAA = ', this.$route.query.iframeUrl);
+    // requestFullscreen()
   },
   methods: {
     onClickRight() {
@@ -32,20 +36,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  width: 90%;
-  // height: 90%;
-  min-height: 90%;
+.main-content {
+  background-color: transparent;
+  height: calc(100vh - 46px);
+  width: 100%;
 
   .iframe-container {
-    background-color: antiquewhite;
-    // width: 100%;
-    // height: 100%;
-    width: 300px;
-    height: 500px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
