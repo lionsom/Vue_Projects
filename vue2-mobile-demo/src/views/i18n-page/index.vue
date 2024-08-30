@@ -1,13 +1,15 @@
 <template>
   <div class="main">
     <!-- 导航啦 -->
-    <van-nav-bar
+    <!-- <van-nav-bar
       safe-area-inset-top
       title="切换语音"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft">
-    </van-nav-bar>
+    </van-nav-bar> -->
+
+    <my-base-nav-bar title="切换语言" :showLeftArrow="true" :isAutoBack="true" />
 
     <h1>国际化</h1>
 
@@ -26,14 +28,8 @@
 
     <button @click="showAlert">{{ $t('message.changeLang') }}</button>
 
-    <van-action-sheet
-      v-model="show"
-      :actions="actions"
-      cancel-text="取消"
-      :description="$t('message.changeLang')"
-      close-on-click-action
-      @select="onSelect"
-    />
+    <van-action-sheet v-model="show" :actions="actions" cancel-text="取消" :description="$t('message.changeLang')"
+      close-on-click-action @select="onSelect" />
   </div>
 </template>
 
@@ -43,7 +39,7 @@ import { getCurrentLocaleKey, setCurrentLocaleKey } from '@/utils/storage'
 
 export default {
   name: 'i18n-demo-view',
-  data () {
+  data() {
     return {
       mesg: '123哈哈',
       show: false,
@@ -55,28 +51,28 @@ export default {
     }
   },
   computed: {
-    test () {
+    test() {
       return this.$t('message.changeLang')
     }
   },
-  created () {
+  created() {
     this.changeActions()
   },
   methods: {
-    onClickLeft () {
+    onClickLeft() {
       this.$router.go(-1)
     },
-    showAlert () {
+    showAlert() {
       this.show = true
     },
-    onSelect (val) {
+    onSelect(val) {
       console.log(val.name)
       this.$i18n.locale = val.name
       setCurrentLocaleKey(val.name)
       this.changeActions()
     },
     // 更改数据源
-    changeActions () {
+    changeActions() {
       // 获取当前语言环境
       const curlocale = getCurrentLocaleKey()
       console.log('curlocale = ' + curlocale)
@@ -98,9 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .main {
-    background-color: antiquewhite;
+  background-color: antiquewhite;
 }
-
 </style>>

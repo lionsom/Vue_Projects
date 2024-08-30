@@ -2,14 +2,6 @@
   <div>
     <my-base-nav-bar :title="mytitle" :showLeftArrow="true" :isAutoBack="true" />
 
-    <!-- <van-cell-group> -->
-    <!-- :label="item.label" -->
-    <!-- <van-cell v-for="(item, index) in dataSource" :icon="randomImg(index)" :key="item.id"
-        :title="`${item.id}. ${item.name}`" :value="item.value" :is-link="isShowLink(item.path)" center
-        @click="jumpRouter(item)" />
-    </van-cell-group> -->
-
-    <!-- :to="subItem.path" -->
     <van-cell-group v-for="(item, section_index) in dataSource" :key="item[0].category" :title="item[0].category">
       <van-cell v-for="(subItem, row_index) in item" :key="subItem.id" :icon="randomImg(index)"
         :title="`${section_index}-${row_index}. ${subItem.name}`" :value="subItem.value"
@@ -42,10 +34,12 @@ export default {
     },
     jumpRouter(item) {
       if (item.category === 'Router') {
+        // 打开路由
         this.$router.push({
           path: item.path,
         })
       } else {
+        // 打开html文件
         this.$router.push({
           path: '/iframe-container-page',
           query: {
