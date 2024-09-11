@@ -8,7 +8,6 @@ import { RouterView } from 'vue-router'
 <template> 
   <div class="wrapper">
     <h2>我是EChart</h2>
-    
     <ol>
       <li><RouterLink to="/echart-demo/line">line 折线图</RouterLink></li>
       <li><RouterLink to="/echart-demo/bar">bar 柱状图</RouterLink></li>
