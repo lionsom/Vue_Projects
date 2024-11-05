@@ -23,7 +23,7 @@ export default {
 div {
   h1 {
     color: var(--lx-color-green);
-    background-color: $lx-error-color;
+    background-color: $lx-color-primary;
   }
 }
 </style>

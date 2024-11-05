@@ -1,9 +1,7 @@
-@import './reset.scss';
+@use './reset.scss' as *;
 
-@import './variable.scss';
-
-@import './constant.scss';
-
+// @use './variable.scss' as *;
+@use './variable';
 
 h1 {
   text-decoration: none;

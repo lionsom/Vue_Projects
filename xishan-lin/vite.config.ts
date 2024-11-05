@@ -18,7 +18,8 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         javascriptEnabled: true,
-        additionalData: '@import "./src/styles/constant.scss";',
+        silenceDeprecations: ["legacy-js-api"], // 忽略警告
+        additionalData: '@use "./src/styles/constant.scss" as *;',
       },
     },
   },
