@@ -1,7 +1,8 @@
 @use './reset.scss' as *;
 
-// @use './variable.scss' as *;
 @use './variable';
+// or
+// @use './variable.scss' as *;
 
 h1 {
   text-decoration: none;
