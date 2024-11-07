@@ -14,7 +14,10 @@ import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.mjs'
 import { ref, onMounted, watch } from 'vue';
 
 const props = defineProps({
-  
+  pdfUrl: {
+    require: true,
+    type: String
+  }
 })
 
 
