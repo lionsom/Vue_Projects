@@ -17,7 +17,8 @@ import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.min.mjs'
 let pdfDoc = reactive({}); // 保存加载的pdf文件流
 let pdfPages = ref(0); // pdf文件的页数
 // 具体路径由自身项目决定，另外这可能会涉及跨域问题可参照官网解决
-let pdfUrl = ref("./lego.pdf");
+// let pdfUrl = ref("./lego.pdf");
+let pdfUrl = ref("https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/tree/莆田林氏西山本支族谱(卷一).pdf");
 let pdfScale = ref(1.0); // 缩放比例
 
 // 调用loadFile方法
