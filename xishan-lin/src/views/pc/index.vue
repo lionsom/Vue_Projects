@@ -8,7 +8,7 @@ export default {
 
 import { ElMessage } from 'element-plus'
 // import PdfViewerAAA from '@/components/PdfViewerAAA.vue'
-import PdfViewerCCC from '@/components/PdfViewerCCC.vue'
+import PdfViewer from '@/components/PdfViewer.vue'
 
 // import pdfurl from '@/assets/lego.pdf'
 
@@ -35,8 +35,8 @@ const open4 = () => {
 
 <template>
 
-  <PdfViewerCCC style="width: 1000px; height:500px; background-color: aqua;"></PdfViewerCCC>
-
+  <!-- <PdfViewer style="width: 1000px; height:500px; background-color: aqua;"></PdfViewer> -->
+  <PdfViewer />
 
   <h1>
     我是PC端！！！
