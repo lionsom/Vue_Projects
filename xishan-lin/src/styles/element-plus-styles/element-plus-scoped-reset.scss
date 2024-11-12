@@ -1,0 +1,12 @@
+:deep(.el-header) {
+  --el-header-padding: 0px;
+  --el-header-height: var(--header-height);  // 固定高度
+}
+
+:deep(.el-main) {
+  --el-main-padding: 0px;
+}
+
+:deep(.el-footer) {
+  --el-footer-padding: 0px;
+}

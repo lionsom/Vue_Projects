@@ -7,10 +7,12 @@ const { isMobile } = useDeviceType();
 const router = useRouter()
 
 onMounted(() => {  
+  console.log('isMobile', isMobile.value)
   if (isMobile.value) {
-    router.replace('/m');
+    // router.replace('/m');
   } else {
-    router.replace('/p');
+    // router.replace('/p');
+    // console.log('pc')
   }
 })
 

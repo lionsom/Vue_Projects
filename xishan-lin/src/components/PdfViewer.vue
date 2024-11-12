@@ -13,13 +13,13 @@ import * as PDFJS from 'pdfjs-dist/legacy/build/pdf.mjs';
 import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.mjs'
 
 // 
-let pdfDoc = reactive({}); // 保存加载的pdf文件流
+let pdfDoc: any = null; // 保存加载的pdf文件流
 let pdfPages = ref(0); // pdf文件的页数
 // 具体路径由自身项目决定，另外这可能会涉及跨域问题可参照官网解决
 let pdfUrl = ref("./lego.pdf");
 // let pdfUrl = ref("https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
 
-let pdfScale = ref(1.0); // 缩放比例
+let pdfScale = ref(1.3); // 缩放比例
 
 // 调用loadFile方法
 onMounted(() => {
@@ -47,9 +47,9 @@ const loadFile = async (url: string) => {
 };
 
 const renderPage = (num: number) => {
-  pdfDoc.getPage(num).then((page) => {
+  pdfDoc.getPage(num).then((page: any) => {
     const canvasId = "pdf-canvas-" + num;
-    const canvas = document.getElementById(canvasId);
+    const canvas: any = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
     const bsr =
@@ -61,6 +61,7 @@ const renderPage = (num: number) => {
       1;
     const ratio = dpr / bsr;
     const viewport = page.getViewport({ scale: pdfScale.value });
+    debugger;
     canvas.width = viewport.width * ratio;
     canvas.height = viewport.height * ratio;
     canvas.style.width = viewport.width + "px";
@@ -100,10 +101,10 @@ const renderPage = (num: number) => {
   .pdf-canvas {
     margin: 0 auto;
     margin-bottom: 10px;
-    // width: 90%;
+    width: 90%;
 
-    width: 800px;
-    height: 900px;
+    // width: 800px;
+    // height: 900px;
   }
 }
 </style>

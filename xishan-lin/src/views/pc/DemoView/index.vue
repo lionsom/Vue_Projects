@@ -1,16 +1,11 @@
 <script lang="ts">
 export default {
-  name: 'PCIndex'
+  name: 'DemoView'
 }
 </script>
 
 <script setup lang="ts">
-
 import { ElMessage } from 'element-plus'
-// import PdfViewerAAA from '@/components/PdfViewerAAA.vue'
-import PdfViewer from '@/components/PdfViewer.vue'
-
-// import pdfurl from '@/assets/lego.pdf'
 
 const open1 = () => {
   ElMessage('This is a message.')
@@ -30,22 +25,16 @@ const open3 = () => {
 const open4 = () => {
   ElMessage.error('Oops, this is a error message.')
 }
-
 </script>
 
 <template>
-
-  <!-- <PdfViewer style="width: 1000px; height:500px; background-color: aqua;"></PdfViewer> -->
-  <PdfViewer />
-
   <h1>
-    我是PC端！！！
+    我是PC端.....
   </h1>
 
-  <div>
-    我是PC端
-  </div>
-
+  <!-- @element-plus/icons-vue -->
+  <Share />
+  
   <div class="mb-4">
     <el-button>Default</el-button>
     <el-button type="primary">Primary</el-button>

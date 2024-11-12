@@ -8,3 +8,7 @@ h1 {
   text-decoration: none;
   background-color: green;
 }
+
+html.dark {
+  --lx-color-green: #000;
+}
