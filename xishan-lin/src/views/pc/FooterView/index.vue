@@ -10,7 +10,7 @@ export default {
 
 <template>
   <div class="footer">
-    <img src="@/assets/logo.svg" alt="">
+    <img src="@/assets/images/common/logo.svg" alt="">
   </div>
 </template>
 

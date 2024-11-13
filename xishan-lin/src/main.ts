@@ -1,4 +1,4 @@
-import './assets/main.css'
+import '@/assets/styles/index.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -6,13 +6,12 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-import '@/styles/index.scss'
-
 // element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // @element-plus/icons-vue
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 
 const app = createApp(App)
 

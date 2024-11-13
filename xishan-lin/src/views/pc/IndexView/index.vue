@@ -8,6 +8,7 @@ export default {
 //
 import HeaderView from '@/views/pc/HeaderView/index.vue'
 import FooterView from '@/views/pc/FooterView/index.vue'
+import MainView from '@/views/pc/MainView/MainView.vue'
 //
 import { ElMessage } from 'element-plus'
 // 
@@ -18,30 +19,55 @@ const router = useRouter()
 </script>
 
 <template>
+
   <el-container>
+    <!-- header -->
     <el-header>
-      <header-view />
+      <header-view class="header-cls" />
     </el-header>
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main
-        
-        <div class="aa" :style="{ width: '100px', height: '1000px', background: 'red' }">
-          as
-        </div>
-        
-      </el-main>
-    </el-container>
-    <el-footer>Footer
-      <footer-view />
-    </el-footer>
+
+    <!-- main -->
+    <el-scrollbar max-height="calc(100vh - var(--header-height))">
+      <!-- 回到顶部 -->
+      <el-backtop target=".el-scrollbar__wrap" :right="50" :bottom="50" />
+      
+      <!-- main-center -->
+      <el-container class="main-center-cls">
+        <!-- <el-aside width="200px">Aside</el-aside> -->
+        <el-main>
+          <!-- 跑马灯 -->
+          <MainView />
+          
+          <div class="aa" :style="{ width: '100px', height: '1500px', background: 'red' }">
+            as
+          </div>
+        </el-main>
+      </el-container>
+      
+      <!-- footer -->
+      <el-footer>
+        <footer-view />
+      </el-footer>
+    </el-scrollbar>
   </el-container>
 
-  <el-backtop :right="100" :bottom="100" />
 </template>
 
 <style scoped lang="scss">
-@use '@/styles/element-plus-styles/element-plus-scoped-reset.scss';
+@use '@/assets/styles/element-plus-styles/element-plus-scoped-reset.scss';
+@use '@/assets/styles/element-plus-styles/el-backtop-scoped.scss'
 </style>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.header-cls {
+  position: fixed;
+  height: var(--header-height);
+}
+
+// 版心
+.main-center-cls {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: aliceblue;
+}
+</style>

@@ -11,7 +11,7 @@ alert(isMobile.value);
 
 <template>
   <header>
-    <img v-if="!isMobile" alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img v-if="!isMobile" alt="Vue logo" class="logo" src="@/assets/images/common/logo.svg" width="125" height="125" />
 
     <img v-else alt="Vue logo" class="logo"
       src="https://raw.githubusercontent.com/lionsom/imagesRepo/hexo/hexo-common-img/202408071108953.webp" width="125"

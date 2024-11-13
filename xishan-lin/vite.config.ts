@@ -19,7 +19,7 @@ export default defineConfig({
       scss: {
         javascriptEnabled: true,
         silenceDeprecations: ["legacy-js-api"], // 忽略警告
-        additionalData: '@use "./src/styles/constant.scss" as *;',
+        additionalData: '@use "./src/assets/styles/constant.scss" as *;',
       },
     },
   },

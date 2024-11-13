@@ -13,7 +13,7 @@ const { count, inc, dec } = useCounter()
 
 <template>
   <div>
-    <img src="./logo.svg" />
+    <img src="@/assets/images/common/logo.svg" />
     <h1>Hello <a href='https://github.com/vuejs/vite' target='__blank'>Vite</a> and <a
         href='https://github.com/vueuse/vueuse' target='__blank'>VueUse</a>!</h1>
 
