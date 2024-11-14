@@ -5,17 +5,17 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
+// hooks
+import useHooks from './hooks/useHooks'
+// language
+import useLanguage from '@/language/hooks/useLanguage';
+//
+const { handleDropdownCommand, changeTheme } = useHooks();
+const { currentLocale } = useLanguage()
 
 const switchValue = ref(true)
-
-// const currentIndex = ref(0); // 当前预览的图片索引
-// const visible = ref(true); // 控制图片预览框的显示
-
-// const images = [AA];
-// const images = ref<string[]>([]);
-// images.value.push('@/assets/images/common/avatar.jpeg');
 
 const srcList = [
   'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
@@ -27,13 +27,15 @@ const srcList = [
   'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
 ]
 
-const changeLang = () => {
+const currentLanguageName = ref('中文')
+watch(currentLocale, (newValue: any) => {
+  newValue === 'zh' ? currentLanguageName.value = '中文' : currentLanguageName.value = 'English'
+})
+
+onMounted(() => {
   //
-  ElMessage({
-    message: '切换语言',
-    type: 'success',
-  })
-}
+  console.log('currentIndex', currentLocale.value);
+})
 
 const showBook = () => {
   //
@@ -47,6 +49,7 @@ const avatarClick = () => {
 
 }
 
+
 </script>
 
 <template>
@@ -54,51 +57,73 @@ const avatarClick = () => {
     <div class="left-view">
       <img src="@/assets/images/common/logo.svg" alt="">
       <div class="title">
-        西山
+        {{ $t('title') }}
       </div>
     </div>
     <div class="right-view">
 
-      <el-dropdown>
+      <!-- <el-button @click="showBook" link>书籍</el-button> -->
+
+
+      <el-dropdown class="el-dropdown-cls" @command="handleDropdownCommand">
         <span class="el-dropdown-link">
-          Dropdown List
+          <!-- {{ $t('common.changeLanguage') }} -->
+          {{ currentLanguageName }}
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="日月">Action 1</el-dropdown-item>
-            <el-dropdown-item command="e">Action 2</el-dropdown-item>
-            <el-dropdown-item command="e">Action 3</el-dropdown-item>
+            <el-dropdown-item command="zh">AAA</el-dropdown-item>
+            <el-dropdown-item command="en">BBB</el-dropdown-item>
+            <el-dropdown-item command="ja">日本語</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+      
+
+      <el-switch v-model="switchValue" @change="changeTheme">
+        <template #active-action>
+          <span>T</span>
+        </template>
+        <template #inactive-action>
+          <span>F</span>
+        </template>
+      </el-switch>
+
+      <!-- language -->
+      <el-dropdown class="el-dropdown-cls" @command="handleDropdownCommand">
+        <span class="el-dropdown-link">
+          <!-- {{ $t('common.changeLanguage') }} -->
+          {{ currentLanguageName }}
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="zh">中文</el-dropdown-item>
+            <el-dropdown-item command="en">English</el-dropdown-item>
+            <el-dropdown-item command="ja">日本語</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
 
-      <el-button @click="showBook" link>书籍</el-button>
-      <el-button @click="changeLang" link>切换语音</el-button>
-      <el-switch v-model="switchValue">
-        <template #active-action>
-          <span class="custom-active-action">T</span>
-        </template>
-        <template #inactive-action>
-          <span class="custom-inactive-action">F</span>
-        </template>
-      </el-switch>
-
       <!-- avatar -->
       <el-image class="avatar-cls" :src="srcList[0]" :zoom-rate="1.2" :max-scale="7" :min-scale="0.2"
-        :preview-src-list="srcList" :initial-index="4" z-index="9999" preview-teleported="true" fit="cover" @click="avatarClick" circle />
+        :preview-src-list="srcList" :initial-index="4" :z-index=9999 :preview-teleported=true fit="cover"
+        @click="avatarClick" circle />
 
     </div>
   </div>
-
-
-  <!-- <el-image-viewer /> -->
-
-
 </template>
 
+<style scoped lang="scss">
+@use '@/assets/styles/element-plus-styles/el-button-scoped.scss';
+@use '@/assets/styles/element-plus-styles/el-dropdown-scoped.scss';
+@use '@/assets/styles/element-plus-styles/el-switch-scoped.scss';
+</style>
 
 <style scoped lang="scss">
 :deep(.el-button) {
@@ -118,8 +143,7 @@ const avatarClick = () => {
 
   .left-view {
     display: flex;
-    // justify-content: left;
-    width: 200px;
+    margin-left: 10px;
 
     img {
       height: 80%;
@@ -143,6 +167,36 @@ const avatarClick = () => {
     justify-content: right;
     align-items: center; // 垂直居中
     gap: 15px;
+
+    .el-dropdown-cls {
+      :hover {
+        cursor: pointer;
+      }
+
+      height: 100%;
+
+      .el-dropdown-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-weight: 600;
+
+        .el-icon--right {
+          margin-left: 5px;
+        }
+
+        .el-icon {
+          height: 16px;
+          width: 16px;
+          line-height: 100%;
+
+          svg {
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
 
     .avatar-cls {
       width: 40px;

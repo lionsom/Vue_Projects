@@ -6,6 +6,9 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+// 国际化
+import myI18n from './language'
+
 // element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -23,5 +26,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(ElementPlus)
 app.use(createPinia())
 app.use(router)
+app.use(myI18n)
 
 app.mount('#app')

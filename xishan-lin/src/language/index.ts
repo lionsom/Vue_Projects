@@ -1,12 +1,12 @@
 // 初始化i18n
 import { createI18n } from 'vue-i18n'
 import zh from './locales/zh'
-import ja from './locales/en'
+import en from './locales/en'
 
 // 引入的不同语言文件
 const messages = {
   'zh': zh,
-  'ja': ja,
+  'en': en,
 }
 
 // 

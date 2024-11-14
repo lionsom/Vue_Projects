@@ -9,14 +9,14 @@ export default function useLanguage() {
 
   // 语言切换
   const changeLanguage = (language: string) => {
-    // 检查 language 是否为 "zh" 或 "ja"
-    if (language === "zh" || language === "ja") {
+    // 检查 language 是否为 "zh" 或 "en"
+    if (language === "zh" || language === "en") {
       myI18n.global.locale.value = language;
-      document.title = translate('common.documentTitle') || '調査報告書の内容';
+      document.title = translate('title') || '西山123';
     } else {
       myI18n.global.locale.value = 'zh';
       console.error("Invalid language value:", language);
-      document.title = translate('common.documentTitle') || '查勘报告详情';
+      document.title = translate('title') || '西山123';
     }
   }
 

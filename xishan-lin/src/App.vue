@@ -16,6 +16,22 @@ onMounted(() => {
   }
 })
 
+
+const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
+themeMedia.addListener(e => {
+  if (e.matches) {
+    console.log("light");
+  } else {
+    console.log("dark");
+  }
+});
+
+// 监听页面变化缩放
+window.addEventListener('prefers-color-scheme', (e) => {
+  console.log('prefers-color-scheme', e);
+});
+
+
 </script>
 
 <template>

@@ -1,0 +1,19 @@
+:deep(.el-switch__core) {
+  background-color: #FFF;
+  border-color: #FFF;
+}
+
+:deep(.el-switch__core .el-switch__action) {
+  color: red;
+  background-color: aqua;
+}
+
+:deep(.el-switch.is-checked .el-switch__core .el-switch__action) {
+  color: lightgray;
+  background-color: gray;
+}
+
+:deep(.el-switch.is-checked .el-switch__core) {
+  background-color: gainsboro;
+  border-color: gainsboro;
+}
