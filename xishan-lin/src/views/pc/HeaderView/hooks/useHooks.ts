@@ -1,13 +1,18 @@
 import { onMounted } from "vue";
-import { ElNotification } from 'element-plus'
+import { ElNotification, ElMessage } from 'element-plus'
 // i18n
 import useLanguage from '@/language/hooks/useLanguage';
 import { useThemeStore } from "@/stores/themeStore";
+// router
+import { useRouter } from 'vue-router'
+
 //
 const { changeLanguage } = useLanguage()
 const { theme } = useThemeStore()
-export default function useHooks() {
+// router
+const router = useRouter()
 
+export default function useHooks() {
   onMounted(() => {
     console.log('useHooks')
   })
@@ -17,8 +22,8 @@ export default function useHooks() {
     switch (command) {
       case 'zh':
         changeLanguage('zh');
-        ElNotification({
-          title: '切换为中文! Success!!!',
+        ElMessage({
+          message: '切换为中文! Success!!!》',
           type: 'success',
           offset: 50,
           duration: 1500,
@@ -26,8 +31,8 @@ export default function useHooks() {
         break;
       case 'en':
         changeLanguage('en');
-        ElNotification({
-          title: 'Switch to English. Success!!!',
+        ElMessage({
+          message: 'Switch to English. Success!!!',
           type: 'success',
           offset: 50,
           duration: 1500,
@@ -46,13 +51,40 @@ export default function useHooks() {
     }
   }
 
+  const handleChangeLanguage = (isZh: boolean) => {
+    if (isZh) {
+      changeLanguage('zh');
+      ElMessage({
+        message: '切换为中文! Success!!!》',
+        type: 'success',
+        offset: 50,
+        duration: 1500,
+      })
+    } else {
+      changeLanguage('en');
+      ElMessage({
+        message: 'Switch to English. Success!!!',
+        type: 'success',
+        offset: 50,
+        duration: 1500,
+      })
+    }
+  }
+
   const changeTheme = (e: any) => {
     console.log('changeTheme', e);
-    
+
   }
-  
+
+  const openPDFViewr = (command: string) => {
+    console.log(command);
+    router.push('/pdfview')
+  }
+
   return {
     handleDropdownCommand,
-    changeTheme
+    handleChangeLanguage,
+    changeTheme,
+    openPDFViewr
   }
 }

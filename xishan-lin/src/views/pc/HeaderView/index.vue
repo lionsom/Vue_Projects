@@ -12,7 +12,7 @@ import useHooks from './hooks/useHooks'
 // language
 import useLanguage from '@/language/hooks/useLanguage';
 //
-const { handleDropdownCommand, changeTheme } = useHooks();
+const { handleDropdownCommand, handleChangeLanguage, changeTheme, openPDFViewr } = useHooks();
 const { currentLocale } = useLanguage()
 
 const switchValue = ref(true)
@@ -29,7 +29,8 @@ const srcList = [
 
 const currentLanguageName = ref('中文')
 watch(currentLocale, (newValue: any) => {
-  newValue === 'zh' ? currentLanguageName.value = '中文' : currentLanguageName.value = 'English'
+  newValue === 'zh' ? currentLanguageName.value = '中文' : currentLanguageName.value = 'English';
+  newValue === 'zh' ? switchValue.value = true : switchValue.value = false;
 })
 
 onMounted(() => {
@@ -37,10 +38,9 @@ onMounted(() => {
   console.log('currentIndex', currentLocale.value);
 })
 
-const showBook = () => {
-  //
+const showLinks = () => {
   ElMessage({
-    message: '《书籍》',
+    message: '跳转链接',
     type: 'success',
   })
 }
@@ -62,12 +62,29 @@ const avatarClick = () => {
     </div>
     <div class="right-view">
 
-      <!-- <el-button @click="showBook" link>书籍</el-button> -->
+      <el-button @click="showLinks" link>链接</el-button>
 
+      <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
+        <span class="el-dropdown-link">
+          {{  $t('navi.books') }}
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="一">《第一卷》</el-dropdown-item>
+            <el-dropdown-item command="二">《第二卷》</el-dropdown-item>
+            <el-dropdown-item command="三">《第三卷》</el-dropdown-item>
+            <el-dropdown-item command="四">《第四卷》</el-dropdown-item>
+            <el-dropdown-item command="五">《全卷》</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
 
+      <!-- 主题色 -->
       <el-dropdown class="el-dropdown-cls" @command="handleDropdownCommand">
         <span class="el-dropdown-link">
-          <!-- {{ $t('common.changeLanguage') }} -->
           {{ currentLanguageName }}
           <el-icon class="el-icon--right">
             <arrow-down />
@@ -75,24 +92,24 @@ const avatarClick = () => {
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="zh">AAA</el-dropdown-item>
-            <el-dropdown-item command="en">BBB</el-dropdown-item>
-            <el-dropdown-item command="ja">日本語</el-dropdown-item>
+            <el-dropdown-item command="light">白天模式</el-dropdown-item>
+            <el-dropdown-item command="night">夜晚模式</el-dropdown-item>
+            <el-dropdown-item command="system">跟随系统</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
       
-
-      <el-switch v-model="switchValue" @change="changeTheme">
+      <!-- language 方式一 -->
+      <el-switch v-model="switchValue" @change="handleChangeLanguage">
         <template #active-action>
-          <span>T</span>
+          <span>中</span>
         </template>
         <template #inactive-action>
-          <span>F</span>
+          <span>En</span>
         </template>
       </el-switch>
 
-      <!-- language -->
+      <!-- language 方式二 -->
       <el-dropdown class="el-dropdown-cls" @command="handleDropdownCommand">
         <span class="el-dropdown-link">
           <!-- {{ $t('common.changeLanguage') }} -->
