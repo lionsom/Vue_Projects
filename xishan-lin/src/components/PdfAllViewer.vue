@@ -1,13 +1,12 @@
 
 <script lang="ts">
 export default {
-  name: 'PdfViewerAll'
+  name: 'PdfAllViewer'
 }
 </script>
 
 <script setup lang="ts">
-
-import { ref, reactive, onMounted, nextTick } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 // pdfjs-dist
 import * as PDFJS from 'pdfjs-dist/legacy/build/pdf.mjs';
 import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.mjs'
@@ -61,7 +60,6 @@ const renderPage = (num: number) => {
       1;
     const ratio = dpr / bsr;
     const viewport = page.getViewport({ scale: pdfScale.value });
-    debugger;
     canvas.width = viewport.width * ratio;
     canvas.height = viewport.height * ratio;
     canvas.style.width = viewport.width + "px";
@@ -79,12 +77,10 @@ const renderPage = (num: number) => {
   });
 };
 
-
-
 </script>
 
 <template>
-  我是AAA
+  我是全卷
   <div class="interviewVideo_main" id="videoContainer">
     <!-- 此处根据pdf的页数动态生成相应数量的canvas画布 -->
     <canvas v-for="pageIndex in pdfPages" class="pdf-canvas" :id="`pdf-canvas-` + pageIndex" :key="pageIndex"
@@ -96,7 +92,7 @@ const renderPage = (num: number) => {
 #videoContainer {
   padding-top: 10px;
   padding-bottom: 1px;
-  background-color: goldenrod;
+  background-color: red;
   width: 100%;
 
   .pdf-canvas {

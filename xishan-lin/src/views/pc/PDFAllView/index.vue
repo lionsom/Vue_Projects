@@ -1,15 +1,15 @@
 <script lang="ts">
 export default {
-  name: 'PDFView'
+  name: 'PDFAllView'
 }
 </script>
 
 <script setup lang="ts">
-import PdfViewer from '@/components/PdfViewer.vue'
+import PdfAllViewer from '@/components/PdfAllViewer.vue'
 </script>
 
 <template>
-  <PdfViewer />
+  <PdfAllViewer />
 </template>
 
 

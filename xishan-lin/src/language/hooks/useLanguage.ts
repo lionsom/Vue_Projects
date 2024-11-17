@@ -16,7 +16,7 @@ export default function useLanguage() {
     } else {
       myI18n.global.locale.value = 'zh';
       console.error("Invalid language value:", language);
-      document.title = translate('title') || '西山123';
+      document.title = translate('title') ?? '西山123';
     }
   }
 

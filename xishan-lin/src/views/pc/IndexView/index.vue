@@ -15,6 +15,8 @@ import { ElMessage } from 'element-plus'
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
+console.log('index : ', route, router);
+
 
 </script>
 

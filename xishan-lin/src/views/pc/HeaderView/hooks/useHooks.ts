@@ -1,16 +1,11 @@
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
 import { ElNotification, ElMessage } from 'element-plus'
 // i18n
-import useLanguage from '@/language/hooks/useLanguage';
-import { useThemeStore } from "@/stores/themeStore";
-// router
-import { useRouter } from 'vue-router'
-
+import useLanguage from '@/language/hooks/useLanguage'
+import { useThemeStore } from '@/stores/themeStore'
 //
 const { changeLanguage } = useLanguage()
 const { theme } = useThemeStore()
-// router
-const router = useRouter()
 
 export default function useHooks() {
   onMounted(() => {
@@ -18,73 +13,66 @@ export default function useHooks() {
   })
 
   const handleDropdownCommand = (command: string | number | object) => {
-    console.log(command);
+    console.log(command)
     switch (command) {
       case 'zh':
-        changeLanguage('zh');
+        changeLanguage('zh')
         ElMessage({
           message: '切换为中文! Success!!!》',
           type: 'success',
           offset: 50,
-          duration: 1500,
+          duration: 1500
         })
-        break;
+        break
       case 'en':
-        changeLanguage('en');
+        changeLanguage('en')
         ElMessage({
           message: 'Switch to English. Success!!!',
           type: 'success',
           offset: 50,
-          duration: 1500,
+          duration: 1500
         })
-        break;
+        break
       case 'ja':
         ElNotification({
           title: '暂不支持',
           type: 'warning',
           offset: 50,
-          duration: 1500,
+          duration: 1500
         })
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 
   const handleChangeLanguage = (isZh: boolean) => {
     if (isZh) {
-      changeLanguage('zh');
+      changeLanguage('zh')
       ElMessage({
         message: '切换为中文! Success!!!》',
         type: 'success',
         offset: 50,
-        duration: 1500,
+        duration: 1500
       })
     } else {
-      changeLanguage('en');
+      changeLanguage('en')
       ElMessage({
         message: 'Switch to English. Success!!!',
         type: 'success',
         offset: 50,
-        duration: 1500,
+        duration: 1500
       })
     }
   }
 
   const changeTheme = (e: any) => {
-    console.log('changeTheme', e);
-
-  }
-
-  const openPDFViewr = (command: string) => {
-    console.log(command);
-    router.push('/pdfview')
+    console.log('changeTheme', e)
   }
 
   return {
     handleDropdownCommand,
     handleChangeLanguage,
-    changeTheme,
-    openPDFViewr
+    changeTheme
   }
 }

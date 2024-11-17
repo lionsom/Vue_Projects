@@ -7,13 +7,19 @@ export default {
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
+// router
+import { useRoute, useRouter } from 'vue-router'
 // hooks
 import useHooks from './hooks/useHooks'
 // language
 import useLanguage from '@/language/hooks/useLanguage';
 //
-const { handleDropdownCommand, handleChangeLanguage, changeTheme, openPDFViewr } = useHooks();
+const { handleDropdownCommand, handleChangeLanguage, changeTheme } = useHooks();
 const { currentLocale } = useLanguage()
+
+// router
+const router = useRouter()
+const route = useRoute()
 
 const switchValue = ref(true)
 
@@ -49,6 +55,15 @@ const avatarClick = () => {
 
 }
 
+const openPDFViewr = (command: string) => {
+  console.log(command);
+  console.log(route, router);
+  if (command === '五') {
+    router.push('/pdf-all-view');
+  } else {
+    router.push('/pdf-once-view');
+  }
+}
 
 </script>
 
@@ -66,7 +81,7 @@ const avatarClick = () => {
 
       <el-dropdown class="el-dropdown-cls" @command="openPDFViewr">
         <span class="el-dropdown-link">
-          {{  $t('navi.books') }}
+          {{ $t('navi.books') }}
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>
@@ -98,7 +113,7 @@ const avatarClick = () => {
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      
+
       <!-- language 方式一 -->
       <el-switch v-model="switchValue" @change="handleChangeLanguage">
         <template #active-action>

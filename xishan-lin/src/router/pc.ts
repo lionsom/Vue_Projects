@@ -15,9 +15,14 @@ const pc = [
 		component: () => import('@/views/pc/DemoView/vueuse-demo.vue')
   },
   {
-    path: '/pdfview',
-    name: 'pdfview',
-		component: () => import('@/views/pc/PDFView/index.vue')
+    path: '/pdf-once-view',
+    name: 'pdf-once-view',
+		component: () => import('@/views/pc/PDFOnceView/index.vue')
+  },
+  {
+    path: '/pdf-all-view',
+    name: 'pdf-all-view',
+		component: () => import('@/views/pc/PDFAllView/index.vue')
   }
 ]
 
