@@ -5,7 +5,6 @@ import useLanguage from '@/language/hooks/useLanguage'
 import { useThemeStore } from '@/stores/themeStore'
 //
 const { changeLanguage } = useLanguage()
-const { theme } = useThemeStore()
 
 export default function useHooks() {
   onMounted(() => {
