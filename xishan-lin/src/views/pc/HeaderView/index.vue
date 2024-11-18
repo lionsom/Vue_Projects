@@ -60,6 +60,12 @@ const openPDFViewr = (command: string) => {
   console.log(route, router);
   if (command === '五') {
     router.push('/pdf-all-view');
+  } else if (command === '六') {
+    // 打开本地PDF样本
+    window.open("/pdfjs-4.8.69-dist/web/viewer.html");
+  } else if (command === '七') {
+    // 打开远程PDF样本
+    window.open("/pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
   } else {
     router.push('/pdf-once-view');
   }
@@ -93,6 +99,8 @@ const openPDFViewr = (command: string) => {
             <el-dropdown-item command="三">《第三卷》</el-dropdown-item>
             <el-dropdown-item command="四">《第四卷》</el-dropdown-item>
             <el-dropdown-item command="五">《全卷》</el-dropdown-item>
+            <el-dropdown-item command="六">《全卷》本地</el-dropdown-item>
+            <el-dropdown-item command="七">《全卷》远程</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

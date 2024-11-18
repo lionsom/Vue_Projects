@@ -12,7 +12,7 @@ import * as PDFJS from 'pdfjs-dist/legacy/build/pdf.mjs'
 import * as PdfWorker from 'pdfjs-dist/legacy/build/pdf.worker.mjs'
 
 //-----------
-const currentPage3 = ref(5)
+const currentPage3 = ref(1)
 const pageSize3 = ref(100)
 const size = ref<ComponentSize>('default')
 const background = ref(false)
@@ -30,8 +30,8 @@ const handleCurrentChange = (val: number) => {
 let pdfDoc: any = null // 保存加载的pdf文件流
 let pdfPages = ref(0) // pdf文件的页数
 // 具体路径由自身项目决定，另外这可能会涉及跨域问题可参照官网解决
-let pdfUrl = ref('./lego.pdf')
-// let pdfUrl = ref("https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
+// let pdfUrl = ref('./lego.pdf')
+let pdfUrl = ref("https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
 
 let pdfScale = ref(1.3) // 缩放比例
 
@@ -50,47 +50,52 @@ const loadFile = async (url: string) => {
   PDFJS.GlobalWorkerOptions.workerSrc = JSON.stringify(PdfWorker) // 字符串类型，否则报错！！
 
   const loadingTask = PDFJS.getDocument(url)
-  loadingTask.promise.then((pdf: any) => {
-    console.log(pdf)
-    pdfDoc = pdf // 获取pdf文档流
-    pdfPages.value = pdf.numPages // 获取pdf文件的页数
-    nextTick(() => {
-      renderPage(1)
+  loadingTask.promise
+    .then((pdf: any) => {
+      pdf.loadingParams.disableAutoFetch = true;
+      pdf.loadingParams.disableStream = true;
+      pdfDoc = pdf // 获取pdf文档流
+      pdfPages.value = pdf.numPages // 获取pdf文件的总页数
+      console.log('pdfPages = ', pdfPages.value);
+      nextTick(() => {
+        renderPage(1)
+      })
     })
-  })
+    .catch((error: any) => {
+      console.warn(`[upthen] pdfReader loadFile error: ${error}`);
+    });
 }
 
-const renderPage = (num: number) => {
+const renderPage = (num: any) => {
   pdfDoc.getPage(num).then((page: any) => {
-    const canvasId = 'pdf-canvas-' + num
-    const canvas: any = document.getElementById(canvasId)
-    const ctx = canvas.getContext('2d')
-    const dpr = window.devicePixelRatio || 1
-    const bsr =
-      ctx.webkitBackingStorePixelRatio ||
-      ctx.mozBackingStorePixelRatio ||
-      ctx.msBackingStorePixelRatio ||
-      ctx.oBackingStorePixelRatio ||
-      ctx.backingStorePixelRatio ||
-      1
-    const ratio = dpr / bsr
-    const viewport = page.getViewport({ scale: pdfScale.value })
-    canvas.width = viewport.width * ratio
-    canvas.height = viewport.height * ratio
-    canvas.style.width = viewport.width + 'px'
-    canvas.style.height = viewport.height + 'px'
-    canvas.style.backgroundColor = 'red'
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
-    const renderContext = {
-      canvasContext: ctx,
-      viewport: viewport
+    page.cleanup();
+    const canvas: any = document.getElementById(`pdf-canvas`);
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      const dpr = window.devicePixelRatio || 1;
+      const bsr =
+        ctx.webkitBackingStorePixelRatio ||
+        ctx.mozBackingStorePixelRatio ||
+        ctx.msBackingStorePixelRatio ||
+        ctx.oBackingStorePixelRatio ||
+        ctx.backingStorePixelRatio ||
+        1;
+      const ratio = dpr / bsr;
+      const viewport = page.getViewport({ scale: pdfScale.value });
+      canvas.width = viewport.width * ratio;
+      canvas.height = viewport.height * ratio;
+      canvas.style.width = viewport.width + "px";
+      canvas.style.height = viewport.height + "px";
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport,
+      };
+      page.render(renderContext);
     }
-    page.render(renderContext)
-    // if (num < pdfPages.value) {
-    //   renderPage(num + 1)
-    // }
-  })
-}
+  });
+};
+
 </script>
 
 <template>
@@ -102,30 +107,15 @@ const renderPage = (num: number) => {
   </div>
 
   <el-scrollbar class="container-main">
-    <div class="interviewVideo_main" id="videoContainer">
-      <!-- 此处根据pdf的页数动态生成相应数量的canvas画布 -->
-      <canvas
-        v-for="pageIndex in pdfPages"
-        class="pdf-canvas"
-        :id="`pdf-canvas-` + pageIndex"
-        :key="pageIndex"
-        style="display: block"
-      ></canvas>
+    <div class="main-center">
+      <canvas id="pdf-canvas"></canvas>
     </div>
   </el-scrollbar>
 
   <div class="bottom-container">
-    <el-pagination
-      v-model:current-page="currentPage3"
-      v-model:page-size="pageSize3"
-      :size="size"
-      :disabled="disabled"
-      :background="background"
-      layout="prev, pager, next, jumper"
-      :total="1000"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
+    <el-pagination v-model:current-page="currentPage3" v-model:page-size="pageSize3" :size="size" :disabled="disabled"
+      :background="background" layout="prev, pager, next, jumper" :total="pdfPages" @size-change="handleSizeChange"
+      @current-change="handleCurrentChange" />
   </div>
 </template>
 
@@ -136,21 +126,20 @@ const renderPage = (num: number) => {
 
 .container-main {
   height: calc(100vh - 100px);
-  #videoContainer {
-    padding-top: 10px;
-    padding-bottom: 1px;
-    background-color: goldenrod;
-    width: 100%;
+  background-color: goldenrod;
+  width: 100%;
+
+  .main-center {
+    margin: 0 auto;
+    width: auto;
 
     .pdf-canvas {
       margin: 0 auto;
+      margin-top: 10px;
       margin-bottom: 10px;
-      width: 90%;
-
+      width: 60%;
+      left: 200px;
       background-color: aqua;
-
-      // width: 800px;
-      // height: 900px;
     }
   }
 }
