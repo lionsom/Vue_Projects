@@ -13,6 +13,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  // 配置服务器路径
+  base: '/xishan/',
   // scss 全局变量的配置
   css: {
     preprocessorOptions: {
