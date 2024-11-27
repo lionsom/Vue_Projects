@@ -15,6 +15,8 @@ import 'element-plus/dist/index.css'
 // @element-plus/icons-vue
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+// import { loadEnv } from 'vite';
+
 
 const app = createApp(App)
 
@@ -22,6 +24,13 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
+
+console.log('import.meta.env =', import.meta.env);
+console.log('import.meta.env.BASE_URL =', import.meta.env.BASE_URL);
+console.log('VITE_BASE_API_URL =', import.meta.env.VITE_BASE_API_URL);
+console.log('process.env.NODE_ENV =', import.meta.env.MODE);
+
 
 app.use(ElementPlus)
 app.use(createPinia())

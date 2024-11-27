@@ -45,10 +45,7 @@ onMounted(() => {
 })
 
 const showLinks = () => {
-  ElMessage({
-    message: '跳转链接',
-    type: 'success',
-  })
+  router.push('/demo')
 }
 
 const avatarClick = () => {
@@ -62,10 +59,11 @@ const openPDFViewr = (command: string) => {
     router.push('/pdf-all-view');
   } else if (command === '六') {
     // 打开本地PDF样本
-    window.open("/pdfjs-4.8.69-dist/web/viewer.html");
+    // window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html");
+    window.open(import.meta.env.BASE_URL + "pdfjs-4.8.69-dist/web/viewer.html");
   } else if (command === '七') {
     // 打开远程PDF样本
-    window.open("/pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
+    window.open(import.meta.env.VITE_BASE_API_URL + "pdfjs-4.8.69-dist/web/viewer.html?file=https://raw.githubusercontent.com/lionsom/imagesRepo/xishanlin/genealogy/莆田林氏西山本支族谱(卷一).pdf");
   } else {
     router.push('/pdf-once-view');
   }
