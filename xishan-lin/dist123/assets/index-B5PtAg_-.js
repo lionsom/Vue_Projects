@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{g as o,f as n}from"./index-DG13FsbX.js";const t={name:"MobileIndex"};function r(c,s,a,i,p,_){return n(),o("div",null," 我是Mobile端 ")}const u=e(t,[["render",r]]);export{u as default};
