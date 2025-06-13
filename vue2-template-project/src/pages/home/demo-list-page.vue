@@ -1,7 +1,6 @@
 <template>
   <div class="home-page">
-    <h1>欢迎来到主页</h1>
-    <p>这是一个使用 Vue2 + TypeScript + SCSS 构建的示例主页。</p>
+    <h1>欢迎来到demoslist</h1>
   </div>
 </template>
 

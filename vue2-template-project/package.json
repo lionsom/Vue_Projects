@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
+    "serve:pre": "vue-cli-service serve --mode pre --open",
+    "serve:test": "vue-cli-service serve --mode test --open",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "server-express": "npx nodemon ./server/index.js",
+    "server-http-server": "npx http-server ./server/database",
+    "server-json-server": "json-server --watch ./server/database/db.json"
   },
   "dependencies": {
+    "axios": "^1.6.0",
     "core-js": "^3.8.3",
+    "echarts": "^5.4.3",
+    "element-ui": "^2.15.14",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
     "vue": "^2.6.14",
-    "vue-router": "3",
-    "vuex": "3"
+    "vue-i18n": "^8.28.2",
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -21,6 +33,10 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "mockjs": "^1.1.0",
+    "nodemon": "^3.0.1",
+    "sass": "^1.69.5",
+    "sass-loader": "^12.6.0",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
