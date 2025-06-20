@@ -6,7 +6,7 @@ import '@/assets/css/common.scss'
 // 导入 mock 文件
 import './my-http/mock/mock';
 // 
-import '@/utils/import-element-ui.js'
+import 'src/utils/import-element-ui.js'
 
 
 Vue.config.productionTip = true
