@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts"> 
-import HeaderView from '@/views/modules/layouts/HeaderView.vue'
-import FooterView from './views/modules/layouts/FooterView.vue';
+import HeaderView from '@/views/layouts/HeaderView.vue'
+import FooterView from '@/views/layouts/FooterView.vue';
 
 export default {
   name: 'App',
