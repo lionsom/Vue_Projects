@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "serve:pre": "vue-cli-service serve --mode pre --open",
-    "serve:test": "vue-cli-service serve --mode test --open",
+    "serve": "vue-cli-service serve",
+    "serve:pre": "vue-cli-service serve --mode pre",
+    "serve:test": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "server-express": "npx nodemon ./server/index.js",

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// routes
+import routerMyVerification from './router-my-verification'
 import RouterVue2Demos from './router-vue2-demos'
 
 Vue.use(VueRouter)
@@ -9,22 +10,24 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import('@/views/modules/homes/home-page.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: 'demos-home',
+    name: 'demos',
+    component: () => import('@/views/modules/homes/demo-list-page.vue')
+  },
+  // NotFound
+  { 
+    path: '*',
+    component: () => import('@/views/modules/errors/NotFound.vue')
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [...routes, ...RouterVue2Demos]
+  routes: [...routes, ...RouterVue2Demos, ...routerMyVerification]
 })
 
 export default router

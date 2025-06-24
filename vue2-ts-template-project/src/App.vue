@@ -1,12 +1,34 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <HeaderView/>
     <router-view/>
+    <FooterView/>
   </div>
 </template>
+
+<script lang="ts"> 
+import HeaderView from '@/views/modules/layouts/HeaderView.vue'
+import FooterView from './views/modules/layouts/FooterView.vue';
+
+export default {
+  name: 'App',
+  components: {
+    HeaderView,
+    FooterView
+  },
+  data() {
+    return {
+      
+    }
+  },
+  mounted() {
+    console.log('App mounted');
+  },
+  methods: {
+    
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

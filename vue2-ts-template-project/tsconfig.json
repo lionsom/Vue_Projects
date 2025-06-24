@@ -12,8 +12,7 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "noImplicitThis": false, // 解决this类型报错 https://www.tslang.cn/docs/handbook/compiler-options.html
-    // "noImplicitAny": true,
+    // "noImplicitThis": false, // 解决this类型报错 https://www.tslang.cn/docs/handbook/compiler-options.html
     "types": [
       "webpack-env",
       "vue-router"
