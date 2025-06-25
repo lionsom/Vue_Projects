@@ -14,8 +14,8 @@
 import Vue from 'vue'
 
 interface RouteItem {
-  name: string;
-  path: string;
+  name: string
+  path: string
 }
 
 export default Vue.extend({
@@ -25,7 +25,7 @@ export default Vue.extend({
       dataList: [
         {
           name: 'demos',
-          path: '/demos-home'
+          path: '/demos'
         },
         {
           name: 'login',
@@ -44,7 +44,7 @@ export default Vue.extend({
   },
   methods: {
     goToRoot() {
-      this.$router.push({ path: '/' });
+      this.$router.push({ path: '/' })
     },
     goToRouter(item: RouteItem) {
       console.log('item ===>', item)

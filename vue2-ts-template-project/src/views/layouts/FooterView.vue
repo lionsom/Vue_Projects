@@ -10,13 +10,12 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'FooterView',
   data() {
-    return {
-    }
+    return {}
   },
   methods: {
     goToRoot() {
-      this.$router.push({ path: '/' });
-    },
+      this.$router.push({ path: '/' })
+    }
   }
 })
 </script>

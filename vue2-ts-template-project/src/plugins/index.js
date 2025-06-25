@@ -16,4 +16,4 @@ import './directives' /* 导入所有指令 */
 // })
 
 // Promise Catch不报错
-window.addEventListener('unhandledrejection', event => event.preventDefault())
+window.addEventListener('unhandledrejection', (event) => event.preventDefault())

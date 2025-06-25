@@ -1,32 +1,12 @@
 <template>
   <div id="app">
-    <HeaderView/>
-    <router-view/>
-    <FooterView/>
+    <router-view />
   </div>
 </template>
 
-<script lang="ts"> 
-import HeaderView from '@/views/layouts/HeaderView.vue'
-import FooterView from '@/views/layouts/FooterView.vue';
-
+<script lang="ts">
 export default {
-  name: 'App',
-  components: {
-    HeaderView,
-    FooterView
-  },
-  data() {
-    return {
-      
-    }
-  },
-  mounted() {
-    console.log('App mounted');
-  },
-  methods: {
-    
-  }
+  name: 'App'
 }
 </script>
 
@@ -37,18 +17,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

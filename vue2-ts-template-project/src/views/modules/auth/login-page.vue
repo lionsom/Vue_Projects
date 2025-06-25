@@ -1,7 +1,5 @@
 <template>
-  <div>
-    登录
-  </div>
+  <div>登录</div>
 </template>
 
 <script lang="ts">
@@ -10,21 +8,17 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'LoginPage',
   data() {
-    return {
-      
-    }
+    return {}
   },
   mounted() {
-    console.log('LoginPage mounted');
+    console.log('LoginPage mounted')
   },
   methods: {
     login() {
-      this.$router.push('/');
+      this.$router.push('/')
     }
-  },
+  }
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

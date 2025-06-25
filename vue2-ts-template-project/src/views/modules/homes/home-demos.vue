@@ -3,6 +3,8 @@
     <h1>欢迎来到demoslist</h1>
 
     <router-link to="/i18n-demo">前往i18n设置页面</router-link>
+
+    <router-link to="/vue2-offical-keyCodes">Vue2 - API - 全局配置 - keyCodes</router-link>
   </div>
 </template>
 

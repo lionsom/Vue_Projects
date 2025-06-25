@@ -1,24 +1,58 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 // routes
-import routerMyVerification from './router-my-verification'
-import RouterVue2Demos from './router-vue2-demos'
+import routerHome from './router-home'
+import routerDemos from './router-demos'
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(
+  location: Parameters<VueRouter['push']>[0],
+  onResolve?: Parameters<VueRouter['push']>[1],
+  onReject?: Parameters<VueRouter['push']>[2]
+) {
+  if (onResolve || onReject) {
+    return (originalPush as any).call(this, location, onResolve, onReject)
+  }
+  return (originalPush as any).call(this, location).catch((err: any) => {
+    if (err.name === 'NavigationDuplicated') {
+      return this.currentRoute
+    }
+    throw err
+  })
+}
+
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(
+  location: Parameters<VueRouter['replace']>[0],
+  onResolve?: Parameters<VueRouter['replace']>[1],
+  onReject?: Parameters<VueRouter['replace']>[2]
+) {
+  if (onResolve || onReject) {
+    return (originalReplace as any).call(this, location, onResolve, onReject)
+  }
+  return (originalReplace as any).call(this, location).catch((err: any) => {
+    if (err.name === 'NavigationDuplicated') {
+      return this.currentRoute
+    }
+    throw err
+  })
+}
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/modules/homes/home-page.vue')
+    redirect: '/home'
   },
   {
-    path: 'demos-home',
-    name: 'demos',
-    component: () => import('@/views/modules/homes/demo-list-page.vue')
+    path: '/',
+    name: 'AppHome',
+    component: () => import('@/views/layouts/AppHome.vue'),
+    children: [...routerHome]
   },
   // NotFound
-  { 
+  {
     path: '*',
     component: () => import('@/views/modules/errors/NotFound.vue')
   }
@@ -27,7 +61,7 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [...routes, ...RouterVue2Demos, ...routerMyVerification]
+  routes: [...routes, ...routerDemos]
 })
 
 export default router

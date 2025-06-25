@@ -12,7 +12,7 @@
 
     <div class="top">
       <h3>安装： pnpm install vue-i18n@8</h3>
-      <p>测试： {{ $t("message.hello") }}</p>
+      <p>测试： {{ $t('message.hello') }}</p>
     </div>
 
     <button @click="showAlert">{{ $t('message.changeLang') }}</button>
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-
 import { getCurrentLocaleKey, setCurrentLocaleKey } from '@/i18n'
 
 export default {
@@ -36,11 +35,7 @@ export default {
     return {
       mesg: '123哈哈',
       show: false,
-      actions: [
-        { name: 'zh' },
-        { name: 'en' },
-        { name: 'ja' }
-      ]
+      actions: [{ name: 'zh' }, { name: 'en' }, { name: 'ja' }]
     }
   },
   computed: {
@@ -90,4 +85,5 @@ export default {
 .main {
   background-color: antiquewhite;
 }
-</style>>
+</style>
+>

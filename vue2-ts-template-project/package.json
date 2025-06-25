@@ -10,7 +10,9 @@
     "lint": "vue-cli-service lint",
     "server-express": "npx nodemon ./server/index.js",
     "server-http-server": "npx http-server ./server/database",
-    "server-json-server": "json-server --watch ./server/database/db.json"
+    "server-json-server": "json-server --watch ./server/database/db.json",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss,md}\""
   },
   "dependencies": {
     "axios": "^1.6.0",
@@ -36,7 +38,10 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "prettier": "^2.4.1",
     "mockjs": "^1.1.0",
     "nodemon": "^3.0.1",
     "sass": "^1.32.7",

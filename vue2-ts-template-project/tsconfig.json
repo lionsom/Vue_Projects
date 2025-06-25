@@ -12,6 +12,7 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "allowJs": true, // ts文件中允许导入js文件
     // "noImplicitThis": false, // 解决this类型报错 https://www.tslang.cn/docs/handbook/compiler-options.html
     "types": [
       "webpack-env",
@@ -35,7 +36,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "types/**/*.d.ts"
+    "types/**/*.d.ts", 
   ],
   "exclude": [
     "node_modules"

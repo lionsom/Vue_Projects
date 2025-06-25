@@ -5,7 +5,6 @@
       <button class="main-btn" type="primary" size="large" @click="onClickBackHome">返回首页</button>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -15,13 +14,14 @@ export default {
     onClickBackHome() {
       this.$router.push({ path: '/' })
     }
-  },
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .main-page {
-  margin: 100px auto;
+  margin: 0 auto;
+  padding-top: 100px;
 
   text-align: center;
   font-weight: 800;

@@ -39,4 +39,3 @@ const myI18n = new VueI18n({
 })
 
 export default myI18n
-
