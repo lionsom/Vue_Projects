@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:all": "pnpm lint && pnpm format && pnpm serve",
     "serve:pre": "vue-cli-service serve --mode pre",
     "serve:test": "vue-cli-service serve --mode test",
     "build": "vue-cli-service build",

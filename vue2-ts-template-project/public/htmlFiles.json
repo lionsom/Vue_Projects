@@ -1,0 +1,250 @@
+{
+  "vue2-4hours-demos": [
+    {
+      "fileName": "01_helloworld.html",
+      "filePath": "vue2-4hours-demos/01_helloworld.html"
+    },
+    {
+      "fileName": "02_el.html",
+      "filePath": "vue2-4hours-demos/02_el.html"
+    },
+    {
+      "fileName": "03_data.html",
+      "filePath": "vue2-4hours-demos/03_data.html"
+    },
+    {
+      "fileName": "04_v-text.html",
+      "filePath": "vue2-4hours-demos/04_v-text.html"
+    },
+    {
+      "fileName": "05_v-html.html",
+      "filePath": "vue2-4hours-demos/05_v-html.html"
+    },
+    {
+      "fileName": "06_v-on.html",
+      "filePath": "vue2-4hours-demos/06_v-on.html"
+    },
+    {
+      "fileName": "07_计数器.html",
+      "filePath": "vue2-4hours-demos/07_计数器.html"
+    },
+    {
+      "fileName": "08_v-show.html",
+      "filePath": "vue2-4hours-demos/08_v-show.html"
+    },
+    {
+      "fileName": "09_v-if.html",
+      "filePath": "vue2-4hours-demos/09_v-if.html"
+    },
+    {
+      "fileName": "10_v-bind.html",
+      "filePath": "vue2-4hours-demos/10_v-bind.html"
+    },
+    {
+      "fileName": "11_图片切换.html",
+      "filePath": "vue2-4hours-demos/11_图片切换/11_图片切换.html"
+    },
+    {
+      "fileName": "12_v-for.html",
+      "filePath": "vue2-4hours-demos/12_v-for.html"
+    },
+    {
+      "fileName": "13_v-on补充.html",
+      "filePath": "vue2-4hours-demos/13_v-on补充.html"
+    },
+    {
+      "fileName": "14_v-model.html",
+      "filePath": "vue2-4hours-demos/14_v-model.html"
+    },
+    {
+      "fileName": "15_记事本.html",
+      "filePath": "vue2-4hours-demos/15_记事本/15_记事本.html"
+    },
+    {
+      "fileName": "16_axios基本使用.html",
+      "filePath": "vue2-4hours-demos/16_axios基本使用.html"
+    },
+    {
+      "fileName": "17_axios+vue.html",
+      "filePath": "vue2-4hours-demos/17_axios+vue.html"
+    },
+    {
+      "fileName": "18_天知道.html",
+      "filePath": "vue2-4hours-demos/18_天知道/index.html"
+    },
+    {
+      "fileName": "19_音乐播放器.html",
+      "filePath": "vue2-4hours-demos/19_音乐播放器/index.html"
+    }
+  ],
+  "vue2-heima-demos": [
+    {
+      "fileName": "01_图片切换.html",
+      "filePath": "vue2-heima-demos/01_图片切换/index.html"
+    },
+    {
+      "fileName": "02_记事本.html",
+      "filePath": "vue2-heima-demos/02_记事本/index.html"
+    },
+    {
+      "fileName": "03_按钮选择.html",
+      "filePath": "vue2-heima-demos/03_按钮选择/index.html"
+    },
+    {
+      "fileName": "04_进度条.html",
+      "filePath": "vue2-heima-demos/04_进度条/index.html"
+    },
+    {
+      "fileName": "05_成绩单.html",
+      "filePath": "vue2-heima-demos/05_成绩单/index.html"
+    }
+  ],
+  "vue2-typical-examples": [
+    {
+      "fileName": "01-markdown-editor.html",
+      "filePath": "vue2-typical-examples/01-markdown-editor/index.html"
+    },
+    {
+      "fileName": "02-github-commit.html",
+      "filePath": "vue2-typical-examples/02-github-commit/index.html"
+    },
+    {
+      "fileName": "03-grid-component.html",
+      "filePath": "vue2-typical-examples/03-grid-component/index.html"
+    },
+    {
+      "fileName": "04-tree-view.html",
+      "filePath": "vue2-typical-examples/04-tree-view/index.html"
+    },
+    {
+      "fileName": "05-svg-graph.html",
+      "filePath": "vue2-typical-examples/05-svg-graph/index.html"
+    },
+    {
+      "fileName": "06-modal-component.html",
+      "filePath": "vue2-typical-examples/06-modal-component/index.html"
+    },
+    {
+      "fileName": "07-elastic-header.html",
+      "filePath": "vue2-typical-examples/07-elastic-header/index.html"
+    },
+    {
+      "fileName": "08-wrapper-component.html",
+      "filePath": "vue2-typical-examples/08-wrapper-component/index.html"
+    },
+    {
+      "fileName": "09-realtime-with-deepstreamhub.html",
+      "filePath": "vue2-typical-examples/09-realtime-with-deepstreamhub/index.html"
+    },
+    {
+      "fileName": "10-firebase-validation.html",
+      "filePath": "vue2-typical-examples/10-firebase-validation/index.html"
+    },
+    {
+      "fileName": "11-todomvc.html",
+      "filePath": "vue2-typical-examples/11-todomvc/index.html"
+    }
+  ],
+  "vue2.x-official-demos": [
+    {
+      "fileName": "01_hello.html",
+      "filePath": "vue2.x-official-demos/01_hello.html"
+    },
+    {
+      "fileName": "02_v-bind.html",
+      "filePath": "vue2.x-official-demos/02_v-bind.html"
+    },
+    {
+      "fileName": "03_v-if.html",
+      "filePath": "vue2.x-official-demos/03_v-if.html"
+    },
+    {
+      "fileName": "04_v-for.html",
+      "filePath": "vue2.x-official-demos/04_v-for.html"
+    },
+    {
+      "fileName": "05_v-on.html",
+      "filePath": "vue2.x-official-demos/05_v-on.html"
+    },
+    {
+      "fileName": "06_v-model.html",
+      "filePath": "vue2.x-official-demos/06_v-model.html"
+    },
+    {
+      "fileName": "07_数据与方法.html",
+      "filePath": "vue2.x-official-demos/07_数据与方法.html"
+    },
+    {
+      "fileName": "08_freeze.html",
+      "filePath": "vue2.x-official-demos/08_freeze.html"
+    },
+    {
+      "fileName": "09_Vue实例property.html",
+      "filePath": "vue2.x-official-demos/09_Vue实例property.html"
+    },
+    {
+      "fileName": "10_生命周期.html",
+      "filePath": "vue2.x-official-demos/10_生命周期.html"
+    },
+    {
+      "fileName": "11_v-once.html",
+      "filePath": "vue2.x-official-demos/11_v-once.html"
+    },
+    {
+      "fileName": "12_v-html.html",
+      "filePath": "vue2.x-official-demos/12_v-html.html"
+    },
+    {
+      "fileName": "13_指令介绍.html",
+      "filePath": "vue2.x-official-demos/13_指令介绍.html"
+    },
+    {
+      "fileName": "14_Class_Style.html",
+      "filePath": "vue2.x-official-demos/14_Class_Style.html"
+    },
+    {
+      "fileName": "15_v-else.html",
+      "filePath": "vue2.x-official-demos/15_v-else.html"
+    },
+    {
+      "fileName": "16_v-show.html",
+      "filePath": "vue2.x-official-demos/16_v-show.html"
+    },
+    {
+      "fileName": "17_v-for.html",
+      "filePath": "vue2.x-official-demos/17_v-for.html"
+    },
+    {
+      "fileName": "18_v-on进阶.html",
+      "filePath": "vue2.x-official-demos/18_v-on进阶.html"
+    },
+    {
+      "fileName": "19_表单输入绑定.html",
+      "filePath": "vue2.x-official-demos/19_表单输入绑定.html"
+    },
+    {
+      "fileName": "20_值绑定.html",
+      "filePath": "vue2.x-official-demos/20_值绑定.html"
+    },
+    {
+      "fileName": "21_修饰符.html",
+      "filePath": "vue2.x-official-demos/21_修饰符.html"
+    },
+    {
+      "fileName": "22_组件基础.html",
+      "filePath": "vue2.x-official-demos/22_组件基础.html"
+    },
+    {
+      "fileName": "23_组件注册.html",
+      "filePath": "vue2.x-official-demos/23_组件注册.html"
+    },
+    {
+      "fileName": "24_computed_计算属性.html",
+      "filePath": "vue2.x-official-demos/24_computed_计算属性.html"
+    },
+    {
+      "fileName": "25_watch_侦听属性.html",
+      "filePath": "vue2.x-official-demos/25_watch_侦听属性.html"
+    }
+  ]
+}

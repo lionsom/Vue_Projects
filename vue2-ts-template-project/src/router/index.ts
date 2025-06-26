@@ -50,12 +50,12 @@ const routes: Array<RouteConfig> = [
     name: 'AppHome',
     component: () => import('@/views/layouts/AppHome.vue'),
     children: [...routerHome]
-  },
-  // NotFound
-  {
-    path: '*',
-    component: () => import('@/views/modules/errors/NotFound.vue')
   }
+  // NotFound
+  // {
+  //   path: '*',
+  //   component: () => import('@/views/modules/errors/NotFound.vue')
+  // }
 ]
 
 const router = new VueRouter({
