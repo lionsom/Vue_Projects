@@ -5,8 +5,8 @@
     <div class="top-container">
       <div v-for="(itemValue, itemKey) in htmlFilesList" :key="itemKey">
         <div style="font-size: 30px; color: blue">{{ itemKey }}</div>
-        <div v-for="(subItemValue, index) in itemValue" :key="subItemValue.fileName" @click="openFile(subItemValue)">
-          {{ index + 1 }}.{{ subItemValue.fileName }}
+        <div v-for="subItemValue in itemValue" :key="subItemValue.fileName" @click="openFile(subItemValue)">
+          {{ subItemValue.fileName }}
         </div>
       </div>
     </div>
