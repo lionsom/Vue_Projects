@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2 弹窗组件 (Dialog)</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      overflow: hidden;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #1a2a6c, #b21f1f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #7f8c8d;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .feature {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature i {
+      color: #3498db;
+      font-size: 1.2rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .control-group {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .control-group h3 {
+      margin-bottom: 15px;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button.info {
+      background: #3498db;
+    }
+
+    button.success {
+      background: #2ecc71;
+    }
+
+    button.warning {
+      background: #f39c12;
+    }
+
+    button.danger {
+      background: #e74c3c;
+    }
+
+    .custom-dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .dialog-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .dialog-content {
+      position: relative;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow: auto;
+      z-index: 1001;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dialog-content.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .dialog-header {
+      padding: 20px 25px 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dialog-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .dialog-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #7f8c8d;
+      cursor: pointer;
+      transition: color 0.3s;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .dialog-close:hover {
+      background: #f8f9fa;
+      color: #e74c3c;
+    }
+
+    .dialog-body {
+      padding: 25px;
+      color: #34495e;
+      line-height: 1.6;
+    }
+
+    .dialog-footer {
+      padding: 15px 25px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      border-top: 1px solid #eee;
+    }
+
+    .dialog-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .dialog-icon.info {
+      color: #3498db;
+    }
+
+    .dialog-icon.success {
+      color: #2ecc71;
+    }
+
+    .dialog-icon.warning {
+      color: #f39c12;
+    }
+
+    .dialog-icon.danger {
+      color: #e74c3c;
+    }
+
+    .dialog-size-small .dialog-content {
+      max-width: 400px;
+    }
+
+    .dialog-size-large .dialog-content {
+      max-width: 700px;
+    }
+
+    .dialog-no-overlay .dialog-overlay {
+      background: transparent;
+    }
+
+    .dialog-no-header .dialog-header {
+      display: none;
+    }
+
+    .dialog-no-footer .dialog-footer {
+      display: none;
+    }
+
+    .dialog-centered .dialog-body {
+      text-align: center;
+    }
+
+    .dialog-centered .dialog-footer {
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    .code-block {
+      background: #2c3e50;
+      color: #ecf0f1;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
+    .code-block h3 {
+      margin-bottom: 15px;
+      color: #3498db;
+    }
+
+    .highlight {
+      color: #f39c12;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1>Vue2 弹窗组件</h1>
+        <p class="subtitle">一个灵活、可定制的对话框组件，适用于多种场景</p>
+
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>响应式设计</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>多种预设样式</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>自定义内容</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>动画过渡效果</span>
+          </div>
+          <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <span>键盘交互支持</span>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="controls">
+          <div class="control-group">
+            <h3><i class="fas fa-cog"></i> 基本控制</h3>
+            <div class="btn-group">
+              <button class="info" @click="showDialog('info')">
+                <i class="fas fa-info-circle"></i> 信息弹窗
+              </button>
+              <button @click="showDialog('default')">
+                <i class="fas fa-window-maximize"></i> 默认弹窗
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <h3><i class="fas fa-exclamation-triangle"></i> 警告类型</h3>
+            <div class="btn-group">
+              <button class="success" @click="showDialog('success')">
+                <i class="fas fa-check-circle"></i> 成功弹窗
+              </button>
+              <button class="warning" @click="showDialog('warning')">
+                <i class="fas fa-exclamation-triangle"></i> 警告弹窗
+              </button>
+              <button class="danger" @click="showDialog('danger')">
+                <i class="fas fa-times-circle"></i> 错误弹窗
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <h3><i class="fas fa-sliders-h"></i> 高级选项</h3>
+            <div class="btn-group">
+              <button @click="showDialog('custom')">
+                <i class="fas fa-palette"></i> 自定义弹窗
+              </button>
+              <button @click="showDialog('noHeader')">
+                <i class="fas fa-heading"></i> 无标题
+              </button>
+              <button @click="showDialog('noFooter')">
+                <i class="fas fa-window-minimize"></i> 无底部
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <h3>组件使用方法</h3>
+          <pre>
+&lt;dialog-component 
+  v-model="dialogVisible"
+  :title="dialogTitle"
+  :type="dialogType"
+  :size="dialogSize"
+  :show-close="showClose"
+  :show-overlay="showOverlay"
+  @confirm="handleConfirm"
+  @cancel="handleCancel"
+&gt;
+  &lt;!-- 自定义内容 --&gt;
+  &lt;div&gt;这里是弹窗内容&lt;/div&gt;
+  
+  &lt;!-- 自定义底部 --&gt;
+  &lt;template v-slot:footer&gt;
+    &lt;button @click="closeDialog"&gt;取消&lt;/button&gt;
+    &lt;button @click="submitForm"&gt;提交&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/dialog-component&gt;</pre>
+        </div>
+      </main>
+    </div>
+
+    <!-- 弹窗组件 -->
+    <dialog-component v-model="dialogVisible" :title="dialogTitle" :type="dialogType" :size="dialogSize"
+      :show-close="showClose" :show-overlay="showOverlay" :centered="centered" @confirm="handleConfirm"
+      @cancel="handleCancel">
+      <div v-if="dialogContent" class="dialog-body-content">
+        <div v-if="dialogType !== 'default'" class="dialog-icon" :class="dialogType">
+          <i :class="iconClass"></i>
+        </div>
+        <p>{{ dialogContent }}</p>
+
+        <div v-if="dialogType === 'custom'" style="margin-top: 20px;">
+          <h3>自定义表单</h3>
+          <div style="display: grid; gap: 10px; margin-top: 10px;">
+            <input type="text" placeholder="用户名" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            <input type="password" placeholder="密码" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+          </div>
+        </div>
+      </div>
+
+      <template v-slot:footer>
+        <button @click="closeDialog" style="background: #95a5a6;">取消</button>
+        <button @click="submitForm" :style="{background: buttonColor}">确认</button>
+      </template>
+    </dialog-component>
+  </div>
+
+  <script>
+    // 弹窗组件定义
+    Vue.component('dialog-component', {
+      model: {
+        prop: 'value',
+        event: 'change'
+      },
+      props: {
+        value: Boolean,
+        title: {
+          type: String,
+          default: '提示'
+        },
+        type: {
+          type: String,
+          default: 'default',
+          validator: value => ['default', 'info', 'success', 'warning', 'danger'].includes(value)
+        },
+        size: {
+          type: String,
+          default: 'medium',
+          validator: value => ['small', 'medium', 'large'].includes(value)
+        },
+        showClose: {
+          type: Boolean,
+          default: true
+        },
+        showOverlay: {
+          type: Boolean,
+          default: true
+        },
+        centered: {
+          type: Boolean,
+          default: false
+        }
+      },
+      computed: {
+        dialogClasses() {
+          return {
+            'dialog-size-small': this.size === 'small',
+            'dialog-size-large': this.size === 'large',
+            'dialog-no-overlay': !this.showOverlay,
+            'dialog-centered': this.centered
+          };
+        }
+      },
+      methods: {
+        close() {
+          this.$emit('change', false);
+          this.$emit('cancel');
+        },
+        confirm() {
+          this.$emit('change', false);
+          this.$emit('confirm');
+        },
+        handleKeydown(e) {
+          if (e.key === 'Escape') {
+            this.close();
+          } else if (e.key === 'Enter') {
+            this.confirm();
+          }
+        }
+      },
+      mounted() {
+        document.addEventListener('keydown', this.handleKeydown);
+      },
+      beforeDestroy() {
+        document.removeEventListener('keydown', this.handleKeydown);
+      },
+      template: `
+        <div class="custom-dialog" v-if="value" :class="dialogClasses">
+          <div class="dialog-overlay" @click="showOverlay ? close() : null"></div>
+          <div class="dialog-content" :class="{active: value}">
+            <div class="dialog-header" v-if="title || showClose">
+              <div class="dialog-title">{{ title }}</div>
+              <button class="dialog-close" v-if="showClose" @click="close">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="dialog-body">
+              <slot></slot>
+            </div>
+            <div class="dialog-footer">
+              <slot name="footer">
+                <button @click="close">取消</button>
+                <button @click="confirm" :class="type">确认</button>
+              </slot>
+            </div>
+          </div>
+        </div>
+      `
+    });
+
+    // Vue 实例
+    new Vue({
+      el: '#app',
+      data: {
+        dialogVisible: false,
+        dialogTitle: '提示',
+        dialogType: 'default',
+        dialogSize: 'medium',
+        showClose: true,
+        showOverlay: true,
+        centered: false,
+        dialogContent: '',
+        buttonColor: '#3498db'
+      },
+      computed: {
+        iconClass() {
+          const icons = {
+            info: 'fas fa-info-circle',
+            success: 'fas fa-check-circle',
+            warning: 'fas fa-exclamation-triangle',
+            danger: 'fas fa-times-circle'
+          };
+          return icons[this.dialogType] || '';
+        }
+      },
+      methods: {
+        showDialog(type) {
+          this.dialogVisible = true;
+          this.dialogType = type;
+          this.showClose = true;
+          this.showOverlay = true;
+          this.centered = false;
+
+          switch (type) {
+            case 'info':
+              this.dialogTitle = '信息提示';
+              this.dialogContent = '这是一个信息提示弹窗，用于展示重要通知或消息。';
+              this.buttonColor = '#3498db';
+              break;
+            case 'success':
+              this.dialogTitle = '操作成功';
+              this.dialogContent = '您的操作已成功完成！数据已保存，您可以继续其他操作。';
+              this.buttonColor = '#2ecc71';
+              break;
+            case 'warning':
+              this.dialogTitle = '警告';
+              this.dialogContent = '此操作不可逆，确定要继续吗？请谨慎操作，以免造成数据丢失。';
+              this.buttonColor = '#f39c12';
+              break;
+            case 'danger':
+              this.dialogTitle = '错误发生';
+              this.dialogContent = '操作过程中发生错误，请检查您的输入或联系系统管理员。';
+              this.buttonColor = '#e74c3c';
+              break;
+            case 'custom':
+              this.dialogTitle = '自定义弹窗';
+              this.dialogContent = '这是一个高度自定义的弹窗，可以包含表单、图表或其他自定义内容。';
+              this.buttonColor = '#9b59b6';
+              break;
+            case 'noHeader':
+              this.dialogTitle = '';
+              this.dialogContent = '这个弹窗没有标题栏，适用于简洁风格的提示。';
+              this.showClose = false;
+              break;
+            case 'noFooter':
+              this.dialogTitle = '无底部弹窗';
+              this.dialogContent = '这个弹窗没有底部操作栏，适用于纯信息展示。';
+              break;
+            default:
+              this.dialogTitle = '默认弹窗';
+              this.dialogContent = '这是一个默认样式的弹窗，您可以根据需要自定义内容和样式。';
+              this.buttonColor = '#3498db';
+          }
+
+          // 特殊处理
+          if (type === 'noHeader') {
+            this.centered = true;
+          }
+        },
+        closeDialog() {
+          this.dialogVisible = false;
+          console.log('弹窗已关闭');
+        },
+        handleConfirm() {
+          console.log('确认操作');
+          alert('您点击了确认按钮！');
+        },
+        handleCancel() {
+          console.log('取消操作');
+        },
+        submitForm() {
+          this.dialogVisible = false;
+          alert('表单已提交！');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

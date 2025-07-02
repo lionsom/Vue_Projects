@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2 组件传值方案</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1a2a6c, #2c3e50);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 5px solid #3498db;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      background: #f8f9fa;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: #3498db;
+      width: 60px;
+      height: 60px;
+      background: rgba(52, 152, 219, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    .card-description {
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .card-code {
+      background: #2c3e50;
+      color: #ecf0f1;
+      border-radius: 8px;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .highlight {
+      color: #f39c12;
+    }
+
+    .example-area {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .example-title {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .example-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .component {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      flex: 1;
+      min-width: 200px;
+      border: 1px solid #eee;
+    }
+
+    .component-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #3498db;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .data-display {
+      background: #e8f4fc;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-family: monospace;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .vuex-example {
+      grid-column: 1 / -1;
+      border-top-color: #9b59b6;
+    }
+
+    .vuex-example .card-icon {
+      color: #9b59b6;
+      background: rgba(155, 89, 182, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #7f8c8d;
+      border-top: 1px solid #eee;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-exchange-alt"></i> Vue2 组件传值方案</h1>
+        <p class="subtitle">全面解析 Vue2 中组件间通信的多种方式，包括 Props/$emit、Event Bus、Provide/Inject、$attrs/$listeners 和 Vuex</p>
+      </header>
+
+      <div class="content">
+        <!-- Props / $emit -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-arrows-alt-h"></i>
+            </div>
+            <div>
+              <div class="card-title">Props / $emit</div>
+              <div>父子组件通信</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              <strong>Props</strong>：父组件向子组件传递数据<br>
+              <strong>$emit</strong>：子组件向父组件传递数据
+            </p>
+
+            <div class="card-code">
+              // 父组件<br>
+              &lt;ChildComponent <span class="highlight">:message="parentMsg"</span> <span
+                class="highlight">@update="handleUpdate"</span>/&gt;<br><br>
+
+              // 子组件<br>
+              props: ['<span class="highlight">message</span>'],<br>
+              methods: {<br>
+              &nbsp;&nbsp;sendToParent() {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;this.<span class="highlight">$emit('update', childData)</span><br>
+              &nbsp;&nbsp;}<br>
+              }
+            </div>
+
+            <div class="example-area">
+              <div class="example-title">
+                <i class="fas fa-laptop-code"></i> 示例演示
+              </div>
+              <div class="example-content">
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-level-up-alt"></i> 父组件
+                  </div>
+                  <div class="data-display">
+                    收到子组件消息: {{ childMessage || '暂无' }}
+                  </div>
+                  <div>
+                    <input type="text" v-model="parentMessage" placeholder="输入传递给子组件的消息">
+                  </div>
+                </div>
+
+                <child-component :message="parentMessage" @child-event="handleChildEvent"
+                  class="component"></child-component>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Bus -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <div>
+              <div class="card-title">Event Bus</div>
+              <div>任意组件间通信</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              使用一个空的 Vue 实例作为中央事件总线，实现非父子组件间的通信。
+            </p>
+
+            <div class="card-code">
+              // event-bus.js<br>
+              import Vue from 'vue';<br>
+              export const EventBus = new Vue();<br><br>
+
+              // 发送事件<br>
+              EventBus.<span class="highlight">$emit('event-name', data)</span>;<br><br>
+
+              // 接收事件<br>
+              EventBus.<span class="highlight">$on('event-name', (data) => { ... })</span>;
+            </div>
+
+            <div class="example-area">
+              <div class="example-title">
+                <i class="fas fa-laptop-code"></i> 示例演示
+              </div>
+              <div class="example-content">
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-broadcast-tower"></i> 组件A
+                  </div>
+                  <div class="data-display">
+                    收到消息: {{ busMessageA || '暂无' }}
+                  </div>
+                  <button @click="sendViaBus('A')">
+                    <i class="fas fa-paper-plane"></i> 发送消息
+                  </button>
+                </div>
+
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-broadcast-tower"></i> 组件B
+                  </div>
+                  <div class="data-display">
+                    收到消息: {{ busMessageB || '暂无' }}
+                  </div>
+                  <button @click="sendViaBus('B')">
+                    <i class="fas fa-paper-plane"></i> 发送消息
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Provide / Inject -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-faucet"></i>
+            </div>
+            <div>
+              <div class="card-title">Provide / Inject</div>
+              <div>祖先组件向后代组件传值</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              <strong>Provide</strong>：在祖先组件中提供数据<br>
+              <strong>Inject</strong>：在后代组件中注入数据
+            </p>
+
+            <div class="card-code">
+              // 祖先组件<br>
+              provide() {<br>
+              &nbsp;&nbsp;return {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">theme: this.themeData</span><br>
+              &nbsp;&nbsp;}<br>
+              }<br><br>
+
+              // 后代组件<br>
+              inject: ['<span class="highlight">theme</span>']
+            </div>
+
+            <div class="example-area">
+              <div class="example-title">
+                <i class="fas fa-laptop-code"></i> 示例演示
+              </div>
+              <div class="example-content">
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-project-diagram"></i> 祖先组件
+                  </div>
+                  <div>
+                    <label>主题颜色: </label>
+                    <input type="color" v-model="themeColor">
+                  </div>
+                </div>
+
+                <child-component class="component">
+                  <grand-child-component class="component"></grand-child-component>
+                </child-component>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- $attrs / $listeners -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-code-branch"></i>
+            </div>
+            <div>
+              <div class="card-title">$attrs / $listeners</div>
+              <div>高级属性透传</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              <strong>$attrs</strong>：包含父作用域中不作为 prop 被识别的 attribute 绑定<br>
+              <strong>$listeners</strong>：包含父作用域中的 v-on 事件监听器
+            </p>
+
+            <div class="card-code">
+              // 父组件<br>
+              &lt;ChildComponent <span class="highlight">:data="value"</span> <span
+                class="highlight">@custom-event="handler"</span>/&gt;<br><br>
+
+              // 中间组件<br>
+              &lt;GrandChild <span class="highlight">v-bind="$attrs"</span> <span
+                class="highlight">v-on="$listeners"</span>/&gt;
+            </div>
+
+            <div class="example-area">
+              <div class="example-title">
+                <i class="fas fa-laptop-code"></i> 示例演示
+              </div>
+              <div class="example-content">
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-level-up-alt"></i> 父组件
+                  </div>
+                  <div class="data-display">
+                    收到孙组件消息: {{ grandChildMessage || '暂无' }}
+                  </div>
+                </div>
+
+                <middle-component :parent-data="parentData" @grandchild-event="handleGrandchildEvent"
+                  class="component"></middle-component>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vuex -->
+        <div class="card vuex-example">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div>
+              <div class="card-title">Vuex 状态管理</div>
+              <div>集中式状态管理</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-description">
+              Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式，采用集中式存储管理应用的所有组件的状态。
+            </p>
+
+            <div class="card-code">
+              // store.js<br>
+              export default new Vuex.Store({<br>
+              &nbsp;&nbsp;state: { <span class="highlight">count: 0</span> },<br>
+              &nbsp;&nbsp;mutations: {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight">increment(state) { state.count++ }</span><br>
+              &nbsp;&nbsp;},<br>
+              &nbsp;&nbsp;actions: {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;incrementAsync({ commit }) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => { <span class="highlight">commit('increment')</span>
+              }, 1000)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;}<br>
+              });<br><br>
+
+              // 组件中使用<br>
+              computed: {<br>
+              &nbsp;&nbsp;count() { <span class="highlight">return this.$store.state.count</span> }<br>
+              },<br>
+              methods: {<br>
+              &nbsp;&nbsp;increment() { <span class="highlight">this.$store.commit('increment')</span> }<br>
+              }
+            </div>
+
+            <div class="example-area">
+              <div class="example-title">
+                <i class="fas fa-laptop-code"></i> 示例演示
+              </div>
+              <div class="example-content">
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-store"></i> Vuex Store
+                  </div>
+                  <div class="data-display">
+                    全局计数: {{ $store.state.count }}
+                  </div>
+                </div>
+
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-cube"></i> 组件A
+                  </div>
+                  <button @click="increment">
+                    <i class="fas fa-plus"></i> 增加计数
+                  </button>
+                </div>
+
+                <div class="component">
+                  <div class="component-title">
+                    <i class="fas fa-cube"></i> 组件B
+                  </div>
+                  <button @click="incrementAsync">
+                    <i class="fas fa-clock"></i> 异步增加
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Vue2 组件通信方案总结 | 实际开发中可根据场景选择合适的通信方式</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 创建 Event Bus
+    const EventBus = new Vue();
+
+    // 定义子组件
+    Vue.component('ChildComponent', {
+      props: ['message'],
+      template: `
+        <div class="component">
+          <div class="component-title">
+            <i class="fas fa-level-down-alt"></i> 子组件
+          </div>
+          <div class="data-display">
+            收到父组件消息: {{ message || '暂无' }}
+          </div>
+          <button @click="sendToParent">
+            <i class="fas fa-paper-plane"></i> 发送消息到父组件
+          </button>
+          <slot></slot>
+        </div>
+      `,
+      methods: {
+        sendToParent() {
+          this.$emit('child-event', `来自子组件的消息 (${new Date().toLocaleTimeString()})`);
+        }
+      }
+    });
+
+    // 定义孙组件
+    Vue.component('GrandChildComponent', {
+      inject: ['theme'],
+      template: `
+        <div class="component">
+          <div class="component-title">
+            <i class="fas fa-level-down-alt"></i> 孙组件
+          </div>
+          <div class="data-display" :style="{ color: theme }">
+            从祖先组件接收的主题色: {{ theme }}
+          </div>
+        </div>
+      `
+    });
+
+    // 中间组件（用于演示 $attrs/$listeners）
+    Vue.component('MiddleComponent', {
+      props: ['parentData'],
+      template: `
+        <div class="component">
+          <div class="component-title">
+            <i class="fas fa-code-branch"></i> 中间组件
+          </div>
+          <grand-child-component-2 
+            v-bind="$attrs" 
+            v-on="$listeners"
+          ></grand-child-component-2>
+        </div>
+      `
+    });
+
+    // 孙组件（用于演示 $attrs/$listeners）
+    Vue.component('GrandChildComponent2', {
+      props: ['parentData'],
+      template: `
+        <div class="component">
+          <div class="component-title">
+            <i class="fas fa-level-down-alt"></i> 孙组件
+          </div>
+          <div class="data-display">
+            收到父组件消息: {{ parentData || '暂无' }}
+          </div>
+          <button @click="sendToGrandparent">
+            <i class="fas fa-paper-plane"></i> 发送消息到祖父组件
+          </button>
+        </div>
+      `,
+      methods: {
+        sendToGrandparent() {
+          this.$emit('grandchild-event', `来自孙组件的消息 (${new Date().toLocaleTimeString()})`);
+        }
+      }
+    });
+
+    // 创建 Vuex Store
+    const store = new Vuex.Store({
+      state: {
+        count: 0
+      },
+      mutations: {
+        increment(state) {
+          state.count++;
+        }
+      },
+      actions: {
+        incrementAsync({ commit }) {
+          setTimeout(() => {
+            commit('increment');
+          }, 1000);
+        }
+      }
+    });
+
+    // Vue 实例
+    new Vue({
+      el: '#app',
+      store,
+      data: {
+        parentMessage: '来自父组件的初始消息',
+        childMessage: '',
+        busMessageA: '',
+        busMessageB: '',
+        themeColor: '#3498db',
+        parentData: '通过$attrs传递的数据',
+        grandChildMessage: ''
+      },
+      provide() {
+        return {
+          theme: this.themeColor
+        };
+      },
+      created() {
+        // 监听 Event Bus 事件
+        EventBus.$on('bus-event', (data) => {
+          if (data.sender === 'A') {
+            this.busMessageA = `组件A: ${data.message}`;
+          } else if (data.sender === 'B') {
+            this.busMessageB = `组件B: ${data.message}`;
+          }
+        });
+      },
+      methods: {
+        handleChildEvent(message) {
+          this.childMessage = message;
+        },
+        sendViaBus(sender) {
+          EventBus.$emit('bus-event', {
+            sender: sender,
+            message: `组件${sender}发送的消息 (${new Date().toLocaleTimeString()})`
+          });
+        },
+        handleGrandchildEvent(message) {
+          this.grandChildMessage = message;
+        },
+        increment() {
+          this.$store.commit('increment');
+        },
+        incrementAsync() {
+          this.$store.dispatch('incrementAsync');
+        }
+      },
+      watch: {
+        themeColor(newVal) {
+          // 更新注入的值
+          this.$provide.theme = newVal;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
