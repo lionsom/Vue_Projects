@@ -1,4 +1,28 @@
 {
+  "vue2-api-demos": [
+    {
+      "fileName": "全局配置-silent",
+      "filePath": "vue2-api-demos/1-全局配置/vue2-config-silent.html"
+    },
+    {
+      "fileName": "全局配置-optionMergeStrategies",
+      "filePath": "vue2-api-demos/1-全局配置/vue2-config-optionMergeStrategies.html"
+    }
+  ],
+  "vue2-study-demos": [
+    {
+      "fileName": "vue2-js-function.html",
+      "filePath": "Vue2-study-demos/vue2-js-function.html"
+    },
+    {
+      "fileName": "vue2-dialog.html",
+      "filePath": "Vue2-study-demos/vue2-dialog.html"
+    },
+    {
+      "fileName": "vue2-comp-transfer.html",
+      "filePath": "Vue2-study-demos/vue2-comp-transfer.html"
+    }
+  ],
   "vue2-4hours-demos": [
     {
       "fileName": "01_helloworld.html",

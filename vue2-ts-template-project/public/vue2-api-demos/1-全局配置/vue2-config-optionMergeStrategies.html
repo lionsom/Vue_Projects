@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue 2 optionMergeStrategies 详解</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: #ffcc00;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: rgba(30, 30, 50, 0.7);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .panel-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #4fc3f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title i {
+      font-size: 1.5rem;
+    }
+
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      margin: 15px 0;
+      border-left: 4px solid #4fc3f7;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      /* 保留空格和换行，并自动换行 */
+      word-break: break-all;
+      /* 必要时在任意字符处换行 */
+    }
+
+    .console {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      height: 300px;
+      overflow-y: auto;
+      margin-top: 20px;
+      border: 1px solid #444;
+    }
+
+    .console-line {
+      margin-bottom: 5px;
+      padding: 3px 0;
+      border-bottom: 1px solid #333;
+      white-space: pre-wrap;
+    }
+
+    .console-info {
+      color: #90caf9;
+    }
+
+    .console-warning {
+      color: #ffcc80;
+    }
+
+    .console-success {
+      color: #a5d6a7;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(to right, #2196f3, #21cbf3);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 10px 5px;
+      box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5);
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .explanation {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .demo-app {
+      border: 2px dashed #4fc3f7;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    .demo-title {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #4fc3f7;
+    }
+
+    .result {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border-left: 4px solid #ffcc00;
+    }
+
+    .result-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffcc00;
+    }
+
+    .option-list {
+      list-style-type: none;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+
+    .option-item {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .option-key {
+      color: #90caf9;
+      font-weight: bold;
+    }
+
+    .option-value {
+      color: #a5d6a7;
+    }
+
+    .strategy-select {
+      background: #2d2d2d;
+      color: #fff;
+      border: 1px solid #4fc3f7;
+      border-radius: 5px;
+      padding: 8px;
+      width: 100%;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Vue 2 optionMergeStrategies 详解</h1>
+      <p class="subtitle">
+        这个页面展示了Vue.js中<code>optionMergeStrategies</code>的作用和使用方法。
+        它允许开发者自定义组件选项的合并策略，特别是在使用mixins和extends时。
+      </p>
+    </header>
+
+    <div class="content">
+      <div class="panel">
+        <h2 class="panel-title">⚙️ 自定义合并策略</h2>
+
+        <div class="code-block">
+          // 1. 覆盖默认的生命周期合并策略 Vue.config.optionMergeStrategies.created = function (parent, child) { //
+          默认行为：合并为数组，依次执行 // 我们改为：只执行子组件的created钩子 return child || parent; }; // 2.
+          自定义选项的合并策略 Vue.config.optionMergeStrategies.customOption = function (parent, child) { //
+          合并为数组 const res = parent ? parent.slice() : []; if (child) { res.push(child); } return res; }; // 3.
+          继承策略 Vue.config.optionMergeStrategies.inheritOption = function (parent, child) { // 子组件优先 return
+          child !== undefined ? child : parent; };
+        </div>
+
+        <div class="explanation">
+          <p><span class="highlight">optionMergeStrategies</span> 允许我们为每个组件选项定义自定义的合并函数。</p>
+          <p>函数接收两个参数：</p>
+          <ul>
+            <li><code>parentVal</code> - 来自父级（mixin 或基类）的值</li>
+            <li><code>childVal</code> - 来自子组件（当前组件）的值</li>
+          </ul>
+          <p>返回值将作为该选项的最终值。</p>
+        </div>
+
+        <div class="demo-app">
+          <h3 class="demo-title">策略选择器</h3>
+
+          <select id="strategy-select" class="strategy-select">
+            <option value="default">默认策略（合并为数组）</option>
+            <option value="childOnly">仅使用子组件值</option>
+            <option value="concat">合并为数组</option>
+            <option value="sum">数值求和</option>
+          </select>
+
+          <button id="apply-strategy" class="button">应用当前策略</button>
+
+          <div class="result">
+            <div class="result-title">当前合并策略</div>
+            <div id="current-strategy">默认策略（合并为数组）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">📊 合并结果演示</h2>
+
+        <div class="demo-app">
+          <div id="app">
+            <div class="result">
+              <div class="result-title">合并后的选项值</div>
+              <ul class="option-list">
+                <li class="option-item">
+                  <span class="option-key">created 钩子：</span>
+                  <span class="option-value">{{ createdHooks }}</span>
+                </li>
+                <li class="option-item">
+                  <span class="option-key">customOption：</span>
+                  <span class="option-value">{{ customOption }}</span>
+                </li>
+                <li class="option-item">
+                  <span class="option-key">numericOption：</span>
+                  <span class="option-value">{{ numericOption }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <button class="button" @click="triggerCreated">触发 created 钩子</button>
+            <button class="button" @click="useCustomOption">使用 customOption</button>
+          </div>
+        </div>
+
+        <div class="console" id="console-output">
+          <div class="console-line console-info">控制台准备就绪...</div>
+          <div class="console-line console-info">Vue.js 已加载</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">📚 使用场景与说明</h2>
+
+      <div class="explanation">
+        <h3>常见使用场景：</h3>
+        <ul>
+          <li><span class="highlight">插件开发</span> - 为插件定义的选项提供自定义合并逻辑</li>
+          <li><span class="highlight">大型项目</span> - 统一管理混入选项的合并行为</li>
+          <li><span class="highlight">特殊需求</span> - 改变生命周期钩子的执行顺序或方式</li>
+          <li><span class="highlight">自定义选项</span> - 为项目特定的选项定义合并策略</li>
+        </ul>
+
+        <h3>Vue 内置策略示例：</h3>
+        <div class="code-block">
+          // 生命周期钩子的默认策略 function mergeHook(parentVal, childVal) { return childVal ? parentVal ?
+          parentVal.concat(childVal) : Array.isArray(childVal) ? childVal : [childVal] : parentVal; } // data
+          选项的默认策略 function mergeData(parentVal, childVal) { if (!childVal) return parentVal; if (!parentVal)
+          return childVal; return function mergedDataFn() { return mergeData( typeof parentVal === 'function' ?
+          parentVal.call(this) : parentVal, typeof childVal === 'function' ? childVal.call(this) : childVal ); }; }
+        </div>
+
+        <p class="highlight">注意：修改内置选项的合并策略可能会影响框架行为，请谨慎操作。</p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Vue 2.6.14 | optionMergeStrategies 演示 | 理解选项合并策略对高级Vue开发至关重要</p>
+    </footer>
+  </div>
+
+  <script>
+    // 自定义控制台输出
+    const consoleOutput = document.getElementById('console-output')
+
+    function logToConsole(message, type = 'info') {
+      const line = document.createElement('div')
+      line.className = `console-line console-${type}`
+      line.textContent = message
+      consoleOutput.appendChild(line)
+      consoleOutput.scrollTop = consoleOutput.scrollHeight
+    }
+
+    // 初始日志
+    logToConsole('页面加载完成', 'info')
+    logToConsole('Vue.config.optionMergeStrategies 演示开始', 'info')
+
+    // 定义策略选择器
+    const strategySelect = document.getElementById('strategy-select')
+    const currentStrategyDisplay = document.getElementById('current-strategy')
+    const applyStrategyBtn = document.getElementById('apply-strategy')
+
+    // 当前策略状态
+    let currentStrategy = 'default'
+
+    // 应用策略按钮
+    applyStrategyBtn.addEventListener('click', function () {
+      currentStrategy = strategySelect.value
+
+      // 更新显示
+      const strategyNames = {
+        default: '默认策略（合并为数组）',
+        childOnly: '仅使用子组件值',
+        concat: '合并为数组',
+        sum: '数值求和'
+      }
+      currentStrategyDisplay.textContent = strategyNames[currentStrategy]
+
+      logToConsole(`已应用策略: ${strategyNames[currentStrategy]}`, 'success')
+    })
+
+    // 1. 定义自定义合并策略
+    Vue.config.optionMergeStrategies.customOption = function (parentVal, childVal) {
+      // 默认行为：合并为数组
+      const res = parentVal ? parentVal.slice() : []
+      if (childVal) {
+        res.push(childVal)
+      }
+      return res
+    }
+
+    // 2. 定义数值选项的合并策略
+    Vue.config.optionMergeStrategies.numericOption = function (parentVal, childVal) {
+      // 默认行为：子组件覆盖父组件
+      return childVal !== undefined ? childVal : parentVal
+    }
+
+    // 3. 创建全局mixin
+    Vue.mixin({
+      created() {
+        this.$options.createdHooks.push('全局mixin created')
+      },
+      customOption: '全局mixin customOption',
+      numericOption: 10
+    })
+
+    // 4. 创建混入对象
+    const myMixin = {
+      created() {
+        this.$options.createdHooks.push('myMixin created')
+      },
+      customOption: 'myMixin customOption',
+      numericOption: 5
+    }
+
+    // 创建Vue应用
+    new Vue({
+      el: '#app',
+
+      // 初始选项值
+      data: {
+        createdHooks: [],
+        customOption: null,
+        numericOption: null
+      },
+
+      // 使用混入
+      mixins: [myMixin],
+
+      // 组件选项
+      created() {
+        this.$options.createdHooks.push('组件自身 created')
+
+        // 初始显示合并后的选项
+        this.createdHooks = this.$options.createdHooks
+        this.customOption = this.$options.customOption
+        this.numericOption = this.$options.numericOption
+      },
+
+      methods: {
+        triggerCreated() {
+          // 执行所有created钩子
+          this.$options.created.forEach((hook) => {
+            if (typeof hook === 'function') {
+              hook.call(this)
+            }
+          })
+
+          logToConsole('执行了所有 created 钩子函数', 'success')
+        },
+
+        useCustomOption() {
+          if (Array.isArray(this.$options.customOption)) {
+            const message = `customOption 值: ${this.$options.customOption.join(', ')}`
+            logToConsole(message, 'info')
+          } else {
+            logToConsole(`customOption 值: ${this.$options.customOption}`, 'info')
+          }
+        }
+      },
+
+      // 动态应用合并策略
+      beforeCreate() {
+        // 根据选择的策略动态修改合并策略
+        switch (currentStrategy) {
+          case 'childOnly':
+            Vue.config.optionMergeStrategies.created = function (parent, child) {
+              return child || parent
+            }
+            Vue.config.optionMergeStrategies.customOption = function (parent, child) {
+              return child
+            }
+            Vue.config.optionMergeStrategies.numericOption = function (parent, child) {
+              return child
+            }
+            break
+
+          case 'concat':
+            Vue.config.optionMergeStrategies.created = function (parent, child) {
+              const res = parent ? parent.slice() : []
+              if (child) {
+                res.push(child)
+              }
+              return res
+            }
+            Vue.config.optionMergeStrategies.customOption = function (parent, child) {
+              const res = parent ? parent.slice() : []
+              if (child) {
+                res.push(child)
+              }
+              return res
+            }
+            break
+
+          case 'sum':
+            Vue.config.optionMergeStrategies.numericOption = function (parent, child) {
+              return (parent || 0) + (child || 0)
+            }
+            break
+
+          default: // 'default'
+            // 恢复默认策略
+            Vue.config.optionMergeStrategies.created = function (parentVal, childVal) {
+              return childVal
+                ? parentVal
+                  ? parentVal.concat(childVal)
+                  : Array.isArray(childVal)
+                    ? childVal
+                    : [childVal]
+                : parentVal
+            }
+            Vue.config.optionMergeStrategies.customOption = function (parentVal, childVal) {
+              const res = parentVal ? parentVal.slice() : []
+              if (childVal) {
+                res.push(childVal)
+              }
+              return res
+            }
+            Vue.config.optionMergeStrategies.numericOption = function (parentVal, childVal) {
+              return childVal !== undefined ? childVal : parentVal
+            }
+        }
+      },
+
+      // 初始化选项
+      created: function () {
+        // 初始钩子函数
+      },
+      customOption: '组件自身 customOption',
+      numericOption: 3
+    })
+  </script>
+</body>
+
+</html>

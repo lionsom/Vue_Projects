@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const publicDir = path.join(__dirname, '.')
+const publicDir = path.join(__dirname, './vue2-api-demos')
 const outputFile = path.join(publicDir, 'htmlFiles_temp.json')
 const folderHtmlMap = {}
 

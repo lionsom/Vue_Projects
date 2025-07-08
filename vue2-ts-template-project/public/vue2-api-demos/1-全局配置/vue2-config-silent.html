@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue.config.silent 配置演示</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style>
+    body {
+      background: #23272f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    }
+
+    #app {
+      background: #313543;
+      border-radius: 12px;
+      padding: 40px 50px;
+      box-shadow: 0 6px 32px #0005;
+      font-size: 1.2rem;
+      text-align: left;
+      min-width: 320px;
+    }
+
+    #app strong {
+      color: #fdbb2d;
+      font-weight: bold;
+    }
+
+    .tip {
+      color: #4fc3f7;
+      margin-top: 18px;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <p>分别设置：</p>
+    <p>Vue.config.silent = false;</p>
+    <p>Vue.config.silent = true;</p>
+    <p>查看控制台报错</p>
+
+    <p>因为我把 el: '#app11', 设置为一个不存在的div</p>
+  </div>
+
+  <script>
+    Vue.config.silent = false
+    new Vue({
+      el: '#app11',
+      data: { count: 0 }
+    })
+  </script>
+</body>
+
+</html>

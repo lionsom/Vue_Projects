@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 函数知识点与 Vue 2 应用</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(120deg, #4b6cb7, #182848);
+            color: white;
+            padding: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .demo-area {
+            background: #f8f9fa;
+            border-left: 4px solid #4b6cb7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .button {
+            background: #4b6cb7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.2s;
+            margin: 10px 5px;
+        }
+        
+        .button:hover {
+            background: #3a5699;
+            transform: translateY(-2px);
+        }
+        
+        .button:active {
+            transform: translateY(1px);
+        }
+        
+        input, select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .result {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .highlight {
+            color: #d63384;
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>JavaScript 函数知识点</h1>
+            <p class="subtitle">全面解析 JavaScript 函数核心概念及其在 Vue 2 中的应用</p>
+        </header>
+        
+        <div class="content">
+            <!-- 函数声明与表达式 -->
+            <div class="card">
+                <div class="card-header">1. 函数声明与表达式</div>
+                <div class="card-content">
+                    <p>函数声明会被提升，可以在定义前调用；函数表达式不会被提升。</p>
+                    
+                    <div class="code-block">
+                        // 函数声明<br>
+                        function greet(name) {<br>
+                        &nbsp;&nbsp;return `Hello, ${name}!`;<br>
+                        }<br><br>
+                        
+                        // 函数表达式<br>
+                        const square = function(x) {<br>
+                        &nbsp;&nbsp;return x * x;<br>
+                        };
+                    </div>
+                    
+                    <div class="demo-area">
+                        <button class="button" @click="showGreeting">调用函数声明</button>
+                        <button class="button" @click="showSquare">调用函数表达式</button>
+                        
+                        <div class="result" v-if="declarationResult">
+                            {{ declarationResult }}
+                        </div>
+                        
+                        <div class="result" v-if="expressionResult">
+                            5 的平方是: {{ expressionResult }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 箭头函数 -->
+            <div class="card">
+                <div class="card-header">2. 箭头函数</div>
+                <div class="card-content">
+                    <p>更简洁的语法，没有自己的 <code>this</code>、<code>arguments</code>、<code>super</code> 或 <code>new.target</code>。</p>
+                    
+                    <div class="code-block">
+                        // 常规函数<br>
+                        const add = function(a, b) {<br>
+                        &nbsp;&nbsp;return a + b;<br>
+                        };<br><br>
+                        
+                        // 箭头函数<br>
+                        const addArrow = (a, b) => a + b;<br><br>
+                        
+                        // 单参数可省略括号<br>
+                        const double = x => x * 2;
+                    </div>
+                    
+                    <div class="demo-area">
+                        <input v-model="num1" type="number" placeholder="输入第一个数字">
+                        <input v-model="num2" type="number" placeholder="输入第二个数字">
+                        
+                        <button class="button" @click="addNumbers">计算和 (常规函数)</button>
+                        <button class="button" @click="addNumbersArrow">计算和 (箭头函数)</button>
+                        
+                        <div class="result" v-if="additionResult">
+                            计算结果: {{ additionResult }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 高阶函数 -->
+            <div class="card">
+                <div class="card-header">3. 高阶函数</div>
+                <div class="card-content">
+                    <p>接收函数作为参数或返回函数的函数。常见于数组方法如 <code>map</code>、<code>filter</code>、<code>reduce</code>。</p>
+                    
+                    <div class="code-block">
+                        // 返回函数的函数<br>
+                        function multiplier(factor) {<br>
+                        &nbsp;&nbsp;return x => x * factor;<br>
+                        }<br><br>
+                        
+                        // 接收函数作为参数<br>
+                        const numbers = [1, 2, 3, 4];<br>
+                        const doubled = numbers.map(x => x * 2);
+                    </div>
+                    
+                    <div class="demo-area">
+                        <button class="button" @click="applyMultiplier">应用乘数</button>
+                        <button class="button" @click="processNumbers">处理数字数组</button>
+                        
+                        <div class="result" v-if="multiplierResult">
+                            乘数结果: {{ multiplierResult }}
+                        </div>
+                        
+                        <div class="result" v-if="processedNumbers">
+                            处理后的数组: [{{ processedNumbers.join(', ') }}]
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 闭包 -->
+            <div class="card">
+                <div class="card-header">4. 闭包</div>
+                <div class="card-content">
+                    <p>函数可以访问其外部作用域中的变量，即使外部函数已经执行完毕。</p>
+                    
+                    <div class="code-block">
+                        function createCounter() {<br>
+                        &nbsp;&nbsp;let count = 0;<br>
+                        &nbsp;&nbsp;return function() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;count++;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;return count;<br>
+                        &nbsp;&nbsp;};<br>
+                        }<br><br>
+                        
+                        const counter = createCounter();
+                    </div>
+                    
+                    <div class="demo-area">
+                        <button class="button" @click="incrementCounter">增加计数器</button>
+                        
+                        <div class="result">
+                            当前计数: {{ counterValue }}
+                        </div>
+                        
+                        <p class="highlight">每次点击都会增加同一个计数器的值</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- this 关键字 -->
+            <div class="card">
+                <div class="card-header">5. this 关键字</div>
+                <div class="card-content">
+                    <p><code>this</code> 的值取决于函数的调用方式。箭头函数不绑定自己的 <code>this</code>。</p>
+                    
+                    <div class="code-block">
+                        const person = {<br>
+                        &nbsp;&nbsp;name: 'Alice',<br>
+                        &nbsp;&nbsp;regularFunc: function() {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;console.log(this.name); // 'Alice'<br>
+                        &nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;arrowFunc: () => {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;console.log(this.name); // undefined<br>
+                        &nbsp;&nbsp;}<br>
+                        };
+                    </div>
+                    
+                    <div class="demo-area">
+                        <button class="button" @click="showRegularThis">常规函数中的 this</button>
+                        <button class="button" @click="showArrowThis">箭头函数中的 this</button>
+                        
+                        <div class="result" v-if="thisResult">
+                            {{ thisResult }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 函数参数 -->
+            <div class="card">
+                <div class="card-header">6. 函数参数处理</div>
+                <div class="card-content">
+                    <p>默认参数、剩余参数、参数解构等高级用法。</p>
+                    
+                    <div class="code-block">
+                        // 默认参数<br>
+                        function greet(name = 'Guest') {<br>
+                        &nbsp;&nbsp;return `Hello, ${name}!`;<br>
+                        }<br><br>
+                        
+                        // 剩余参数<br>
+                        function sum(...numbers) {<br>
+                        &nbsp;&nbsp;return numbers.reduce((acc, val) => acc + val, 0);<br>
+                        }<br><br>
+                        
+                        // 参数解构<br>
+                        function displayUser({name, age}) {<br>
+                        &nbsp;&nbsp;return `${name} is ${age} years old`;<br>
+                        }
+                    </div>
+                    
+                    <div class="demo-area">
+                        <button class="button" @click="showDefaultParam">默认参数</button>
+                        <button class="button" @click="showRestParams">剩余参数</button>
+                        <button class="button" @click="showDestructuring">参数解构</button>
+                        
+                        <div class="result" v-if="paramResult">
+                            {{ paramResult }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JavaScript 函数知识点与 Vue 2 应用示例 | 学习资源: MDN Web Docs, Vue.js 官方文档</p>
+        </footer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // 函数声明与表达式
+                declarationResult: '',
+                expressionResult: null,
+                
+                // 箭头函数
+                num1: 5,
+                num2: 10,
+                additionResult: null,
+                
+                // 高阶函数
+                multiplierResult: null,
+                processedNumbers: null,
+                
+                // 闭包
+                counterValue: 0,
+                counter: null,
+                
+                // this 关键字
+                thisResult: '',
+                
+                // 函数参数
+                paramResult: ''
+            },
+            methods: {
+                // 1. 函数声明与表达式
+                showGreeting() {
+                    // 函数声明
+                    function greet(name) {
+                        return `Hello, ${name}!`;
+                    }
+                    this.declarationResult = greet('Vue 开发者');
+                },
+                
+                showSquare() {
+                    // 函数表达式
+                    const square = function(x) {
+                        return x * x;
+                    };
+                    this.expressionResult = square(5);
+                },
+                
+                // 2. 箭头函数
+                addNumbers() {
+                    // 常规函数
+                    const add = function(a, b) {
+                        return a + b;
+                    };
+                    this.additionResult = add(Number(this.num1), Number(this.num2));
+                },
+                
+                addNumbersArrow() {
+                    // 箭头函数
+                    const addArrow = (a, b) => a + b;
+                    this.additionResult = addArrow(Number(this.num1), Number(this.num2));
+                },
+                
+                // 3. 高阶函数
+                applyMultiplier() {
+                    // 返回函数的函数
+                    function multiplier(factor) {
+                        return x => x * factor;
+                    }
+                    
+                    const double = multiplier(2);
+                    const triple = multiplier(3);
+                    
+                    this.multiplierResult = `double(5)=${double(5)}, triple(5)=${triple(5)}`;
+                },
+                
+                processNumbers() {
+                    // 接收函数作为参数
+                    const numbers = [1, 2, 3, 4, 5];
+                    
+                    // 使用 map 和 filter
+                    this.processedNumbers = numbers
+                        .map(x => x * 2) // 加倍
+                        .filter(x => x > 5); // 过滤大于5的值
+                },
+                
+                // 4. 闭包
+                incrementCounter() {
+                    if (!this.counter) {
+                        // 创建闭包
+                        this.counter = (function() {
+                            let count = 0;
+                            return function() {
+                                count++;
+                                return count;
+                            };
+                        })();
+                    }
+                    
+                    this.counterValue = this.counter();
+                },
+                
+                // 5. this 关键字
+                showRegularThis() {
+                    const person = {
+                        name: 'Alice',
+                        showName: function() {
+                            this.thisResult = `常规函数中: this.name = ${this.name}`;
+                        }
+                    };
+                    
+                    person.showName();
+                },
+                
+                showArrowThis() {
+                    const person = {
+                        name: 'Alice',
+                        showName: () => {
+                            // 箭头函数中的 this 指向外层作用域（此处为 Vue 实例）
+                            this.thisResult = `箭头函数中: this.name = ${this.name || 'undefined'}`;
+                        }
+                    };
+                    
+                    person.showName();
+                },
+                
+                // 6. 函数参数
+                showDefaultParam() {
+                    function greet(name = 'Guest') {
+                        this.paramResult = `Hello, ${name}!`;
+                    }
+                    
+                    greet(); // 不传参数
+                },
+                
+                showRestParams() {
+                    function sum(...numbers) {
+                        const total = numbers.reduce((acc, val) => acc + val, 0);
+                        this.paramResult = `总和: ${total}`;
+                    }
+                    
+                    sum(1, 2, 3, 4, 5);
+                },
+                
+                showDestructuring() {
+                    function displayUser({name, age}) {
+                        this.paramResult = `${name} is ${age} years old`;
+                    }
+                    
+                    const user = { name: 'Bob', age: 30, email: 'bob@example.com' };
+                    displayUser(user);
+                }
+            },
+            created() {
+                // 初始化闭包计数器
+                this.counter = (function() {
+                    let count = 0;
+                    return function() {
+                        count++;
+                        return count;
+                    };
+                })();
+            }
+        });
+    </script>
+</body>
+</html>
