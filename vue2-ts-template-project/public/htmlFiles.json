@@ -21,7 +21,15 @@
     {
       "fileName": "vue2-comp-transfer.html",
       "filePath": "Vue2-study-demos/vue2-comp-transfer.html"
-    }
+    },
+    {
+      "fileName": "vue2-watch.html",
+      "filePath": "Vue2-study-demos/vue2-watch.html"
+    },
+    {
+      "fileName": "vue2-axios-post.html",
+      "filePath": "Vue2-study-demos/vue2-axios-post.html"
+    },
   ],
   "vue2-4hours-demos": [
     {

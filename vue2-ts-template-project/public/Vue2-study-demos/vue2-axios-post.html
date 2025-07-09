@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios POST请求示例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #3498db;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+        .card-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: #2ecc71;
+        }
+        .btn-success:hover {
+            background: #27ae60;
+        }
+        .btn-danger {
+            background: #e74c3c;
+        }
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        .result-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+            min-height: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .result-box.error {
+            border-left-color: #e74c3c;
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .response-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-family: 'Courier New', monospace;
+        }
+        .response-item:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <header>
+                <h1>Axios POST请求示例</h1>
+                <p class="subtitle">设置请求体(body)和请求头(headers)</p>
+            </header>
+            
+            <div class="content">
+                <!-- 基本POST请求 -->
+                <div class="card">
+                    <h2 class="card-title">基本POST请求</h2>
+                    <div class="form-group">
+                        <label>姓名：</label>
+                        <input type="text" v-model="basicData.name" placeholder="输入姓名">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱：</label>
+                        <input type="email" v-model="basicData.email" placeholder="输入邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label>消息：</label>
+                        <textarea v-model="basicData.message" placeholder="输入消息内容"></textarea>
+                    </div>
+                    <button class="btn btn-success" @click="sendBasicPost">发送请求</button>
+                    
+                    <div class="code-block">
+axios.post('https://jsonplaceholder.typicode.com/posts', 
+    // 请求体 (body)
+    {
+        name: this.basicData.name,
+        email: this.basicData.email,
+        message: this.basicData.message
+    }
+)
+.then(response => {
+    // 处理响应
+})
+.catch(error => {
+    // 处理错误
+});
+                    </div>
+                    
+                    <h3>响应结果：</h3>
+                    <div class="result-box" :class="{ error: basicError }">
+                        <div v-if="basicResponse">
+                            <div class="response-item">状态码: {{ basicResponse.status }}</div>
+                            <div class="response-item">状态文本: {{ basicResponse.statusText }}</div>
+                            <div class="response-item">响应数据: 
+                                <pre>{{ JSON.stringify(basicResponse.data, null, 2) }}</pre>
+                            </div>
+                        </div>
+                        <div v-else-if="basicError">
+                            错误: {{ basicError }}
+                        </div>
+                        <div v-else>
+                            等待请求发送...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 自定义Headers -->
+                <div class="card">
+                    <h2 class="card-title">自定义请求头</h2>
+                    <div class="form-group">
+                        <label>认证令牌：</label>
+                        <input type="text" v-model="headers.authToken" placeholder="Bearer token">
+                    </div>
+                    <div class="form-group">
+                        <label>自定义头：</label>
+                        <input type="text" v-model="headers.customHeader" placeholder="X-Custom-Header">
+                    </div>
+                    <div class="form-group">
+                        <label>内容类型：</label>
+                        <select v-model="headers.contentType">
+                            <option value="application/json">application/json</option>
+                            <option value="application/xml">application/xml</option>
+                            <option value="text/plain">text/plain</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success" @click="sendWithHeaders">发送请求</button>
+                    
+                    <div class="code-block">
+// 设置请求头
+const headers = {
+    'Authorization': `Bearer ${this.headers.authToken}`,
+    'X-Custom-Header': this.headers.customHeader,
+    'Content-Type': this.headers.contentType
+};
+
+axios.post('https://jsonplaceholder.typicode.com/posts', 
+    {
+        title: '带自定义头的请求',
+        body: '演示自定义头的使用',
+        userId: 1
+    },
+    {
+        headers: headers  // 传入headers配置
+    }
+)
+                    </div>
+                    
+                    <h3>响应结果：</h3>
+                    <div class="result-box" :class="{ error: headersError }">
+                        <div v-if="headersResponse">
+                            <div class="response-item">状态码: {{ headersResponse.status }}</div>
+                            <div class="response-item">请求头: 
+                                <pre>{{ JSON.stringify(headersResponse.config.headers, null, 2) }}</pre>
+                            </div>
+                        </div>
+                        <div v-else-if="headersError">
+                            错误: {{ headersError }}
+                        </div>
+                        <div v-else>
+                            等待请求发送...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 不同内容类型 -->
+                <div class="card">
+                    <h2 class="card-title">不同内容类型</h2>
+                    <div class="form-group">
+                        <label>选择内容类型：</label>
+                        <select v-model="contentType">
+                            <option value="json">application/json</option>
+                            <option value="urlencoded">application/x-www-form-urlencoded</option>
+                            <option value="formdata">multipart/form-data</option>
+                        </select>
+                    </div>
+                    
+                    <div v-if="contentType === 'json'">
+                        <div class="form-group">
+                            <label>JSON数据：</label>
+                            <textarea v-model="jsonData" placeholder='{"key": "value"}'></textarea>
+                        </div>
+                    </div>
+                    
+                    <div v-else-if="contentType === 'urlencoded'">
+                        <div class="form-group">
+                            <label>键值对数据：</label>
+                            <div v-for="(item, index) in urlEncodedData" :key="index" class="form-group">
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" v-model="item.key" placeholder="键" style="flex: 1;">
+                                    <input type="text" v-model="item.value" placeholder="值" style="flex: 1;">
+                                    <button class="btn btn-danger" @click="removeUrlEncodedItem(index)">删除</button>
+                                </div>
+                            </div>
+                            <button class="btn" @click="addUrlEncodedItem">添加项</button>
+                        </div>
+                    </div>
+                    
+                    <div v-else-if="contentType === 'formdata'">
+                        <div class="form-group">
+                            <label>表单数据：</label>
+                            <div v-for="(item, index) in formData" :key="index" class="form-group">
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" v-model="item.key" placeholder="键" style="flex: 1;">
+                                    <input type="text" v-model="item.value" placeholder="值" style="flex: 1;">
+                                    <button class="btn btn-danger" @click="removeFormDataItem(index)">删除</button>
+                                </div>
+                            </div>
+                            <button class="btn" @click="addFormDataItem">添加项</button>
+                        </div>
+                        <div class="form-group">
+                            <label>上传文件：</label>
+                            <input type="file" @change="handleFileUpload">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success" @click="sendWithContentType">发送请求</button>
+                    
+                    <div class="code-block">
+// 根据内容类型转换数据
+let data, headers = {};
+if (this.contentType === 'json') {
+    data = JSON.parse(this.jsonData);
+    headers['Content-Type'] = 'application/json';
+} else if (this.contentType === 'urlencoded') {
+    data = new URLSearchParams();
+    this.urlEncodedData.forEach(item => {
+        if (item.key) data.append(item.key, item.value);
+    });
+    headers['Content-Type'] = 'application/x-www-form-urlencoded';
+} else if (this.contentType === 'formdata') {
+    data = new FormData();
+    this.formData.forEach(item => {
+        if (item.key) data.append(item.key, item.value);
+    });
+    if (this.file) {
+        data.append('file', this.file);
+    }
+    // 注意：multipart/form-data不需要手动设置Content-Type
+}
+
+axios.post('https://jsonplaceholder.typicode.com/posts', data, { headers })
+                    </div>
+                    
+                    <h3>响应结果：</h3>
+                    <div class="result-box" :class="{ error: contentTypeError }">
+                        <div v-if="contentTypeResponse">
+                            <div class="response-item">内容类型: {{ contentTypeResponse.config.headers['Content-Type'] || 'multipart/form-data' }}</div>
+                            <div class="response-item">请求体: 
+                                <pre>{{ contentTypeResponse.config.data }}</pre>
+                            </div>
+                        </div>
+                        <div v-else-if="contentTypeError">
+                            错误: {{ contentTypeError }}
+                        </div>
+                        <div v-else>
+                            等待请求发送...
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 错误处理 -->
+                <div class="card">
+                    <h2 class="card-title">错误处理</h2>
+                    <div class="form-group">
+                        <label>模拟错误URL：</label>
+                        <input type="text" v-model="errorUrl" placeholder="https://无效的url">
+                    </div>
+                    <div class="form-group">
+                        <label>模拟错误数据：</label>
+                        <input type="text" v-model="errorData" placeholder="无效的数据">
+                    </div>
+                    <button class="btn btn-danger" @click="simulateError">触发错误</button>
+                    
+                    <div class="code-block">
+axios.post(this.errorUrl, { data: this.errorData })
+    .then(response => {
+        // 成功处理
+    })
+    .catch(error => {
+        // 错误处理
+        if (error.response) {
+            // 服务器返回了错误状态码
+            console.log('错误数据:', error.response.data);
+            console.log('状态码:', error.response.status);
+        } else if (error.request) {
+            // 请求已发送但无响应
+            console.log('无响应:', error.request);
+        } else {
+            // 请求设置错误
+            console.log('请求错误:', error.message);
+        }
+    });
+                    </div>
+                    
+                    <h3>错误详情：</h3>
+                    <div class="result-box error">
+                        <div v-if="errorDetails">
+                            <div class="response-item">错误类型: {{ errorDetails.type }}</div>
+                            <div class="response-item">错误信息: {{ errorDetails.message }}</div>
+                            <div v-if="errorDetails.response" class="response-item">
+                                状态码: {{ errorDetails.response.status }}
+                            </div>
+                        </div>
+                        <div v-else>
+                            等待错误触发...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Axios POST请求示例 | 展示如何设置请求体和请求头</p>
+                <p>注意：本示例使用JSONPlaceholder作为模拟API端点</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // 基本POST请求
+                basicData: {
+                    name: '',
+                    email: '',
+                    message: ''
+                },
+                basicResponse: null,
+                basicError: null,
+                
+                // 自定义Headers
+                headers: {
+                    authToken: 'my-secret-token',
+                    customHeader: 'custom-value',
+                    contentType: 'application/json'
+                },
+                headersResponse: null,
+                headersError: null,
+                
+                // 不同内容类型
+                contentType: 'json',
+                jsonData: '{"title": "示例标题", "body": "示例内容", "userId": 1}',
+                urlEncodedData: [{ key: 'username', value: 'user1' }, { key: 'password', value: 'pass123' }],
+                formData: [{ key: 'field1', value: 'value1' }, { key: 'field2', value: 'value2' }],
+                file: null,
+                contentTypeResponse: null,
+                contentTypeError: null,
+                
+                // 错误处理
+                errorUrl: 'https://invalid-url.example',
+                errorData: 'invalid-data',
+                errorDetails: null
+            },
+            methods: {
+                // 基本POST请求
+                sendBasicPost() {
+                    this.basicResponse = null;
+                    this.basicError = null;
+                    
+                    axios.post('https://jsonplaceholder.typicode.com/posts', this.basicData)
+                        .then(response => {
+                            this.basicResponse = response;
+                        })
+                        .catch(error => {
+                            this.basicError = error.message;
+                        });
+                },
+                
+                // 带自定义Headers的请求
+                sendWithHeaders() {
+                    this.headersResponse = null;
+                    this.headersError = null;
+                    
+                    const headers = {
+                        'Authorization': `Bearer ${this.headers.authToken}`,
+                        'X-Custom-Header': this.headers.customHeader,
+                        'Content-Type': this.headers.contentType
+                    };
+                    
+                    axios.post('https://jsonplaceholder.typicode.com/posts', 
+                        {
+                            title: '带自定义头的请求',
+                            body: '演示自定义头的使用',
+                            userId: 1
+                        },
+                        { headers }
+                    )
+                    .then(response => {
+                        this.headersResponse = response;
+                    })
+                    .catch(error => {
+                        this.headersError = error.message;
+                    });
+                },
+                
+                // 添加URL编码数据项
+                addUrlEncodedItem() {
+                    this.urlEncodedData.push({ key: '', value: '' });
+                },
+                
+                // 移除URL编码数据项
+                removeUrlEncodedItem(index) {
+                    this.urlEncodedData.splice(index, 1);
+                },
+                
+                // 添加表单数据项
+                addFormDataItem() {
+                    this.formData.push({ key: '', value: '' });
+                },
+                
+                // 移除表单数据项
+                removeFormDataItem(index) {
+                    this.formData.splice(index, 1);
+                },
+                
+                // 处理文件上传
+                handleFileUpload(event) {
+                    this.file = event.target.files[0];
+                },
+                
+                // 发送不同内容类型的请求
+                sendWithContentType() {
+                    this.contentTypeResponse = null;
+                    this.contentTypeError = null;
+                    
+                    let data, headers = {};
+                    
+                    try {
+                        if (this.contentType === 'json') {
+                            data = JSON.parse(this.jsonData);
+                            headers['Content-Type'] = 'application/json';
+                        } else if (this.contentType === 'urlencoded') {
+                            data = new URLSearchParams();
+                            this.urlEncodedData.forEach(item => {
+                                if (item.key) data.append(item.key, item.value);
+                            });
+                            headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                        } else if (this.contentType === 'formdata') {
+                            data = new FormData();
+                            this.formData.forEach(item => {
+                                if (item.key) data.append(item.key, item.value);
+                            });
+                            if (this.file) {
+                                data.append('file', this.file);
+                            }
+                            // 注意：multipart/form-data不需要手动设置Content-Type
+                        }
+                        
+                        axios.post('https://jsonplaceholder.typicode.com/posts', data, { headers })
+                            .then(response => {
+                                this.contentTypeResponse = response;
+                            })
+                            .catch(error => {
+                                this.contentTypeError = error.message;
+                            });
+                    } catch (error) {
+                        this.contentTypeError = error.message;
+                    }
+                },
+                
+                // 模拟错误
+                simulateError() {
+                    this.errorDetails = null;
+                    
+                    axios.post(this.errorUrl, { data: this.errorData })
+                        .catch(error => {
+                            this.errorDetails = {
+                                message: error.message,
+                                type: this.getErrorType(error),
+                                response: error.response ? {
+                                    status: error.response.status,
+                                    data: error.response.data
+                                } : null
+                            };
+                        });
+                },
+                
+                // 获取错误类型
+                getErrorType(error) {
+                    if (error.response) {
+                        return '服务器响应错误';
+                    } else if (error.request) {
+                        return '无服务器响应';
+                    } else {
+                        return '请求设置错误';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
