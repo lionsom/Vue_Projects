@@ -1,27 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app-2">
-      <span v-bind:title="message">
-        鼠标悬停几秒钟查看此处动态绑定的提示信息！
-      </span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f7f8fa;
+      margin: 0;
+      font-family: 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Arial', sans-serif;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 32px 40px 28px 40px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .desc {
+      color: #333;
+      font-size: 18px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+      padding: 10px;
+
+      background-color: #c1e5fc;
+      border-radius: 8px;
+      border: #1890ff 1px solid;
+    }
+
+    .code-block {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 0px 10px;
+      border-radius: 8px;
+      font-family: 'Fira Mono', 'Courier New', monospace;
+      font-size: 1rem;
+      overflow-x: auto;
+      line-height: 1.7;
+      /* white-space: pre; */
+    }
+
+    .tip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #e6f7ff 0%, #f0f5ff 100%);
+      color: #1890ff;
+      margin-top: 15px;
+      border-radius: 10px;
+      padding: 14px 22px;
+      font-size: 16px;
+      font-weight: 500;
+      box-shadow: 0 4px 18px rgba(24, 144, 255, 0.10);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: 1.5px solid #91d5ff;
+    }
+
+    /* .tip:hover {
+        background: linear-gradient(90deg, #bae7ff 0%, #e6f7ff 100%);
+        transform: scale(1.05);
+        box-shadow: 0 8px 24px rgba(24,144,255,0.18);
+      } */
+    .tip-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app-2" class="container">
+
+    <h1 class="title">
+      v-bind 绑定指令
+    </h1>
+
+    <div class="desc">
+      这里我们遇到了一点新东西。你看到的 v-bind attribute 被称为指令。指令带有前缀 v-，以表示它们是 Vue 提供的特殊 attribute。可能你已经猜到了，它们会在渲染的 DOM
+      上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 title attribute 和 Vue 实例的 message property 保持一致”。<br><br>
+      如果你再次打开浏览器的 JavaScript 控制台，输入 app2.message = '新消息'，就会再一次看到这个绑定了 title attribute 的 HTML 已经进行了更新。
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <section class="code-block" aria-label="代码示例">
+      <pre><code>
+&lt;div id=&quot;app-2&quot;&gt;
+  &lt;span v-bind:title=&quot;message&quot;&gt;
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  &lt;/span&gt;
+&lt;/div&gt;
 
-    <script type="text/javascript">
-      var app2 = new Vue({
-        el: "#app-2",
-        data: {
-          message: "页面加载于 " + new Date().toLocaleString(),
-        },
-      });
-    </script>
-  </body>
+
+&lt;script&gt;
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: '页面加载于 ' + new Date().toLocaleString()
+  }
+})
+&lt;/script&gt;
+    </code></pre>
+    </section>
+
+    <span class="tip" v-bind:title="message">
+      <svg class="tip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#91d5ff" />
+        <path d="M12 8V12" stroke="#1890ff" stroke-width="2" stroke-linecap="round" />
+        <circle cx="12" cy="16" r="1" fill="#1890ff" />
+      </svg>
+      鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+  <script type="text/javascript">
+    var app2 = new Vue({
+      el: "#app-2",
+      data: {
+        message: "页面加载于 " + new Date().toLocaleString(),
+      },
+    });
+  </script>
+</body>
+
 </html>
