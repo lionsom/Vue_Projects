@@ -79,6 +79,7 @@ export default Vue.extend({
           throw new Error('Network response was not ok')
         }
         this.htmlFilesList = await response.json()
+        console.log('=============>', this.htmlFilesList)
       } catch (error) {
         console.error('获取演示文件列表失败:', error)
       }
