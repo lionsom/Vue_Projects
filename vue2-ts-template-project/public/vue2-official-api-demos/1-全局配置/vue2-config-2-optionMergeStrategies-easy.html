@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue2 自定义生命周期示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1>
+    <child-component></child-component>
+
+    <a href="https://juejin.cn/post/6996677265715101704?from=search-suggest" target="_blank">参考文章：https://juejin.cn/post/6996677265715101704?from=search-suggest</a>
+    <a href="https://juejin.cn/post/6981811258731266056" target="_blank">参考文章：https://juejin.cn/post/6981811258731266056</a>
+  </div>
+
+  <script>
+    // 1. 定义自定义选项的合并策略
+    Vue.config.optionMergeStrategies.notInCurrentWindow = function(parentVal, childVal) {
+      // 使用与 created 相同的合并策略（数组合并）
+      return Vue.config.optionMergeStrategies.created(parentVal, childVal);
+    };
+
+    // 2. 创建全局混入 - 处理生命周期触发
+    Vue.mixin({
+      mounted() {
+        // 只在根实例初始化时绑定一次
+        if (this === this.$root) {
+          window.addEventListener('visibilitychange', this.handleVisibilityChange);
+        }
+      },
+      beforeDestroy() {
+        if (this === this.$root) {
+          window.removeEventListener('visibilitychange', this.handleVisibilityChange);
+        }
+      },
+      methods: {
+        handleVisibilityChange() {
+          if (document.visibilityState === 'hidden') {
+            this.triggerHook('notInCurrentWindow');
+          }
+        },
+        // 递归触发自定义钩子
+        triggerHook(hookName) {
+          const handlers = this.$options[hookName];
+          if (handlers) {
+            handlers.forEach(handler => handler.call(this));
+          }
+          
+          // 递归触发子组件
+          this.$children.forEach(child => {
+            child.triggerHook(hookName);
+          });
+        }
+      }
+    });
+
+    // 3. 创建子组件
+    Vue.component('child-component', {
+      template: '<div><p>子组件</p></div>',
+      notInCurrentWindow() {
+        console.log('子组件: 页面不可见');
+      }
+    });
+
+    // 4. 创建根实例
+    new Vue({
+      el: '#app',
+      data: {
+        message: '页面可见性测试 - 尝试切换标签页或最小化窗口'
+      },
+      notInCurrentWindow() {
+        console.log('根组件: 页面不可见');
+        alert('自定义生命周期触发: 离开当前页面');
+      },
+      created() {
+        console.log('传统created钩子');
+      }
+    });
+  </script>
+</body>
+</html>

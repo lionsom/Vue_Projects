@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2 error和warning处理示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.93);
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 25px 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+
+    .content {
+      display: flex;
+      padding: 0;
+    }
+
+    .demo-section {
+      flex: 1;
+      padding: 30px;
+      border-right: 1px solid #eee;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-template {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-method {
+      background: #2ecc71;
+      color: white;
+    }
+
+    .btn-async {
+      background: #9b59b6;
+      color: white;
+    }
+
+    .btn-component {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .component-error {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff8e1;
+      border-radius: 8px;
+      border: 1px dashed #ffc107;
+    }
+
+    .component-error h3 {
+      color: #ff9800;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .demo-section {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Vue2 错误和警告处理机制</h1>
+      <p>使用 Vue.config.errorHandler 和 Vue.config.warnHandler 捕获和处理应用程序错误</p>
+    </header>
+
+    <div class="content">
+      <div class="demo-section">
+        <h2 class="section-title">触发不同类型错误</h2>
+
+        <h3>Vue相关</h3>
+
+        <div class="buttons">
+          <button class="btn-template" @click="triggerTemplateError">
+            触发模板错误
+          </button>
+
+          <button class="btn-method" @click="triggerMethodError">
+            触发方法错误
+          </button>
+
+          <button class="btn-async" @click="triggerAsyncError">
+            触发异步错误
+          </button>
+
+          <button class="btn-component" @click="triggerComponentError">
+            触发组件错误
+          </button>
+        </div>
+
+        <h3>js相关</h3>
+
+        <div class="buttons">
+          <button class="btn-component" @click="triggerJsError">
+            触发js数组
+          </button>
+        </div>
+
+        <div class="component-error">
+          <h3>错误组件区域</h3>
+          <p>点击上面的按钮触发组件内错误</p>
+          <div v-if="showErrorComponent">
+            <error-component></error-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 注册一个会抛出错误的组件
+    Vue.component('error-component', {
+      template: `
+        <div>
+          <p>这个组件包含一个错误：{{ undefinedVariable }}</p>
+        </div>
+      `,
+      created() {
+        // 组件创建时不会抛出错误
+      }
+    });
+
+    // Vue 的运行时警告赋予一个自定义处理函数
+    Vue.config.warnHandler = function (msg, vm, trace) {
+      // `trace` 是组件的继承关系追踪
+      console.log('==================== warnHandler ===================>');
+      console.log('=============>', msg);
+      console.log('=============>', vm);
+      console.log('=============>', trace);
+    }
+
+    // 配置全局错误处理器
+    Vue.config.errorHandler = function (err, vm, info) {
+      console.log('==================== errorHandler ===================>');
+      console.log('=============>', err);
+      console.log('=============>', vm);
+      console.log('=============>', info);
+    };
+
+
+    // 创建 Vue 实例
+    const app = new Vue({
+      el: '.container',
+      data: {
+        errorHandlerActive: true,
+        lastError: null,
+        errorLog: [],
+        showErrorComponent: false
+      },
+      methods: {
+        // 触发模板渲染错误
+        triggerTemplateError() {
+          // 在模板中引用不存在的变量
+          this.nonExistentVariable = '触发错误';
+        },
+
+        // 触发方法中的错误
+        triggerMethodError() {
+          // 故意调用不存在的方法
+          this.undefinedMethod();
+        },
+
+        // 触发异步操作中的错误
+        triggerAsyncError() {
+          setTimeout(() => {
+            // 在异步回调中抛出错误
+            throw new Error('这是一个异步操作中发生的错误');
+          }, 100);
+        },
+
+        // 触发组件内的错误
+        triggerComponentError() {
+          this.showErrorComponent = true;
+        },
+
+        triggerJsError() {
+          const arr = null;
+          arr.array.forEach(element => {
+            console.log('=============>', element);
+          });
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>
