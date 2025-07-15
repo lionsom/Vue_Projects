@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 // routes
 import routerHome from './router-home'
 import routerDemos from './router-demos'
+import routerOfficalApiDemos from './router-offical-api-demos'
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(
@@ -61,7 +62,7 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [...routes, ...routerDemos]
+  routes: [...routes, ...routerDemos, ...routerOfficalApiDemos]
 })
 
 export default router

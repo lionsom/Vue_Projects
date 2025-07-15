@@ -131,6 +131,14 @@
     {
       "fileName": "全局配置-optionMergeStrategies",
       "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-optionMergeStrategies.html"
+    },
+    {
+      "fileName": "全局配置-errorHandler-warnHandler",
+      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-3-errorHandler-warnHandler.html"
+    },
+    {
+      "fileName": "全局API-Vue_extend",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-1-Vue_extend.html"
     }
   ],
   "vue2-official-example-demos": [
