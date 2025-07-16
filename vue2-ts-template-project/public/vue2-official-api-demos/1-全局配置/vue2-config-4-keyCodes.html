@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>跳转到 vue2-offical-keyCodes</title>
+  <!-- 引入 Vue 和 vue-router（如果你的项目没全局引入的话） -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3/dist/vue-router.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f7f8fa;
+    }
+    #app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    button {
+      padding: 12px 32px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      background: #42b983;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(66,185,131,0.15);
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #36996b;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="goToExtend">跳转到 vue2-offical-keyCodes</button>
+  </div>
+  <script>
+    // 这里只做跳转演示，假设你的路由已经配置好
+    new Vue({
+      el: '#app',
+      methods: {
+        goToExtend() {
+          // 如果页面有 vue-router 实例
+          if (this.$router) {
+            this.$router.push('/vue2-offical-keyCodes');
+          } else {
+            // 纯 HTML 文件用 window.location
+            window.location.href = '/vue2-offical-keyCodes';
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

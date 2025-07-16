@@ -137,8 +137,24 @@
       "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-3-errorHandler-warnHandler.html"
     },
     {
-      "fileName": "全局API-Vue_extend",
+      "fileName": "全局配置-keyCodes",
+      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-4-keyCodes.html"
+    },
+    {
+      "fileName": "全局API-Vue.extend()",
       "filePath": "vue2-official-api-demos/2-全局API/vue2-api-1-Vue_extend.html"
+    },
+    {
+      "fileName": "全局API-Vue.nextTick() vs this.$nextTick()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-2-Vue_nextTick.html"
+    },
+    {
+      "fileName": "全局API-Vue.set() vs this.$set()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-3-Vue_set.html"
+    },
+    {
+      "fileName": "全局API-Vue.delete() vs this.$delete()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-4-Vue_delete.html"
     }
   ],
   "vue2-official-example-demos": [

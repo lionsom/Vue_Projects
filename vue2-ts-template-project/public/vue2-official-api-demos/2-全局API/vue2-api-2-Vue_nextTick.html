@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.nextTick 与 this.$nextTick 对比</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: #f7f8fa;
+      padding: 40px 0;
+      min-height: 100vh;
+    }
+
+    #app {
+      background: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 32px 28px 24px 28px;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      color: #2d8cf0;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #222;
+    }
+
+    button {
+      background: #2d8cf0;
+      color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 15px;
+      margin-bottom: 10px;
+      margin-right: 12px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(45, 140, 240, 0.08);
+    }
+
+    button:hover {
+      background: #1765ad;
+      box-shadow: 0 4px 16px rgba(45, 140, 240, 0.15);
+    }
+
+    .log {
+      margin-top: 22px;
+      background: #f0faff;
+      border-left: 4px solid #2d8cf0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      min-height: 40px;
+      font-size: 14px;
+      color: #444;
+      word-break: break-all;
+      box-shadow: 0 2px 8px rgba(45, 140, 240, 0.04);
+    }
+
+    .log>div {
+      margin-bottom: 4px;
+      line-height: 1.7;
+      border-bottom: #1765ad 1px solid;
+    }
+
+    .log>div:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2>Vue.nextTick 与 this.$nextTick 对比</h2>
+    <p>count: {{ count }}</p>
+    <button @click="updateWithVueNextTick">用 Vue.nextTick 更新</button>
+    <button @click="updateWithThisNextTick">用 this.$nextTick 更新</button>
+    <div class="log">
+      <div v-for="msg in logs" :key="msg">{{ msg }}</div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          count: 0,
+          logs: []
+        }
+      },
+      methods: {
+        updateWithVueNextTick() {
+          this.count++;
+          this.logs.push('点击后，DOM还未更新，p内容：' + this.$el.querySelector('p').textContent);
+          Vue.nextTick(() => {
+            this.logs.push('Vue.nextTick 回调，p内容：' + this.$el.querySelector('p').textContent);
+          });
+        },
+        updateWithThisNextTick() {
+          this.count++;
+          this.logs.push('点击后，DOM还未更新，p内容：' + this.$el.querySelector('p').textContent);
+          this.$nextTick(() => {
+            this.logs.push('this.$nextTick 回调，p内容：' + this.$el.querySelector('p').textContent);
+          });
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.delete 与 this.$delete 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
+
+    .item {
+      margin-bottom: 8px;
+    }
+
+    button {
+      margin-left: 8px;
+      margin-top: 6px;
+      padding: 2px 10px;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+      background: #f7f7f7;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #e6f7ff;
+    }
+
+    pre {
+      border: green 1px solid;
+      background: #f6ffed;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="box">
+    <h2>Vue.delete 与 this.$delete 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.delete</b> 和 <b>this.$delete</b> 都可以用来删除响应式对象的属性，确保视图能正确更新。<br>
+        <b>Vue.delete(对象, 属性名)</b> 是全局方法，<b>this.$delete(对象, 属性名)</b> 是实例方法，二者作用相同。<br>
+        <br>
+        <b>注意：</b> 直接 <code>delete obj.key</code> 删除属性，Vue 无法检测到变化，视图不会自动更新。<br>
+        推荐使用 <code>Vue.delete</code> 或 <code>this.$delete</code>。
+      </p>
+      <pre><code>
+  data: {
+    user: {
+      name: '张三',
+      age: 20
+    },
+    items: ['苹果', '香蕉', '橙子']
+  }
+      </code></pre>
+    </div>
+    <h3>对象属性删除</h3>
+    <ul>
+      <li v-for="(value, key) in user" :key="key">
+        {{ key }} - {{ value }}
+      </li>
+    </ul>
+    <div style="display: flex; flex-direction: column;">
+      <button @click="deleteName">Vue.delete 删除 name 属性：Vue.delete(this.user, 'name');</button>
+      <button @click="deleteAge">this.$delete 删除 age 属性：this.$delete(this.user, 'age');</button>
+    </div>
+    <h3 style="margin-top: 20px;">数组元素删除</h3>
+    <ul>
+      <li v-for="(item, idx) in items" :key="idx" class="item">
+        {{ item }}
+        <button @click="deleteItem(idx)">删除：this.$delete(this.items, idx);</button>
+      </li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        user: {
+          name: '张三',
+          age: 20
+        },
+        items: ['苹果', '香蕉', '橙子']
+      },
+      methods: {
+        // 使用 Vue.delete 删除对象属性
+        deleteName() {
+          Vue.delete(this.user, 'name');
+        },
+        // 使用 this.$delete 删除对象属性
+        deleteAge() {
+          this.$delete(this.user, 'age');
+        },
+        // 删除数组元素（等价于 this.items.splice(idx, 1)）
+        deleteItem(idx) {
+          this.$delete(this.items, idx);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.set 用法示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+
+      strong {
+        font-size: 18px;
+        color: #000;
+      }
+
+      p {
+        font-size: 16px;
+        color: #000;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+
+    pre {
+      border: green 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="box">
+    <h2>Vue.set 用法示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        在 Vue2 中，直接通过 <code>this.obj.newKey = value</code> 添加响应式属性时，Vue 无法检测到新属性的添加。<br>
+        这时可以使用 <code>Vue.set</code> 或 <code>this.$set</code> 方法，确保新属性是响应式的。<br>
+        <br>
+        <code>Vue.set(obj, key, value)</code> 和 <code>this.$set(obj, key, value)</code> 功能一致，<br>
+        只是调用方式不同，推荐在组件内用 <code>this.$set</code>，在全局用 <code>Vue.set</code>。
+      </p>
+
+      <pre><code>
+  data: {
+    info: {
+      name: '小明'
+    }
+  },
+      </code></pre>
+    </div>
+    <h3>对象内容：</h3>
+    <ul>
+      <li v-for="(value, key) in info" :key="key">
+        {{ key }} - {{ value }}
+      </li>
+    </ul>
+
+    <div style="display: flex; flex-direction: column;">
+      <button @click="changeName">直接修改 name 属性: this.info.name = '小红';</button>
+      <button @click="setAge">直接新增 age 属性: this.info.age = 19</button>
+      <button @click="setGender">Vue.set() 设置 gender 属性: Vue.set(this.info, 'gender', '女');</button>
+      <button @click="setCity">this.$set() 设置 city 属性: this.$set(info, 'city', '北京')</button>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        info: {
+          name: '小明'
+        }
+      },
+      methods: {
+        changeName() {
+          this.info.name = '小红';
+        },
+        setAge() {
+          // 直接 this.info.age = 18 不会响应式
+          this.info.age = 19;
+        },
+        setGender() {
+          Vue.set(this.info, 'gender', '女');
+        },
+        setCity() {
+          this.$set(this.info, 'city', '北京');
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -16,13 +16,13 @@
           </div>
         </router-link>
 
-        <router-link to="/vue2-offical-keyCodes" class="nav-card">
+        <!-- <router-link to="/vue2-offical-keyCodes" class="nav-card">
           <div class="nav-icon">⚙️</div>
           <div class="nav-text">
             <h3>Vue2 API 配置</h3>
             <p>全局配置 keyCodes</p>
           </div>
-        </router-link>
+        </router-link> -->
       </div>
 
       <!-- 演示文件列表 -->
