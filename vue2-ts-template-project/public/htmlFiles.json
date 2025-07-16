@@ -155,6 +155,22 @@
     {
       "fileName": "全局API-Vue.delete() vs this.$delete()",
       "filePath": "vue2-official-api-demos/2-全局API/vue2-api-4-Vue_delete.html"
+    },
+    {
+      "fileName": "全局API-Vue.directive()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-5-Vue_directive.html"
+    },
+    {
+      "fileName": "全局API-Vue.filter()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-6-Vue_filter.html"
+    },
+    {
+      "fileName": "全局API-Vue.components()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-7-Vue_component.html"
+    },
+    {
+      "fileName": "全局API-Vue.use()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-8-Vue_use.html"
     }
   ],
   "vue2-official-example-demos": [

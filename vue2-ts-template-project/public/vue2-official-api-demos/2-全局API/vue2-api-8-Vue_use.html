@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.use 插件注册示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vue-use-demo" class="box">
+    <h2>Vue.use 插件注册示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.use</b> 用于安装 Vue 插件。插件通常用于为 Vue 添加全局功能，比如全局方法、指令、过滤器等。<br>
+        <b>语法：</b> <code>Vue.use(插件[, 可选参数])</code>
+      </p>
+      <pre><code>// 定义一个简单插件
+const MyPlugin = {
+  install(Vue, options) {
+    // 添加全局方法
+    Vue.prototype.$hello = function (name) {
+      alert('你好, ' + (name || '游客') + '！');
+    }
+  }
+}
+
+// 安装插件
+Vue.use(MyPlugin);
+      </code></pre>
+    </div>
+
+    <h3>示例：自定义插件添加全局方法</h3>
+    <button @click="sayHello">点击调用 $hello</button>
+    <pre><code>
+const MyPlugin = {
+  install(Vue, options) {
+    Vue.prototype.$hello = function (name) {
+      alert('你好, ' + (name || '游客') + '！');
+    }
+  }
+}
+Vue.use(MyPlugin);
+
+// 使用：this.$hello('张三')
+    </code></pre>
+
+    <h3 style="margin-top: 30px;">插件还能做什么？</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        插件可以扩展 Vue 的功能，比如：<br>
+        - 添加全局方法或属性<br>
+        - 添加全局指令<br>
+        - 添加全局过滤器<br>
+        - 注入组件选项<br>
+        - 添加 Vue 实例方法等
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 定义一个简单插件
+    const MyPlugin = {
+      install(Vue, options) {
+        // 添加全局方法
+        Vue.prototype.$hello = function (name) {
+          alert('你好, ' + (name || '游客') + '！');
+        }
+      }
+    }
+
+    // 安装插件
+    Vue.use(MyPlugin);
+
+    // 演示实例
+    new Vue({
+      el: '#vue-use-demo',
+      methods: {
+        sayHello() {
+          this.$hello('Vue 学习者');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

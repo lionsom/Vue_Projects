@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.filter 全局过滤器示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: green 1px solid;
+      background: #f6ffed;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 全局过滤器演示 -->
+  <div id="global-filter-demo" class="box">
+    <h2>Vue.filter 全局过滤器示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.filter</b> 用于注册全局过滤器。过滤器可以在模板插值和 v-bind 表达式中使用，用于文本格式化、数据转换等。<br>
+        <b>语法：</b> <code>Vue.filter('过滤器名', 处理函数)</code><br>
+        <b>模板用法：</b> <code>{{ 值 | 过滤器名 }}</code><br>
+        <b>JS用法：</b> <code>this.$options.filters.过滤器名(值)</code> 或 <code>this.$options.filters['过滤器名'](值)</code>
+      </p>
+      <pre><code>
+// 注册一个全局过滤器
+Vue.filter('capitalize', function (value) {
+  if (!value) return '';
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+      </code></pre>
+    </div>
+
+    <h3>示例1：首字母大写 capitalize</h3>
+    <input v-model="msg" placeholder="输入内容" class="input-demo">
+    <p>原始内容：<b>{{ msg }}</b></p>
+    <p>过滤后：<b>{{ msg | capitalize }}</b></p>
+    <pre><code>
+Vue.filter('capitalize', function (value) {
+  if (!value) return '';
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+<code v-pre>
+// 如何使用：{{ msg | capitalize }}
+</code>
+    </code></pre>
+
+    <h3 style="margin-top: 20px;">示例2：日期格式化 dateFormat</h3>
+    <input v-model="dateStr" placeholder="输入日期字符串，如 2024-05-01" class="input-demo">
+    <p>原始内容：<b>{{ dateStr }}</b></p>
+    <p>过滤后：<b>{{ dateStr | dateFormat('YYYY年MM月DD日') }}</b></p>
+    <pre><code>
+Vue.filter('dateFormat', function (value, format = 'YYYY-MM-DD') {
+  if (!value) return '';
+  const d = new Date(value);
+  if (isNaN(d)) return value;
+  return format
+    .replace('YYYY', d.getFullYear())
+    .replace('MM', ('0' + (d.getMonth() + 1)).slice(-2))
+    .replace('DD', ('0' + d.getDate()).slice(-2));
+});
+<code v-pre>
+// 使用：{{ dateStr | dateFormat('YYYY年MM月DD日') }}
+</code>
+    </code></pre>
+
+    <h3 style="margin-top: 30px;">在 JS 中使用过滤器（this.$options.filters）</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        过滤器本质是函数，可以在 JS 代码中通过 <code>this.$options.filters.过滤器名(值)</code> 调用。<br>
+        <b>注意：</b> Vue 2 没有内置 <code>this.$filters</code>，但可以通过 <code>this.$options.filters</code> 访问全局过滤器。
+      </p>
+    </div>
+    <button @click="showCapitalize">JS 调用 capitalize 过滤器</button>
+    <button @click="showDateFormat">JS 调用 dateFormat 过滤器</button>
+    <p v-if="jsResult"><b>JS 调用结果：</b> {{ jsResult }}</p>
+    <pre><code>
+methods: {
+  showCapitalize() {
+    this.jsResult = this.$options.filters.capitalize(this.msg);
+  },
+  showDateFormat() {
+    this.jsResult = this.$options.filters.dateFormat(this.dateStr, 'YYYY/MM/DD');
+  }
+}
+    </code></pre>
+  </div>
+
+  <div style="height: 50px;"></div>
+
+  <!-- 全局过滤器与局部过滤器对比演示 -->
+  <div id="local-filter-demo" class="box" style="margin-top: 40px;">
+    <h3>全局过滤器与局部过滤器对比</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        <b>全局过滤器</b>：通过 <code>Vue.filter</code> 注册，所有组件/实例都可用。<br>
+        <b>局部过滤器</b>：在组件/实例的 <code>filters</code> 选项中注册，仅当前实例可用。
+      </p>
+    </div>
+    <input v-model="newMsg" placeholder="输入内容" class="input-demo">
+    <p>原始内容：<b>{{ newMsg }}</b></p>
+    <p>全局过滤器 capitalize：<b>{{ newMsg | capitalize }}</b></p>
+    <p>局部过滤器 reverse：<b>{{ newMsg | reverse }}</b></p>
+    <pre><code>
+// 全局过滤器
+Vue.filter('capitalize', function (value) {
+  if (!value) return '';
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
+// 局部过滤器（在 Vue 实例 filters 选项中注册）
+filters: {
+  reverse(value) {
+    if (!value) return '';
+    return value.split('').reverse().join('');
+  }
+}
+<code v-pre>
+// 使用：{{ newMsg | capitalize }}
+// 使用：{{ newMsg | reverse }}
+</code>
+    </code></pre>
+
+    <button @click="showReverse">JS 调用 局部注册reverse 过滤器</button>
+  </div>
+
+  <script>
+    // 注册全局过滤器
+    Vue.filter('capitalize', function (value) {
+      if (!value) return '';
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    });
+    Vue.filter('dateFormat', function (value, format = 'YYYY-MM-DD') {
+      if (!value) return '';
+      const d = new Date(value);
+      if (isNaN(d)) return value;
+      return format
+        .replace('YYYY', d.getFullYear())
+        .replace('MM', ('0' + (d.getMonth() + 1)).slice(-2))
+        .replace('DD', ('0' + d.getDate()).slice(-2));
+    });
+
+    // 全局过滤器演示实例
+    new Vue({
+      el: '#global-filter-demo',
+      data: {
+        msg: 'hello world',
+        dateStr: '2024-05-01',
+        jsResult: ''
+      },
+      methods: {
+        showCapitalize() {
+          console.log(this.$options.filters.capitalize); 
+          this.jsResult = this.$options.filters.capitalize(this.msg);
+        },
+        showDateFormat() {
+          this.jsResult = this.$options.filters.dateFormat(this.dateStr, 'YYYY/MM/DD');
+        }
+      }
+    });
+
+    // 全局+局部过滤器对比实例
+    new Vue({
+      el: '#local-filter-demo',
+      data: {
+        newMsg: 'Vue.js'
+      },
+      filters: {
+        reverse(value) {
+          if (!value) return '';
+          return value.split('').reverse().join('');
+        }
+      },
+      methods: {
+        showReverse() {
+          console.log(this.$options.filters); 
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

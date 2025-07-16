@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.component 全局组件示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="global-component-demo" class="box">
+    <h2>Vue.component 全局组件示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.component</b> 用于注册全局组件。全局组件可以在任何 Vue 实例的模板中直接使用。<br>
+        <b>语法：</b> <code>Vue.component('组件名', 组件配置对象)</code><br>
+        <b>模板用法：</b> <code>&lt;组件名&gt;&lt;/组件名&gt;</code>
+      </p>
+      <pre><code>// 注册一个全局组件
+Vue.component('my-button', {
+  template: '&lt;button&gt;我是全局按钮&lt;/button&gt;'
+});
+      </code></pre>
+    </div>
+
+    <h3>示例1：简单全局按钮组件</h3>
+    <my-button></my-button>
+    <pre><code>
+Vue.component('my-button', {
+  template: '&lt;button&gt;我是全局按钮&lt;/button&gt;'
+});
+<code v-pre>
+// 使用：&lt;my-button&gt;&lt;/my-button&gt;
+</code>
+    </code></pre>
+
+    <h3 style="margin-top: 20px;">示例2：带 props 和事件的全局组件</h3>
+    <my-counter :init="5" @count="showCount"></my-counter>
+    <p v-if="countMsg"><b>父组件收到事件：</b> {{ countMsg }}</p>
+    <pre><code>
+Vue.component('my-counter', {
+  props: ['init'],
+  data() {
+    return {
+      num: this.init || 0
+    }
+  },
+  template: `
+    &lt;div&gt;
+      &lt;button @click="num--"&gt;-&lt;/button&gt;
+      &lt;span style="margin: 0 10px;"&gt;{{ num }}&lt;/span&gt;
+      &lt;button @click="num++"&gt;+&lt;/button&gt;
+      &lt;button @click="emitCount" style="margin-left:10px;"&gt;通知父组件&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  methods: {
+    emitCount() {
+      this.$emit('count', this.num);
+    }
+  }
+});
+<code v-pre>
+// 使用：&lt;my-counter :init="5" @count="showCount"&gt;&lt;/my-counter&gt;
+</code>
+    </code></pre>
+
+    <h3 style="margin-top: 30px;">在 JS 中访问全局组件（$options.components）</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        全局注册的组件可以通过 <code>this.$options.components</code> 访问到。<br>
+        也可以在 JS 代码中动态创建组件实例。
+      </p>
+    </div>
+    <button @click="showComponentInfo">JS 查看全局组件</button>
+    <p v-if="jsResult"><b>JS 结果：</b> {{ jsResult }}</p>
+    <pre><code>
+methods: {
+  showComponentInfo() {
+    this.jsResult = Object.keys(this.$options.components).join(', ');
+  }
+}
+    </code></pre>
+  </div>
+
+  <div style="height: 50px;"></div>
+
+  <!-- 全局组件与局部组件对比演示 -->
+  <div id="local-component-demo" class="box" style="margin-top: 40px;">
+    <h3>全局组件与局部组件对比</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        <b>全局组件</b>：通过 <code>Vue.component</code> 注册，所有组件/实例都可用。<br>
+        <b>局部组件</b>：在组件/实例的 <code>components</code> 选项中注册，仅当前实例可用。
+      </p>
+    </div>
+    <my-global></my-global>
+    <my-local></my-local>
+    <pre><code>// 全局组件
+Vue.component('my-global', {
+  template: '<div style="color: #1890ff;">我是全局组件 my-global</div>'
+});
+
+// 局部组件（在 Vue 实例 components 选项中注册）
+components: {
+  'my-local': {
+    template: '<div style="color: #52c41a;">我是局部组件 my-local</div>'
+  }
+}
+<code v-pre>
+// 使用：<my-global></my-global>
+// 使用：<my-local></my-local>
+</code>
+    </code></pre>
+    <button @click="showLocalInfo">JS 查看本实例可用组件</button>
+    <p v-if="jsResult"><b>JS 结果：</b> {{ jsResult }}</p>
+    <pre><code>
+methods: {
+  showLocalInfo() {
+    this.jsResult = Object.keys(this.$options.components).join(', ');
+  }
+}
+    </code></pre>
+  </div>
+
+  <script>
+    // 注册一个简单的全局按钮组件
+    Vue.component('my-button', {
+      template: '<button>我是全局按钮</button>'
+    });
+
+    // 注册一个带 props 和事件的全局组件
+    Vue.component('my-counter', {
+      props: ['init'],
+      data() {
+        return {
+          num: this.init || 0
+        }
+      },
+      template: `
+        <div>
+          <button @click="num--">-</button>
+          <span style="margin: 0 10px;">{{ num }}</span>
+          <button @click="num++">+</button>
+          <button @click="emitCount" style="margin-left:10px;">通知父组件</button>
+        </div>
+      `,
+      methods: {
+        emitCount() {
+          this.$emit('count', this.num);
+        }
+      }
+    });
+
+    // 全局组件演示实例
+    new Vue({
+      el: '#global-component-demo',
+      data: {
+        countMsg: '',
+        jsResult: ''
+      },
+      methods: {
+        showCount(val) {
+          this.countMsg = '当前计数值为：' + val;
+        },
+        showComponentInfo() {
+          this.jsResult = Object.keys(this.$options.components).join(', ');
+        }
+      }
+    });
+
+    // 全局+局部组件对比实例
+    new Vue({
+      el: '#local-component-demo',
+      data: {
+        jsResult: ''
+      },
+      components: {
+        'my-local': {
+          template: '<div style="color: #52c41a;">我是局部组件 my-local</div>'
+        }
+      },
+      methods: {
+        showLocalInfo() {
+          this.jsResult = Object.keys(this.$options.components).join(', ');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

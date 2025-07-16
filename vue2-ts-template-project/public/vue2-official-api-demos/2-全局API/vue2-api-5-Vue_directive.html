@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.directive 自定义指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    button {
+      margin-left: 8px;
+      margin-top: 6px;
+      padding: 2px 10px;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+      background: #f7f7f7;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #e6f7ff;
+    }
+
+    pre {
+      border: green 1px solid;
+      background: #f6ffed;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="box">
+    <h2>Vue.directive 自定义指令示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.directive</b> 用于注册全局自定义指令。自定义指令可以让你对 DOM 元素进行底层操作，扩展 Vue 的模板能力。<br>
+        常见场景如：自动聚焦、元素变色、拖拽等。<br>
+        <br>
+        <b>语法：</b> <code>Vue.directive('指令名', 配置对象或函数)</code><br>
+        <b>钩子：</b> bind、inserted、update、componentUpdated、unbind
+      </p>
+      <pre><code>
+// 注册一个全局自定义指令 v-focus
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus();
+  }
+});
+      </code></pre>
+    </div>
+    <h3>示例1：自动聚焦 v-focus</h3>
+    <input v-focus placeholder="页面加载自动聚焦" class="input-demo">
+    <pre><code>
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus();
+  }
+});
+// 使用：<input v-focus>
+    </code></pre>
+
+    <h3 style="margin-top: 20px;">示例2：变色 v-color</h3>
+    <div>
+      <input v-model="color" placeholder="输入颜色，如 red 或 #42b983" class="input-demo">
+      <button @click="changeColor">应用颜色</button>
+    </div>
+    <p v-color="color" style="font-size: 18px;">这是一段会变色的文字（v-color）</p>
+    <pre><code>
+Vue.directive('color', function(el, binding) {
+  el.style.color = binding.value;
+});
+// 使用：<p v-color="color">...</p>
+    </code></pre>
+
+    <h3 style="margin-top: 30px;">全局注册与局部注册对比</h3>
+    <div class="tip">
+      <strong>区别说明：</strong>
+      <p>
+        <b>全局注册</b>：通过 <code>Vue.directive</code> 注册，所有组件都能使用该指令。<br>
+        <b>局部注册</b>：在组件的 <code>directives</code> 选项中注册，仅当前组件可用。<br>
+        <b>推荐：</b> 通用性强的指令用全局注册，特定场景建议局部注册。
+      </p>
+    </div>
+    <div style="display: flex; gap: 40px;">
+      <div style="flex:1">
+        <b>全局注册：</b>
+        <pre><code>
+Vue.directive('focus', {
+  inserted(el) { el.focus(); }
+});
+// 所有组件都能用 v-focus
+        </code></pre>
+      </div>
+      <div style="flex:1">
+        <b>局部注册：</b>
+        <pre><code>
+new Vue({
+  directives: {
+    'local-color': function(el, binding) {
+      el.style.color = binding.value;
+    }
+  }
+});
+// 仅当前组件能用 v-local-color
+        </code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 50px;"></div>
+
+  <div id="app" class="box">
+    <h4 style="margin-top: 20px;">局部注册指令演示</h4>
+    <div id="local-demo">
+      <input v-model="localColor" placeholder="输入颜色，如 orange" class="input-demo">
+      <button @click="changeLocalColor">应用局部颜色</button>
+      <p v-local-color="localColor" style="font-size: 18px;">这是一段局部注册指令变色的文字（v-local-color）</p>
+    </div>
+    <pre><code>
+new Vue({
+  el: '#local-demo',
+  data: { localColor: 'orange' },
+  directives: {
+    'local-color': function(el, binding) {
+      el.style.color = binding.value;
+    }
+  },
+  methods: {
+    changeLocalColor() {
+      this.localColor = this.localColor.trim() || 'orange';
+    }
+  }
+});
+    </code></pre>
+  </div>
+  <script>
+    // 注册 v-focus 指令
+    Vue.directive('focus', {
+      inserted: function (el) {
+        el.focus();
+      }
+    });
+    // 注册 v-color 指令
+    Vue.directive('color', function (el, binding) {
+      el.style.color = binding.value;
+    });
+    new Vue({
+      el: '#app',
+      data: {
+        color: '#42b983'
+      },
+      methods: {
+        changeColor() {
+          // 触发视图更新
+          this.color = this.color.trim() || '#42b983';
+        }
+      }
+    });
+    // 局部注册指令演示
+    new Vue({
+      el: '#local-demo',
+      data: {
+        localColor: 'orange'
+      },
+      directives: {
+        'local-color': function (el, binding) {
+          el.style.color = binding.value;
+        }
+      },
+      methods: {
+        changeLocalColor() {
+          this.localColor = this.localColor.trim() || 'orange';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
