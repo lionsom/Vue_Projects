@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.compile 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 60px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .rendered {
+      border: 1px dashed #aaa;
+      padding: 12px;
+      margin-top: 10px;
+      background: #fafbfc;
+      min-height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="compile-demo" class="box">
+    <h2>Vue.compile 动态模板编译示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.compile</b> 允许你在运行时将模板字符串编译为渲染函数。<br>
+        仅在完整版（即包含编译器的 vue.js）中可用。<br>
+        <b>常见用法：</b> 动态渲染用户输入的模板内容。
+      </p>
+      <pre><code>// 基本语法
+const res = Vue.compile('&lt;div&gt;hello {{ name }}!&lt;/div&gt;');
+new Vue({
+  data: { name: '张三' },
+  render: res.render,
+  staticRenderFns: res.staticRenderFns
+}).$mount('#app');
+      </code></pre>
+    </div>
+
+    <h3>示例：动态渲染模板</h3>
+    <div class="input-demo">
+      <label for="tpl"><b>输入模板字符串：</b></label>
+      <textarea id="tpl" v-model="template"></textarea>
+      <button @click="compileTemplate">编译并渲染</button>
+    </div>
+    <div>
+      <b>渲染结果：</b>
+      <div class="rendered" ref="rendered"></div>
+    </div>
+    <pre><code>
+const res = Vue.compile(this.template);
+this.$refs.rendered.innerHTML = '';
+new Vue({
+  data: { msg: 'Hello Vue.compile!', count: 2024 },
+  render: res.render,
+  staticRenderFns: res.staticRenderFns
+}).$mount(this.$refs.rendered);
+    </code></pre>
+    <div class="tip" style="margin-top: 20px;">
+      <strong>提示：</strong>
+      <p>
+        你可以在模板中使用 <code>{{ msg }}</code>、<code>{{ count }}</code> 等数据。<br>
+        例如：<code>&lt;h3&gt;{{ msg }}&lt;/h3&gt;&lt;p&gt;计数：{{ count }}&lt;/p&gt;</code>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#compile-demo',
+      data: {
+        template: '<h3>{{ msg }}</h3><p>计数：{{ count }}</p>'
+      },
+      mounted() {
+        this.compileTemplate();
+      },
+      methods: {
+        compileTemplate() {
+          // 编译模板字符串
+          const res = Vue.compile(this.template);
+          // 清空之前的内容
+          this.$refs.rendered.innerHTML = '';
+          // 创建新的 Vue 实例并挂载到渲染区域
+          new Vue({
+            data: {
+              msg: 'Hello Vue.compile!',
+              count: 2024
+            },
+            render: res.render,
+            staticRenderFns: res.staticRenderFns
+          }).$mount(this.$refs.rendered);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

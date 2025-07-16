@@ -171,7 +171,11 @@
     {
       "fileName": "全局API-Vue.use()",
       "filePath": "vue2-official-api-demos/2-全局API/vue2-api-8-Vue_use.html"
-    }
+    },
+    {
+      "fileName": "全局API-Vue.compile()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-10-Vue_compile.html"
+    }    
   ],
   "vue2-official-example-demos": [
     {
