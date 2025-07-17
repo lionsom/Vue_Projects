@@ -51,7 +51,7 @@
 
     textarea {
       width: 100%;
-      min-height: 60px;
+      min-height: 100px;
       font-size: 16px;
       margin-bottom: 10px;
       padding: 6px;
@@ -80,7 +80,7 @@
         仅在完整版（即包含编译器的 vue.js）中可用。<br>
         <b>常见用法：</b> 动态渲染用户输入的模板内容。
       </p>
-      <pre><code>// 基本语法
+      <pre><code v-pre>// 基本语法
 const res = Vue.compile('&lt;div&gt;hello {{ name }}!&lt;/div&gt;');
 new Vue({
   data: { name: '张三' },
@@ -89,6 +89,8 @@ new Vue({
 }).$mount('#app');
       </code></pre>
     </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
 
     <h3>示例：动态渲染模板</h3>
     <div class="input-demo">
@@ -109,20 +111,16 @@ new Vue({
   staticRenderFns: res.staticRenderFns
 }).$mount(this.$refs.rendered);
     </code></pre>
-    <div class="tip" style="margin-top: 20px;">
-      <strong>提示：</strong>
-      <p>
-        你可以在模板中使用 <code>{{ msg }}</code>、<code>{{ count }}</code> 等数据。<br>
-        例如：<code>&lt;h3&gt;{{ msg }}&lt;/h3&gt;&lt;p&gt;计数：{{ count }}&lt;/p&gt;</code>
-      </p>
-    </div>
   </div>
 
   <script>
     new Vue({
       el: '#compile-demo',
       data: {
-        template: '<h3>{{ msg }}</h3><p>计数：{{ count }}</p>'
+        template: `<div style="border: green 1px solid;"">
+  <h3>{{ msg }}</h3>
+  <p>计数：{{ count }}</p>
+</div>`
       },
       mounted() {
         this.compileTemplate();
@@ -136,8 +134,8 @@ new Vue({
           // 创建新的 Vue 实例并挂载到渲染区域
           new Vue({
             data: {
-              msg: 'Hello Vue.compile!',
-              count: 2024
+              msg: '123 Hello Vue.compile!555',
+              count: '2024'
             },
             render: res.render,
             staticRenderFns: res.staticRenderFns

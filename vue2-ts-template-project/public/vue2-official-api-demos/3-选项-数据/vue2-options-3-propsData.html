@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 propsData 选项示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Vue2 propsData 选项示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>propsData</b> 主要用于通过 <b>Vue.extend</b> 创建组件构造器后，<b>new</b> 组件实例时传递 props 数据。<br>
+        常用于手动挂载组件或单元测试场景。<br>
+        <b>注意：</b> 只有通过 JavaScript 代码 new 的方式才用得到 propsData，模板中用不到。
+      </p>
+      <pre><code v-pre>// 基本用法
+const MyComp = Vue.extend({
+  props: ['msg'],
+  template: '&lt;div&gt;消息：&lt;b&gt;{{ msg }}&lt;/b&gt;&lt;/div&gt;'
+});
+const vm = new MyComp({
+  propsData: {
+    msg: 'Hello from propsData!'
+  }
+});
+vm.$mount('#mount-point');
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例：propsData 传递 props</h3>
+    <div id="mount-point"></div>
+    <pre><code v-pre>
+const MyComp = Vue.extend({
+  props: ['msg'],
+  template: '&lt;div&gt;消息：&lt;b&gt;{{ msg }}&lt;/b&gt;&lt;/div&gt;'
+});
+const vm = new MyComp({
+  propsData: {
+    msg: 'Hello from propsData!'
+  }
+});
+vm.$mount('#mount-point');
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>propsData 说明</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        <b>propsData</b> 只在通过 <b>new 组件构造器</b> 的方式创建实例时有效。<br>
+        在模板语法（&lt;my-comp :msg="xxx"&gt;）中不会用到 propsData。<br>
+        一般用于手动挂载、动态创建组件、单元测试等场景。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 1. 定义组件构造器
+    const MyComp = Vue.extend({
+      props: ['msg'],
+      template: '<div>消息：<b>{{ msg }}</b></div>'
+    });
+
+    // 2. 通过 propsData 传递 props，创建组件实例
+    const vm = new MyComp({
+      propsData: {
+        msg: 'Hello from propsData!'
+      }
+    });
+
+    // 3. 挂载到页面
+    vm.$mount('#mount-point');
+  </script>
+</body>
+
+</html>

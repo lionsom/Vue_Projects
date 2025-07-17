@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 props 选项示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="props-demo" class="box">
+    <h2>Vue2 props 选项示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>props</b> 用于父组件向子组件传递数据。<br>
+        <b>基本用法：</b> 通过 props 选项声明接收哪些属性。<br>
+        <b>类型校验：</b> 可以指定类型、必填、默认值等。<br>
+        <b>模板用法：</b> <code>&lt;子组件 :propName="value" /&gt;</code>
+      </p>
+      <pre><code>// props 基本写法
+props: ['title', 'count']
+
+// props 类型校验
+props: {
+  title: String,
+  count: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  info: {
+    type: Object,
+    default: function() {
+      return { msg: '默认信息' }
+    }
+  }
+}
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：props 基本用法</h3>
+    <props-basic-demo :title="parentTitle" :count="parentCount"></props-basic-demo>
+    <button @click="parentCount++">父组件 count+1</button>
+    <span style="margin-left:10px;">父 count: <b>{{ parentCount }}</b></span>
+    <pre><code v-pre>
+Vue.component('props-basic-demo', {
+  props: ['title', 'count'],
+  template: `
+  &lt;div&gt;
+    &lt;p&gt;标题：&lt;b&gt;{{ title }}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;计数：&lt;b&gt;{{ count }}&lt;/b&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `
+})
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3 style="margin-top: 20px;">示例2：props 类型校验、默认值、必填</h3>
+    <props-advanced-demo :title="'高级用法'" :count="10"></props-advanced-demo>
+    <props-advanced-demo :title="'只传 title'"></props-advanced-demo>
+    <props-advanced-demo></props-advanced-demo>
+    <pre><code v-pre>
+Vue.component('props-advanced-demo', {
+  props: {
+    title: {
+      type: String,
+      default: '默认标题'
+    },
+    count: {
+      type: Number,
+      required: false,
+      default: 1
+    },
+    info: {
+      type: Object,
+      default: function() {
+        return { msg: '默认信息' }
+      }
+    }
+  },
+  template: `
+  &lt;div style="border:1px dashed #aaa; margin-bottom:10px; padding:8px;"&gt;
+    &lt;p&gt;标题：&lt;b&gt;{{ title }}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;计数：&lt;b&gt;{{ count }}&lt;/b&gt;&lt;/p&gt;
+    &lt;p&gt;info.msg：&lt;b&gt;{{ info.msg }}&lt;/b&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `
+})
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3 style="margin-top: 30px;">props 校验与警告</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        如果传递的 prop 类型不符，Vue 会在控制台给出警告。<br>
+        <b>注意：</b> 只有在开发环境下才会有警告，生产环境不会报错。
+      </p>
+    </div>
+    <props-advanced-demo :title="123" :count="'abc'"></props-advanced-demo>
+    <pre><code v-pre>
+// 传递类型不符的 props，会有警告
+&lt;props-advanced-demo :title="123" :count="'abc'"&gt;&lt;/props-advanced-demo&gt;
+    </code></pre>
+  </div>
+
+  <script>
+    // 示例1：props 基本用法
+    Vue.component('props-basic-demo', {
+      props: ['title', 'count'],
+      template: `
+        <div>
+          <p>标题：<b>{{ title }}</b></p>
+          <p>计数：<b>{{ count }}</b></p>
+        </div>
+      `
+    });
+
+    // 示例2：props 类型校验、默认值、必填
+    Vue.component('props-advanced-demo', {
+      props: {
+        title: {
+          type: String,
+          default: '默认标题'
+        },
+        count: {
+          type: Number,
+          required: false,
+          default: 1
+        },
+        info: {
+          type: Object,
+          default: function () {
+            return { msg: '默认信息' }
+          }
+        }
+      },
+      template: `
+        <div style="border:1px dashed #aaa; margin-bottom:10px; padding:8px;">
+          <p>标题：<b>{{ title }}</b></p>
+          <p>计数：<b>{{ count }}</b></p>
+          <p>info.msg：<b>{{ info.msg }}</b></p>
+        </div>
+      `
+    });
+
+    // 根实例
+    new Vue({
+      el: '#props-demo',
+      data: {
+        parentTitle: '父组件标题',
+        parentCount: 5
+      }
+    });
+  </script>
+</body>
+
+</html>

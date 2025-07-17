@@ -68,6 +68,8 @@ Vue.component('my-button', {
       </code></pre>
     </div>
 
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
     <h3>示例1：简单全局按钮组件</h3>
     <my-button></my-button>
     <pre><code>
@@ -78,6 +80,8 @@ Vue.component('my-button', {
 // 使用：&lt;my-button&gt;&lt;/my-button&gt;
 </code>
     </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
 
     <h3 style="margin-top: 20px;">示例2：带 props 和事件的全局组件</h3>
     <my-counter :init="5" @count="showCount"></my-counter>
@@ -109,6 +113,8 @@ Vue.component('my-counter', {
 </code>
     </code></pre>
 
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+    
     <h3 style="margin-top: 30px;">在 JS 中访问全局组件（$options.components）</h3>
     <div class="tip">
       <strong>说明：</strong>
@@ -128,7 +134,7 @@ methods: {
     </code></pre>
   </div>
 
-  <div style="height: 50px;"></div>
+  <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
 
   <!-- 全局组件与局部组件对比演示 -->
   <div id="local-component-demo" class="box" style="margin-top: 40px;">

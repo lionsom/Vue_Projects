@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 data 选项示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .input-demo {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="data-demo" class="box">
+    <h2>Vue2 data 选项示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>data</b> 选项用于声明 Vue 实例的响应式数据。<br>
+        <b>对象写法：</b> 仅限根实例。<br>
+        <b>函数写法：</b> 组件推荐，返回一个对象，避免数据污染。<br>
+        <b>模板用法：</b> <code>{{ 变量名 }}</code>
+      </p>
+      <pre><code>
+// 根实例对象写法
+new Vue({
+  data: {
+    msg: 'Hello Vue!',
+    count: 0
+  }
+})
+
+// 组件推荐函数写法
+data() {
+  return {
+    msg: 'Hello 组件！'
+  }
+}
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：data 对象写法（根实例）</h3>
+    <p>消息：<b>{{ msg }}</b></p>
+    <button @click="count++">点击+1</button>
+    <span style="margin-left:10px;">计数：<b>{{ count }}</b></span>
+    <pre><code>
+new Vue({
+  data: {
+    msg: 'Hello Vue!',
+    count: 0
+  }
+})
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3 style="margin-top: 20px;">示例2：data 函数写法（组件）</h3>
+    <my-data-demo></my-data-demo>
+    <pre><code>
+Vue.component('my-data-demo', {
+  data() {
+    return {
+      text: '我是组件的 data',
+      num: 100
+    }
+  },
+  template: `
+    &lt;div&gt;
+      &lt;p&gt;组件文本：&lt;b&gt;{{ text }}&lt;/b&gt;&lt;/p&gt;
+      &lt;button @click="num++"&gt;组件num+1&lt;/button&gt;
+      &lt;span style="margin-left:10px;"&gt;num: &lt;b&gt;{{ num }}&lt;/b&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  `
+});
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3 style="margin-top: 30px;">响应式说明与 JS 访问 data</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        data 中的数据是响应式的，修改会自动更新视图。<br>
+        也可以通过 JS 访问和修改 data。
+      </p>
+    </div>
+    <button @click="showDataInfo">JS 查看 data</button>
+    <p v-if="jsResult"><b>JS 结果：</b> {{ jsResult }}</p>
+    <pre><code>
+methods: {
+  showDataInfo() {
+    this.jsResult = 'msg: ' + this.msg + ', count: ' + this.count;
+  }
+}
+    </code></pre>
+  </div>
+
+  <script>
+    // 注册一个 data 函数写法的组件
+    Vue.component('my-data-demo', {
+      data() {
+        return {
+          text: '我是组件的 data',
+          num: 100
+        }
+      },
+      template: `
+        <div>
+          <p>组件文本：<b>{{ text }}</b></p>
+          <button @click="num++">组件num+1</button>
+          <span style="margin-left:10px;">num: <b>{{ num }}</b></span>
+        </div>
+      `
+    });
+
+    // 根实例
+    new Vue({
+      el: '#data-demo',
+      data: {
+        msg: 'Hello Vue!',
+        count: 0,
+        jsResult: ''
+      },
+      methods: {
+        showDataInfo() {
+          this.jsResult = 'msg: ' + this.msg + ', count: ' + this.count;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

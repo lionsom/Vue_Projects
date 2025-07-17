@@ -175,7 +175,35 @@
     {
       "fileName": "全局API-Vue.compile()",
       "filePath": "vue2-official-api-demos/2-全局API/vue2-api-10-Vue_compile.html"
-    }    
+    },
+    {
+      "fileName": "全局API-Vue.observable()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-11-Vue_observable.html"
+    },
+    {
+      "fileName": "全局API-Vue.version()",
+      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-12-Vue_version.html"
+    },
+    {
+      "fileName": "选项/数据-data",
+      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-1-data.html"
+    },
+    {
+      "fileName": "选项/数据-props",
+      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-2-props.html"
+    },
+    {
+      "fileName": "选项/数据-propsData",
+      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-3-propsData.html"
+    },
+    {
+      "fileName": "选项/数据-methods",
+      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-4-methods.html"
+    },
+    {
+      "fileName": "选项/数据-watch",
+      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-5-watch.html"
+    }
   ],
   "vue2-official-example-demos": [
     {

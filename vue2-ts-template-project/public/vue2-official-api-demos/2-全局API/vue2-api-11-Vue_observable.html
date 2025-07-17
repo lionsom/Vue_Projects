@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.observable 响应式对象示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="observable-demo" class="box">
+    <h2>Vue.observable 响应式对象示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.observable</b> 用于创建一个响应式对象。<br>
+        <b>语法：</b> <code>const state = Vue.observable(对象)</code><br>
+        <b>用途：</b> 适合用来创建简单的全局状态管理（如简易版 Vuex）。
+      </p>
+      <pre><code>// 创建响应式对象
+const state = Vue.observable({ count: 0 });
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：响应式对象的基本用法</h3>
+    <p>计数：<b>{{ state.count }}</b></p>
+    <button @click="state.count++">增加</button>
+    <button @click="state.count--">减少</button>
+    <pre><code>
+const state = Vue.observable({ count: 0 });
+
+new Vue({
+  el: '#observable-demo',
+  data() {
+    return { state }
+  }
+});
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3 style="margin-top: 20px;">示例2：多个组件共享响应式对象</h3>
+    <counter-a></counter-a>
+    <counter-b></counter-b>
+    <pre><code>
+// 组件A
+Vue.component('counter-a', {
+  template: '&lt;div&gt;A组件：{{ state.count }} &lt;button @click="state.count++"&gt;+&lt;/button&gt;&lt;/div&gt;',
+  inject: ['state']
+});
+
+// 组件B
+Vue.component('counter-b', {
+  template: '&lt;div&gt;B组件：{{ state.count }} &lt;button @click="state.count--"&gt;-&lt;/button&gt;&lt;/div&gt;',
+  inject: ['state']
+});
+
+// 父组件 provide
+new Vue({
+  el: '#observable-demo',
+  data() { return { state } },
+  provide() {
+    return { state: this.state }
+  }
+});
+    </code></pre>
+  </div>
+
+  <script>
+    // 创建响应式对象
+    const state = Vue.observable({ count: 0 });
+
+    // 示例2：定义两个组件共享 state
+    Vue.component('counter-a', {
+      inject: ['state'],
+      template: '<div>A组件：{{ state.count }} <button @click="state.count++">+</button></div>'
+    });
+
+    Vue.component('counter-b', {
+      inject: ['state'],
+      template: '<div>B组件：{{ state.count }} <button @click="state.count--">-</button></div>'
+    });
+
+    // 父组件 provide state
+    new Vue({
+      el: '#observable-demo',
+      data() {
+        return { 
+          state 
+        }
+      },
+      provide() {
+        return { 
+          state: this.state 
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.version 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .result {
+      font-size: 18px;
+      color: #1890ff;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vue-version-demo" class="box">
+    <h2>Vue.version 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Vue.version</b> 是 Vue 的一个静态属性，用于获取当前引入的 Vue.js 版本号。<br>
+        <b>常用场景：</b> 用于调试、兼容性判断等。<br>
+        <b>语法：</b> <code>Vue.version</code>
+      </p>
+      <pre><code>// 获取当前 Vue 版本
+console.log(Vue.version); // 如：'2.7.14'
+      </code></pre>
+    </div>
+
+    <h3>示例：点击按钮显示当前 Vue 版本</h3>
+    <button @click="showVersion">显示 Vue 版本</button>
+    <div v-if="version" class="result">
+      当前 Vue 版本：<b>{{ version }}</b>
+    </div>
+    <pre><code>
+data: {
+  version: ''
+},
+methods: {
+  showVersion() {
+    this.version = Vue.version;
+  }
+}
+    </code></pre>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vue-version-demo',
+      data: {
+        version: ''
+      },
+      methods: {
+        showVersion() {
+          this.version = Vue.version;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
