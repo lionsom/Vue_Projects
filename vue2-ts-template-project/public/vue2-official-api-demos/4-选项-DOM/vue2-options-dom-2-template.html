@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 template 选项示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .template-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .warn {
+      color: #d46b08;
+      background: #fffbe6;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border: 1px solid #ffe58f;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="template-demo" class="box">
+    <h2>Vue2 template 选项示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>template</b> 是 Vue 实例的一个选项，用于定义组件或实例的 HTML 模板。<br>
+        它会替换挂载元素（el）中的内容，作为渲染的结构。<br>
+        <b>template</b> 支持字符串、选择器或 DOM 节点。
+      </p>
+      <pre><code>
+new Vue({
+  el: '#app',
+  template: '<div>自定义模板内容：{{ msg }}</div>',
+  data: { msg: 'Hello Template!' }
+})
+      </code></pre>
+    </div>
+
+    <div style="height: 40px; margin-bottom: 40px; border-bottom: #888 2px solid;"></div>
+
+    <h3>template 与 el、render 的关系</h3>
+    <div class="tip">
+      <p>
+        Vue 实例的渲染优先级：<br>
+        <b>render &gt; template &gt; el</b><br>
+        - 如果同时指定 <code>render</code>，则 <code>template</code> 和 <code>el</code> 会被忽略。<br>
+        - 如果指定 <code>template</code>，则 <code>el</code> 只作为挂载点，内容会被 template 替换。<br>
+        - 如果都不指定，则使用 <code>el</code> 元素的内容作为模板。
+      </p>
+      <pre><code>
+// 优先级示例
+new Vue({
+  el: '#app',
+  template: '<div>template 优先</div>',
+  render(h) { return h('div', 'render 优先'); }
+});
+// 实际渲染内容为：render 优先
+      </code></pre>
+    </div>
+
+    <div style="height: 40px; margin-bottom: 40px; border-bottom: #888 2px solid;"></div>
+
+    <h3>基本用法与注意事项</h3>
+    <div class="tip">
+      <ul>
+        <li>template 只能有一个根元素。</li>
+        <li>template 可以是字符串、选择器（如 <code>template: '#my-tpl'</code>），或 DOM 节点。</li>
+        <li>template 选项常用于组件开发和单文件组件（SFC）。</li>
+        <li>如果没有 template，Vue 会把 el 的内容当作模板。</li>
+      </ul>
+    </div>
+    <div class="warn">
+      <b>注意：</b> template 字符串不能包含外部文件的内容，且只能有一个根节点。
+    </div>
+
+    <div style="height: 40px; margin-bottom: 40px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：直接使用 template 字符串</h3>
+    <div class="template-demo">
+      <div id="tpl-demo1"></div>
+      <button onclick="vm1.msg = '你点击了按钮！'">点击修改内容</button>
+    </div>
+    <pre><code>
+const vm1 = new Vue({
+  el: '#tpl-demo1',
+  data: { msg: 'Hello Template!' },
+  template: '<div style="color: #1890ff; font-size: 18px;">{{ msg }}</div>'
+});
+    </code></pre>
+
+    <div style="height: 40px; margin-bottom: 40px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：使用 script[type="text/x-template"]</h3>
+    <div class="template-demo">
+      <div id="tpl-demo2"></div>
+      <script type="text/x-template" id="my-template">
+        <div>
+          <h4>这是自定义模板</h4>
+          <p>内容：{{ content }}</p>
+        </div>
+      </script>
+      <button onclick="vm2.content = '模板内容已更新！'">更新模板内容</button>
+    </div>
+    <pre><code>
+// HTML:
+<script type="text/x-template" id="my-template">
+  <div>
+    <h4>这是自定义模板</h4>
+    <p>内容：{{ content }}</p>
+  </div>
+</script>
+// JS:
+const vm2 = new Vue({
+  el: '#tpl-demo2',
+  data: { content: '初始内容' },
+  template: '#my-template'
+});
+    </code></pre>
+
+    <div style="height: 40px; margin-bottom: 40px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：template 与 el 内容对比</h3>
+    <div class="template-demo">
+      <div id="tpl-demo3">
+        <span style="color: #aaa;">（el 元素原始内容）</span>
+      </div>
+      <button onclick="vm3.count++">计数：<span id='count-span'></span></button>
+    </div>
+    <pre><code>
+// el 元素原始内容会被 template 替换
+const vm3 = new Vue({
+  el: '#tpl-demo3',
+  data: { count: 0 },
+  template: '<div><b>计数：</b>{{ count }}</div>'
+});
+    </code></pre>
+
+  </div>
+
+  <script>
+    // 示例1
+    window.vm1 = new Vue({
+      el: '#tpl-demo1',
+      data: { msg: 'Hello Template!' },
+      template: '<div style="color: #1890ff; font-size: 18px; background-color: lightgreen">{{ msg }}</div>'
+    });
+    // 示例2
+    window.vm2 = new Vue({
+      el: '#tpl-demo2',
+      data: { content: '初始内容' },
+      template: '#my-template'
+    });
+    // 示例3
+    window.vm3 = new Vue({
+      el: '#tpl-demo3',
+      data: { count: 0 },
+      template: '<div><b>计数：</b>{{ count }}</div>'
+    });
+    // 按钮计数显示
+    setInterval(function() {
+      document.getElementById('count-span').innerText = window.vm3.count;
+    }, 100);
+  </script>
+</body>
+
+</html>

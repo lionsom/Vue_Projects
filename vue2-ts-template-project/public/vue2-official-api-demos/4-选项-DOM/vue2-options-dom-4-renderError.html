@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 renderError 选项示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .render-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .error-box {
+      color: #fff;
+      background: #ff4d4f;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(255, 77, 79, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="render-error-demo" class="box">
+    <h2>Vue2 renderError 选项示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>renderError</b> 选项是 Vue2 独有的调试辅助功能，仅在开发环境下生效。<br>
+        当 <b>render</b> 函数抛出错误时，<b>renderError</b> 会被调用，用于渲染错误提示界面。<br>
+        生产环境下不会调用 renderError，建议仅用于开发调试。
+      </p>
+      <pre><code>
+new Vue({
+  render(h) {
+    throw new Error('渲染出错！');
+  },
+  renderError(h, err) {
+    return h('div', { style: { color: 'red' } }, '渲染错误：' + err.message);
+  }
+}).$mount('#app');
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>renderError 的使用场景</h3>
+    <div class="tip">
+      <p>
+        <b>renderError</b> 主要用于开发阶段，帮助定位和展示渲染函数中的异常。<br>
+        例如：<br>
+        - render 函数中有 bug 或依赖数据异常时<br>
+        - 需要自定义错误提示界面时
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：renderError 捕获渲染异常</h3>
+    <div class="render-demo" id="error-render"></div>
+    <pre><code>
+new Vue({
+  render(h) {
+    // 故意抛出错误
+    throw new Error('这里是渲染时的错误！');
+  },
+  renderError(h, err) {
+    return h('div', { class: 'error-box' }, '渲染出错：' + err.message);
+  }
+}).$mount('#error-render');
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>renderError 函数参数说明</h3>
+    <div class="tip">
+      <p>
+        <b>renderError(h, err)</b>：<br>
+        - <b>h</b>：createElement 函数，用于创建虚拟节点<br>
+        - <b>err</b>：Error 对象，包含错误信息
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 示例1：renderError 捕获渲染异常
+    new Vue({
+      render(h) {
+        // 故意抛出错误
+        throw new Error('这里是渲染时的错误！');
+      },
+      renderError(h, err) {
+        return h('div', { class: 'error-box' }, '渲染出错：' + err.message);
+      }
+    }).$mount('#error-render');
+  </script>
+</body>
+
+</html>

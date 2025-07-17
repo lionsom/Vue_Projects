@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 生命周期钩子演示</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f7f7f7;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .btns {
+      margin: 20px 0;
+    }
+
+    .btns button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="life-demo" class="box">
+    <h2>Vue2 生命周期钩子演示</h2>
+    <div class="tip">
+      <strong>生命周期钩子：</strong>
+      <p>
+        Vue2 实例从创建到销毁，会依次触发一系列生命周期钩子。你可以在这些钩子中执行自定义逻辑。<br>
+        本示例会依次展示每个生命周期钩子的触发顺序，并在控制台输出详细信息。
+      </p>
+    </div>
+
+    <div>
+      <p>计数器：{{ count }}</p>
+      <div class="btns">
+        <button @click="add">增加</button>
+        <button @click="toggleChild">切换子组件（测试 activated/deactivated）</button>
+        <button @click="destroyVm">销毁实例</button>
+        <button @click="throwError">触发错误</button>
+      </div>
+    </div>
+
+    <keep-alive>
+      <child-comp v-if="showChild"></child-comp>
+    </keep-alive>
+  </div>
+
+  <script>
+    // 子组件用于演示 activated/deactivated
+    Vue.component('child-comp', {
+      template: `<div style="margin:10px 0; padding:8px; border:1px dashed #aaa;">
+        <b>我是子组件（keep-alive 演示）</b>
+      </div>`,
+      activated() {
+        console.log('子组件 activated');
+      },
+      deactivated() {
+        console.log('子组件 deactivated');
+      },
+      destroyed() {
+        console.log('子组件 destroyed');
+      }
+    });
+
+    new Vue({
+      el: '#life-demo',
+      data: {
+        count: 0,
+        showChild: true
+      },
+      methods: {
+        add() {
+          this.count++;
+        },
+        toggleChild() {
+          this.showChild = !this.showChild;
+        },
+        destroyVm() {
+          this.$destroy();
+        },
+        throwError() {
+          // 故意抛出错误，测试 errorCaptured
+          this.notExistMethod();
+        }
+      },
+      beforeCreate() {
+        console.log('beforeCreate');
+      },
+      created() {
+        console.log('created');
+      },
+      beforeMount() {
+        console.log('beforeMount');
+      },
+      mounted() {
+        console.log('mounted');
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate');
+      },
+      updated() {
+        console.log('updated');
+      },
+      beforeDestroy() {
+        console.log('beforeDestroy');
+      },
+      destroyed() {
+        console.log('destroyed');
+      },
+      errorCaptured(err, vm, info) {
+        console.log('errorCaptured', err, info);
+        return false;
+      }
+    });
+  </script>
+</body>
+
+</html>

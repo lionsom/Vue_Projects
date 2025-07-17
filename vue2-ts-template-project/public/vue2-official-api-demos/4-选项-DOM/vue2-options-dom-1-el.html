@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 $el 实例属性示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .el-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="el-demo" class="box">
+    <h2>Vue2 $el 实例属性示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>$el</b> 是 Vue 实例的一个属性，指向当前 Vue 实例管理的根 DOM 元素。<br>
+        你可以通过 <code>this.$el</code> 访问到真实的 DOM 节点，进行原生 DOM 操作。
+      </p>
+      <pre><code>
+new Vue({
+  el: '#app',
+  mounted() {
+    // 访问根 DOM 元素
+    console.log(this.$el);
+  }
+})
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例：通过 $el 改变根元素样式</h3>
+    <div class="el-demo">
+      <p>当前背景色：<b>{{ bgColor }}</b></p>
+      <button @click="changeBg">点击改变背景色</button>
+    </div>
+    <pre><code>
+methods: {
+  changeBg() {
+    // 通过 $el 直接操作 DOM
+    this.$el.style.background = this.bgColor === 'white' ? '#e6f7ff' : 'white';
+    this.bgColor = this.bgColor === 'white' ? '浅蓝色' : 'white';
+  }
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>mounted 钩子中访问 $el</h3>
+    <div class="tip">
+      <p>
+        在 <b>mounted</b> 钩子中，Vue 实例已经挂载，可以安全访问 <code>this.$el</code>。
+      </p>
+    </div>
+    <button @click="showElInfo">打印 $el 信息</button>
+    <p v-if="elInfo"><b>$el.tagName：</b> {{ elInfo }}</p>
+    <pre><code>
+mounted() {
+  // 页面加载后自动打印 $el
+  console.log('根元素：', this.$el);
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>new Vue 使用 <code>el</code> 与 <code>$mount</code> 挂载方式对比</h3>
+    <div class="tip">
+      <strong>说明：</strong>
+      <p>
+        Vue 实例有两种常用的挂载方式：<br>
+        <b>1. 通过 <code>el</code> 选项</b>：在创建实例时直接指定挂载点。<br>
+        <b>2. 通过 <code>$mount</code> 方法</b>：先创建实例，后手动挂载到 DOM。
+      </p>
+      <pre><code>
+// 方式一：el 选项
+new Vue({
+  el: '#app',
+  // ...其它选项
+});
+
+// 方式二：$mount 方法
+const vm = new Vue({
+  // ...其它选项
+});
+vm.$mount('#app');
+      </code></pre>
+      <p>
+        <b>区别与适用场景：</b><br>
+        - <code>el</code> 方式更简洁，适合大多数场景。<br>
+        - <code>$mount</code> 方式适合需要在实例创建后再决定挂载时机或挂载点的场景，比如服务端渲染、动态挂载等。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#el-demo',
+      data: {
+        bgColor: 'white',
+        elInfo: ''
+      },
+      methods: {
+        changeBg() {
+          // 通过 $el 直接操作根 DOM
+          this.$el.style.background = this.bgColor === 'white' ? '#e6f7ff' : 'white';
+          this.bgColor = this.bgColor === 'white' ? '浅蓝色' : 'white';
+        },
+        showElInfo() {
+          this.elInfo = this.$el.tagName;
+        }
+      },
+      mounted() {
+        // 挂载后自动打印 $el
+        console.log('打印this.$el：', this.$el);
+      }
+    });
+  </script>
+</body>
+
+</html>

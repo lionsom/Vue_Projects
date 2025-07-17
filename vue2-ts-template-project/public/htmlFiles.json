@@ -203,6 +203,26 @@
     {
       "fileName": "选项/数据-watch",
       "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-5-watch.html"
+    }, 
+    {
+      "fileName": "选项/DOM-el",
+      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-1-el.html"
+    },
+    {
+      "fileName": "选项/DOM-template",
+      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-2-template.html"
+    },
+    {
+      "fileName": "选项/DOM-render",
+      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-3-render.html"
+    },
+    {
+      "fileName": "选项/DOM-renderError",
+      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-4-renderError.html"
+    },
+    {
+      "fileName": "选项/生命周期钩子-大全",
+      "filePath": "vue2-official-api-demos/5-选项-生命周期钩子/vue2-options-lifecycle-hooks.html"
     }
   ],
   "vue2-official-example-demos": [

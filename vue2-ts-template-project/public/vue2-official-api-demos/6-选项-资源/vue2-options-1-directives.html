@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 自定义指令 directives 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .dir-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .color-box {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 6px;
+      margin: 10px 0;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="dir-demo" class="box">
+    <h2>Vue2 自定义指令（directives）示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>自定义指令</b>（directives）用于对 DOM 元素进行底层操作。<br>
+        除了内置的 <code>v-model</code>、<code>v-show</code> 等指令外，Vue 允许开发者注册全局或局部自定义指令，实现如自动聚焦、变色等功能。<br>
+        指令钩子函数包括 <b>bind</b>、<b>inserted</b>、<b>update</b>、<b>componentUpdated</b>、<b>unbind</b>。
+      </p>
+      <pre><code>// 注册全局指令
+Vue.directive('focus', {
+  inserted(el) {
+    el.focus();
+  }
+});
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：全局自定义指令 v-focus（自动聚焦）</h3>
+    <div class="dir-demo">
+      <input v-focus placeholder="页面加载自动聚焦" style="width: 300px; padding: 6px; font-size: 16px;">
+    </div>
+    <pre><code>// 全局注册
+Vue.directive('focus', {
+  inserted(el) {
+    el.focus();
+  }
+});
+// 使用：<input v-focus>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：局部自定义指令 v-color（变色）</h3>
+    <div class="dir-demo">
+      <div v-color="color" class="color-box">变色盒子</div>
+      <button @click="toggleColor">切换颜色</button>
+    </div>
+    <pre><code>// 局部注册
+{
+  directives: {
+    color: {
+      bind(el, binding) {
+        el.style.background = binding.value;
+      },
+      update(el, binding) {
+        el.style.background = binding.value;
+      }
+    }
+  }
+}
+// 使用：<div v-color="color"></div>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：指令钩子函数演示</h3>
+    <div class="tip">
+      <p>
+        观察控制台输出，了解指令各生命周期钩子的调用时机。
+      </p>
+    </div>
+    <div class="dir-demo">
+      <input v-log placeholder="查看控制台日志" style="width: 300px; padding: 6px; font-size: 16px;">
+    </div>
+    <pre><code>// 全局注册
+Vue.directive('log', {
+  bind(el) {
+    console.log('v-log bind', el);
+  },
+  inserted(el) {
+    console.log('v-log inserted', el);
+  },
+  update(el) {
+    console.log('v-log update', el);
+  },
+  componentUpdated(el) {
+    console.log('v-log componentUpdated', el);
+  },
+  unbind(el) {
+    console.log('v-log unbind', el);
+  }
+});
+// 使用：<input v-log>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多用法与说明</h3>
+    <div class="tip">
+      <p>
+        - 指令名建议用中划线分隔，如 <code>v-my-directive</code>。<br>
+        - 指令对象的钩子函数参数：<code>el</code>（元素）、<code>binding</code>（绑定对象）、<code>vnode</code>、<code>oldVnode</code>。<br>
+        - 也可直接用函数简写：<code>Vue.directive('demo', fn)</code>，等价于 <code>bind</code> 和 <code>update</code>。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 全局自定义指令 v-focus
+    Vue.directive('focus', {
+      inserted(el) {
+        el.focus();
+      }
+    });
+    // 全局自定义指令 v-log（演示钩子）
+    Vue.directive('log', {
+      bind(el) {
+        console.log('v-log bind', el);
+      },
+      inserted(el) {
+        console.log('v-log inserted', el);
+      },
+      update(el) {
+        console.log('v-log update', el);
+      },
+      componentUpdated(el) {
+        console.log('v-log componentUpdated', el);
+      },
+      unbind(el) {
+        console.log('v-log unbind', el);
+      }
+    });
+    new Vue({
+      el: '#dir-demo',
+      data: {
+        color: '#1890ff'
+      },
+      methods: {
+        toggleColor() {
+          this.color = this.color === '#1890ff' ? '#52c41a' : '#1890ff';
+        }
+      },
+      directives: {
+        color: {
+          bind(el, binding) {
+            el.style.background = binding.value;
+          },
+          update(el, binding) {
+            el.style.background = binding.value;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
