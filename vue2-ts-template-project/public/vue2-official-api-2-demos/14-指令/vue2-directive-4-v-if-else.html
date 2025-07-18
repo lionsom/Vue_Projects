@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-if / v-else-if / v-else 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .vif-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vif-box {
+      font-size: 20px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+
+    .btn-group button {
+      margin-right: 10px;
+      padding: 6px 16px;
+      font-size: 16px;
+      border: 1px solid #1890ff;
+      background: #fff;
+      color: #1890ff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-group button.active,
+    .btn-group button:hover {
+      background: #1890ff;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vif-demo" class="box">
+    <h2>Vue2 内置指令 v-if / v-else-if / v-else 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-if</b>、<b>v-else-if</b> 和 <b>v-else</b> 用于条件性地渲染元素或组件。<br>
+        只有当表达式为 <code>true</code> 时，相关元素才会被渲染到 DOM 中。<br>
+        <b>v-else-if</b> 和 <b>v-else</b> 必须紧跟在 v-if 或 v-else-if 之后使用。
+      </p>
+      <pre><code>&lt;div v-if="type === 'A'"&gt;A&lt;/div&gt;
+&lt;div v-else-if="type === 'B'"&gt;B&lt;/div&gt;
+&lt;div v-else&gt;Other&lt;/div&gt;
+      </code></pre>
+      <p>
+        参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-if" target="_blank">v-if</a>、
+        <a href="https://v2.cn.vuejs.org/v2/api/#v-else-if" target="_blank">v-else-if</a>、
+        <a href="https://v2.cn.vuejs.org/v2/api/#v-else" target="_blank">v-else</a>
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：基础用法</h3>
+    <div class="vif-demo">
+      <div class="btn-group">
+        <button :class="{active: type==='A'}" @click="type='A'">A</button>
+        <button :class="{active: type==='B'}" @click="type='B'">B</button>
+        <button :class="{active: type==='C'}" @click="type='C'">C</button>
+      </div>
+      <div class="vif-box">
+        <div v-if="type === 'A'">当前选择：<b style="color: green;">A</b></div>
+        <div v-else-if="type === 'B'">当前选择：<b style="color: orange;">B</b></div>
+        <div v-else>当前选择：<b style="color: red;">其它（C）</b></div>
+      </div>
+    </div>
+    <pre><code>&lt;div v-if="type === 'A'"&gt;A&lt;/div&gt;
+&lt;div v-else-if="type === 'B'"&gt;B&lt;/div&gt;
+&lt;div v-else&gt;Other&lt;/div&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：与三元表达式的区别</h3>
+    <div class="vif-demo">
+      <div class="vif-box">
+        <div>
+          <span>v-if 渲染：</span>
+          <span v-if="score >= 90">优秀</span>
+          <span v-else-if="score >= 60">及格</span>
+          <span v-else>不及格</span>
+        </div>
+        <div>
+          <span>三元表达式渲染：</span>
+          <span>{{ score >= 90 ? '优秀' : (score >= 60 ? '及格' : '不及格') }}</span>
+        </div>
+      </div>
+      <input type="range" min="0" max="100" v-model="score" style="width: 300px;">
+      <span style="margin-left: 20px;">分数：<b>{{ score }}</b></span>
+    </div>
+    <pre><code v-pre>&lt;span v-if="score &gt;= 90"&gt;优秀&lt;/span&gt;
+&lt;span v-else-if="score &gt;= 60"&gt;及格&lt;/span&gt;
+&lt;span v-else&gt;不及格&lt;/span&gt;
+
+三元表达式：
+{{ score &gt;= 90 ? '优秀' : (score &gt;= 60 ? '及格' : '不及格') }}
+    </code></pre>
+    <div class="tip">
+      <p>
+        <b>区别：</b>v-if 是“真正的条件渲染”，只有条件为真时才会插入/移除 DOM 节点；三元表达式只是切换文本内容，节点始终存在。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-if 适合条件较少、运行时条件切换的场景。<br>
+        - v-if/v-else-if/v-else 必须在同一层级、紧挨着使用。<br>
+        - v-else-if 和 v-else 不能单独使用，必须跟在 v-if 或 v-else-if 后面。<br>
+        - v-if 也可以用于组件上，动态切换组件。<br>
+        - 频繁切换时建议用 v-show，v-if 有更高的切换开销。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-if" target="_blank">Vue2 官方文档 v-if</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vif-demo',
+      data: {
+        type: 'A',
+        score: 75
+      }
+    });
+  </script>
+</body>
+
+</html>

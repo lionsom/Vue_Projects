@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 选项 name 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .demo-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-bottom: #888 2px solid;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="name-demo" class="box">
+    <h2>Vue2 选项 <code>name</code> 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <code>name</code> 选项用于给组件命名。<br>
+        主要作用：<br>
+        - 递归组件调用时自引用<br>
+        - <code>keep-alive</code> 缓存组件时通过 name 匹配<br>
+        - Vue Devtools 调试时显示组件名<br>
+        - 异常提示、警告信息中显示组件名<br>
+      </p>
+    </div>
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <div class="demo-section">
+      <h3>示例1：递归组件必须设置 name</h3>
+      <recursive-item :level="2"></recursive-item>
+      <pre><code v-pre>// 递归组件定义
+Vue.component('recursive-item', {
+  name: 'RecursiveItem',
+  props: ['level'],
+  template: `
+    < div style="margin-left:20px;">
+      < span>当前层级：{{ level }}< /span>
+      < recursive-item v-if="level < 5" :level="level + 1" />
+    < /div>
+  `
+});
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>递归组件必须设置 <code>name</code>，否则组件在模板中无法自引用。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例2：keep-alive 根据 name 缓存组件</h3>
+      <keep-alive :include="['KeepAliveA']">
+        <component :is="currentComp"></component>
+      </keep-alive>
+      <div style="margin:10px 0;">
+        <button @click="currentComp = 'KeepAliveA'">切换到A</button>
+        <button @click="currentComp = 'KeepAliveB'">切换到B</button>
+      </div>
+      <pre><code v-pre>// 组件定义
+Vue.component('KeepAliveA', {
+  name: 'KeepAliveA',
+  template: '< div>A组件（会被缓存）< input v-model="msg" placeholder="输入内容">< /div>',
+  data() { return { msg: '' } }
+});
+
+Vue.component('KeepAliveB', {
+  name: 'KeepAliveB',
+  template: '< div>B组件（不会被缓存）< input v-model="msg" placeholder="输入内容">< /div>',
+  data() { return { msg: '' } }
+});
+      </code></pre>
+
+      <pre><code v-pre>// keep-alive :include 依赖组件 name
+
+// 使用
+< keep-alive :include="['KeepAliveA']">
+  < component :is="currentComp">< /component>
+< /keep-alive>
+
+// 切换组件
+< button @click="currentComp = 'KeepAliveA'">切换到A< /button>
+< button @click="currentComp = 'KeepAliveB'">切换到B< /button>
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>只有 name 为 <code>KeepAliveA</code> 的组件会被缓存，切换回来时输入内容不会丢失。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例3：调试与 devtools 显示组件名</h3>
+      <named-demo></named-demo>
+      <pre><code v-pre>// 组件定义
+Vue.component('named-demo', {
+  name: 'NamedDemo',
+  template: '< div>打开 Vue Devtools 查看组件名：NamedDemo< /div>'
+});
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>在 Vue Devtools 或控制台警告中，组件会显示 name 指定的名称，便于调试。</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 递归组件
+    Vue.component('recursive-item', {
+      name: 'RecursiveItem',
+      props: ['level'],
+      template: `
+        <div style="margin-left:20px;">
+          <span>当前层级：{{ level }}</span>
+          <recursive-item v-if="level < 5" :level="level + 1" />
+        </div>
+      `
+    });
+    // keep-alive 组件
+    Vue.component('KeepAliveA', {
+      name: 'KeepAliveA',
+      template: '<div>A组件（会被缓存）<input v-model="msg" placeholder="输入内容"></div>',
+      data() { return { msg: '' } }
+    });
+    Vue.component('KeepAliveB', {
+      name: 'KeepAliveB',
+      template: '<div>B组件（不会被缓存）<input v-model="msg" placeholder="输入内容"></div>',
+      data() { return { msg: '' } }
+    });
+    // devtools 调试组件
+    Vue.component('named-demo', {
+      name: 'NamedDemo',
+      template: '<div>打开 Vue Devtools 查看组件名：NamedDemo</div>'
+    });
+    new Vue({
+      el: '#name-demo',
+      data: {
+        currentComp: 'KeepAliveA'
+      }
+    });
+  </script>
+</body>
+
+</html>

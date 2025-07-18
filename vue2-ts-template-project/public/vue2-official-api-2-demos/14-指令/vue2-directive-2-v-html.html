@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-html 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .vhtml-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vhtml-box {
+      font-size: 20px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vhtml-demo" class="box">
+    <h2>Vue2 内置指令 v-html 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-html</b> 指令用于更新元素的 <code>innerHTML</code>，可以将一段 HTML 字符串渲染为真正的 HTML 结构。<br>
+        与 <code>{{ }}</code> 或 <code>v-text</code> 不同，<b>v-html</b> 会解析并渲染 HTML 标签。<br>
+        <span style="color: red;">注意：使用 v-html 可能导致 XSS 攻击风险，务必确保内容安全！</span>
+      </p>
+      <pre><code>&lt;div v-html="htmlContent"&gt;&lt;/div&gt;
+等价于
+&lt;div&gt;{{ htmlContent }}&lt;/div&gt; // 但不会解析HTML
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：基本用法</h3>
+    <div class="vhtml-demo">
+      <div class="vhtml-box">
+        <div v-html="htmlContent"></div>
+      </div>
+      <input v-model="htmlContent" placeholder="输入HTML字符串" style="width: 400px; padding: 6px; font-size: 16px;">
+    </div>
+    <pre><code>&lt;div v-html="htmlContent"&gt;&lt;/div&gt;
+&lt;input v-model="htmlContent"&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：与插值表达式和 v-text 的区别</h3>
+    <div class="vhtml-demo">
+      <div>
+        <div v-html="htmlStr"></div>
+        <span style="margin-left: 30px;">（v-html 渲染）</span>
+      </div>
+      <div>
+        <span v-text="htmlStr"></span>
+        <span style="margin-left: 30px;">（v-text 渲染）</span>
+      </div>
+      <div>
+        <span>{{ htmlStr }}</span>
+        <span style="margin-left: 30px;">（插值渲染）</span>
+      </div>
+    </div>
+    <pre><code>&lt;div v-html="htmlStr"&gt;&lt;/div&gt;
+&lt;span v-text="htmlStr"&gt;&lt;/span&gt;
+&lt;span&gt;{{ htmlStr }}&lt;/span&gt;
+    </code></pre>
+    <div class="tip">
+      <p>
+        <b>注意：</b>只有 v-html 会解析并渲染 HTML 标签，v-text 和 {{}} 都只渲染纯文本。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-html 适合需要动态渲染 HTML 结构的场景。<br>
+        - 使用 v-html 时要特别注意内容的安全性，防止 XSS 攻击。<br>
+        - v-html 会覆盖元素内原有的内容。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-html" target="_blank">Vue2 官方文档 v-html</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vhtml-demo',
+      data: {
+        htmlContent: '<span style="color: green; font-weight: bold;">Hello <i>v-html</i>!</span>',
+        htmlStr: '<b style="color: red;">加粗红色文本</b>'
+      }
+    });
+  </script>
+</body>
+
+</html>

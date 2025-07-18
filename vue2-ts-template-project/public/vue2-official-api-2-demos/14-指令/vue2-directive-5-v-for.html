@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-for 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .vfor-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vfor-box {
+      font-size: 18px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+
+    .vfor-list {
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
+
+    .vfor-list li {
+      margin-bottom: 6px;
+    }
+
+    .vfor-table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .vfor-table th,
+    .vfor-table td {
+      border: 1px solid #aaa;
+      padding: 6px 12px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vfor-demo" class="box">
+    <h2>Vue2 内置指令 v-for 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-for</b> 指令用于基于一个数组或对象来渲染一个列表。<br>
+        语法：<code>v-for="item in items"</code>，可选带索引：<code>v-for="(item, index) in items"</code>。<br>
+        建议为每个列表项绑定唯一的 <code>key</code>，以提升渲染性能和避免渲染错误。
+      </p>
+      <pre><code v-pre>&lt;li v-for="item in items" :key="item.id"&gt;{{ item.text }}&lt;/li&gt;</code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：遍历数组</h3>
+    <div class="vfor-demo">
+      <ul class="vfor-list">
+        <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
+      </ul>
+      <input v-model="newFruit" placeholder="添加水果" style="width: 200px;">
+      <button @click="addFruit">添加</button>
+    </div>
+    <pre><code v-pre>&lt;li v-for="fruit in fruits" :key="fruit"&gt;{{ fruit }}&lt;/li&gt;
+&lt;input v-model="newFruit"&gt;
+&lt;button @click="addFruit"&gt;添加&lt;/button&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：遍历对象</h3>
+    <div class="vfor-demo">
+      <ul class="vfor-list">
+        <li v-for="(value, key) in user" :key="key">
+          {{ key }}: {{ value }}
+        </li>
+      </ul>
+    </div>
+    <pre><code v-pre>&lt;li v-for="(value, key) in user" :key="key"&gt;
+  {{ key }}: {{ value }}
+&lt;/li&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：遍历数组并获取索引</h3>
+    <div class="vfor-demo">
+      <ul class="vfor-list">
+        <li v-for="(lang, idx) in languages" :key="lang">
+          {{ idx }} - {{ lang }}
+        </li>
+      </ul>
+    </div>
+    <pre><code v-pre>&lt;li v-for="(lang, idx) in languages" :key="lang"&gt;
+  {{ idx }} - {{ lang }}
+&lt;/li&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例4：遍历对象并获取索引</h3>
+    <div class="vfor-demo">
+      <ul class="vfor-list">
+        <li v-for="(value, key, idx) in user" :key="key">
+          {{ idx }} - {{ key }}: {{ value }}
+        </li>
+      </ul>
+    </div>
+    <pre><code v-pre>&lt;li v-for="(value, key, idx) in user" :key="key"&gt;
+  {{ idx }} - {{ key }}: {{ value }}
+&lt;/li&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例5：遍历数组对象并使用 key</h3>
+    <div class="vfor-demo">
+      <table class="vfor-table">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="person in people" :key="person.id">
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <pre><code v-pre>&lt;tr v-for="person in people" :key="person.id"&gt;
+  &lt;td&gt;{{ person.id }}&lt;/td&gt;
+  &lt;td&gt;{{ person.name }}&lt;/td&gt;
+  &lt;td&gt;{{ person.age }}&lt;/td&gt;
+&lt;/tr&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-for 支持遍历数组、对象、字符串、数字、甚至是自定义迭代器。<br>
+        - 建议为每个列表项绑定唯一的 <code>key</code>，通常用 id 或唯一字段。<br>
+        - 遍历对象时，参数顺序为 (value, key, index)。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-for" target="_blank">Vue2 官方文档 v-for</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vfor-demo',
+      data: {
+        fruits: ['苹果', '香蕉', '橙子'],
+        newFruit: '',
+        user: {
+          name: '张三',
+          age: 28,
+          gender: '男'
+        },
+        languages: ['JavaScript', 'Python', 'Java', 'C++'],
+        people: [
+          { id: 1, name: '小明', age: 20 },
+          { id: 2, name: '小红', age: 22 },
+          { id: 3, name: '小刚', age: 21 }
+        ]
+      },
+      methods: {
+        addFruit() {
+          if (this.newFruit.trim()) {
+            this.fruits.push(this.newFruit.trim());
+            this.newFruit = '';
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

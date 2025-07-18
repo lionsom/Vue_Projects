@@ -123,134 +123,164 @@
       "filePath": "vue2-official-course-demos/25_watch_侦听属性.html"
     }
   ],
-  "vue2-official-api-demos": [
+  "vue2-official-api-1-demos": [
     {
       "fileName": "全局配置-silent",
-      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-silent.html"
+      "filePath": "vue2-official-api-1-demos/1-全局配置/vue2-config-silent.html"
     },
     {
       "fileName": "全局配置-optionMergeStrategies",
-      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-optionMergeStrategies.html"
+      "filePath": "vue2-official-api-1-demos/1-全局配置/vue2-config-optionMergeStrategies.html"
     },
     {
       "fileName": "全局配置-errorHandler-warnHandler",
-      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-3-errorHandler-warnHandler.html"
+      "filePath": "vue2-official-api-1-demos/1-全局配置/vue2-config-3-errorHandler-warnHandler.html"
     },
     {
       "fileName": "全局配置-keyCodes",
-      "filePath": "vue2-official-api-demos/1-全局配置/vue2-config-4-keyCodes.html"
+      "filePath": "vue2-official-api-1-demos/1-全局配置/vue2-config-4-keyCodes.html"
     },
     {
       "fileName": "全局API-Vue.extend()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-1-Vue_extend.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-1-Vue_extend.html"
     },
     {
       "fileName": "全局API-Vue.nextTick() vs this.$nextTick()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-2-Vue_nextTick.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-2-Vue_nextTick.html"
     },
     {
       "fileName": "全局API-Vue.set() vs this.$set()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-3-Vue_set.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-3-Vue_set.html"
     },
     {
       "fileName": "全局API-Vue.delete() vs this.$delete()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-4-Vue_delete.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-4-Vue_delete.html"
     },
     {
       "fileName": "全局API-Vue.directive()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-5-Vue_directive.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-5-Vue_directive.html"
     },
     {
       "fileName": "全局API-Vue.filter()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-6-Vue_filter.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-6-Vue_filter.html"
     },
     {
       "fileName": "全局API-Vue.components()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-7-Vue_component.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-7-Vue_component.html"
     },
     {
       "fileName": "全局API-Vue.use()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-8-Vue_use.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-8-Vue_use.html"
     },
     {
       "fileName": "全局API-Vue.compile()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-10-Vue_compile.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-10-Vue_compile.html"
     },
     {
       "fileName": "全局API-Vue.observable()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-11-Vue_observable.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-11-Vue_observable.html"
     },
     {
       "fileName": "全局API-Vue.version()",
-      "filePath": "vue2-official-api-demos/2-全局API/vue2-api-12-Vue_version.html"
+      "filePath": "vue2-official-api-1-demos/2-全局API/vue2-api-12-Vue_version.html"
     },
     {
       "fileName": "选项/数据-data",
-      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-1-data.html"
+      "filePath": "vue2-official-api-1-demos/3-选项-数据/vue2-options-1-data.html"
     },
     {
       "fileName": "选项/数据-props",
-      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-2-props.html"
+      "filePath": "vue2-official-api-1-demos/3-选项-数据/vue2-options-2-props.html"
     },
     {
       "fileName": "选项/数据-propsData",
-      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-3-propsData.html"
+      "filePath": "vue2-official-api-1-demos/3-选项-数据/vue2-options-3-propsData.html"
     },
     {
       "fileName": "选项/数据-methods",
-      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-4-methods.html"
+      "filePath": "vue2-official-api-1-demos/3-选项-数据/vue2-options-4-methods.html"
     },
     {
       "fileName": "选项/数据-watch",
-      "filePath": "vue2-official-api-demos/3-选项-数据/vue2-options-5-watch.html"
+      "filePath": "vue2-official-api-1-demos/3-选项-数据/vue2-options-5-watch.html"
     }, 
     {
       "fileName": "选项/DOM-el",
-      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-1-el.html"
+      "filePath": "vue2-official-api-1-demos/4-选项-DOM/vue2-options-dom-1-el.html"
     },
     {
       "fileName": "选项/DOM-template",
-      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-2-template.html"
+      "filePath": "vue2-official-api-1-demos/4-选项-DOM/vue2-options-dom-2-template.html"
     },
     {
       "fileName": "选项/DOM-render",
-      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-3-render.html"
+      "filePath": "vue2-official-api-1-demos/4-选项-DOM/vue2-options-dom-3-render.html"
     },
     {
       "fileName": "选项/DOM-renderError",
-      "filePath": "vue2-official-api-demos/4-选项-DOM/vue2-options-dom-4-renderError.html"
+      "filePath": "vue2-official-api-1-demos/4-选项-DOM/vue2-options-dom-4-renderError.html"
     },
     {
       "fileName": "选项/生命周期钩子-大全",
-      "filePath": "vue2-official-api-demos/5-选项-生命周期钩子/vue2-options-lifecycle-hooks.html"
+      "filePath": "vue2-official-api-1-demos/5-选项-生命周期钩子/vue2-options-lifecycle-hooks.html"
     },
     {
       "fileName": "选项/资源-directives",
-      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-1-directives.html"
+      "filePath": "vue2-official-api-1-demos/6-选项-资源/vue2-options-1-directives.html"
     },
     {
       "fileName": "选项/资源-filters",
-      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-2-filters.html"
+      "filePath": "vue2-official-api-1-demos/6-选项-资源/vue2-options-2-filters.html"
     },
     {
       "fileName": "选项/资源-components",
-      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-3-components.html"
+      "filePath": "vue2-official-api-1-demos/6-选项-资源/vue2-options-3-components.html"
     },
     {
       "fileName": "选项/组合-parent-children",
-      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-1-parent-children.html"
+      "filePath": "vue2-official-api-1-demos/7-选项-组合/vue2-options-1-parent-children.html"
     },
     {
       "fileName": "选项/组合-mixins",
-      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-2-mixins.html"
+      "filePath": "vue2-official-api-1-demos/7-选项-组合/vue2-options-2-mixins.html"
     },
     {
       "fileName": "选项/组合-extends",
-      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-3-extends.html"
+      "filePath": "vue2-official-api-1-demos/7-选项-组合/vue2-options-3-extends.html"
     },
     {
       "fileName": "选项/组合-provide-inject",
-      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-4-provide-inject.html"
+      "filePath": "vue2-official-api-1-demos/7-选项-组合/vue2-options-4-provide-inject.html"
+    },
+    {
+      "fileName": "选项/其它-name",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-1-name.html"
+    },
+    {
+      "fileName": "选项/其它-delimiters",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-2-delimiters.html"
+    },
+    {
+      "fileName": "选项/其它-functional",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-3-functional.html"
+    },
+    {
+      "fileName": "选项/其它-model",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-4-model.html"
+    },
+    {
+      "fileName": "选项/其它-inheritAttrs",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-5-inheritAttrs.html"
+    },
+    {
+      "fileName": "选项/其它-comments",
+      "filePath": "vue2-official-api-1-demos/8-选项-其它/vue2-options-6-comments.html"
+    }
+  ],
+  "vue2-official-api-2-demos": [
+    {
+      "fileName": "实例property-vm.$data",
+      "filePath": "vue2-official-api-2-demos/9-实例 property/vue2-property-1-vm.$data.html"
     }
   ],
   "vue2-official-example-demos": [

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 选项 delimiters 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .demo-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-bottom: #888 2px solid;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="delimiters-demo" class="box">
+    <h2>Vue2 选项 <code>delimiters</code> 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <code>delimiters</code> 选项用于自定义文本插值的分隔符（默认是 <code>{{ }}</code>）。<br>
+        主要用于与其它模板引擎（如后端的 Jinja2、Django、Blade 等）冲突时，避免语法冲突。<br>
+        仅在使用 <code>new Vue({ delimiters: ... })</code> 方式创建实例时有效。
+      </p>
+    </div>
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <div class="demo-section">
+      <h3>示例1：默认分隔符 <code>{{ }}</code></h3>
+      <div id="default-delimiters">
+        默认插值：{{ message }}
+      </div>
+      <pre><code v-pre>// 默认分隔符
+new Vue({
+  el: '#default-delimiters',
+  data: {
+    message: 'Hello, 默认分隔符！'
+  }
+});
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>默认情况下，插值分隔符为 <code>{{ }}</code>。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例2：自定义分隔符 <code>[[ ]]</code></h3>
+      <div id="custom-delimiters">
+        <p>自定义插值源码是这样的： [ [ message ] ]</p>
+        <p>自定义插值，值为：[[ message ]]</p>
+      </div>
+      <pre><code v-pre>// 自定义分隔符
+new Vue({
+  el: '#custom-delimiters',
+  data: {
+    message: 'Hello, 自定义分隔符！'
+  },
+  delimiters: ['[[', ']]']
+});
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>当和后端模板语法冲突时，可以通过 <code>delimiters</code> 选项自定义插值分隔符。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例3：和后端模板引擎冲突时的应用场景</h3>
+      <div class="tip">
+        <strong>场景说明：</strong>
+        <p>如后端模板引擎（如 Jinja2）也使用 <code>{{ }}</code>，此时前端 Vue 可用 <code>[[ ]]</code>，后端继续用 <code>{{ }}</code>，互不干扰。</p>
+      </div>
+      <pre><code v-pre>
+<!-- 假设后端模板 -->
+后端变量：{{ backend_var }}
+前端变量：[[ frontend_var ]]
+      </code></pre>
+    </div>
+  </div>
+  <script>
+    // 默认分隔符
+    new Vue({
+      el: '#default-delimiters',
+      data: {
+        message: 'Hello, 默认分隔符！'
+      }
+    });
+    // 自定义分隔符
+    new Vue({
+      el: '#custom-delimiters',
+      data: {
+        message: 'Hello, 自定义分隔符！'
+      },
+      delimiters: ['[[', ']]']
+    });
+  </script>
+</body>
+
+</html>

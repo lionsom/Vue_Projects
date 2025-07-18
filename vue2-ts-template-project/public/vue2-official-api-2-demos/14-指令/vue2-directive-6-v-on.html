@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-on 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .v-on-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .v-on-box {
+      font-size: 20px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="von-demo" class="box">
+    <h2>Vue2 内置指令 v-on 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-on</b> 指令用于监听 DOM 事件，并在事件触发时执行表达式或方法。<br>
+        语法糖：<code>@</code>，如 <code>@click="fn"</code> 等价于 <code>v-on:click="fn"</code>。<br>
+        支持事件修饰符、按键修饰符、自定义键位等高级用法。
+      </p>
+      <pre><code>&lt;button v-on:click="doSomething"&gt;点击&lt;/button&gt;
+等价于
+&lt;button @click="doSomething"&gt;点击&lt;/button&gt;
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：基本用法</h3>
+    <div class="v-on-demo">
+      <div class="v-on-box">
+        <button @click="count++">点击我加1</button>
+        <span style="margin-left: 20px;">当前计数：<b>{{ count }}</b></span>
+      </div>
+    </div>
+    <pre><code>&lt;button @click="count++"&gt;点击我加1&lt;/button&gt;
+&lt;span&gt;当前计数：{{ count }}&lt;/span&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：事件方法与 $event 参数</h3>
+    <div class="v-on-demo">
+      <div class="v-on-box">
+        <button @click="showAlert('Hello', $event)">点我弹窗并传参</button>
+      </div>
+    </div>
+    <pre><code>&lt;button @click="showAlert('Hello', $event)"&gt;点我弹窗并传参&lt;/button&gt;
+
+methods: {
+  showAlert(msg, event) {
+    alert(msg + '，事件类型：' + event.type);
+  }
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：事件修饰符</h3>
+    <div class="v-on-demo">
+      <div class="v-on-box">
+        <a href="https://www.baidu.com" @click.prevent="preventClick">点我不会跳转百度</a>
+        <button @click.stop="stopClick">点我阻止事件冒泡</button>
+      </div>
+    </div>
+    <pre><code>&lt;a href="https://www.baidu.com" @click.prevent="preventClick"&gt;点我不会跳转百度&lt;/a&gt;
+&lt;button @click.stop="stopClick"&gt;点我阻止事件冒泡&lt;/button&gt;
+
+methods: {
+  preventClick() {
+    alert('已阻止默认跳转！');
+  },
+  stopClick(event) {
+    alert('已阻止冒泡！');
+  }
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例4：按键修饰符</h3>
+    <div class="v-on-demo">
+      <div class="v-on-box">
+        <input v-model="inputValue" @keyup.enter="onEnter" placeholder="按回车触发事件" style="width: 300px; padding: 6px;">
+      </div>
+    </div>
+    <pre><code>&lt;input v-model="inputValue" @keyup.enter="onEnter"&gt;
+
+methods: {
+  onEnter() {
+    alert('你按下了回车键，输入内容：' + this.inputValue);
+  }
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例5：自定义键位别名</h3>
+    <div class="v-on-demo">
+      <div class="v-on-box">
+        <input v-model="customKeyInput" @keyup.f2="onF2" placeholder="按F2触发事件" style="width: 300px; padding: 6px;">
+      </div>
+    </div>
+    <pre><code>&lt;input v-model="customKeyInput" @keyup.f2="onF2"&gt;
+
+mounted() {
+  // 自定义键位别名
+  Vue.config.keyCodes.f2 = 113;
+},
+methods: {
+  onF2() {
+    alert('你按下了F2键，输入内容：' + this.customKeyInput);
+  }
+}
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-on 支持多种事件修饰符（如 .stop、.prevent、.capture、.self、.once、.passive 等）。<br>
+        - 支持按键修饰符（如 .enter、.tab、.esc、.space、.up、.down、.left、.right 等）。<br>
+        - 可以通过 <b>Vue.config.keyCodes</b> 自定义键位别名。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-on" target="_blank">Vue2 官方文档 v-on</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#von-demo',
+      data: {
+        count: 0,
+        inputValue: '',
+        customKeyInput: ''
+      },
+      mounted() {
+        // 自定义键位别名
+        Vue.config.keyCodes.f2 = 113;
+      },
+      methods: {
+        showAlert(msg, event) {
+          console.log('======= 事件event ======>', event);
+          alert(msg + '，事件类型：' + event.type);
+        },
+        preventClick() {
+          alert('已阻止默认跳转！');
+        },
+        stopClick(event) {
+          alert('已阻止冒泡！');
+        },
+        onEnter() {
+          alert('你按下了回车键，输入内容：' + this.inputValue);
+        },
+        onF2() {
+          alert('你按下了F2键，输入内容：' + this.customKeyInput);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

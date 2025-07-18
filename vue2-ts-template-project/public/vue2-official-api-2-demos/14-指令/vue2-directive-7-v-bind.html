@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-bind 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .vbind-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vbind-box {
+      font-size: 20px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+
+    .dynamic-class {
+      color: #fff;
+      background: #42b983;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .active {
+      border: 2px solid #f00;
+    }
+
+    .big {
+      font-size: 28px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vbind-demo" class="box">
+    <h2>Vue2 内置指令 v-bind 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-bind</b> 用于动态地绑定一个或多个属性、或一个组件 prop 到表达式。常用于绑定 HTML 属性、class、style 等。<br>
+        语法简写：<code>:</code>，如 <code>:href="url"</code> 等价于 <code>v-bind:href="url"</code>。
+      </p>
+      <pre><code>&lt;a v-bind:href="url"&gt;链接&lt;/a&gt;
+等价于
+&lt;a :href="url"&gt;链接&lt;/a&gt;
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：基本属性绑定</h3>
+    <div class="vbind-demo">
+      <div class="vbind-box">
+        <a :href="url" target="_blank">点击跳转（动态 href）</a>
+      </div>
+      <input v-model="url" placeholder="输入链接地址" style="width: 400px; padding: 6px; font-size: 16px;">
+    </div>
+    <pre><code>&lt;a :href="url"&gt;点击跳转&lt;/a&gt;
+&lt;input v-model="url"&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：动态绑定 class</h3>
+    <div class="vbind-demo">
+      <div class="vbind-box">
+        <span :class="{ active: isActive, big: isBig }" class="dynamic-class">动态 class</span>
+        <label><input type="checkbox" v-model="isActive"> 激活(active)</label>
+        <label style="margin-left: 20px;"><input type="checkbox" v-model="isBig"> 大字体(big)</label>
+      </div>
+    </div>
+    <pre><code>&lt;span :class="{ active: isActive, big: isBig }"&gt;动态 class&lt;/span&gt;
+&lt;input type="checkbox" v-model="isActive"&gt;
+&lt;input type="checkbox" v-model="isBig"&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：动态绑定 style</h3>
+    <div class="vbind-demo">
+      <div class="vbind-box">
+        <div :style="{ color: fontColor, fontSize: fontSize + 'px' }">动态 style 文字</div>
+        <label>颜色：<input v-model="fontColor" placeholder="如 red/#42b983"></label>
+        <label style="margin-left: 20px;">字号：<input v-model.number="fontSize" type="number" min="12" max="48"></label>
+      </div>
+    </div>
+    <pre><code>&lt;div :style="{ color: fontColor, fontSize: fontSize + 'px' }"&gt;动态 style 文字&lt;/div&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例4：绑定多个属性（对象语法）</h3>
+    <div class="vbind-demo">
+      <div class="vbind-box">
+        <button v-bind="btnAttrs">按钮（多个属性绑定）</button>
+      </div>
+      <label>type: <input v-model="btnAttrs.type"></label>
+      <label style="margin-left: 20px;">disabled: <input type="checkbox" v-model="btnAttrs.disabled"></label>
+    </div>
+    <pre><code>&lt;button v-bind="btnAttrs"&gt;按钮&lt;/button&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例5：动态参数</h3>
+    <div class="vbind-demo">
+      <div class="vbind-box">
+        <input v-bind:[inputType]="inputValue" placeholder="动态参数绑定">
+        <select v-model="inputType">
+          <option value="value">value</option>
+          <option value="placeholder">placeholder</option>
+        </select>
+        <input v-model="inputValue" placeholder="输入绑定值">
+      </div>
+    </div>
+    <pre><code>&lt;input v-bind:[inputType]="inputValue"&gt;
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-bind 可用于绑定任意属性、prop、class、style 等。<br>
+        - 支持对象语法、数组语法、动态参数等高级用法。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-bind" target="_blank">Vue2 官方文档 v-bind</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vbind-demo',
+      data: {
+        url: 'https://v2.cn.vuejs.org/',
+        isActive: true,
+        isBig: false,
+        fontColor: '#42b983',
+        fontSize: 20,
+        btnAttrs: {
+          type: 'button',
+          disabled: false
+        },
+        inputType: 'value',
+        inputValue: '动态参数内容'
+      }
+    });
+  </script>
+</body>
+
+</html>

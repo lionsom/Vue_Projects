@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 实例属性 vm.$data 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 800px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .data-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .data-box {
+      padding: 10px 20px;
+      background: #f6ffed;
+      border: 1px solid #b7eb8f;
+      border-radius: 6px;
+      margin: 10px 0;
+      color: #389e0d;
+      font-size: 18px;
+      font-weight: bold;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="data-demo" class="box">
+    <h2>Vue2 实例属性 <code>vm.$data</code> 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>vm.$data</b> 是 Vue 实例的一个属性，指向用于数据响应的对象。<br>
+        你可以通过 <code>this.$data</code> 访问到 data 选项中的所有数据。<br>
+        通常不建议直接替换 <code>vm.$data</code>，但可以用于调试或查看数据结构。
+      </p>
+      <pre><code>// 访问实例数据对象
+console.log(vm.$data);</code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：展示 vm.$data 内容</h3>
+    <div class="data-demo">
+      <div class="data-box">姓名：{{ name }}</div>
+      <div class="data-box">年龄：{{ age }}</div>
+      <button @click="changeData">修改数据</button>
+    </div>
+    <pre><code v-pre>// data 选项
+data: {
+  name: '小明',
+  age: 18
+}
+// 访问实例数据对象
+console.log(this.$data);
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：打印 vm.$data 到控制台</h3>
+    <div class="tip">
+      <button @click="printData">打印 this.$data</button>
+    </div>
+    <pre><code>// 打印 this.$data
+this.$data
+// 也可以直接通过 vm.$data 访问
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - <code>vm.$data</code> 始终指向 data 选项的对象。<br>
+        - 不建议直接替换整个 <code>vm.$data</code>，但可以读取和调试。<br>
+        - <code>this.$data === this</code> 返回 false，但 <code>this.$data.name === this.name</code> 返回 true。
+      </p>
+    </div>
+  </div>
+
+
+  <div id="data-demo-2" class="box">
+    <button @click="printData">打印 vm2.$data</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#data-demo',
+      data: {
+        name: '小明',
+        age: 18
+      },
+      methods: {
+        changeData() {
+          this.name = this.name === '小明' ? '小红' : '小明';
+          this.age = this.age === 18 ? 20 : 18;
+        },
+        printData() {
+          console.log('=====> this.$data:', this.$data);
+          // 也可以通过 vm.$data 访问
+          console.log('=====> vm.$data:', vm.$data);
+        }
+      }
+    });
+
+    var vm2 = new Vue({
+      el: '#data-demo-2',
+      data: {
+        name: 'Jack',
+        age: 22
+      },
+      methods: {
+        printData() {
+          console.log('=====> this.$data:', this.$data);
+          // 也可以通过 vm.$data 访问
+          console.log('=====> vm2.$data:', vm2.$data);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 选项 inheritAttrs 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .demo-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-bottom: #888 2px solid;
+      padding-bottom: 30px;
+    }
+
+    .highlight {
+      color: #d14;
+      font-weight: bold;
+    }
+
+    .attr-box {
+      border: 1px dashed #aaa;
+      background: #fafafa;
+      padding: 8px 12px;
+      margin: 8px 0;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="inheritAttrs-demo" class="box">
+    <h2>Vue2 选项 <code>inheritAttrs</code> 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <code>inheritAttrs</code> 是 Vue2 组件选项之一，默认值为 <span class="highlight">true</span>。<br>
+        作用：控制父作用域中绑定在组件上的 attribute（如 class、style、id、data-*、自定义属性等）是否自动挂载到组件的根元素上。<br>
+        <span class="highlight">常用于自定义表单组件</span>，当你只想让外部属性绑定到某个子元素（如 input）而不是根元素时，可以设置
+        <code>inheritAttrs: false</code>，并通过 <code>v-bind="$attrs"</code> 手动决定属性的分发位置。
+      </p>
+    </div>
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <div class="demo-section">
+      <h3>示例1：inheritAttrs = true（默认）</h3>
+      <default-inherit-input class="highlight" placeholder="输入内容" data-demo="true"></default-inherit-input>
+      <div class="attr-box">
+        查看元素：外部 <code>class</code>、<code>placeholder</code>、<code>data-demo</code> 都自动加在了根元素 <code>&lt;div&gt;</code> 上。
+      </div>
+      <pre><code v-pre>// 组件定义
+Vue.component('default-inherit-input', {
+  template: `
+    < div>
+      < input type="text">
+    < /div>
+  `
+});
+// 使用
+< default-inherit-input class="highlight" placeholder="输入内容" data-demo="true">< /default-inherit-input>
+      </code></pre>
+
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>所有外部 attribute 都自动加在组件根元素 <code>&lt;div&gt;</code> 上。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例2：inheritAttrs = false（手动分发 $attrs）</h3>
+      <custom-inherit-input class="highlight" placeholder="请输入" data-demo="false"></custom-inherit-input>
+      <div class="attr-box">
+        查看元素：外部 <code>class</code>、<code>placeholder</code>、<code>data-demo</code> <span class="highlight">不会</span>加在根
+        <code>&lt;div&gt;</code> 上，而是通过 <code>v-bind="$attrs"</code> 传递给 <code>&lt;input&gt;</code>。
+      </div>
+      <pre><code v-pre>// 组件定义
+Vue.component('custom-inherit-input', {
+  inheritAttrs: false,
+  template: `
+    < div style="border:1px solid #aaa;padding:8px;">
+      < input type="text" v-bind="$attrs">
+    < /div>
+  `
+});
+// 使用
+< custom-inherit-input class="highlight" placeholder="请输入" data-demo="false">< /custom-inherit-input>
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>此时根元素 <code>&lt;div&gt;</code> 没有外部 attribute，所有 attribute 都传递给了 <code>&lt;input&gt;</code>。</p>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例3：典型用法——自定义表单组件</h3>
+      <form-input label="用户名" placeholder="请输入用户名" class="highlight" data-demo="form"></form-input>
+      <div class="attr-box">
+        <code>label</code> 作为 prop 传递，其他 attribute（如
+        <code>placeholder</code>、<code>class</code>、<code>data-demo</code>）通过 <code>$attrs</code> 传递给
+        <code>&lt;input&gt;</code>。
+      </div>
+      <pre><code v-pre>// 组件定义
+Vue.component('form-input', {
+  inheritAttrs: false,
+  props: ['label'],
+  template: `
+    < div style="margin-bottom:10px;">
+      < label style="display:inline-block;width:70px;">{{ label }}：</>
+      < input type="text" v-bind="$attrs">
+    < /div>
+  `
+});
+// 使用
+< form-input label="用户名" placeholder="请输入用户名" class="highlight" data-demo="form">< /form-input>
+      </code></pre>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>这样可以让自定义组件像原生 input 一样支持各种 attribute 透传，且不会污染根元素。</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // inheritAttrs: true（默认）
+    Vue.component('default-inherit-input', {
+      template: `
+        <div>
+          <input type="text">
+        </div>
+      `
+    });
+    // inheritAttrs: false，手动分发 $attrs
+    Vue.component('custom-inherit-input', {
+      inheritAttrs: false,
+      template: `
+        <div style="border:1px solid #aaa;padding:8px;">
+          <input type="text" v-bind="$attrs">
+        </div>
+      `
+    });
+    // 典型表单组件
+    Vue.component('form-input', {
+      inheritAttrs: false,
+      props: ['label'],
+      template: `
+        <div style="margin-bottom:10px;">
+          <label style="display:inline-block;width:70px;">{{ label }}：</label>
+          <input type="text" v-bind="$attrs">
+        </div>
+      `
+    });
+    new Vue({
+      el: '#inheritAttrs-demo'
+    });
+  </script>
+</body>
+
+</html>

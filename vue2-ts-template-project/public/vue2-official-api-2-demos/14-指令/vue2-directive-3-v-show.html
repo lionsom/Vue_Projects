@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 v-show 指令示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .vshow-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .vshow-box {
+      font-size: 20px;
+      color: #1890ff;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="vshow-demo" class="box">
+    <h2>Vue2 内置指令 v-show 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>v-show</b> 指令用于根据表达式的真假值，切换元素的可见性。<br>
+        本质上是通过 <code>display: none</code> 控制元素的显示与隐藏。<br>
+        与 <b>v-if</b> 不同，<b>v-show</b> 不会销毁或重建 DOM 元素，只是简单地切换 CSS。<br>
+        <span style="color: #e67e22;">适合频繁切换显示/隐藏的场景。</span>
+      </p>
+      <pre><code>&lt;div v-show="isVisible"&gt;内容&lt;/div&gt;
+等价于
+&lt;div style="display: none;"&gt;内容&lt;/div&gt; // 当 isVisible 为 false 时
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：基本用法</h3>
+    <div class="vshow-demo">
+      <div class="vshow-box">
+        <button @click="isVisible = !isVisible" style="font-size: 16px; padding: 6px 16px;">
+          切换显示/隐藏
+        </button>
+        <div v-show="isVisible" style="margin-top: 20px; color: green; font-weight: bold;">
+          这段内容会根据 isVisible 的值显示或隐藏
+        </div>
+      </div>
+      <pre><code>&lt;button @click="isVisible = !isVisible"&gt;切换显示/隐藏&lt;/button&gt;
+&lt;div v-show="isVisible"&gt;这段内容会根据 isVisible 的值显示或隐藏&lt;/div&gt;
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：与 v-if 的区别</h3>
+    <div class="vshow-demo">
+      <div>
+        <button @click="show = !show" style="font-size: 16px; padding: 6px 16px;">
+          切换显示/隐藏
+        </button>
+        <div style="margin-top: 20px;">
+          <div v-show="show" style="color: #1890ff;">v-show：我只是隐藏/显示</div>
+          <div v-if="show" style="color: #e74c3c;">v-if：我会被销毁和重建</div>
+        </div>
+      </div>
+      <pre><code>&lt;div v-show="show"&gt;v-show：我只是隐藏/显示&lt;/div&gt;
+&lt;div v-if="show"&gt;v-if：我会被销毁和重建&lt;/div&gt;
+      </code></pre>
+      <div class="tip">
+        <p>
+          <b>注意：</b>v-show 只是切换 <code>display</code>，v-if 是条件渲染，频繁切换建议用 v-show。
+        </p>
+      </div>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多说明</h3>
+    <div class="tip">
+      <p>
+        - v-show 不支持 <b>&lt;template&gt;</b> 元素。<br>
+        - v-show 的元素在初始渲染时会被插入，无论条件真假。<br>
+        - 适合需要频繁切换显示状态的场景。<br>
+        - 参考：<a href="https://v2.cn.vuejs.org/v2/api/#v-show" target="_blank">Vue2 官方文档 v-show</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#vshow-demo',
+      data: {
+        isVisible: true,
+        show: true
+      }
+    });
+  </script>
+</body>
+
+</html>
