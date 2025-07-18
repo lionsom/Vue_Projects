@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 父子组件 parent-children 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .demo-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-bottom: #888 2px solid;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="parent-demo" class="box">
+    <h2>Vue2 父子组件（parent-children）示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        父子组件通信是 Vue 组件开发的基础。<br>
+        - 父组件通过 <code>props</code> 向子组件传递数据。<br>
+        - 子组件通过 <code>$emit</code> 向父组件发送事件。<br>
+        - 父组件可通过 <code>ref</code> 获取子组件实例，调用其方法或访问其数据。<br>
+        - 子组件可通过 <code>this.$parent</code> 访问父组件实例。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <div class="demo-section">
+      <h3>示例1：父传子（props）</h3>
+      <child-comp :msg="parentMsg"></child-comp>
+      <pre><code v-pre>// 父组件模板
+< child-comp :msg="parentMsg">< /child-comp>
+
+// 子组件定义
+Vue.component('child-comp', {
+  props: ['msg'],
+  template: '< div>子组件收到：{{ msg }}< /div>'
+});
+      </code></pre>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例2：子传父（$emit）</h3>
+      <child-emit @child-click="handleChildClick"></child-emit>
+      <pre><code v-pre>// 父组件模板
+< child-emit @child-click="handleChildClick">< /child-emit>
+
+// 子组件定义
+Vue.component('child-emit', {
+  template: '< button @click="notifyParent">点我通知父组件< /button>',
+  methods: {
+    notifyParent() {
+      this.$emit('child-click', '子组件消息');
+    }
+  }
+});
+
+// 父组件 methods
+handleChildClick(msg) {
+  alert('父组件收到：' + msg);
+}
+      </code></pre>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例3：ref 获取子组件实例</h3>
+      <child-ref ref="childRef">我是子组件</child-ref>
+      <div>我是父组件：<button @click="callChildMethod">调用子组件方法</button></div>
+      <pre><code v-pre>// 父组件模板
+< child-ref ref="childRef">< /child-ref>
+< button @click="callChildMethod">调用子组件方法< /button>
+
+// 子组件定义
+Vue.component('child-ref', {
+  template: `< div style="margin-bottom:10px;">我是子组件：
+    < button @click="sayHello">点我调用自己的方法< /button>
+  < /div>
+`,
+  methods: {
+    sayHello() {
+      alert('子组件方法被调用！');
+    }
+  }
+});
+
+// 父组件 methods
+callChildMethod() {
+  this.$refs.childRef.sayHello();
+}
+      </code></pre>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例4：子组件访问父组件（$parent）</h3>
+      <child-parent-access></child-parent-access>
+      <pre><code v-pre>// 子组件定义
+Vue.component('child-parent-access', {
+  template: '< button @click="showParentMsg">访问父组件数据< /button>',
+  mounted() {
+    // 也可以在生命周期钩子中访问 this.$parent
+  },
+  methods: {
+    showParentMsg() {
+      alert('父组件数据：' + this.$parent.parentMsg);
+    }
+  }
+});
+      </code></pre>
+    </div>
+
+    <!-- 新增模块：$parent 与 $children 介绍与示例 -->
+    <div class="demo-section">
+      <h3>示例5：$parent 与 $children 的使用</h3>
+      <div class="tip">
+        <strong>说明：</strong>
+        <p>
+          <code>$parent：</code> 用于在子组件中访问父组件实例。<br>
+          <code>$children：</code> 用于在父组件中访问所有直接子组件实例（数组）。<br>
+          注意：<code>$children</code> 顺序不保证与模板顺序一致，且只包含直接子组件。
+        </p>
+      </div>
+      <parent-children-demo></parent-children-demo>
+      <pre><code v-pre>// 父组件定义
+Vue.component('parent-children-demo', {
+  template: `
+    < div>
+      < child-a>< /child-a>
+      < child-b>< /child-b>
+      < button @click="showChildren">父组件：查看 $children< /button>
+    < /div>
+  `,
+  methods: {
+    showChildren() {
+      alert('父组件 $children 数量：' + this.$children.length);
+      this.$children.forEach((child, idx) => {
+        alert('第' + (idx+1) + '个子组件名：' + child.$options.name);
+      });
+    }
+  }
+});
+
+// 子组件A
+Vue.component('child-a', {
+  name: 'ChildA',
+  template: `< button @click="showParent">子A：访问 $parent< /button>`,
+  methods: {
+    showParent() {
+      alert('子A 访问父组件数据：' + this.$parent.demoMsg);
+    }
+  }
+});
+
+// 子组件B
+Vue.component('child-b', {
+  name: 'ChildB',
+  template: `< button @click="showParent">子B：访问 $parent< /button>`,
+  methods: {
+    showParent() {
+      alert('子B 访问父组件数据：' + this.$parent.demoMsg);
+    }
+  }
+});
+      </code></pre>
+    </div>
+    <!-- 新增模块结束 -->
+  </div>
+
+  <script>
+    // 示例1：父传子
+    Vue.component('child-comp', {
+      props: ['msg'],
+      template: '<div style="margin-bottom:10px;">子组件收到：<b>{{ msg }}</b></div>'
+    });
+
+    // 示例2：子传父
+    Vue.component('child-emit', {
+      template: '<button @click="notifyParent" style="margin-bottom:10px;">点我通知父组件</button>',
+      methods: {
+        notifyParent() {
+          this.$emit('child-click', '子组件消息');
+        }
+      }
+    });
+
+    // 示例3：ref 获取子组件实例
+    Vue.component('child-ref', {
+      template: '<div style="margin-bottom:10px;">我是子组件：<button @click="sayHello">点我调用自己的方法</button></div>',
+      methods: {
+        sayHello() {
+          alert('子组件方法被调用！');
+        }
+      }
+    });
+
+    // 示例4：子组件访问父组件
+    Vue.component('child-parent-access', {
+      template: '<button @click="showParentMsg" style="margin-bottom:10px;">访问父组件数据</button>',
+      methods: {
+        showParentMsg() {
+          alert('父组件数据：' + this.$parent.parentMsg);
+        }
+      }
+    });
+
+    // 新增：$parent 与 $children 示例
+    Vue.component('parent-children-demo', {
+      data() {
+        return {
+          demoMsg: '我是父组件中的 demoMsg 数据'
+        };
+      },
+      template: `
+        <div style="margin-bottom:10px;">
+          <child-a></child-a>
+          <child-b></child-b>
+          <button @click="showChildren" style="margin-left:10px;">父组件：查看 $children</button>
+        </div>
+      `,
+      methods: {
+        showChildren() {
+          alert('父组件 $children 数量：' + this.$children.length);
+          this.$children.forEach((child, idx) => {
+            alert('第' + (idx+1) + '个子组件名：' + child.$options.name);
+          });
+        }
+      }
+    });
+    Vue.component('child-a', {
+      name: 'ChildA',
+      template: '<button @click="showParent" style="margin-right:10px;">子A：访问 $parent</button>',
+      methods: {
+        showParent() {
+          alert('子A 访问父组件数据：' + this.$parent.demoMsg);
+        }
+      }
+    });
+    Vue.component('child-b', {
+      name: 'ChildB',
+      template: '<button @click="showParent">子B：访问 $parent</button>',
+      methods: {
+        showParent() {
+          alert('子B 访问父组件数据：' + this.$parent.demoMsg);
+        }
+      }
+    });
+
+    new Vue({
+      el: '#parent-demo',
+      data: {
+        parentMsg: 'Hello from Parent!'
+      },
+      methods: {
+        handleChildClick(msg) {
+          alert('父组件收到：' + msg);
+        },
+        callChildMethod() {
+          this.$refs.childRef.sayHello();
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

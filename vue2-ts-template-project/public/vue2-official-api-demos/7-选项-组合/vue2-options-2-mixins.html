@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 Mixins 混入示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .mixin-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .color-box {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 6px;
+      margin: 10px 0;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mixin-demo" class="box">
+    <h2>Vue2 Mixins（混入）示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>Mixins（混入）</b> 是一种分发 Vue 组件中可复用功能的非常灵活的方式。<br>
+        一个 mixin 对象可以包含任意组件选项，当组件使用 mixin 时，mixin 中的所有选项将被“混合”进该组件本身的选项中。<br>
+        常用于复用数据、方法、生命周期钩子等。
+      </p>
+      <pre><code>// 定义一个混入对象
+const myMixin = {
+  created() {
+    console.log('混入对象的 created 钩子被调用');
+  },
+  methods: {
+    hello() {
+      alert('Hello from mixin!');
+    }
+  }
+}
+// 在组件中使用
+new Vue({
+  mixins: [myMixin]
+})
+      </code></pre>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：局部 mixin 的基本用法</h3>
+    <div class="mixin-demo">
+      <button @click="sayHello">调用 mixin 方法</button>
+      <span style="margin-left: 20px;">{{ message }}</span>
+    </div>
+    <pre><code v-pre>// 定义 mixin
+const helloMixin = {
+  data() {
+    return { message: 'Hello from mixin!' }
+  },
+  methods: {
+    sayHello() {
+      alert(this.message);
+    }
+  }
+}
+// 在组件中使用
+new Vue({
+  el: '#mixin-demo',
+  mixins: [helloMixin],
+  methods: {
+    // 可以重写 mixin 的方法
+    sayHello() {
+      this.$options.mixins[0].methods.sayHello.call(this);
+      alert('Hello from component!');
+    }
+  }
+})
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：全局 mixin</h3>
+    <div class="mixin-demo">
+      <button @click="showGlobalMixin">查看全局 mixin 数据</button>
+    </div>
+    <pre><code v-pre>// 全局混入
+Vue.mixin({
+  data() {
+    return { globalMsg: '全局 mixin 数据' }
+  }
+})
+// 所有组件都能访问 globalMsg
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：生命周期钩子的合并</h3>
+    <div class="tip">
+      <p>
+        mixin 和组件本身的生命周期钩子会 <b>都被调用</b>，mixin 的钩子先于组件自身钩子执行。
+      </p>
+    </div>
+    <div class="mixin-demo">
+      <button @click="showLog">查看控制台日志</button>
+    </div>
+    <pre><code v-pre>const logMixin = {
+  created() {
+    console.log('mixin created');
+  }
+}
+new Vue({
+  mixins: [logMixin],
+  created() {
+    console.log('component created');
+  }
+})
+// 控制台输出顺序：mixin created -> component created
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多用法与说明</h3>
+    <div class="tip">
+      <p>
+        - 多个 mixin 可以同时混入，选项会依次合并。<br>
+        - data、methods、生命周期钩子等会合并，methods/同名钩子后定义的会覆盖前面的。<br>
+        - 复杂合并策略详见官方文档。<br>
+        - 全局 mixin 谨慎使用，可能影响所有组件。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 示例1：局部 mixin
+    const helloMixin = {
+      data() {
+        return { message: 'Hello from mixin!' }
+      },
+      methods: {
+        sayHello() {
+          alert(this.message);
+        }
+      }
+    };
+
+    // 示例2：全局 mixin
+    Vue.mixin({
+      data() {
+        return { globalMsg: '全局 mixin 数据' }
+      }
+    });
+
+    // 示例3：生命周期钩子合并
+    const logMixin = {
+      created() {
+        console.log('mixin created');
+      }
+    };
+
+    new Vue({
+      el: '#mixin-demo',
+      mixins: [helloMixin, logMixin],
+      created() {
+        console.log('component created');
+      },
+      methods: {
+        sayHello() {
+          // 调用 mixin 的方法
+          this.$options.mixins[0].methods.sayHello.call(this);
+          alert('Hello from component!');
+        },
+        showGlobalMixin() {
+          alert(this.globalMsg);
+        },
+        showLog() {
+          console.log('点击按钮，查看 created 钩子输出顺序');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

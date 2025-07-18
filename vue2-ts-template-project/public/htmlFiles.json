@@ -235,6 +235,22 @@
     {
       "fileName": "选项/资源-components",
       "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-3-components.html"
+    },
+    {
+      "fileName": "选项/组合-parent-children",
+      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-1-parent-children.html"
+    },
+    {
+      "fileName": "选项/组合-mixins",
+      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-2-mixins.html"
+    },
+    {
+      "fileName": "选项/组合-extends",
+      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-3-extends.html"
+    },
+    {
+      "fileName": "选项/组合-provide-inject",
+      "filePath": "vue2-official-api-demos/7-选项-组合/vue2-options-4-provide-inject.html"
     }
   ],
   "vue2-official-example-demos": [

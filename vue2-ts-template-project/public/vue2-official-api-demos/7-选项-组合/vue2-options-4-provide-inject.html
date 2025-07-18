@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 provide/inject 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .demo-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      border-bottom: #888 2px solid;
+      padding-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="provide-inject-demo" class="box">
+    <h2>Vue2 provide/inject 示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <code>provide</code> 和 <code>inject</code> 是 Vue2 中实现祖先组件与后代组件之间依赖注入的 API。<br>
+        - <code>provide</code>：在祖先组件中声明要“提供”的属性。<br>
+        - <code>inject</code>：在后代组件中声明要“注入”的属性。<br>
+        - 适用于跨多层组件传递数据，避免 props 层层传递。<br>
+        - 注意：provide/inject 不是响应式的（除非提供的是对象/引用类型）。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <div class="demo-section">
+      <h3>示例1：基本用法（provide/inject 传递字符串）</h3>
+      <provide-parent></provide-parent>
+      <pre><code v-pre>// 祖先组件
+Vue.component('provide-parent', {
+  provide: {
+    message: '来自祖先组件的消息'
+  },
+  template: `
+    < div>
+      < h4>祖先组件< /h4>
+      < provide-child>< /provide-child>
+    < /div>
+  `
+});
+
+// 后代组件
+Vue.component('provide-child', {
+  inject: ['message'],
+  template: `
+    < div style="margin-left: 30px;">
+      < h5>后代组件< /h5>
+      < div>inject 到的 message: < b>{{ message }}< /b>< /div>
+    < /div>
+  `
+});
+      </code></pre>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例2：响应式 provide（传递对象/方法）</h3>
+      <provide-reactive></provide-reactive>
+      <pre><code v-pre>// 祖先组件
+Vue.component('provide-reactive', {
+  data() {
+    return {
+      user: { name: '张三', age: 20 }
+    }
+  },
+  provide() {
+    return {
+      user: this.user,
+      updateName: (newName) => { this.user.name = newName }
+    }
+  },
+  template: `
+    < div>
+      < h4>祖先组件< /h4>
+      < div>user: {{ user }}< /div>
+      < provide-user-child>< /provide-user-child>
+    < /div>
+  `
+});
+
+// 后代组件
+Vue.component('provide-user-child', {
+  inject: ['user', 'updateName'],
+  template: `
+    < div style="margin-left: 30px;">
+      < h5>后代组件< /h5>
+      < div>inject 到的 user: < b>{{ user.name }}< /b>，年龄：{{ user.age }}< /div>
+      < input v-model="user.name" placeholder="直接修改 user.name">
+      < button @click="changeName">通过方法修改< /button>
+    < /div>
+  `,
+  methods: {
+    changeName() {
+      this.updateName('李四');
+    }
+  }
+});
+      </code></pre>
+    </div>
+
+    <div class="demo-section">
+      <h3>示例3：多层嵌套（跨多级组件传递）</h3>
+      <provide-multi-level></provide-multi-level>
+      <pre><code v-pre>// 顶层组件
+Vue.component('provide-multi-level', {
+  provide: {
+    color: 'red'
+  },
+  template: `
+    < div>
+      < h4>顶层组件< /h4>
+      < middle-level>< /middle-level>
+    < /div>
+  `
+});
+
+// 中间层组件
+Vue.component('middle-level', {
+  template: `
+    < div style="margin-left: 30px;">
+      < h5>中间层组件< /h5>
+      < deep-child>< /deep-child>
+    < /div>
+  `
+});
+
+// 最深层组件
+Vue.component('deep-child', {
+  inject: ['color'],
+  template: `
+    < div style="margin-left: 30px;">
+      < h6>最深层组件< /h6>
+      < div>inject 到的 color: < b>{{ color }}< /b>< /div>
+    < /div>
+  `
+});
+      </code></pre>
+    </div>
+  </div>
+
+  <script>
+    // 示例1：基本用法
+    Vue.component('provide-parent', {
+      provide: {
+        message: '来自祖先组件的消息'
+      },
+      template: `
+        <div style="margin-bottom:10px;">
+          <h4>祖先组件</h4>
+          <provide-child></provide-child>
+        </div>
+      `
+    });
+    Vue.component('provide-child', {
+      inject: ['message'],
+      template: `
+        <div style="margin-left: 30px; margin-bottom:10px;">
+          <h5>后代组件</h5>
+          <div>inject 到的 message: <b>{{ message }}</b></div>
+        </div>
+      `
+    });
+
+    // 示例2：响应式 provide
+    Vue.component('provide-reactive', {
+      data() {
+        return {
+          user: { name: '张三', age: 20 }
+        }
+      },
+      provide() {
+        return {
+          user: this.user,
+          updateName: (newName) => { this.user.name = newName }
+        }
+      },
+      template: `
+        <div style="margin-bottom:10px;">
+          <h4>祖先组件</h4>
+          <div>user: {{ user }}</div>
+          <provide-user-child></provide-user-child>
+        </div>
+      `
+    });
+    Vue.component('provide-user-child', {
+      inject: ['user', 'updateName'],
+      template: `
+        <div style="margin-left: 30px; margin-bottom:10px;">
+          <h5>后代组件</h5>
+          <div>inject 到的 user: <b>{{ user.name }}</b>，年龄：{{ user.age }}</div>
+          <input v-model="user.name" placeholder="直接修改 user.name">
+          <button @click="changeName" style="margin-left:10px;">通过方法修改</button>
+        </div>
+      `,
+      methods: {
+        changeName() {
+          this.updateName('李四');
+        }
+      }
+    });
+
+    // 示例3：多层嵌套
+    Vue.component('provide-multi-level', {
+      provide: {
+        color: 'red'
+      },
+      template: `
+        <div style="margin-bottom:10px;">
+          <h4>顶层组件</h4>
+          <middle-level></middle-level>
+        </div>
+      `
+    });
+    Vue.component('middle-level', {
+      template: `
+        <div style="margin-left: 30px; margin-bottom:10px;">
+          <h5>中间层组件</h5>
+          <deep-child></deep-child>
+        </div>
+      `
+    });
+    Vue.component('deep-child', {
+      inject: ['color'],
+      template: `
+        <div style="margin-left: 30px; margin-bottom:10px;">
+          <h6>最深层组件</h6>
+          <div>inject 到的 color: <b>{{ color }}</b></div>
+        </div>
+      `
+    });
+
+    new Vue({
+      el: '#provide-inject-demo'
+    });
+  </script>
+</body>
+
+</html>
