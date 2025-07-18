@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue2 组件 components 示例</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      width: 900px;
+      margin: 10px auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+    }
+
+    .tip {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .tip strong {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .tip p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    pre {
+      border: #1890ff 1px solid;
+      background: #f0f7ff;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .comp-demo {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .color-box {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 6px;
+      margin: 10px 0;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    .dynamic-box {
+      border: 1px dashed #aaa;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="comp-demo" class="box">
+    <h2>Vue2 组件（components）示例</h2>
+    <div class="tip">
+      <strong>介绍：</strong>
+      <p>
+        <b>组件</b>（components）是 Vue 的核心概念，用于封装可复用的 UI 单元。<br>
+        Vue 支持全局注册和局部注册组件，也支持动态组件切换。<br>
+        组件间可通过 <code>props</code> 传递数据，通过 <code>event</code> 进行通信。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例1：全局组件</h3>
+    <div class="comp-demo">
+      <my-button></my-button>
+    </div>
+    <pre><code>// 全局注册
+Vue.component('my-button', {
+  template: '< button>全局按钮</>'
+});
+// 使用：< my-button>< /my-button>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例2：局部组件 + props 传参</h3>
+    <div class="comp-demo">
+      <color-box :color="color" text="局部组件"></color-box>
+      <button @click="toggleColor">切换颜色</button>
+    </div>
+    <pre><code v-pre>// 局部注册
+{
+  components: {
+    ColorBox: {
+      props: ['color', 'text'],
+      template: '< div class="color-box" :style="{background: color}">{{ text }}</>'
+    }
+  }
+}
+// 使用：< color-box :color="color" text="局部组件"></>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>示例3：动态组件</h3>
+    <div class="comp-demo">
+      <button @click="currentComp = 'comp-a'">显示A</button>
+      <button @click="currentComp = 'comp-b'">显示B</button>
+      <div class="dynamic-box">
+        <component :is="currentComp"></component>
+      </div>
+    </div>
+    <pre><code v-pre>// 定义组件
+var CompA = {
+  template: '< div >动态组件A < /div >'
+};
+var CompB = {
+  template: '< div >动态组件B< /div >'
+};
+// 使用
+< component :is="currentComp"></>
+    </code></pre>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>更多用法与说明</h3>
+    <div class="tip">
+      <p>
+        - 组件名建议用中划线分隔，如 <code>my-component</code>。<br>
+        - 组件通信常用 <code>props</code>、<code>$emit</code>、<code>slot</code> 等。<br>
+        - 动态组件可配合 <code>keep-alive</code> 缓存。<br>
+        - 组件可嵌套、递归、异步加载等。
+      </p>
+    </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>打印 <br>全局组件：Vue.options.components <br> 局部组件：this.$options.components</h3>
+    <div class="tip">
+      <button @click="showComponents">打印log</button>
+    </div>
+  </div>
+
+  <script>
+    // 全局组件
+    Vue.component('my-button', {
+      template: '<button>全局按钮</button>'
+    });
+    // 动态组件定义
+    var CompA = {
+      template: '<div>动态组件A</div>'
+    };
+    var CompB = {
+      template: '<div>动态组件B</div>'
+    };
+    new Vue({
+      el: '#comp-demo',
+      data: {
+        color: '#1890ff',
+        currentComp: 'comp-a'
+      },
+      methods: {
+        toggleColor() {
+          this.color = this.color === '#1890ff' ? '#52c41a' : '#1890ff';
+        },
+        showComponents() {
+          console.log('======> 局部组件:', this.$options.components);
+          console.log('======> 全局组件:', Vue.options.components);
+        }
+      },
+      components: {
+        'color-box': {
+          props: ['color', 'text'],
+          template: '<div class="color-box" :style="{background: color}">{{ text }}</div>'
+        },
+        'comp-a': CompA,
+        'comp-b': CompB
+      }
+    });
+  </script>
+</body>
+
+</html>

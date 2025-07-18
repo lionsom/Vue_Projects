@@ -223,6 +223,18 @@
     {
       "fileName": "选项/生命周期钩子-大全",
       "filePath": "vue2-official-api-demos/5-选项-生命周期钩子/vue2-options-lifecycle-hooks.html"
+    },
+    {
+      "fileName": "选项/资源-directives",
+      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-1-directives.html"
+    },
+    {
+      "fileName": "选项/资源-filters",
+      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-2-filters.html"
+    },
+    {
+      "fileName": "选项/资源-components",
+      "filePath": "vue2-official-api-demos/6-选项-资源/vue2-options-3-components.html"
     }
   ],
   "vue2-official-example-demos": [

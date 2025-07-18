@@ -62,9 +62,9 @@
         你可以在模板中使用“管道符”<code>|</code>，将数据传递给过滤器进行处理。<br>
         过滤器可以是全局的，也可以是局部的。
       </p>
-      <pre><code>
-<!-- 模板中使用过滤器 -->
-{{ message | capitalize }}
+      <pre><code v-pre>
+  // 模板中使用过滤器
+  {{ message | capitalize }}
       </code></pre>
     </div>
 
@@ -75,7 +75,7 @@
       <p>
         使用 <code>Vue.filter</code> 方法可以注册全局过滤器，所有 Vue 实例都可用。
       </p>
-      <pre><code>
+      <pre><code v-pre>
 Vue.filter('capitalize', function(value) {
   if (!value) return '';
   return value.charAt(0).toUpperCase() + value.slice(1);
@@ -114,7 +114,7 @@ filters: {
       <p>
         过滤器可以接收参数，也可以链式调用多个过滤器。
       </p>
-      <pre><code>
+      <pre><code v-pre>
 Vue.filter('append', function(value, str) {
   return value + str;
 });
@@ -145,6 +145,13 @@ Vue.filter('dateFormat', function(value) {
       <p>原始日期：<b>{{ dateStr }}</b></p>
       <p>格式化后：<b>{{ dateStr | dateFormat }}</b></p>
     </div>
+
+    <div style="height: 50px; margin-bottom: 50px; border-bottom: #888 2px solid;"></div>
+
+    <h3>打印 <br>全局过滤器：Vue.options.filters <br> 局部过滤器：this.$options.filters</h3>
+    <div class="tip">
+      <button @click="showFilters">打印log</button>
+    </div>
   </div>
 
   <script>
@@ -172,6 +179,12 @@ Vue.filter('dateFormat', function(value) {
       filters: {
         reverse(value) {
           return value.split('').reverse().join('');
+        }
+      },
+      methods: {
+        showFilters() {
+          console.log('======> 局部过滤器:', this.$options.filters);
+          console.log('======> 全局过滤器:', Vue.options.filters);
         }
       }
     });
